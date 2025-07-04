@@ -1,0 +1,12 @@
+C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.Shiraa.Domain\bin\Debug\net9.0\Nexus.LAS.Domain.deps.json
+C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.Shiraa.Domain\bin\Debug\net9.0\Nexus.LAS.Domain.dll
+C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.Shiraa.Domain\bin\Debug\net9.0\Nexus.LAS.Domain.pdb
+C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.Shiraa.Domain\obj\Debug\net9.0\Nexus.LAS.Domain.csproj.AssemblyReference.cache
+C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.Shiraa.Domain\obj\Debug\net9.0\Nexus.LAS.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.Shiraa.Domain\obj\Debug\net9.0\Nexus.LAS.Domain.AssemblyInfoInputs.cache
+C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.Shiraa.Domain\obj\Debug\net9.0\Nexus.LAS.Domain.AssemblyInfo.cs
+C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.Shiraa.Domain\obj\Debug\net9.0\Nexus.LAS.Domain.csproj.CoreCompileInputs.cache
+C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.Shiraa.Domain\obj\Debug\net9.0\Nexus.LAS.Domain.dll
+C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.Shiraa.Domain\obj\Debug\net9.0\refint\Nexus.LAS.Domain.dll
+C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.Shiraa.Domain\obj\Debug\net9.0\Nexus.LAS.Domain.pdb
+C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.Shiraa.Domain\obj\Debug\net9.0\ref\Nexus.LAS.Domain.dll

@@ -1,0 +1,6 @@
+@Nexus.LAS.WebApi_HostAddress = http://localhost:5195
+
+GET {{Nexus.LAS.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

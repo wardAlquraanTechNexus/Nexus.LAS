@@ -1,0 +1,17 @@
+C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Identity\bin\Debug\net9.0\Nexus.LAS.Identity.deps.json
+C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Identity\bin\Debug\net9.0\Nexus.LAS.Identity.dll
+C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Identity\bin\Debug\net9.0\Nexus.LAS.Identity.pdb
+C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Identity\bin\Debug\net9.0\Nexus.LAS.Application.dll
+C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Identity\bin\Debug\net9.0\Nexus.LAS.Domain.dll
+C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Identity\bin\Debug\net9.0\Nexus.LAS.Application.pdb
+C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Identity\bin\Debug\net9.0\Nexus.LAS.Domain.pdb
+C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Identity\obj\Debug\net9.0\Nexus.LAS.Identity.csproj.AssemblyReference.cache
+C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Identity\obj\Debug\net9.0\Nexus.LAS.Identity.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Identity\obj\Debug\net9.0\Nexus.LAS.Identity.AssemblyInfoInputs.cache
+C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Identity\obj\Debug\net9.0\Nexus.LAS.Identity.AssemblyInfo.cs
+C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Identity\obj\Debug\net9.0\Nexus.LAS.Identity.csproj.CoreCompileInputs.cache
+C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Identity\obj\Debug\net9.0\Nexus.LA.1F7A90E2.Up2Date
+C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Identity\obj\Debug\net9.0\Nexus.LAS.Identity.dll
+C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Identity\obj\Debug\net9.0\refint\Nexus.LAS.Identity.dll
+C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Identity\obj\Debug\net9.0\Nexus.LAS.Identity.pdb
+C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Identity\obj\Debug\net9.0\ref\Nexus.LAS.Identity.dll
