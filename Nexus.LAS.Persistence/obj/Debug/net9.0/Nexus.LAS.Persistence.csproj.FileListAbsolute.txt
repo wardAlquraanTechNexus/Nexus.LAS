@@ -6,6 +6,7 @@ C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Persistence\obj\Debug\net9.0
 C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Persistence\obj\Debug\net9.0\Nexus.LAS.Persistence.AssemblyInfoInputs.cache
 C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Persistence\obj\Debug\net9.0\Nexus.LAS.Persistence.AssemblyInfo.cs
 C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Persistence\obj\Debug\net9.0\Nexus.LAS.Persistence.csproj.CoreCompileInputs.cache
+C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Persistence\obj\Debug\net9.0\Nexus.LAS.Persistence.sourcelink.json
 C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Persistence\obj\Debug\net9.0\Nexus.LAS.Persistence.dll
 C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Persistence\obj\Debug\net9.0\refint\Nexus.LAS.Persistence.dll
 C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Persistence\obj\Debug\net9.0\Nexus.LAS.Persistence.pdb

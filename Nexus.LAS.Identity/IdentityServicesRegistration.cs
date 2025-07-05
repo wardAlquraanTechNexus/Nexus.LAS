@@ -4,9 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.Identity;
 using Nexus.LAS.Domain.Entities;
 using Nexus.LAS.Identity.DbContext;
+using Nexus.LAS.Identity.Services;
 using System.Text;
 
 namespace Nexus.LAS.Identity
@@ -39,6 +41,10 @@ namespace Nexus.LAS.Identity
 
                 options.SignIn.RequireConfirmedEmail = false;
             });
+
+            services.AddTransient<IAuthService, AuthService>();
+            services.AddTransient<IUserService, UserService>();
+
 
             services.AddAuthentication(options =>
             {

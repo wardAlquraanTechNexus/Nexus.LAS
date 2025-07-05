@@ -8,6 +8,7 @@ C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Infrastructure\obj\Debug\net
 C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Infrastructure\obj\Debug\net9.0\Nexus.LAS.Infrastructure.AssemblyInfoInputs.cache
 C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Infrastructure\obj\Debug\net9.0\Nexus.LAS.Infrastructure.AssemblyInfo.cs
 C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Infrastructure\obj\Debug\net9.0\Nexus.LAS.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Infrastructure\obj\Debug\net9.0\Nexus.LAS.Infrastructure.sourcelink.json
 C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Infrastructure\obj\Debug\net9.0\Nexus.LA.65BFD13A.Up2Date
 C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Infrastructure\obj\Debug\net9.0\Nexus.LAS.Infrastructure.dll
 C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Infrastructure\obj\Debug\net9.0\refint\Nexus.LAS.Infrastructure.dll

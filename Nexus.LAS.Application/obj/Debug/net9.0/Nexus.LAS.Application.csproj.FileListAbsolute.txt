@@ -1,12 +1,13 @@
 C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Application\bin\Debug\net9.0\Nexus.LAS.Application.deps.json
 C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Application\bin\Debug\net9.0\Nexus.LAS.Application.dll
 C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Application\bin\Debug\net9.0\Nexus.LAS.Application.pdb
+C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Application\obj\Debug\net9.0\Nexus.LAS.Application.csproj.AssemblyReference.cache
 C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Application\obj\Debug\net9.0\Nexus.LAS.Application.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Application\obj\Debug\net9.0\Nexus.LAS.Application.AssemblyInfoInputs.cache
 C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Application\obj\Debug\net9.0\Nexus.LAS.Application.AssemblyInfo.cs
 C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Application\obj\Debug\net9.0\Nexus.LAS.Application.csproj.CoreCompileInputs.cache
+C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Application\obj\Debug\net9.0\Nexus.LAS.Application.sourcelink.json
 C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Application\obj\Debug\net9.0\Nexus.LAS.Application.dll
 C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Application\obj\Debug\net9.0\refint\Nexus.LAS.Application.dll
 C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Application\obj\Debug\net9.0\Nexus.LAS.Application.pdb
 C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Application\obj\Debug\net9.0\ref\Nexus.LAS.Application.dll
-C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.Application\obj\Debug\net9.0\Nexus.LAS.Application.csproj.AssemblyReference.cache
