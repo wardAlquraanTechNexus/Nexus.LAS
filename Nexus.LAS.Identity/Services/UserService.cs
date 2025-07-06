@@ -6,6 +6,7 @@ using Nexus.LAS.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,6 +14,8 @@ namespace Nexus.LAS.Identity.Services
 {
     public class UserService(UserManager<ApplicationUser> _userManager, RoleManager<IdentityRole> _roleManager, IHttpContextAccessor _contextAccessor) : IUserService
     {
+        public string UserId => _contextAccessor?.HttpContext?.User?.FindFirstValue("uid") ?? string.Empty;
+
         public async Task<UserDto?> FindUserByEmail(string useremail)
         {
             var user = await _userManager.FindByEmailAsync(useremail);
