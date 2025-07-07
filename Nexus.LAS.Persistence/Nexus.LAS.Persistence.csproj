@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Nexus.LAS.Application\Nexus.LAS.Application.csproj" />
     <ProjectReference Include="..\Nexus.LAS.Domain\Nexus.LAS.Domain.csproj" />
     <ProjectReference Include="..\Nexus.LAS.Identity\Nexus.LAS.Identity.csproj" />
   </ItemGroup>

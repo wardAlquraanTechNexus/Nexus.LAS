@@ -20,6 +20,7 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("CompaniesAuthorizedSignatoryIDN")]
+        [Key]
         public int CompaniesAuthorizedSignatoryIdn { get; set; }
 
         [Required]

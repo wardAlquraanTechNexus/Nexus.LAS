@@ -7,22 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nexus.LAS.Domain.Entities
+namespace Nexus.LAS.Domain.Entities.UserGroupEntities
 {
-    public class User:BaseEntity
+    [Table("Users")]
+    public class User : BaseEntity
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("id")]
         public int Id { get; set; }
 
-        [Required]
-        [MaxLength(50)]
+        [Column("LoginName")]
         public string LoginName { get; set; }
 
-        [Required]
-        [MaxLength(50)]
-        public string NtLogin { get; set; }
+        [Column("NTLogin")]
+        public string NTLogin { get; set; }
 
         [Column("Persons_IDN")]
-        public int? PersonsIdn { get; set; }
+        public int? PersonsIdN { get; set; }
     }
 }

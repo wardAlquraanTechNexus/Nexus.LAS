@@ -17,7 +17,7 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
         [MaxLength(50)]
         [Column("CompaniesPhoneIDC")]
         public string CompaniesPhoneIdc { get; set; }
-
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("CompaniesPhoneIDN")]
         public int CompaniesPhoneIdn { get; set; }

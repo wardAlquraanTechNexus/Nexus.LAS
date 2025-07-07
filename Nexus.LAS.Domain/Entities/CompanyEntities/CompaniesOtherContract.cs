@@ -20,6 +20,7 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("CompaniesOtherContractIDN")]
+        [Key]
         public int CompaniesOtherContractIdn { get; set; }
 
         [Required]

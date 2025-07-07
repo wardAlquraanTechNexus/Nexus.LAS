@@ -17,7 +17,7 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
         [MaxLength(50)]
         [Column("CompaniesChamberOfCommerceIDC")]
         public string CompaniesChamberOfCommerceIdc { get; set; }
-
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("CompaniesChamberOfCommerceIDN")]
         public int CompaniesChamberOfCommerceIdn { get; set; }

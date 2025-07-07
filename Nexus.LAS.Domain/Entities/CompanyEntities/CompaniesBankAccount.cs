@@ -17,7 +17,7 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
         [MaxLength(50)]
         [Column("CompaniesBankAccountIDC")]
         public string CompaniesBankAccountIdc { get; set; }
-
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("CompaniesBankAccountIDN")]
         public int CompaniesBankAccountIdn { get; set; }

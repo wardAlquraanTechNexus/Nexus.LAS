@@ -12,14 +12,35 @@ namespace Nexus.LAS.Domain.Entities.Lookup
     public class Currency
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("ID")]
         public int Id { get; set; }
-        public string Entity { get; set; }
+
+        [Required]
+        [MaxLength(100)]
+        [Column("Entity")]
+        public string Entity { get; set; } = null!;
+
+        [Required]
+        [MaxLength(100)]
         [Column("Currency")]
-        public string CurrencyName { get; set; }
-        [MaxLength(3)]
-        public string AlphabeticCode { get; set; }
-        public int? NumericCode { get; set; }
-        public int? MinorUnit { get; set; }
+        public string CurrencyName { get; set; } = null!;
+
+        [Required]
+        [Column("AlphabeticCode")]
+        [StringLength(3)]
+        public string AlphabeticCode { get; set; } = null!;
+
+        [Column("NumericCode")]
+        [StringLength(3)]
+        public string? NumericCode { get; set; }
+
+        [Column("MinorUnit")]
+        [StringLength(1)]
+        public string? MinorUnit { get; set; }
+
+        [Required]
+        [Column("IsFundYesNo")]
         public bool IsFundYesNo { get; set; }
     }
 }

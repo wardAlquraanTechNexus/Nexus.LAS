@@ -13,11 +13,10 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
 
     public class CompaniesLeaseContractRegister:BaseEntity
     {
-        [Key]
         [Column("CompaniesLeaseContracts_IDN")]
+        [Key]
         public int CompaniesLeaseContractsIdn { get; set; }
 
-        [Key]
         [MaxLength(50)]
         [Column("LeaseRegisters_IDC")]
         public string LeaseRegistersIdc { get; set; }

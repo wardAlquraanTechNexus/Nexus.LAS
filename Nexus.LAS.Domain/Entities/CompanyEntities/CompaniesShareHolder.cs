@@ -17,7 +17,7 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
         [MaxLength(50)]
         [Column("CompaniesShareHolderIDC")]
         public string CompaniesShareHolderIdc { get; set; }
-
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("CompaniesShareHolderIDN")]
         public int CompaniesShareHolderIdn { get; set; }

@@ -12,7 +12,6 @@ namespace Nexus.LAS.Domain.Entities.DocumentEntities
     [Table("Documents")]
     public class Document:BaseEntity
     {
-        [Key]
         [Column("DocumentIDC")]
         [MaxLength(50)]
         public string DocumentIdc { get; set; }

@@ -7,7 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.Identity;
 using Nexus.LAS.Domain.Entities;
-using Nexus.LAS.Identity.DbContext;
+using Nexus.LAS.Identity.IdentityDbContext;
 using Nexus.LAS.Identity.Services;
 using System.Text;
 
@@ -18,9 +18,12 @@ namespace Nexus.LAS.Identity
         public static IServiceCollection AddIdentityServicesDI(this IServiceCollection services, IConfiguration configuration)
         {
             services.Configure<JwtSettings>(configuration.GetSection("JwtSettings") ?? throw new Exception("JwtSettings is not set"));
+            var connectionStr = configuration.GetConnectionString("NexusLASConnectionString");
             services.AddDbContext<NexusLASIdentityDbContext>(options => {
-                options.UseSqlServer(configuration.GetConnectionString("NexusLASConnectionString") ?? throw new Exception("NexusLASConnectionString is not set"))
-                .LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information);
+                options.UseSqlServer(connectionStr ?? throw new Exception("NexusLASConnectionString is not set"),
+                      sqlOptions => sqlOptions.MigrationsAssembly("Nexus.LAS.Identity"))
+                     .LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information);
+
             });
 
             services

@@ -7,13 +7,33 @@ namespace Nexus.LAS.Domain.Entities.Lookup
     [Table("DynamicLists")]
     public class DynamicList: BaseEntity
     {
-        public int DynamicListIDC { get; set; }
-        public int DynamicListIDN { get; set; }
+        [Key]
+        [Column("DynamicListIDC")]
+        [MaxLength(50)]
+        public string DynamicListIdC { get; set; } = null!;
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("DynamicListIDN")]
+        public int DynamicListIdN { get; set; }
+
+        [Column("LinkedCategory")]
+        [MaxLength(50)]
         public string? LinkedCategory { get; set; }
-        public int? MainListID { get; set; }
+
+        [Column("MainListID")]
+        public int? MainListID{ get; set; }
+
+        [Column("MenuCategory")]
+        [MaxLength(50)]
         public string? MenuCategory { get; set; }
+
+        [Column("MenuValue")]
         public string? MenuValue { get; set; }
+
+        [Column("Active")]
         public bool? Active { get; set; }
+
+        [Column("Rank")]
         public int? Rank { get; set; }
 
     }

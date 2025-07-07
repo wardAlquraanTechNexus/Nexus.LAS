@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nexus.LAS.Domain.Entities.Base;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -10,13 +11,13 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
 {
     [Table("CompaniesLeaseContracts")]
 
-    public class CompaniesLeaseContract
+    public class CompaniesLeaseContract:BaseEntity
     {
         [Required]
         [MaxLength(50)]
         [Column("CompaniesLeaseContractIDC")]
         public string CompaniesLeaseContractIdc { get; set; }
-
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("CompaniesLeaseContractIDN")]
         public int CompaniesLeaseContractIdn { get; set; }

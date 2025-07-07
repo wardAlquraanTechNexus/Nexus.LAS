@@ -17,7 +17,7 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
         [MaxLength(50)]
         [Column("CompaniesActivityIDC")]
         public string CompaniesActivityIdc { get; set; }
-
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("CompaniesActivityIDN")]
         public int CompaniesActivityIdn { get; set; }
@@ -29,28 +29,5 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
         [Required]
         [Column("Activity")]
         public string Activity { get; set; }
-
-        [Required]
-        [Column("CreatedBy_IDN")]
-        public int CreatedByIdn { get; set; }
-
-        [Required]
-        [MaxLength(50)]
-        [Column("CreatedBy_Name")]
-        public string CreatedByName { get; set; }
-
-        [Required]
-        [Column("CreatedBy_Date")]
-        public DateTime CreatedByDate { get; set; }
-
-        [Column("UpdatedBy_IDN")]
-        public int? UpdatedByIdn { get; set; }
-
-        [MaxLength(50)]
-        [Column("UpdatedBy_Name")]
-        public string UpdatedByName { get; set; }
-
-        [Column("UpdatedBy_Date")]
-        public DateTime? UpdatedByDate { get; set; }
     }
 }

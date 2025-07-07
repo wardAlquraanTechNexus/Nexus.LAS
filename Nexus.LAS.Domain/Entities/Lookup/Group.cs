@@ -13,8 +13,17 @@ namespace Nexus.LAS.Domain.Entities.Lookup
     public class Group : BaseEntity
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("id")]
         public int Id { get; set; }
-        public string GroupName { get; set; }
+
+        [Required]
+        [MaxLength(50)]
+        [Column("GroupName")]
+        public string GroupName { get; set; } = null!;
+
+        [MaxLength(200)]
+        [Column("Description")]
         public string? Description { get; set; }
     }
 }
