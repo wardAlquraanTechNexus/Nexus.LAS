@@ -21,7 +21,7 @@ namespace Nexus.LAS.Domain.Entities.Lookup
         public string? LinkedCategory { get; set; }
 
         [Column("MainListID")]
-        public int? MainListID{ get; set; }
+        public int? MainListId { get; set; }
 
         [Column("MenuCategory")]
         [MaxLength(50)]

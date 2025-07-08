@@ -16,4 +16,8 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.6" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Nexus.LAS.Domain\Nexus.LAS.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
