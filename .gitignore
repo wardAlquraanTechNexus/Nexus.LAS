@@ -4,6 +4,14 @@
 # Ignore build output folders
 bin/
 obj/
+**/bin/
+**/obj/
+**/bin/Debug/
+**/bin/Release/
+**/obj/Debug/
+**/obj/Release/
+**/bin/Debug/net*/
+**/obj/Debug/net*/
 
 # Optional: user-specific files
 *.user
