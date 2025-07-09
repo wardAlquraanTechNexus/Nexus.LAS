@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.Exceptions;
 using Nexus.LAS.Application.Identity;
@@ -19,7 +18,7 @@ namespace Nexus.LAS.WebApi.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<RegistrationResponse>> Register(RegistrationRequest request)
         {
-            var validationResult = await _userService.FindUserByEmail(request.Email);
+            var validationResult = await _userService.FindUserByEmailOrUsename(request.Email);
             if (validationResult != null)
             {
                 throw new BadRequestException("Email already exists");

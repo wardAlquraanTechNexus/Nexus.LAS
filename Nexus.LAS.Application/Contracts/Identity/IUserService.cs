@@ -9,7 +9,7 @@ namespace Nexus.LAS.Application.Contracts.Identity
 {
     public interface IUserService
     {
-        Task<UserDto?> FindUserByEmail(string email);
+        Task<UserDto?> FindUserByEmailOrUsename(string email);
         string UserId { get; }
 
 

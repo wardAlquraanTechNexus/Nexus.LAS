@@ -3,15 +3,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.Contracts.Presistence.Repositories;
-using Nexus.LAS.Identity.IdentityDbContext;
+using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Identity.Services;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Nexus.LAS.Persistence.Services;
 
 namespace Nexus.LAS.Persistence
 {
@@ -22,6 +18,7 @@ namespace Nexus.LAS.Persistence
         {
 
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ICountryService, CountryService>();
 
 
             services.AddScoped<ICountryRepo, CountryRepo>();

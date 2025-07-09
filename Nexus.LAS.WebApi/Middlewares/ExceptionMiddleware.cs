@@ -5,17 +5,26 @@ using System.Net;
 
 namespace Nexus.LAS.WebApi.Middlewares
 {
-    public class ExceptionMiddleware(ILogger<ExceptionMiddleware> _logger) : IMiddleware
+    public class ExceptionMiddleware
     {
-        public async Task InvokeAsync(HttpContext httpContext, RequestDelegate _next)
+
+        private readonly RequestDelegate _next;
+        private readonly ILogger<ExceptionMiddleware> _logger;
+
+        public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
+        {
+            _next = next;
+            _logger = logger;
+        }
+        public async Task InvokeAsync(HttpContext context)
         {
             try
             {
-                await _next(httpContext);
+                await _next(context);
             }
             catch (Exception ex)
             {
-                await HandleExceptionAsync(httpContext, ex);
+                await HandleExceptionAsync(context, ex);
             }
         }
 
@@ -58,6 +67,17 @@ namespace Nexus.LAS.WebApi.Middlewares
 
                     };
                     break;
+                case NotAuthorizedException Forbid:
+                    statusCode = HttpStatusCode.Unauthorized;
+                    problem = new CustomProblemDetails
+                    {
+                        Title = Forbid.Message,
+                        Status = (int)statusCode,
+                        Type = nameof(NotFoundException),
+                        Detail = Forbid.InnerException?.Message ?? "Unauthorized.",
+
+                    };
+                    break;
                 default:
                     problem = new CustomProblemDetails
                     {
@@ -70,6 +90,9 @@ namespace Nexus.LAS.WebApi.Middlewares
             }
             var logMessage = JsonConvert.SerializeObject(problem);
             _logger.LogError(logMessage);
+            httpContext.Response.StatusCode = (int)statusCode;
+            httpContext.Response.ContentType = "application/json";
+            await httpContext.Response.WriteAsync(logMessage);
 
         }
     }

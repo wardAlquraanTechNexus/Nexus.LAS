@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.OpenApi.Models;
 using Nexus.LAS.Application;
 using Nexus.LAS.Identity;
 using Nexus.LAS.Infrastructure;
@@ -34,6 +33,7 @@ builder.Services.AddInfrastructureServiceDI(builder.Configuration);
 builder.Services.AddPersistenceServicesDI(builder.Configuration);
 builder.Services.AddIdentityServicesDI(builder.Configuration);
 
+
 builder.Host.UseSerilog((context, loggerConfig) =>
 loggerConfig.ReadFrom.Configuration(context.Configuration));
 
@@ -60,7 +60,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-builder.Services.AddScoped<ExceptionMiddleware>();
 builder.Services.AddScoped<RequestTimeLoggingMiddleware>();
 
 var app = builder.Build();
@@ -78,6 +77,8 @@ app.UseCors("all");
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+app.UseMiddleware<ExceptionMiddleware>();
+app.UseMiddleware<CheckRequestMiddleware>();
 
 app.MapControllers();
 

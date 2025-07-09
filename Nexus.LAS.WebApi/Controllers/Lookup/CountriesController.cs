@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.UseCases.CountryUseCases.Queries.GetCountry;
 
@@ -7,6 +7,7 @@ namespace Nexus.LAS.WebApi.Controllers.Lookup
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CountriesController : ControllerBase
     {
         private readonly IMediator _mediator;
