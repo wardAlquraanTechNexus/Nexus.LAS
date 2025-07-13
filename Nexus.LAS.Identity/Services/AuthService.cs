@@ -41,7 +41,9 @@ namespace Nexus.LAS.Identity.Services
             var user = await _userManager.FindByNameAsync(request.Email);
             if (user == null)
             {
-                throw new NotFoundException($"Name with {request.Email} not found.", request.Email);
+                user = await _userManager.FindByEmailAsync(request.Email);
+                if(user is null)
+                    throw new BadRequestException($"Name with {request.Email} not found.");
             }
             //if (!user.EmailConfirmed)
             //{
@@ -78,7 +80,7 @@ namespace Nexus.LAS.Identity.Services
                 PhoneNumber = request.PhoneNumber,
                 EmailConfirmed = false
             };
-            string role = UserRoles.Administrator;
+            string role = UserRoles.Employee;
             var isRoleExist = await _roleManager.RoleExistsAsync(role);
             if (!isRoleExist)
             {
