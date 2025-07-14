@@ -7,7 +7,7 @@ using System.Security.Claims;
 
 namespace Nexus.LAS.Identity.Services
 {
-    public class UserService(NexusLASIdentityDbContext _context, IHttpContextAccessor _contextAccessor) : IUserService
+    public class UserIdentityService(NexusLASIdentityDbContext _context, IHttpContextAccessor _contextAccessor) : IUserIdentityService
     {
         public string UserId => _contextAccessor?.HttpContext?.User?.FindFirstValue("uid") ?? string.Empty;
 

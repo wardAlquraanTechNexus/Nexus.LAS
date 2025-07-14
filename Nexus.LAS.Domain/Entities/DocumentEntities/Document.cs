@@ -19,7 +19,7 @@ namespace Nexus.LAS.Domain.Entities.DocumentEntities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("DocumentIDN")]
-        public int DocumentIdn { get; set; }
+        public override int Id { get; set; }
 
         [Column("SharepointFilename")]
         public string SharepointFilename { get; set; }

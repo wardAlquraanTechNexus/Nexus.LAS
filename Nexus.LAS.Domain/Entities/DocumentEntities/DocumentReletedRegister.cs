@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nexus.LAS.Domain.Entities.Base;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,17 +10,16 @@ using System.Threading.Tasks;
 namespace Nexus.LAS.Domain.Entities.DocumentEntities
 {
     [Table("DocumentReletedRegister")]
-    public class DocumentReletedRegister
+    public class DocumentReletedRegister:BaseEntity
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+
         [Column("Document_IDC")]
         [MaxLength(50)]
         public string DocumentIdc { get; set; }
-
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
         [Column("Document_IDN")]
-        public int DocumentIdn { get; set; }
+        public override int Id { get; set; }
 
         [Column("Registers_IDC")]
         [MaxLength(50)]

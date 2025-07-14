@@ -14,7 +14,7 @@ namespace Nexus.LAS.Domain.Entities.Lookup
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("DynamicListIDN")]
-        public int DynamicListIdN { get; set; }
+        public override int Id { get; set; }
 
         [Column("LinkedCategory")]
         [MaxLength(50)]

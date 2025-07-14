@@ -7,7 +7,7 @@ namespace Nexus.LAS.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthController(IAuthService _authenticationService, IUserService _userService) : ControllerBase
+    public class AuthController(IAuthService _authenticationService, IUserIdentityService _userService) : ControllerBase
     {
         [HttpPost("login")]
         public async Task<ActionResult<AuthResponse>> Login(AuthRequest request)

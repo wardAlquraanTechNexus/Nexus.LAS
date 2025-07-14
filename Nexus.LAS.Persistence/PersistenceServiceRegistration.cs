@@ -17,7 +17,7 @@ namespace Nexus.LAS.Persistence
         IConfiguration configuration)
         {
 
-            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserIdentityService, UserIdentityService>();
             services.AddScoped<ICountryService, CountryService>();
 
 

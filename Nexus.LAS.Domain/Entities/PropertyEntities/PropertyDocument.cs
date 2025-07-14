@@ -16,10 +16,10 @@ namespace Nexus.LAS.Domain.Entities.PropertyEntities
         public string PropertyDocumentsIdc { get; set; } = null!;
 
         [Key]
-        [Column(Order = 1)]
+        [Column("PropertyDocumentsIdn" , Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public override int Id { get; set; }
 
-        public int PropertyDocumentsIdn { get; set; }
 
         [Column("Property_IDN")]
         public int? PropertyIdn { get; set; }

@@ -12,10 +12,6 @@ namespace Nexus.LAS.Domain.Entities.Lookup
     [Table("Menus")]
     public class Menu:BaseEntity
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column("id")]
-        public int Id { get; set; }
 
         [Column("ParentID")]
         public int? ParentId { get; set; }

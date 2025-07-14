@@ -18,7 +18,7 @@ namespace Nexus.LAS.Domain.Entities.TransactionEntities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("TransactionsRegisterIDN")]
-        public int TransactionsRegisterIdn { get; set; }
+        public override int Id { get; set; }
 
         [Column("Transactions_IDN")]
         public int TransactionsIdn { get; set; }

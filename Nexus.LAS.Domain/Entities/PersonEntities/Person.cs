@@ -13,12 +13,12 @@ namespace Nexus.LAS.Domain.Entities.PersonEntities
 
     public class Person : BaseEntity
     {
-        [Key, Column("PersonIDC", Order = 0)]
-        public string PersonIdc { get; set; } = null!;
+        [Column("PersonIDC", Order = 0)]
+        public string PersonIdc { get; set; } = null!; // PP
 
         [Key, Column("PersonIDN", Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int PersonIdn { get; set; }
+        public override int Id { get; set; }
 
         [Required, Column("PersonCode")]
         public string PersonCode { get; set; } = null!;

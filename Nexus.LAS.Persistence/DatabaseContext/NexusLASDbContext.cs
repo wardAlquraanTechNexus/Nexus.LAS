@@ -20,7 +20,7 @@ using System.Threading.Tasks;
 
 namespace Nexus.LAS.Persistence.DatabaseContext
 {
-    public partial class NexusLASDbContext: DbContext
+    public partial class NexusLASDbContext : DbContext
     {
         public NexusLASDbContext(DbContextOptions<NexusLASDbContext> optins) : base(optins) { }
         public DbSet<Group> Groups { get; set; }
@@ -34,27 +34,27 @@ namespace Nexus.LAS.Persistence.DatabaseContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //this.OnCompanyModelCreating(modelBuilder);
-            //this.OnDocumentModelCreating(modelBuilder);
-            //this.OnFPCModelCreating(modelBuilder);
-            //this.OnPersonModelCreating(modelBuilder);
-            //this.OnPropertyModelCreating(modelBuilder);
-            //this.OnRegisterModelCreating(modelBuilder);
-            //this.OnTransactionModelCreating(modelBuilder);
-            //this.OnLawFirmModelCreating(modelBuilder);
+            this.OnCompanyModelCreating(modelBuilder);
+            this.OnDocumentModelCreating(modelBuilder);
+            this.OnFPCModelCreating(modelBuilder);
+            this.OnPersonModelCreating(modelBuilder);
+            this.OnPropertyModelCreating(modelBuilder);
+            this.OnRegisterModelCreating(modelBuilder);
+            this.OnTransactionModelCreating(modelBuilder);
+            this.OnLawFirmModelCreating(modelBuilder);
             base.OnModelCreating(modelBuilder);
 
-
+           
             modelBuilder.Entity<GroupMenu>()
-       .HasKey(gm => new { gm.GroupId, gm.MenuId });
+            .HasKey(gm => new { gm.GroupId, gm.MenuId });
 
             modelBuilder.Entity<DynamicList>()
-                .HasKey(gm => new { gm.DynamicListIdC, gm.DynamicListIdN });
+                .HasKey(gm => new { gm.DynamicListIdC, gm.Id });
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-          
+
 
 
             return base.SaveChangesAsync(cancellationToken);

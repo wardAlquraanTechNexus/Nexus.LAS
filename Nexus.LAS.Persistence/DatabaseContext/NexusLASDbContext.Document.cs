@@ -21,9 +21,9 @@ namespace Nexus.LAS.Persistence.DatabaseContext
         protected void OnDocumentModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Document>()
-                .HasKey(d => new { d.DocumentIdc, d.DocumentIdn });
+                .HasKey(d => new { d.DocumentIdc, d.Id });
             modelBuilder.Entity<DocumentReletedRegister>()
-                .HasKey(d => new { d.DocumentIdc, d.DocumentIdn, d.RegistersIdc, d.RegistersIdn, d.Owner });
+                .HasKey(d => new { d.DocumentIdc, d.Id, d.RegistersIdc, d.RegistersIdn, d.Owner });
 
 
         }

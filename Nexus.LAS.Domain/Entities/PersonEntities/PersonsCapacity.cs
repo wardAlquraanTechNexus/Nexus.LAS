@@ -17,7 +17,7 @@ namespace Nexus.LAS.Domain.Entities.PersonEntities
 
         [Key, Column("PersonsCapacityIDN", Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int PersonsCapacityIdn { get; set; }
+        public override int Id { get; set; }
 
         [Column("Persons_IDN")]
         public int PersonsIdn { get; set; }

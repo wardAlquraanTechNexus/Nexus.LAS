@@ -20,7 +20,7 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("CompaniesPhoneIDN")]
-        public int CompaniesPhoneIdn { get; set; }
+        public override int Id { get; set; }
 
         [Column("Companies_IDN")]
         public int? CompaniesIdn { get; set; }

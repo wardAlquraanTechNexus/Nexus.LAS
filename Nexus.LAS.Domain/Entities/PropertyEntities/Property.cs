@@ -18,7 +18,7 @@ namespace Nexus.LAS.Domain.Entities.PropertyEntities
         [Key, Column("PropertyIDN", Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 
-        public int PropertyIdn { get; set; }
+        public override int Id { get; set; }
 
         [Column("PropertyCode")]
         public string PropertyCode { get; set; } = null!;

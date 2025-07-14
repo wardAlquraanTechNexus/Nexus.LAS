@@ -19,7 +19,7 @@ namespace Nexus.LAS.Domain.Entities.FPC
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("FPCIDN")]
-        public int FpcIdn { get; set; }
+        public override int Id { get; set; }
 
         [Required]
         [Column("FPCCode")]

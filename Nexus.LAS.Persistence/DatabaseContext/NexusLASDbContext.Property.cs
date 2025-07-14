@@ -22,17 +22,17 @@ namespace Nexus.LAS.Persistence.DatabaseContext
         {
 
             modelBuilder.Entity<Property>()
-                .HasKey(p => new { p.PropertyIdc, p.PropertyIdn });
+                .HasKey(p => new { p.PropertyIdc, p.Id });
 
 
             modelBuilder.Entity<PropertyOwner>()
-                .HasKey(po => new { po.PropertiesOwnerIdc, po.PropertiesOwnerIdn });
+                .HasKey(po => new { po.PropertiesOwnerIdc, po.Id });
 
             modelBuilder.Entity<PropertyDocument>()
-                .HasKey(pd => new { pd.PropertyDocumentsIdc, pd.PropertyDocumentsIdn });
+                .HasKey(pd => new { pd.PropertyDocumentsIdc, pd.Id });
 
             modelBuilder.Entity<PropertyLink>()
-                .HasKey(pl => new { pl.PropertyLinksIdc, pl.PropertyLinksIdn });
+                .HasKey(pl => new { pl.PropertyLinksIdc, pl.Id });
 
         }
     }

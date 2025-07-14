@@ -17,8 +17,14 @@ namespace Nexus.LAS.Persistence.DatabaseContext
 
         protected void OnRegisterModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<RegistersCode>(entity =>
+            {
+                entity.Ignore(e => e.Id);               // Ignore Id completely
+                entity.HasKey(e => e.Code);             // Use Code as the primary key
+            });
+
             modelBuilder.Entity<RegistersNote>()
-               .HasKey(e => new { e.RegistersNoteIdc, e.RegistersNoteIdn });
+               .HasKey(e => new { e.RegistersNoteIdc, e.Id });
 
         }
     }

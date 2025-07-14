@@ -18,7 +18,7 @@ namespace Nexus.LAS.Domain.Entities.RegisterEntities
         [Key, Column("RegistersNoteIDN", Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 
-        public int RegistersNoteIdn { get; set; }
+        public override int Id { get; set; }
 
         [Column("Registers_IDC")]
         public string RegistersIdc { get; set; } = null!;

@@ -1,15 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Nexus.LAS.Domain.Entities.Base;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Nexus.LAS.Domain.Entities.Lookup
 {
     [Table("Countries")]
-    public class Country
+    public class Country:BaseEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Column("CountryId")]
-        public int CountryId { get; set; }
+        public override int Id { get; set; }
 
         [MaxLength(500)]
         [Column("CountryName")]

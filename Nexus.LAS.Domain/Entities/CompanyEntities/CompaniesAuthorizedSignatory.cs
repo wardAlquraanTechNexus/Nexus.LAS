@@ -21,7 +21,7 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("CompaniesAuthorizedSignatoryIDN")]
         [Key]
-        public int CompaniesAuthorizedSignatoryIdn { get; set; }
+        public override int Id { get; set; }
 
         [Required]
         [Column("Companies_IDN")]

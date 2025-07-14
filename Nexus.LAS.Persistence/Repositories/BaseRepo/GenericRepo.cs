@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 
 namespace Nexus.LAS.Persistence.Repositories.BaseRepo
 {
-    public class GenericRepo<T>  :  IGenericRepo<T> where T : class
+    public class GenericRepo<T>  :  IGenericRepo<T> where T : BaseEntity
     {
         protected readonly NexusLASDbContext _context;
         protected readonly DbSet<T> _dbSet;
@@ -33,16 +33,9 @@ namespace Nexus.LAS.Persistence.Repositories.BaseRepo
             return await _dbSet.AsNoTracking().ToListAsync();
         }
 
-        public async Task<T?> GetAsync(object id)
+        public async Task<T?> GetAsync(int id)
         {
-            var keyProp = typeof(T).GetProperties().Where(x => x.GetCustomAttribute<KeyAttribute>() != null).FirstOrDefault();
-
-            var parameter = Expression.Parameter(typeof(T), "x");
-            var propertyAccess = Expression.Property(parameter, keyProp);
-            var equals = Expression.Equal(propertyAccess, Expression.Constant(id));
-            var lambda = Expression.Lambda<Func<T, bool>>(equals, parameter);
-
-            return await _dbSet.AsNoTracking().FirstOrDefaultAsync(lambda);
+            return await _dbSet.AsNoTracking().FirstOrDefaultAsync(x=>x.Id == id);
 
         }
 
@@ -88,12 +81,12 @@ namespace Nexus.LAS.Persistence.Repositories.BaseRepo
 
 
 
-        public async Task<object> CreateAsync(T entity)
+        public async Task<int> CreateAsync(T entity)
         {
             await _dbSet.AddAsync(entity);
             await _context.SaveChangesAsync();
-            var keyProp = QueryCollectionMethods.GetKeyProperty<T>();
-            return keyProp.GetValue(entity);
+         
+            return entity.Id;
         }
 
         public async Task UpdateAsync(T entity)

@@ -15,7 +15,8 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
     {
         [Column("CompaniesLeaseContracts_IDN")]
         [Key]
-        public int CompaniesLeaseContractsIdn { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public override int Id { get; set; }
 
         [MaxLength(50)]
         [Column("LeaseRegisters_IDC")]

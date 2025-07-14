@@ -1,0 +1,2392 @@
+2025-07-14 00:03:02.541 +03:00 [INF] Executed DbCommand (17ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2025-07-14 00:03:02.546 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-07-14 00:03:02.619 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2025-07-14 00:03:02.622 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-07-14 00:11:41.948 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2025-07-14 00:11:41.950 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-07-14 00:11:42.017 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2025-07-14 00:11:42.021 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-07-14 23:04:41.600 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-14 23:04:41.653 +03:00 [INF] Hosting environment: Development
+2025-07-14 23:04:41.684 +03:00 [INF] Content root path: C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.WebApi
+2025-07-14 23:09:54.261 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-14 23:09:54.324 +03:00 [INF] Hosting environment: Development
+2025-07-14 23:09:54.325 +03:00 [INF] Content root path: C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.WebApi
+2025-07-14 23:10:50.895 +03:00 [WRN] No store type was specified for the decimal property 'CapitalAmount' on entity type 'Company'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-07-14 23:11:27.669 +03:00 [WRN] No store type was specified for the decimal property 'CapitalAmount' on entity type 'Company'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-07-14 23:11:28.234 +03:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-07-14 23:11:28.243 +03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-07-14 23:11:28.265 +03:00 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result
+2025-07-14 23:11:28.315 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;
+2025-07-14 23:11:28.321 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-07-14 23:11:28.322 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2025-07-14 23:11:28.335 +03:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2025-07-14 23:11:28.340 +03:00 [INF] Applying migration '20250714201051_set-base-entity-to-all'.
+2025-07-14 23:11:28.399 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result
+2025-07-14 23:17:37.662 +03:00 [WRN] No instantiatable types implementing `IEntityTypeConfiguration` were found while while scanning assembly 'Nexus.LAS.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+2025-07-14 23:18:07.077 +03:00 [WRN] No instantiatable types implementing `IEntityTypeConfiguration` were found while while scanning assembly 'Nexus.LAS.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+2025-07-14 23:19:33.461 +03:00 [WRN] No instantiatable types implementing `IEntityTypeConfiguration` were found while while scanning assembly 'Nexus.LAS.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+2025-07-14 23:20:19.514 +03:00 [WRN] No instantiatable types implementing `IEntityTypeConfiguration` were found while while scanning assembly 'Nexus.LAS.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+2025-07-14 23:20:19.691 +03:00 [WRN] No store type was specified for the decimal property 'CapitalAmount' on entity type 'Company'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-07-14 23:20:19.904 +03:00 [WRN] No instantiatable types implementing `IEntityTypeConfiguration` were found while while scanning assembly 'Nexus.LAS.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+2025-07-14 23:20:19.943 +03:00 [WRN] No store type was specified for the decimal property 'CapitalAmount' on entity type 'Company'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-07-14 23:20:41.320 +03:00 [WRN] No instantiatable types implementing `IEntityTypeConfiguration` were found while while scanning assembly 'Nexus.LAS.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+2025-07-14 23:20:41.485 +03:00 [WRN] No store type was specified for the decimal property 'CapitalAmount' on entity type 'Company'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-07-14 23:20:59.234 +03:00 [WRN] No instantiatable types implementing `IEntityTypeConfiguration` were found while while scanning assembly 'Nexus.LAS.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+2025-07-14 23:20:59.393 +03:00 [WRN] No store type was specified for the decimal property 'CapitalAmount' on entity type 'Company'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-07-14 23:20:59.746 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-07-14 23:20:59.754 +03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-07-14 23:20:59.775 +03:00 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result
+2025-07-14 23:20:59.820 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;
+2025-07-14 23:20:59.826 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-07-14 23:20:59.827 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2025-07-14 23:20:59.832 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2025-07-14 23:20:59.836 +03:00 [INF] Applying migration '20250714201051_set-base-entity-to-all'.
+2025-07-14 23:20:59.897 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result
+2025-07-14 23:22:01.028 +03:00 [WRN] No instantiatable types implementing `IEntityTypeConfiguration` were found while while scanning assembly 'Nexus.LAS.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+2025-07-14 23:22:01.188 +03:00 [WRN] No store type was specified for the decimal property 'CapitalAmount' on entity type 'Company'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-07-14 23:22:01.547 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-07-14 23:22:01.555 +03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-07-14 23:22:01.574 +03:00 [INF] Executed DbCommand (18ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result
+2025-07-14 23:22:01.619 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;
+2025-07-14 23:22:01.625 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-07-14 23:22:01.626 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2025-07-14 23:22:01.631 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2025-07-14 23:22:01.635 +03:00 [INF] Applying migration '20250714201051_set-base-entity-to-all'.
+2025-07-14 23:22:01.695 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result
+2025-07-14 23:22:56.590 +03:00 [WRN] No instantiatable types implementing `IEntityTypeConfiguration` were found while while scanning assembly 'Nexus.LAS.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+2025-07-14 23:22:56.750 +03:00 [WRN] No store type was specified for the decimal property 'CapitalAmount' on entity type 'Company'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-07-14 23:22:57.103 +03:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-07-14 23:22:57.112 +03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-07-14 23:22:57.133 +03:00 [INF] Executed DbCommand (19ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result
+2025-07-14 23:22:57.175 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;
+2025-07-14 23:22:57.180 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-07-14 23:22:57.181 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2025-07-14 23:22:57.186 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2025-07-14 23:22:57.191 +03:00 [INF] Applying migration '20250714201051_set-base-entity-to-all'.
+2025-07-14 23:22:57.303 +03:00 [INF] Executed DbCommand (34ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [DocumentReletedRegister] DROP CONSTRAINT [PK_DocumentReletedRegister];
+2025-07-14 23:22:57.374 +03:00 [INF] Executed DbCommand (70ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var sysname;
+SELECT @var = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[TransactionsRegisters]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var IS NOT NULL EXEC(N'ALTER TABLE [TransactionsRegisters] DROP CONSTRAINT [' + @var + '];');
+ALTER TABLE [TransactionsRegisters] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:22:57.395 +03:00 [INF] Executed DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var1 sysname;
+SELECT @var1 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[TransactionsRegisters]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var1 IS NOT NULL EXEC(N'ALTER TABLE [TransactionsRegisters] DROP CONSTRAINT [' + @var1 + '];');
+ALTER TABLE [TransactionsRegisters] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:22:57.413 +03:00 [INF] Executed DbCommand (18ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var2 sysname;
+SELECT @var2 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[TransactionsOTFs]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var2 IS NOT NULL EXEC(N'ALTER TABLE [TransactionsOTFs] DROP CONSTRAINT [' + @var2 + '];');
+ALTER TABLE [TransactionsOTFs] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:22:59.299 +03:00 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var3 sysname;
+SELECT @var3 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[TransactionsOTFs]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var3 IS NOT NULL EXEC(N'ALTER TABLE [TransactionsOTFs] DROP CONSTRAINT [' + @var3 + '];');
+ALTER TABLE [TransactionsOTFs] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:22:59.318 +03:00 [INF] Executed DbCommand (19ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var4 sysname;
+SELECT @var4 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[TransactionsInvoices]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var4 IS NOT NULL EXEC(N'ALTER TABLE [TransactionsInvoices] DROP CONSTRAINT [' + @var4 + '];');
+ALTER TABLE [TransactionsInvoices] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:22:59.337 +03:00 [INF] Executed DbCommand (18ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var5 sysname;
+SELECT @var5 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[TransactionsInvoices]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var5 IS NOT NULL EXEC(N'ALTER TABLE [TransactionsInvoices] DROP CONSTRAINT [' + @var5 + '];');
+ALTER TABLE [TransactionsInvoices] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:00.982 +03:00 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var6 sysname;
+SELECT @var6 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[TransactionsActions]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var6 IS NOT NULL EXEC(N'ALTER TABLE [TransactionsActions] DROP CONSTRAINT [' + @var6 + '];');
+ALTER TABLE [TransactionsActions] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:00.996 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var7 sysname;
+SELECT @var7 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[TransactionsActions]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var7 IS NOT NULL EXEC(N'ALTER TABLE [TransactionsActions] DROP CONSTRAINT [' + @var7 + '];');
+ALTER TABLE [TransactionsActions] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:01.011 +03:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var8 sysname;
+SELECT @var8 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Transactions]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var8 IS NOT NULL EXEC(N'ALTER TABLE [Transactions] DROP CONSTRAINT [' + @var8 + '];');
+ALTER TABLE [Transactions] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:02.722 +03:00 [INF] Executed DbCommand (24ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var9 sysname;
+SELECT @var9 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Transactions]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var9 IS NOT NULL EXEC(N'ALTER TABLE [Transactions] DROP CONSTRAINT [' + @var9 + '];');
+ALTER TABLE [Transactions] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:02.739 +03:00 [INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var10 sysname;
+SELECT @var10 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[RegistersNotes]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var10 IS NOT NULL EXEC(N'ALTER TABLE [RegistersNotes] DROP CONSTRAINT [' + @var10 + '];');
+ALTER TABLE [RegistersNotes] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:02.759 +03:00 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var11 sysname;
+SELECT @var11 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[RegistersNotes]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var11 IS NOT NULL EXEC(N'ALTER TABLE [RegistersNotes] DROP CONSTRAINT [' + @var11 + '];');
+ALTER TABLE [RegistersNotes] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:04.448 +03:00 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var12 sysname;
+SELECT @var12 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[PropertyLinks]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var12 IS NOT NULL EXEC(N'ALTER TABLE [PropertyLinks] DROP CONSTRAINT [' + @var12 + '];');
+ALTER TABLE [PropertyLinks] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:04.465 +03:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var13 sysname;
+SELECT @var13 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[PropertyLinks]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var13 IS NOT NULL EXEC(N'ALTER TABLE [PropertyLinks] DROP CONSTRAINT [' + @var13 + '];');
+ALTER TABLE [PropertyLinks] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:04.483 +03:00 [INF] Executed DbCommand (18ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var14 sysname;
+SELECT @var14 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[PropertyDocuments]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var14 IS NOT NULL EXEC(N'ALTER TABLE [PropertyDocuments] DROP CONSTRAINT [' + @var14 + '];');
+ALTER TABLE [PropertyDocuments] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:06.273 +03:00 [INF] Executed DbCommand (23ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var15 sysname;
+SELECT @var15 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[PropertyDocuments]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var15 IS NOT NULL EXEC(N'ALTER TABLE [PropertyDocuments] DROP CONSTRAINT [' + @var15 + '];');
+ALTER TABLE [PropertyDocuments] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:06.290 +03:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var16 sysname;
+SELECT @var16 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[PropertiesOwners]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var16 IS NOT NULL EXEC(N'ALTER TABLE [PropertiesOwners] DROP CONSTRAINT [' + @var16 + '];');
+ALTER TABLE [PropertiesOwners] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:06.303 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var17 sysname;
+SELECT @var17 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[PropertiesOwners]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var17 IS NOT NULL EXEC(N'ALTER TABLE [PropertiesOwners] DROP CONSTRAINT [' + @var17 + '];');
+ALTER TABLE [PropertiesOwners] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:08.028 +03:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var18 sysname;
+SELECT @var18 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Properties]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var18 IS NOT NULL EXEC(N'ALTER TABLE [Properties] DROP CONSTRAINT [' + @var18 + '];');
+ALTER TABLE [Properties] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:08.042 +03:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var19 sysname;
+SELECT @var19 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Properties]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var19 IS NOT NULL EXEC(N'ALTER TABLE [Properties] DROP CONSTRAINT [' + @var19 + '];');
+ALTER TABLE [Properties] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:08.063 +03:00 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var20 sysname;
+SELECT @var20 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Menus]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var20 IS NOT NULL EXEC(N'ALTER TABLE [Menus] DROP CONSTRAINT [' + @var20 + '];');
+ALTER TABLE [Menus] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:09.750 +03:00 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var21 sysname;
+SELECT @var21 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Menus]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var21 IS NOT NULL EXEC(N'ALTER TABLE [Menus] DROP CONSTRAINT [' + @var21 + '];');
+ALTER TABLE [Menus] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:09.766 +03:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var22 sysname;
+SELECT @var22 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[LawFirmsPersons]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var22 IS NOT NULL EXEC(N'ALTER TABLE [LawFirmsPersons] DROP CONSTRAINT [' + @var22 + '];');
+ALTER TABLE [LawFirmsPersons] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:09.783 +03:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var23 sysname;
+SELECT @var23 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[LawFirmsPersons]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var23 IS NOT NULL EXEC(N'ALTER TABLE [LawFirmsPersons] DROP CONSTRAINT [' + @var23 + '];');
+ALTER TABLE [LawFirmsPersons] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:11.568 +03:00 [INF] Executed DbCommand (25ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var24 sysname;
+SELECT @var24 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[LawFirmsExpertises]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var24 IS NOT NULL EXEC(N'ALTER TABLE [LawFirmsExpertises] DROP CONSTRAINT [' + @var24 + '];');
+ALTER TABLE [LawFirmsExpertises] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:11.584 +03:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var25 sysname;
+SELECT @var25 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[LawFirmsExpertises]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var25 IS NOT NULL EXEC(N'ALTER TABLE [LawFirmsExpertises] DROP CONSTRAINT [' + @var25 + '];');
+ALTER TABLE [LawFirmsExpertises] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:11.600 +03:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var26 sysname;
+SELECT @var26 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[LawFirmsBranches]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var26 IS NOT NULL EXEC(N'ALTER TABLE [LawFirmsBranches] DROP CONSTRAINT [' + @var26 + '];');
+ALTER TABLE [LawFirmsBranches] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:13.388 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var27 sysname;
+SELECT @var27 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[LawFirmsBranches]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var27 IS NOT NULL EXEC(N'ALTER TABLE [LawFirmsBranches] DROP CONSTRAINT [' + @var27 + '];');
+ALTER TABLE [LawFirmsBranches] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:13.414 +03:00 [INF] Executed DbCommand (25ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var28 sysname;
+SELECT @var28 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[LawFirmsAffiliates]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var28 IS NOT NULL EXEC(N'ALTER TABLE [LawFirmsAffiliates] DROP CONSTRAINT [' + @var28 + '];');
+ALTER TABLE [LawFirmsAffiliates] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:13.426 +03:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var29 sysname;
+SELECT @var29 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[LawFirmsAffiliates]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var29 IS NOT NULL EXEC(N'ALTER TABLE [LawFirmsAffiliates] DROP CONSTRAINT [' + @var29 + '];');
+ALTER TABLE [LawFirmsAffiliates] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:15.154 +03:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var30 sysname;
+SELECT @var30 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[LawFirms]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var30 IS NOT NULL EXEC(N'ALTER TABLE [LawFirms] DROP CONSTRAINT [' + @var30 + '];');
+ALTER TABLE [LawFirms] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:15.167 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var31 sysname;
+SELECT @var31 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[LawFirms]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var31 IS NOT NULL EXEC(N'ALTER TABLE [LawFirms] DROP CONSTRAINT [' + @var31 + '];');
+ALTER TABLE [LawFirms] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:15.184 +03:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var32 sysname;
+SELECT @var32 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Groups]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var32 IS NOT NULL EXEC(N'ALTER TABLE [Groups] DROP CONSTRAINT [' + @var32 + '];');
+ALTER TABLE [Groups] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:15.198 +03:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var33 sysname;
+SELECT @var33 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Groups]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var33 IS NOT NULL EXEC(N'ALTER TABLE [Groups] DROP CONSTRAINT [' + @var33 + '];');
+ALTER TABLE [Groups] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:16.933 +03:00 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var34 sysname;
+SELECT @var34 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[FPCsODsActions]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var34 IS NOT NULL EXEC(N'ALTER TABLE [FPCsODsActions] DROP CONSTRAINT [' + @var34 + '];');
+ALTER TABLE [FPCsODsActions] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:16.954 +03:00 [INF] Executed DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var35 sysname;
+SELECT @var35 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[FPCsODsActions]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var35 IS NOT NULL EXEC(N'ALTER TABLE [FPCsODsActions] DROP CONSTRAINT [' + @var35 + '];');
+ALTER TABLE [FPCsODsActions] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:16.983 +03:00 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var36 sysname;
+SELECT @var36 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[FPCsODs]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var36 IS NOT NULL EXEC(N'ALTER TABLE [FPCsODs] DROP CONSTRAINT [' + @var36 + '];');
+ALTER TABLE [FPCsODs] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:18.672 +03:00 [INF] Executed DbCommand (19ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var37 sysname;
+SELECT @var37 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[FPCsODs]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var37 IS NOT NULL EXEC(N'ALTER TABLE [FPCsODs] DROP CONSTRAINT [' + @var37 + '];');
+ALTER TABLE [FPCsODs] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:18.691 +03:00 [INF] Executed DbCommand (18ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var38 sysname;
+SELECT @var38 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[FPCs]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var38 IS NOT NULL EXEC(N'ALTER TABLE [FPCs] DROP CONSTRAINT [' + @var38 + '];');
+ALTER TABLE [FPCs] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:18.714 +03:00 [INF] Executed DbCommand (23ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var39 sysname;
+SELECT @var39 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[FPCs]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var39 IS NOT NULL EXEC(N'ALTER TABLE [FPCs] DROP CONSTRAINT [' + @var39 + '];');
+ALTER TABLE [FPCs] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:20.491 +03:00 [INF] Executed DbCommand (27ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var40 sysname;
+SELECT @var40 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[DynamicLists]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var40 IS NOT NULL EXEC(N'ALTER TABLE [DynamicLists] DROP CONSTRAINT [' + @var40 + '];');
+ALTER TABLE [DynamicLists] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:20.512 +03:00 [INF] Executed DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var41 sysname;
+SELECT @var41 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[DynamicLists]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var41 IS NOT NULL EXEC(N'ALTER TABLE [DynamicLists] DROP CONSTRAINT [' + @var41 + '];');
+ALTER TABLE [DynamicLists] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:20.537 +03:00 [INF] Executed DbCommand (24ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var42 sysname;
+SELECT @var42 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[DocumentTrackingsActions]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var42 IS NOT NULL EXEC(N'ALTER TABLE [DocumentTrackingsActions] DROP CONSTRAINT [' + @var42 + '];');
+ALTER TABLE [DocumentTrackingsActions] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:22.279 +03:00 [INF] Executed DbCommand (19ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var43 sysname;
+SELECT @var43 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[DocumentTrackingsActions]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var43 IS NOT NULL EXEC(N'ALTER TABLE [DocumentTrackingsActions] DROP CONSTRAINT [' + @var43 + '];');
+ALTER TABLE [DocumentTrackingsActions] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:22.301 +03:00 [INF] Executed DbCommand (23ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var44 sysname;
+SELECT @var44 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[DocumentTrackings]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var44 IS NOT NULL EXEC(N'ALTER TABLE [DocumentTrackings] DROP CONSTRAINT [' + @var44 + '];');
+ALTER TABLE [DocumentTrackings] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:22.318 +03:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var45 sysname;
+SELECT @var45 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[DocumentTrackings]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var45 IS NOT NULL EXEC(N'ALTER TABLE [DocumentTrackings] DROP CONSTRAINT [' + @var45 + '];');
+ALTER TABLE [DocumentTrackings] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:24.052 +03:00 [INF] Executed DbCommand (27ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var46 sysname;
+SELECT @var46 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Documents]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var46 IS NOT NULL EXEC(N'ALTER TABLE [Documents] DROP CONSTRAINT [' + @var46 + '];');
+ALTER TABLE [Documents] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:24.073 +03:00 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var47 sysname;
+SELECT @var47 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Documents]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var47 IS NOT NULL EXEC(N'ALTER TABLE [Documents] DROP CONSTRAINT [' + @var47 + '];');
+ALTER TABLE [Documents] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:24.086 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var48 sysname;
+SELECT @var48 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[DocumentReletedRegister]') AND [c].[name] = N'Id');
+IF @var48 IS NOT NULL EXEC(N'ALTER TABLE [DocumentReletedRegister] DROP CONSTRAINT [' + @var48 + '];');
+ALTER TABLE [DocumentReletedRegister] DROP COLUMN [Id];
+2025-07-14 23:23:25.754 +03:00 [INF] Executed DbCommand (25ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var49 sysname;
+SELECT @var49 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesShareHoldersGroups]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var49 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesShareHoldersGroups] DROP CONSTRAINT [' + @var49 + '];');
+ALTER TABLE [CompaniesShareHoldersGroups] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:25.778 +03:00 [INF] Executed DbCommand (24ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var50 sysname;
+SELECT @var50 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesShareHoldersGroups]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var50 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesShareHoldersGroups] DROP CONSTRAINT [' + @var50 + '];');
+ALTER TABLE [CompaniesShareHoldersGroups] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:25.805 +03:00 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var51 sysname;
+SELECT @var51 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesShareHolders]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var51 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesShareHolders] DROP CONSTRAINT [' + @var51 + '];');
+ALTER TABLE [CompaniesShareHolders] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:27.545 +03:00 [INF] Executed DbCommand (24ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var52 sysname;
+SELECT @var52 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesShareHolders]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var52 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesShareHolders] DROP CONSTRAINT [' + @var52 + '];');
+ALTER TABLE [CompaniesShareHolders] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:27.567 +03:00 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var53 sysname;
+SELECT @var53 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesPhones]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var53 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesPhones] DROP CONSTRAINT [' + @var53 + '];');
+ALTER TABLE [CompaniesPhones] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:27.589 +03:00 [INF] Executed DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var54 sysname;
+SELECT @var54 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesPhones]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var54 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesPhones] DROP CONSTRAINT [' + @var54 + '];');
+ALTER TABLE [CompaniesPhones] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:29.689 +03:00 [INF] Executed DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var55 sysname;
+SELECT @var55 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesPersonInCharges]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var55 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesPersonInCharges] DROP CONSTRAINT [' + @var55 + '];');
+ALTER TABLE [CompaniesPersonInCharges] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:29.705 +03:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var56 sysname;
+SELECT @var56 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesPersonInCharges]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var56 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesPersonInCharges] DROP CONSTRAINT [' + @var56 + '];');
+ALTER TABLE [CompaniesPersonInCharges] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:29.724 +03:00 [INF] Executed DbCommand (19ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var57 sysname;
+SELECT @var57 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesOtherContracts]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var57 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesOtherContracts] DROP CONSTRAINT [' + @var57 + '];');
+ALTER TABLE [CompaniesOtherContracts] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:31.472 +03:00 [INF] Executed DbCommand (27ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var58 sysname;
+SELECT @var58 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesOtherContracts]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var58 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesOtherContracts] DROP CONSTRAINT [' + @var58 + '];');
+ALTER TABLE [CompaniesOtherContracts] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:31.501 +03:00 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var59 sysname;
+SELECT @var59 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesLicenses]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var59 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesLicenses] DROP CONSTRAINT [' + @var59 + '];');
+ALTER TABLE [CompaniesLicenses] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:31.519 +03:00 [INF] Executed DbCommand (18ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var60 sysname;
+SELECT @var60 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesLicenses]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var60 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesLicenses] DROP CONSTRAINT [' + @var60 + '];');
+ALTER TABLE [CompaniesLicenses] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:33.495 +03:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var61 sysname;
+SELECT @var61 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesLeaseContracts]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var61 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesLeaseContracts] DROP CONSTRAINT [' + @var61 + '];');
+ALTER TABLE [CompaniesLeaseContracts] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:33.510 +03:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var62 sysname;
+SELECT @var62 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesLeaseContracts]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var62 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesLeaseContracts] DROP CONSTRAINT [' + @var62 + '];');
+ALTER TABLE [CompaniesLeaseContracts] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:33.524 +03:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var63 sysname;
+SELECT @var63 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesLeaseContractRegisters]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var63 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesLeaseContractRegisters] DROP CONSTRAINT [' + @var63 + '];');
+ALTER TABLE [CompaniesLeaseContractRegisters] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:35.837 +03:00 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var64 sysname;
+SELECT @var64 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesLeaseContractRegisters]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var64 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesLeaseContractRegisters] DROP CONSTRAINT [' + @var64 + '];');
+ALTER TABLE [CompaniesLeaseContractRegisters] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:35.859 +03:00 [INF] Executed DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var65 sysname;
+SELECT @var65 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesEmails]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var65 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesEmails] DROP CONSTRAINT [' + @var65 + '];');
+ALTER TABLE [CompaniesEmails] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:35.877 +03:00 [INF] Executed DbCommand (18ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var66 sysname;
+SELECT @var66 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesEmails]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var66 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesEmails] DROP CONSTRAINT [' + @var66 + '];');
+ALTER TABLE [CompaniesEmails] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:37.548 +03:00 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var67 sysname;
+SELECT @var67 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesContracts]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var67 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesContracts] DROP CONSTRAINT [' + @var67 + '];');
+ALTER TABLE [CompaniesContracts] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:37.562 +03:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var68 sysname;
+SELECT @var68 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesContracts]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var68 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesContracts] DROP CONSTRAINT [' + @var68 + '];');
+ALTER TABLE [CompaniesContracts] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:37.579 +03:00 [INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var69 sysname;
+SELECT @var69 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesChamberOfCommerces]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var69 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesChamberOfCommerces] DROP CONSTRAINT [' + @var69 + '];');
+ALTER TABLE [CompaniesChamberOfCommerces] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:39.116 +03:00 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var70 sysname;
+SELECT @var70 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesChamberOfCommerces]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var70 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesChamberOfCommerces] DROP CONSTRAINT [' + @var70 + '];');
+ALTER TABLE [CompaniesChamberOfCommerces] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:39.138 +03:00 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var71 sysname;
+SELECT @var71 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesCapitals]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var71 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesCapitals] DROP CONSTRAINT [' + @var71 + '];');
+ALTER TABLE [CompaniesCapitals] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:39.159 +03:00 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var72 sysname;
+SELECT @var72 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesCapitals]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var72 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesCapitals] DROP CONSTRAINT [' + @var72 + '];');
+ALTER TABLE [CompaniesCapitals] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:40.959 +03:00 [INF] Executed DbCommand (31ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var73 sysname;
+SELECT @var73 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesBoards]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var73 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesBoards] DROP CONSTRAINT [' + @var73 + '];');
+ALTER TABLE [CompaniesBoards] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:40.980 +03:00 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var74 sysname;
+SELECT @var74 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesBoards]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var74 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesBoards] DROP CONSTRAINT [' + @var74 + '];');
+ALTER TABLE [CompaniesBoards] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:40.996 +03:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var75 sysname;
+SELECT @var75 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesBoardMembers]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var75 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesBoardMembers] DROP CONSTRAINT [' + @var75 + '];');
+ALTER TABLE [CompaniesBoardMembers] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:42.811 +03:00 [INF] Executed DbCommand (25ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var76 sysname;
+SELECT @var76 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesBoardMembers]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var76 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesBoardMembers] DROP CONSTRAINT [' + @var76 + '];');
+ALTER TABLE [CompaniesBoardMembers] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:42.837 +03:00 [INF] Executed DbCommand (26ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var77 sysname;
+SELECT @var77 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesBankAccount]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var77 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesBankAccount] DROP CONSTRAINT [' + @var77 + '];');
+ALTER TABLE [CompaniesBankAccount] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:42.859 +03:00 [INF] Executed DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var78 sysname;
+SELECT @var78 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesBankAccount]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var78 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesBankAccount] DROP CONSTRAINT [' + @var78 + '];');
+ALTER TABLE [CompaniesBankAccount] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:44.890 +03:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var79 sysname;
+SELECT @var79 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesAuthorizedSignatories]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var79 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesAuthorizedSignatories] DROP CONSTRAINT [' + @var79 + '];');
+ALTER TABLE [CompaniesAuthorizedSignatories] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:44.902 +03:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var80 sysname;
+SELECT @var80 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesAuthorizedSignatories]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var80 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesAuthorizedSignatories] DROP CONSTRAINT [' + @var80 + '];');
+ALTER TABLE [CompaniesAuthorizedSignatories] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:47.087 +03:00 [INF] Executed DbCommand (48ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var81 sysname;
+SELECT @var81 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesAddresses]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var81 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesAddresses] DROP CONSTRAINT [' + @var81 + '];');
+ALTER TABLE [CompaniesAddresses] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:47.102 +03:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var82 sysname;
+SELECT @var82 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesAddresses]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var82 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesAddresses] DROP CONSTRAINT [' + @var82 + '];');
+ALTER TABLE [CompaniesAddresses] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:47.128 +03:00 [INF] Executed DbCommand (26ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var83 sysname;
+SELECT @var83 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesActivities]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var83 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesActivities] DROP CONSTRAINT [' + @var83 + '];');
+ALTER TABLE [CompaniesActivities] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:49.282 +03:00 [INF] Executed DbCommand (42ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var84 sysname;
+SELECT @var84 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesActivities]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var84 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesActivities] DROP CONSTRAINT [' + @var84 + '];');
+ALTER TABLE [CompaniesActivities] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:49.309 +03:00 [INF] Executed DbCommand (27ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var85 sysname;
+SELECT @var85 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesAccountSignatory]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var85 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesAccountSignatory] DROP CONSTRAINT [' + @var85 + '];');
+ALTER TABLE [CompaniesAccountSignatory] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:49.333 +03:00 [INF] Executed DbCommand (24ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var86 sysname;
+SELECT @var86 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[CompaniesAccountSignatory]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var86 IS NOT NULL EXEC(N'ALTER TABLE [CompaniesAccountSignatory] DROP CONSTRAINT [' + @var86 + '];');
+ALTER TABLE [CompaniesAccountSignatory] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:51.221 +03:00 [INF] Executed DbCommand (39ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var87 sysname;
+SELECT @var87 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Companies]') AND [c].[name] = N'CreatedBy_IDN');
+IF @var87 IS NOT NULL EXEC(N'ALTER TABLE [Companies] DROP CONSTRAINT [' + @var87 + '];');
+ALTER TABLE [Companies] DROP COLUMN [CreatedBy_IDN];
+2025-07-14 23:23:51.237 +03:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var88 sysname;
+SELECT @var88 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Companies]') AND [c].[name] = N'UpdatedBy_IDN');
+IF @var88 IS NOT NULL EXEC(N'ALTER TABLE [Companies] DROP CONSTRAINT [' + @var88 + '];');
+ALTER TABLE [Companies] DROP COLUMN [UpdatedBy_IDN];
+2025-07-14 23:23:51.567 +03:00 [INF] Executed DbCommand (329ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[TransactionsRegisters].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:23:51.568 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[TransactionsRegisters].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:23:51.570 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[TransactionsRegisters].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:23:53.048 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[TransactionsRegisters].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:23:53.051 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[TransactionsOTFs].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:23:53.052 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[TransactionsOTFs].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:23:53.054 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[TransactionsOTFs].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:23:53.055 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[TransactionsOTFs].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:23:53.056 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[TransactionsInvoices].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:23:53.057 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[TransactionsInvoices].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:23:54.953 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[TransactionsInvoices].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:23:54.954 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[TransactionsInvoices].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:23:54.957 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[TransactionsActions].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:23:54.958 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[TransactionsActions].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:23:54.959 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[TransactionsActions].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:23:54.960 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[TransactionsActions].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:23:54.962 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[Transactions].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:23:54.963 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[Transactions].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:23:56.556 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[Transactions].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:23:56.559 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[Transactions].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:23:56.562 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[RegistersNotes].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:23:56.565 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[RegistersNotes].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:23:56.567 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[RegistersNotes].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:23:56.570 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[RegistersNotes].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:23:56.574 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[PropertyLinks].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:23:56.576 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[PropertyLinks].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:23:58.256 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[PropertyLinks].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:23:58.257 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[PropertyLinks].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:23:58.259 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[PropertyDocuments].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:23:58.261 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[PropertyDocuments].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:23:58.264 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[PropertyDocuments].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:23:58.266 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[PropertyDocuments].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:23:58.268 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[PropertiesStatus].[Id]', N'id', 'COLUMN';
+2025-07-14 23:23:59.827 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[PropertiesOwners].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:23:59.829 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[PropertiesOwners].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:23:59.830 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[PropertiesOwners].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:23:59.832 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[PropertiesOwners].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:23:59.833 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[Properties].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:23:59.835 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[Properties].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:23:59.839 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[Properties].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:23:59.841 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[Properties].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:24:01.319 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[Menus].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:24:01.322 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[Menus].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:24:01.324 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[Menus].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:24:01.327 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[Menus].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:24:01.330 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[LawFirmsPersons].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:24:01.333 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[LawFirmsPersons].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:24:01.335 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[LawFirmsPersons].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:24:01.336 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[LawFirmsPersons].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:24:02.816 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[LawFirmsExpertises].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:24:02.818 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[LawFirmsExpertises].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:24:02.820 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[LawFirmsExpertises].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:24:02.822 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[LawFirmsExpertises].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:24:02.824 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[LawFirmsBranches].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:24:02.826 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[LawFirmsBranches].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:24:02.828 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[LawFirmsBranches].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:24:02.830 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[LawFirmsBranches].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:24:04.308 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[LawFirmsAffiliates].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:24:04.310 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[LawFirmsAffiliates].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:24:04.311 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[LawFirmsAffiliates].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:24:04.312 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[LawFirmsAffiliates].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:24:04.313 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[LawFirms].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:24:04.315 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[LawFirms].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:24:04.316 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[LawFirms].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:24:05.770 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[LawFirms].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:24:05.771 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[Groups].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:24:05.772 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[Groups].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:24:05.773 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[Groups].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:24:05.776 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[Groups].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:24:05.777 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[FPCsODsActions].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:24:05.778 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[FPCsODsActions].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:24:05.779 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[FPCsODsActions].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:24:07.251 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[FPCsODsActions].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:24:07.252 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[FPCsODs].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:24:07.253 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[FPCsODs].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:24:07.254 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[FPCsODs].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:24:07.255 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[FPCsODs].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:24:07.257 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[FPCs].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:24:07.258 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[FPCs].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:24:07.260 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[FPCs].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:24:08.748 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[FPCs].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:24:08.750 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[DynamicLists].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:24:08.751 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[DynamicLists].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:24:08.753 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[DynamicLists].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:24:08.754 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[DynamicLists].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:24:08.756 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[DocumentTrackingsActions].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:24:08.758 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[DocumentTrackingsActions].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:24:08.759 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[DocumentTrackingsActions].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:24:10.274 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[DocumentTrackingsActions].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:24:10.276 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[DocumentTrackings].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:24:10.277 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[DocumentTrackings].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:24:10.278 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[DocumentTrackings].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:24:10.279 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[DocumentTrackings].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:24:10.283 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[Documents].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:24:10.284 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[Documents].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:24:11.787 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[Documents].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:24:11.789 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[Documents].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:24:11.790 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[Currencies].[ID]', N'id', 'COLUMN';
+2025-07-14 23:24:11.792 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesShareHoldersGroups].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:24:11.793 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesShareHoldersGroups].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:24:11.794 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesShareHoldersGroups].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:24:11.795 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesShareHoldersGroups].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:24:11.796 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesShareHolders].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:24:13.236 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesShareHolders].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:24:13.238 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesShareHolders].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:24:13.239 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesShareHolders].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:24:13.240 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesPhones].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:24:13.241 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesPhones].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:24:13.242 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesPhones].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:24:13.245 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesPhones].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:24:13.246 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesPersonInCharges].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:24:14.718 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesPersonInCharges].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:24:14.720 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesPersonInCharges].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:24:14.722 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesPersonInCharges].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:24:14.723 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesOtherContracts].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:24:14.725 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesOtherContracts].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:24:14.726 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesOtherContracts].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:24:14.728 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesOtherContracts].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:24:16.167 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesLicenses].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:24:16.169 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesLicenses].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:24:16.170 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesLicenses].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:24:16.172 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesLicenses].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:24:16.174 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesLeaseContracts].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:24:16.175 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesLeaseContracts].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:24:16.177 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesLeaseContracts].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:24:17.618 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesLeaseContracts].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:24:17.619 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesLeaseContractRegisters].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:24:17.621 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesLeaseContractRegisters].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:24:17.622 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesLeaseContractRegisters].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:24:17.624 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesLeaseContractRegisters].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:24:17.625 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesEmails].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:24:17.627 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesEmails].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:24:17.629 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesEmails].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:24:19.019 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesEmails].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:24:19.020 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesContracts].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:24:19.022 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesContracts].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:24:19.024 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesContracts].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:24:19.027 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesContracts].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:24:19.029 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesChamberOfCommerces].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:24:19.031 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesChamberOfCommerces].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:24:20.431 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesChamberOfCommerces].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:24:20.432 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesChamberOfCommerces].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:24:20.433 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesCapitals].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:24:20.434 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesCapitals].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:24:20.436 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesCapitals].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:24:20.437 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesCapitals].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:24:20.440 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesBoards].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:24:20.441 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesBoards].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:24:21.868 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesBoards].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:24:21.870 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesBoards].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:24:21.872 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesBoardMembers].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:24:21.875 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesBoardMembers].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:24:21.876 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesBoardMembers].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:24:21.877 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesBoardMembers].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:24:21.879 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesBankAccount].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:24:21.880 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesBankAccount].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:24:23.335 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesBankAccount].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:24:23.336 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesBankAccount].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:24:23.338 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesAuthorizedSignatories].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:24:23.339 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesAuthorizedSignatories].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:24:23.340 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesAuthorizedSignatories].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:24:23.342 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesAuthorizedSignatories].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:24:23.343 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesAddresses].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:24:24.765 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesAddresses].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:24:24.767 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesAddresses].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:24:24.769 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesAddresses].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:24:24.770 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesActivities].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:24:24.771 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesActivities].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:24:24.773 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesActivities].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:24:24.776 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesActivities].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:24:26.170 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesAccountSignatory].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:24:26.171 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesAccountSignatory].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:24:26.173 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesAccountSignatory].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:24:26.174 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[CompaniesAccountSignatory].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:24:26.175 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[Companies].[UpdatedBy_Name]', N'UpdatedBy', 'COLUMN';
+2025-07-14 23:24:26.177 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[Companies].[UpdatedBy_Date]', N'Modification_Date', 'COLUMN';
+2025-07-14 23:24:26.178 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[Companies].[CreatedBy_Name]', N'CreatedBy', 'COLUMN';
+2025-07-14 23:24:26.178 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[Companies].[CreatedBy_Date]', N'CreationDate', 'COLUMN';
+2025-07-14 23:24:27.619 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+EXEC sp_rename N'[Companies].[CompanyIdn]', N'CompanyIdn ', 'COLUMN';
+2025-07-14 23:24:27.632 +03:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [tblFiles] ADD [CreatedBy] nvarchar(max) NOT NULL DEFAULT N'';
+2025-07-14 23:24:27.636 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [tblFiles] ADD [CreationDate] datetime2 NOT NULL DEFAULT '0001-01-01T00:00:00.0000000';
+2025-07-14 23:24:27.637 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [tblFiles] ADD [Modification_Date] datetime2 NULL;
+2025-07-14 23:24:27.638 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [tblFiles] ADD [UpdatedBy] nvarchar(max) NULL;
+2025-07-14 23:24:27.643 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [RegistersCodes] ADD [CreatedBy] nvarchar(max) NOT NULL DEFAULT N'';
+2025-07-14 23:24:27.644 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [RegistersCodes] ADD [CreationDate] datetime2 NOT NULL DEFAULT '0001-01-01T00:00:00.0000000';
+2025-07-14 23:24:27.645 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [RegistersCodes] ADD [Modification_Date] datetime2 NULL;
+2025-07-14 23:24:29.099 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [RegistersCodes] ADD [UpdatedBy] nvarchar(max) NULL;
+2025-07-14 23:24:29.101 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [PropertiesStatus] ADD [CreatedBy] nvarchar(max) NOT NULL DEFAULT N'';
+2025-07-14 23:24:29.103 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [PropertiesStatus] ADD [CreationDate] datetime2 NOT NULL DEFAULT '0001-01-01T00:00:00.0000000';
+2025-07-14 23:24:29.104 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [PropertiesStatus] ADD [Modification_Date] datetime2 NULL;
+2025-07-14 23:24:29.105 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [PropertiesStatus] ADD [UpdatedBy] nvarchar(max) NULL;
+2025-07-14 23:24:29.149 +03:00 [INF] Executed DbCommand (44ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Numbers] ADD [CreatedBy] nvarchar(max) NOT NULL DEFAULT N'';
+2025-07-14 23:24:29.151 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Numbers] ADD [CreationDate] datetime2 NOT NULL DEFAULT '0001-01-01T00:00:00.0000000';
+2025-07-14 23:24:30.582 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Numbers] ADD [Modification_Date] datetime2 NULL;
+2025-07-14 23:24:30.586 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Numbers] ADD [UpdatedBy] nvarchar(max) NULL;
+2025-07-14 23:24:30.592 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [GroupsMenus] ADD [CreatedBy] nvarchar(max) NOT NULL DEFAULT N'';
+2025-07-14 23:24:30.595 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [GroupsMenus] ADD [CreationDate] datetime2 NOT NULL DEFAULT '0001-01-01T00:00:00.0000000';
+2025-07-14 23:24:30.596 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [GroupsMenus] ADD [Modification_Date] datetime2 NULL;
+2025-07-14 23:24:30.600 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [GroupsMenus] ADD [UpdatedBy] nvarchar(max) NULL;
+2025-07-14 23:24:30.603 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [DocumentReletedRegister] ADD [CreatedBy] nvarchar(max) NOT NULL DEFAULT N'';
+2025-07-14 23:24:30.606 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [DocumentReletedRegister] ADD [CreationDate] datetime2 NOT NULL DEFAULT '0001-01-01T00:00:00.0000000';
+2025-07-14 23:24:32.027 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [DocumentReletedRegister] ADD [Modification_Date] datetime2 NULL;
+2025-07-14 23:24:32.028 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [DocumentReletedRegister] ADD [UpdatedBy] nvarchar(max) NULL;
+2025-07-14 23:24:32.035 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Currencies] ADD [CreatedBy] nvarchar(max) NOT NULL DEFAULT N'';
+2025-07-14 23:24:32.038 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Currencies] ADD [CreationDate] datetime2 NOT NULL DEFAULT '0001-01-01T00:00:00.0000000';
+2025-07-14 23:24:32.040 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Currencies] ADD [Modification_Date] datetime2 NULL;
+2025-07-14 23:24:32.041 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Currencies] ADD [UpdatedBy] nvarchar(max) NULL;
+2025-07-14 23:24:32.045 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Countries] ADD [CreatedBy] nvarchar(max) NOT NULL DEFAULT N'';
+2025-07-14 23:24:32.048 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Countries] ADD [CreationDate] datetime2 NOT NULL DEFAULT '0001-01-01T00:00:00.0000000';
+2025-07-14 23:24:33.540 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Countries] ADD [Modification_Date] datetime2 NULL;
+2025-07-14 23:24:33.541 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Countries] ADD [UpdatedBy] nvarchar(max) NULL;
+2025-07-14 23:24:33.548 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [DocumentReletedRegister] ADD CONSTRAINT [PK_DocumentReletedRegister] PRIMARY KEY ([Document_IDN]);
+2025-07-14 23:24:33.553 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20250714201051_set-base-entity-to-all', N'9.0.6');
+2025-07-14 23:24:33.553 +03:00 [INF] Applying migration '20250714202041_set-base-entity-to-all2'.
+2025-07-14 23:24:33.625 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result
+2025-07-14 23:26:55.418 +03:00 [WRN] No instantiatable types implementing `IEntityTypeConfiguration` were found while while scanning assembly 'Nexus.LAS.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+2025-07-14 23:26:55.577 +03:00 [WRN] No store type was specified for the decimal property 'CapitalAmount' on entity type 'Company'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-07-14 23:27:07.019 +03:00 [WRN] No instantiatable types implementing `IEntityTypeConfiguration` were found while while scanning assembly 'Nexus.LAS.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+2025-07-14 23:27:07.245 +03:00 [WRN] No store type was specified for the decimal property 'CapitalAmount' on entity type 'Company'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-07-14 23:27:07.716 +03:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-07-14 23:27:07.725 +03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-07-14 23:27:07.741 +03:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result
+2025-07-14 23:27:07.791 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;
+2025-07-14 23:27:07.797 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-07-14 23:27:07.798 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2025-07-14 23:27:07.801 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2025-07-14 23:27:07.805 +03:00 [INF] Applying migration '20250714202655_set-base-entity-to-all'.
+2025-07-14 23:27:07.843 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20250714202655_set-base-entity-to-all', N'9.0.6');
+2025-07-14 23:27:07.846 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result
+2025-07-14 23:27:35.630 +03:00 [WRN] No instantiatable types implementing `IEntityTypeConfiguration` were found while while scanning assembly 'Nexus.LAS.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+2025-07-14 23:27:35.784 +03:00 [WRN] No store type was specified for the decimal property 'CapitalAmount' on entity type 'Company'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-07-14 23:28:19.306 +03:00 [WRN] No instantiatable types implementing `IEntityTypeConfiguration` were found while while scanning assembly 'Nexus.LAS.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+2025-07-14 23:28:19.469 +03:00 [WRN] No store type was specified for the decimal property 'CapitalAmount' on entity type 'Company'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-07-14 23:28:29.107 +03:00 [WRN] No instantiatable types implementing `IEntityTypeConfiguration` were found while while scanning assembly 'Nexus.LAS.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+2025-07-14 23:28:29.266 +03:00 [WRN] No store type was specified for the decimal property 'CapitalAmount' on entity type 'Company'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-07-14 23:28:29.625 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-07-14 23:28:29.633 +03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-07-14 23:28:29.644 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result
+2025-07-14 23:28:29.690 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;
+2025-07-14 23:28:29.697 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-07-14 23:28:29.698 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2025-07-14 23:28:29.700 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2025-07-14 23:28:29.704 +03:00 [INF] Applying migration '20250714202819_set-base-entity-to-all'.
+2025-07-14 23:28:29.855 +03:00 [ERR] Failed executing DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Companies] (
+    [CompanyIdn ] int NOT NULL IDENTITY,
+    [CompanyIdc] nvarchar(50) NOT NULL,
+    [CompanyCode] nvarchar(50) NOT NULL,
+    [IncorporationDate] datetime2 NULL,
+    [CompanyEnglishName] nvarchar(100) NOT NULL,
+    [CompanyArabicName] nvarchar(100) NOT NULL,
+    [CompanyShortName] nvarchar(50) NOT NULL,
+    [CompanyTypeIdn] nvarchar(50) NOT NULL,
+    [CompanyType] nvarchar(50) NOT NULL,
+    [CompanyClassIdn] nvarchar(50) NOT NULL,
+    [CompanyClass] nvarchar(50) NOT NULL,
+    [GroupCompany] nvarchar(50) NOT NULL,
+    [RelevantCompany] nvarchar(50) NOT NULL,
+    [LegalType] nvarchar(50) NOT NULL,
+    [CciNumber] nvarchar(50) NOT NULL,
+    [CciIssueDate] datetime2 NULL,
+    [CciExpiryDate] datetime2 NULL,
+    [CciExpiryActiveReminder] bit NULL,
+    [PlaceOfRegistrationMainIdn] nvarchar(50) NOT NULL,
+    [PlaceOfRegistrationMain] nvarchar(50) NOT NULL,
+    [PlaceOfRegistrationSubIdn] nvarchar(50) NOT NULL,
+    [PlaceOfRegistrationSub] nvarchar(50) NOT NULL,
+    [CapitalAmount] decimal(18,2) NULL,
+    [TotalShares] bigint NULL,
+    [NumberOfPartners] int NULL,
+    [UpdateDate] datetime2 NULL,
+    [UpdateDescription] nvarchar(50) NOT NULL,
+    [Persons_IDN] int NULL,
+    [CompanyStatus] nvarchar(max) NOT NULL,
+    [Private] bit NOT NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_Companies] PRIMARY KEY ([CompanyIdn ])
+);
+2025-07-14 23:35:40.949 +03:00 [WRN] No instantiatable types implementing `IEntityTypeConfiguration` were found while while scanning assembly 'Nexus.LAS.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+2025-07-14 23:35:41.138 +03:00 [WRN] No store type was specified for the decimal property 'CapitalAmount' on entity type 'Company'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-07-14 23:35:41.538 +03:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-07-14 23:35:41.547 +03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-07-14 23:35:41.569 +03:00 [INF] Executed DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result
+2025-07-14 23:35:41.610 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;
+2025-07-14 23:35:41.617 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-07-14 23:35:41.618 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2025-07-14 23:35:41.623 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2025-07-14 23:35:41.626 +03:00 [INF] Applying migration '20250714202819_set-base-entity-to-all'.
+2025-07-14 23:35:41.791 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Companies] (
+    [CompanyIdn ] int NOT NULL IDENTITY,
+    [CompanyIdc] nvarchar(50) NOT NULL,
+    [CompanyCode] nvarchar(50) NOT NULL,
+    [IncorporationDate] datetime2 NULL,
+    [CompanyEnglishName] nvarchar(100) NOT NULL,
+    [CompanyArabicName] nvarchar(100) NOT NULL,
+    [CompanyShortName] nvarchar(50) NOT NULL,
+    [CompanyTypeIdn] nvarchar(50) NOT NULL,
+    [CompanyType] nvarchar(50) NOT NULL,
+    [CompanyClassIdn] nvarchar(50) NOT NULL,
+    [CompanyClass] nvarchar(50) NOT NULL,
+    [GroupCompany] nvarchar(50) NOT NULL,
+    [RelevantCompany] nvarchar(50) NOT NULL,
+    [LegalType] nvarchar(50) NOT NULL,
+    [CciNumber] nvarchar(50) NOT NULL,
+    [CciIssueDate] datetime2 NULL,
+    [CciExpiryDate] datetime2 NULL,
+    [CciExpiryActiveReminder] bit NULL,
+    [PlaceOfRegistrationMainIdn] nvarchar(50) NOT NULL,
+    [PlaceOfRegistrationMain] nvarchar(50) NOT NULL,
+    [PlaceOfRegistrationSubIdn] nvarchar(50) NOT NULL,
+    [PlaceOfRegistrationSub] nvarchar(50) NOT NULL,
+    [CapitalAmount] decimal(18,2) NULL,
+    [TotalShares] bigint NULL,
+    [NumberOfPartners] int NULL,
+    [UpdateDate] datetime2 NULL,
+    [UpdateDescription] nvarchar(50) NOT NULL,
+    [Persons_IDN] int NULL,
+    [CompanyStatus] nvarchar(max) NOT NULL,
+    [Private] bit NOT NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_Companies] PRIMARY KEY ([CompanyIdn ])
+);
+2025-07-14 23:35:42.844 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CompaniesAccountSignatory] (
+    [CompaniesAccountSignatoryIDN] int NOT NULL IDENTITY,
+    [CompaniesAccountSignatoryIDC] nvarchar(50) NOT NULL,
+    [CompaniesBankAccount_IDN] int NOT NULL,
+    [AccountSignatoryPerson_IDN] int NOT NULL,
+    [AccountSignatoryRule] nvarchar(50) NOT NULL,
+    [FromAmount] bigint NOT NULL,
+    [ToAmount] bigint NOT NULL,
+    [Description] nvarchar(max) NOT NULL,
+    [AccountSignatoryDate] datetime2 NULL,
+    [AccountSignatoryActive] bit NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_CompaniesAccountSignatory] PRIMARY KEY ([CompaniesAccountSignatoryIDN])
+);
+2025-07-14 23:35:42.849 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CompaniesActivities] (
+    [CompaniesActivityIDC] nvarchar(50) NOT NULL,
+    [CompaniesActivityIDN] int NOT NULL IDENTITY,
+    [Companies_IDN] int NOT NULL,
+    [Activity] nvarchar(max) NOT NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_CompaniesActivities] PRIMARY KEY ([CompaniesActivityIDC], [CompaniesActivityIDN])
+);
+2025-07-14 23:35:46.098 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CompaniesAddresses] (
+    [CompaniesAddressIDC] nvarchar(50) NOT NULL,
+    [CompaniesAddressIDN] int NOT NULL IDENTITY,
+    [Companies_IDN] int NOT NULL,
+    [AddressPrimary] bit NOT NULL,
+    [AddressLine1] nvarchar(50) NOT NULL,
+    [AddressLine2] nvarchar(50) NOT NULL,
+    [AddressLine3] nvarchar(50) NOT NULL,
+    [POBoxumber] nvarchar(50) NOT NULL,
+    [POBoxCity] nvarchar(50) NOT NULL,
+    [POBoxCountry] nvarchar(50) NOT NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_CompaniesAddresses] PRIMARY KEY ([CompaniesAddressIDC], [CompaniesAddressIDN])
+);
+2025-07-14 23:35:46.101 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CompaniesAuthorizedSignatories] (
+    [CompaniesAuthorizedSignatoryIDC] nvarchar(50) NOT NULL,
+    [CompaniesAuthorizedSignatoryIDN] int NOT NULL IDENTITY,
+    [Companies_IDN] int NOT NULL,
+    [Persons_IDN] int NULL,
+    [POAType] nvarchar(50) NOT NULL,
+    [POATypeDetails] nvarchar(50) NOT NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_CompaniesAuthorizedSignatories] PRIMARY KEY ([CompaniesAuthorizedSignatoryIDC], [CompaniesAuthorizedSignatoryIDN])
+);
+2025-07-14 23:35:49.929 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CompaniesBankAccount] (
+    [CompaniesBankAccountIDC] nvarchar(50) NOT NULL,
+    [CompaniesBankAccountIDN] int NOT NULL IDENTITY,
+    [Companies_IDN] int NOT NULL,
+    [BankName] nvarchar(100) NOT NULL,
+    [AccountNumber] nvarchar(50) NOT NULL,
+    [Note] nvarchar(max) NOT NULL,
+    [BankAccountDate] datetime2 NOT NULL,
+    [BankAccountActive] bit NOT NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_CompaniesBankAccount] PRIMARY KEY ([CompaniesBankAccountIDC], [CompaniesBankAccountIDN])
+);
+2025-07-14 23:35:49.932 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CompaniesBoardMembers] (
+    [CompaniesBoardMemberIDC] nvarchar(50) NOT NULL,
+    [CompaniesBoardMemberIDN] int NOT NULL IDENTITY,
+    [CompaniesBoards_IDN] int NULL,
+    [Person_IDN] int NOT NULL,
+    [BoardMemberPosition] nvarchar(50) NOT NULL,
+    [BoardMemberActive] bit NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_CompaniesBoardMembers] PRIMARY KEY ([CompaniesBoardMemberIDC], [CompaniesBoardMemberIDN])
+);
+2025-07-14 23:35:49.937 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CompaniesBoards] (
+    [CompaniesBoardIDC] nvarchar(50) NOT NULL,
+    [CompaniesBoardIDN] int NOT NULL IDENTITY,
+    [Companies_IDN] int NOT NULL,
+    [BoardDate] datetime2 NOT NULL,
+    [BoardActive] bit NOT NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_CompaniesBoards] PRIMARY KEY ([CompaniesBoardIDC], [CompaniesBoardIDN])
+);
+2025-07-14 23:35:52.826 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CompaniesCapitals] (
+    [CompaniesCapitalIDC] nvarchar(50) NOT NULL,
+    [CompaniesCapitalIDN] int NOT NULL IDENTITY,
+    [Companies_IDN] int NOT NULL,
+    [CompaniesCapitalDate] datetime2 NULL,
+    [CompaniesCapitalAmount] float NULL,
+    [CompaniesCapitalNumberOfShares] bigint NULL,
+    [CompaniesCapitalAuthorized] float NULL,
+    [CompaniesCapitalPaid] float NULL,
+    [CompaniesCapitalIssuedShares] bigint NULL,
+    [CompaniesCapitalCurrency] nvarchar(50) NOT NULL,
+    [CompaniesCapitalActive] bit NOT NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_CompaniesCapitals] PRIMARY KEY ([CompaniesCapitalIDC], [CompaniesCapitalIDN])
+);
+2025-07-14 23:35:52.833 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CompaniesChamberOfCommerces] (
+    [CompaniesChamberOfCommerceIDC] nvarchar(50) NOT NULL,
+    [CompaniesChamberOfCommerceIDN] int NOT NULL IDENTITY,
+    [Companies_IDN] int NOT NULL,
+    [CCINumber] nvarchar(50) NOT NULL,
+    [CCIIssueDate] datetime2 NOT NULL,
+    [CCIExpiryDate] datetime2 NULL,
+    [CCIExpiryActiveReminder] bit NULL,
+    [CCIUsername] nvarchar(50) NOT NULL,
+    [CCIPassword] nvarchar(50) NOT NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_CompaniesChamberOfCommerces] PRIMARY KEY ([CompaniesChamberOfCommerceIDC], [CompaniesChamberOfCommerceIDN])
+);
+2025-07-14 23:35:55.635 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CompaniesContracts] (
+    [CompaniesContractIDC] nvarchar(50) NOT NULL,
+    [CompaniesContractIDN] int NOT NULL IDENTITY,
+    [Companies_IDN] int NOT NULL,
+    [ContractType] nvarchar(50) NOT NULL,
+    [DocumentDate] datetime2 NULL,
+    [CommencementDate] datetime2 NULL,
+    [ContractExpiryDate] datetime2 NULL,
+    [ContractExpiryActiveReminder] bit NULL,
+    [ContractDescription] nvarchar(max) NOT NULL,
+    [ContractStatus] nvarchar(50) NOT NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_CompaniesContracts] PRIMARY KEY ([CompaniesContractIDC], [CompaniesContractIDN])
+);
+2025-07-14 23:35:55.638 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CompaniesEmails] (
+    [CompaniesEmailIDC] nvarchar(50) NOT NULL,
+    [CompaniesEmailIDN] int NOT NULL IDENTITY,
+    [Companies_IDN] int NOT NULL,
+    [EmailPrimary] bit NOT NULL,
+    [Email] nvarchar(150) NOT NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_CompaniesEmails] PRIMARY KEY ([CompaniesEmailIDC], [CompaniesEmailIDN])
+);
+2025-07-14 23:35:55.641 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CompaniesLeaseContractRegisters] (
+    [CompaniesLeaseContracts_IDN] int NOT NULL IDENTITY,
+    [LeaseRegisters_IDC] nvarchar(50) NOT NULL,
+    [LeaseRegisters_IDN] int NOT NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_CompaniesLeaseContractRegisters] PRIMARY KEY ([CompaniesLeaseContracts_IDN], [LeaseRegisters_IDC])
+);
+2025-07-14 23:35:58.141 +03:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CompaniesLeaseContracts] (
+    [CompaniesLeaseContractIDC] nvarchar(50) NOT NULL,
+    [CompaniesLeaseContractIDN] int NOT NULL IDENTITY,
+    [Companies_IDN] int NOT NULL,
+    [CommencementDate] datetime2 NULL,
+    [LeaseContractExpiryDate] datetime2 NULL,
+    [LeaseContractExpiryActiveReminder] bit NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_CompaniesLeaseContracts] PRIMARY KEY ([CompaniesLeaseContractIDC], [CompaniesLeaseContractIDN])
+);
+2025-07-14 23:35:58.145 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CompaniesLicenses] (
+    [CompaniesLicenseIDC] nvarchar(50) NOT NULL,
+    [CompaniesLicenseIDN] int NOT NULL IDENTITY,
+    [Companies_IDN] int NOT NULL,
+    [LicensePrimary] bit NOT NULL,
+    [LicenseStatus] nvarchar(50) NOT NULL,
+    [LicenseClassification] nvarchar(50) NOT NULL,
+    [LicenseNumber] nvarchar(50) NOT NULL,
+    [LicenseIssueDate] datetime2 NOT NULL,
+    [LicenseExpiryDate] datetime2 NULL,
+    [LicenseExpiryActiveReminder] bit NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_CompaniesLicenses] PRIMARY KEY ([CompaniesLicenseIDC], [CompaniesLicenseIDN])
+);
+2025-07-14 23:36:00.733 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CompaniesOtherContracts] (
+    [CompaniesOtherContractIDC] nvarchar(50) NOT NULL,
+    [CompaniesOtherContractIDN] int NOT NULL IDENTITY,
+    [Companies_IDN] int NOT NULL,
+    [ContractDate] datetime2 NULL,
+    [ContractDescription] nvarchar(4000) NOT NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_CompaniesOtherContracts] PRIMARY KEY ([CompaniesOtherContractIDC], [CompaniesOtherContractIDN])
+);
+2025-07-14 23:36:00.736 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CompaniesPersonInCharges] (
+    [CompaniesPersonInChargeIDC] nvarchar(50) NOT NULL,
+    [CompaniesPersonInChargeIDN] int NOT NULL IDENTITY,
+    [Companies_IDN] int NOT NULL,
+    [Persons_IDN] int NOT NULL,
+    [Designation] nvarchar(50) NOT NULL,
+    [Notes] nvarchar(4000) NOT NULL,
+    [PersonInChargeDate] datetime2 NULL,
+    [PersonInChargeActive] bit NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_CompaniesPersonInCharges] PRIMARY KEY ([CompaniesPersonInChargeIDC], [CompaniesPersonInChargeIDN])
+);
+2025-07-14 23:36:03.188 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CompaniesPhones] (
+    [CompaniesPhoneIDC] nvarchar(50) NOT NULL,
+    [CompaniesPhoneIDN] int NOT NULL IDENTITY,
+    [Companies_IDN] int NULL,
+    [PhonePrimary] bit NULL,
+    [PhoneType] nvarchar(50) NOT NULL,
+    [PhoneNumber] nvarchar(50) NOT NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_CompaniesPhones] PRIMARY KEY ([CompaniesPhoneIDC], [CompaniesPhoneIDN])
+);
+2025-07-14 23:36:03.192 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CompaniesShareHolders] (
+    [CompaniesShareHolderIDC] nvarchar(50) NOT NULL,
+    [CompaniesShareHolderIDN] int NOT NULL IDENTITY,
+    [CompaniesShareHoldersGroups_IDN] int NULL,
+    [Registers_IDC] nvarchar(50) NOT NULL,
+    [Registers_IDN] int NOT NULL,
+    [ShareHolderNumbersOfShares] bigint NULL,
+    [ShareHolderDate] datetime2 NULL,
+    [ShareHolderActive] bit NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_CompaniesShareHolders] PRIMARY KEY ([CompaniesShareHolderIDC], [CompaniesShareHolderIDN])
+);
+2025-07-14 23:36:03.196 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CompaniesShareHoldersGroups] (
+    [CompaniesShareHoldersGroupIDC] nvarchar(50) NOT NULL,
+    [CompaniesShareHoldersGroupIDN] int NOT NULL IDENTITY,
+    [Companies_IDN] int NOT NULL,
+    [ShareHolderGroupDate] datetime2 NOT NULL,
+    [ShareHolderGroupActive] bit NOT NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_CompaniesShareHoldersGroups] PRIMARY KEY ([CompaniesShareHoldersGroupIDC], [CompaniesShareHoldersGroupIDN])
+);
+2025-07-14 23:36:05.701 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Countries] (
+    [CountryId] int NOT NULL,
+    [CountryName] nvarchar(500) NULL,
+    [FIPS104] nvarchar(50) NULL,
+    [ISO2] nvarchar(50) NULL,
+    [ISO3] nvarchar(50) NULL,
+    [ISON] nvarchar(50) NULL,
+    [Internet] nvarchar(50) NULL,
+    [Capital] nvarchar(500) NULL,
+    [MapReference] nvarchar(1000) NULL,
+    [NationalitySingular] nvarchar(500) NULL,
+    [NationalityPlural] nvarchar(500) NULL,
+    [Currency] nvarchar(100) NULL,
+    [CurrencyCode] nvarchar(50) NULL,
+    [Population] nvarchar(50) NULL,
+    [Title] nvarchar(500) NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_Countries] PRIMARY KEY ([CountryId])
+);
+2025-07-14 23:36:05.703 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Currencies] (
+    [id] int NOT NULL IDENTITY,
+    [Entity] nvarchar(100) NOT NULL,
+    [Currency] nvarchar(100) NOT NULL,
+    [AlphabeticCode] nvarchar(3) NOT NULL,
+    [NumericCode] nvarchar(3) NULL,
+    [MinorUnit] nvarchar(1) NULL,
+    [IsFundYesNo] bit NOT NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_Currencies] PRIMARY KEY ([id])
+);
+2025-07-14 23:36:08.402 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [DocumentReletedRegister] (
+    [Document_IDC] nvarchar(50) NOT NULL,
+    [Document_IDN] int NOT NULL IDENTITY,
+    [Registers_IDC] nvarchar(50) NOT NULL,
+    [Registers_IDN] int NOT NULL,
+    [Owner] bit NOT NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_DocumentReletedRegister] PRIMARY KEY ([Document_IDC], [Document_IDN], [Registers_IDC], [Registers_IDN], [Owner])
+);
+2025-07-14 23:36:08.404 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Documents] (
+    [DocumentIDC] nvarchar(50) NOT NULL,
+    [DocumentIDN] int NOT NULL IDENTITY,
+    [SharepointFilename] nvarchar(max) NOT NULL,
+    [DocumentPath] nvarchar(max) NOT NULL,
+    [DocumentINDateReceived] datetime2 NULL,
+    [DocumentINDescription] nvarchar(50) NOT NULL,
+    [DocumentINReceivedFrom] nvarchar(50) NOT NULL,
+    [DocumentINReason] nvarchar(50) NOT NULL,
+    [DocumentOutDateCollected] nvarchar(50) NOT NULL,
+    [DocumentOutCollectedBy] nvarchar(50) NOT NULL,
+    [DocumentOutReason] nvarchar(50) NOT NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_Documents] PRIMARY KEY ([DocumentIDC], [DocumentIDN])
+);
+2025-07-14 23:36:08.405 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [DocumentTrackings] (
+    [DocumentTrackingIDN] int NOT NULL IDENTITY,
+    [DocumentTrackingIDC] nvarchar(50) NOT NULL,
+    [DocumentTrackingCode] nvarchar(50) NOT NULL,
+    [ReferenceNumber] nvarchar(50) NOT NULL,
+    [Persons_IDN] int NOT NULL,
+    [Registers_IDC] nvarchar(50) NOT NULL,
+    [Registers_IDN] int NOT NULL,
+    [Description] nvarchar(4000) NOT NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_DocumentTrackings] PRIMARY KEY ([DocumentTrackingIDN])
+);
+2025-07-14 23:36:11.252 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [DocumentTrackingsActions] (
+    [DocumentTrackingsActionIDN] int NOT NULL IDENTITY,
+    [DocumentTrackingsActionIDC] nvarchar(50) NOT NULL,
+    [DocumentTrackings_IDN] int NOT NULL,
+    [ActionType] nvarchar(50) NOT NULL,
+    [ActionDate] datetime2 NOT NULL,
+    [ActionDescription] nvarchar(4000) NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_DocumentTrackingsActions] PRIMARY KEY ([DocumentTrackingsActionIDN])
+);
+2025-07-14 23:36:11.261 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [DynamicLists] (
+    [DynamicListIDC] nvarchar(50) NOT NULL,
+    [DynamicListIDN] int NOT NULL IDENTITY,
+    [LinkedCategory] nvarchar(50) NULL,
+    [MainListID] int NULL,
+    [MenuCategory] nvarchar(50) NULL,
+    [MenuValue] nvarchar(max) NULL,
+    [Active] bit NULL,
+    [Rank] int NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_DynamicLists] PRIMARY KEY ([DynamicListIDC], [DynamicListIDN])
+);
+2025-07-14 23:36:13.851 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [FPCs] (
+    [FPCIDC] nvarchar(50) NOT NULL,
+    [FPCIDN] int NOT NULL IDENTITY,
+    [FPCCode] nvarchar(50) NOT NULL,
+    [Registers_IDC] nvarchar(50) NOT NULL,
+    [Registers_IDN] int NOT NULL,
+    [FPCStatus] nvarchar(50) NOT NULL,
+    [Private] bit NOT NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_FPCs] PRIMARY KEY ([FPCIDC], [FPCIDN])
+);
+2025-07-14 23:36:13.856 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [FPCsODs] (
+    [FPCsODIDC] nvarchar(50) NOT NULL,
+    [FPCsODIDN] int NOT NULL IDENTITY,
+    [FPCs_IDN] int NOT NULL,
+    [DocType] nvarchar(50) NOT NULL,
+    [Description] nvarchar(4000) NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_FPCsODs] PRIMARY KEY ([FPCsODIDC], [FPCsODIDN])
+);
+2025-07-14 23:36:13.861 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [FPCsODsActions] (
+    [FPCsODsActionIDC] nvarchar(50) NOT NULL,
+    [FPCsODsActionIDN] int NOT NULL IDENTITY,
+    [FPCsODs_IDN] int NOT NULL,
+    [ActionType] nvarchar(50) NOT NULL,
+    [ActionDate] datetime2 NOT NULL,
+    [ActionDescription] nvarchar(4000) NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_FPCsODsActions] PRIMARY KEY ([FPCsODsActionIDC], [FPCsODsActionIDN])
+);
+2025-07-14 23:36:16.564 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Groups] (
+    [id] int NOT NULL IDENTITY,
+    [GroupName] nvarchar(50) NOT NULL,
+    [Description] nvarchar(200) NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_Groups] PRIMARY KEY ([id])
+);
+2025-07-14 23:36:16.568 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [LawFirms] (
+    [LawFirmIDN] int NOT NULL IDENTITY,
+    [LawFirmIDC] nvarchar(50) NOT NULL,
+    [LawFirmCode] nvarchar(50) NOT NULL,
+    [LawFirmEnglishName] nvarchar(100) NOT NULL,
+    [LawFirmArabicName] nvarchar(100) NOT NULL,
+    [LawFirmShortName] nvarchar(50) NOT NULL,
+    [LawFirmStatus] nvarchar(50) NOT NULL,
+    [LawFirmLASDate] datetime2 NULL,
+    [LawFirmEstYear] int NULL,
+    [LawFirmWebsite] nvarchar(50) NULL,
+    [Private] bit NOT NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_LawFirms] PRIMARY KEY ([LawFirmIDN])
+);
+2025-07-14 23:36:16.572 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [LawFirmsAffiliates] (
+    [LawFirmsAffiliateIDN] int NOT NULL IDENTITY,
+    [LawFirmsAffiliateIDC] nvarchar(50) NOT NULL,
+    [LawFirms_IDN] int NULL,
+    [AffiliateName] nvarchar(50) NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_LawFirmsAffiliates] PRIMARY KEY ([LawFirmsAffiliateIDN])
+);
+2025-07-14 23:36:19.523 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [LawFirmsBranches] (
+    [LawFirmsBranchIDN] int NOT NULL IDENTITY,
+    [LawFirmsBranchIDC] nvarchar(50) NOT NULL,
+    [LawFirms_IDN] int NULL,
+    [BranchName] nvarchar(50) NULL,
+    [Country] nvarchar(50) NULL,
+    [City] nvarchar(50) NULL,
+    [Phone1] nvarchar(50) NULL,
+    [Phone2] nvarchar(50) NULL,
+    [Phone3] nvarchar(50) NULL,
+    [Fax] nvarchar(50) NULL,
+    [Email1] nvarchar(50) NULL,
+    [Email2] nvarchar(50) NULL,
+    [BranchPrimary] bit NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_LawFirmsBranches] PRIMARY KEY ([LawFirmsBranchIDN])
+);
+2025-07-14 23:36:19.528 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [LawFirmsExpertises] (
+    [LawFirmsExpertiseIDN] int NOT NULL IDENTITY,
+    [LawFirmsExpertiseIDC] nvarchar(50) NOT NULL,
+    [LawFirms_IDN] int NOT NULL,
+    [ExpertiseName] nvarchar(50) NOT NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_LawFirmsExpertises] PRIMARY KEY ([LawFirmsExpertiseIDN])
+);
+2025-07-14 23:36:22.267 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [LawFirmsPersons] (
+    [StaffID] int NOT NULL IDENTITY,
+    [LawFirms_IDN] int NOT NULL,
+    [StaffLevel] nvarchar(100) NULL,
+    [Name] nvarchar(100) NULL,
+    [Practice] nvarchar(100) NULL,
+    [Email] nvarchar(100) NULL,
+    [Phone] nvarchar(100) NULL,
+    [StaffStatus] bit NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_LawFirmsPersons] PRIMARY KEY ([StaffID])
+);
+2025-07-14 23:36:22.272 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Menus] (
+    [id] int NOT NULL IDENTITY,
+    [ParentID] int NULL,
+    [Name] nvarchar(50) NOT NULL,
+    [Path] nvarchar(50) NULL,
+    [Rank] int NULL,
+    [Description] nvarchar(50) NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_Menus] PRIMARY KEY ([id])
+);
+2025-07-14 23:36:22.275 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Numbers] (
+    [NumberValue] int NOT NULL IDENTITY,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_Numbers] PRIMARY KEY ([NumberValue])
+);
+2025-07-14 23:36:22.280 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Persons] (
+    [PersonIDC] nvarchar(max) NOT NULL,
+    [PersonIDN] int NOT NULL IDENTITY,
+    [PersonCode] nvarchar(max) NOT NULL,
+    [PersonEnglishName] nvarchar(max) NULL,
+    [PersonArabicName] nvarchar(max) NULL,
+    [PersonShortName] nvarchar(max) NULL,
+    [Website] nvarchar(max) NULL,
+    [PersonStatus] nvarchar(max) NOT NULL,
+    [Private] bit NOT NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_Persons] PRIMARY KEY ([PersonIDN])
+);
+2025-07-14 23:36:25.133 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [PersonsAddresses] (
+    [PersonsAddressIDC] nvarchar(450) NOT NULL,
+    [PersonsAddressIDN] int NOT NULL IDENTITY,
+    [Persons_IDN] int NOT NULL,
+    [AddressPrimary] bit NOT NULL,
+    [AddressLine1] nvarchar(max) NOT NULL,
+    [AddressLine2] nvarchar(max) NULL,
+    [AddressLine3] nvarchar(max) NULL,
+    [POBoxumber] nvarchar(max) NULL,
+    [POBoxCity] nvarchar(max) NULL,
+    [POBoxCountry] nvarchar(max) NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_PersonsAddresses] PRIMARY KEY ([PersonsAddressIDC], [PersonsAddressIDN])
+);
+2025-07-14 23:36:25.136 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [PersonsCapacities] (
+    [PersonsCapacityIDC] nvarchar(450) NOT NULL,
+    [PersonsCapacityIDN] int NOT NULL IDENTITY,
+    [Persons_IDN] int NOT NULL,
+    [CapacityName] nvarchar(max) NOT NULL,
+    [CapacityOther] nvarchar(max) NULL,
+    [CapacityHourRate] float NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_PersonsCapacities] PRIMARY KEY ([PersonsCapacityIDC], [PersonsCapacityIDN])
+);
+2025-07-14 23:36:28.150 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [PersonsEmails] (
+    [PersonsEmailIDC] nvarchar(450) NOT NULL,
+    [PersonsEmailIDN] int NOT NULL IDENTITY,
+    [Persons_IDN] int NOT NULL,
+    [EmailPrimary] bit NOT NULL,
+    [Email] nvarchar(150) NOT NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_PersonsEmails] PRIMARY KEY ([PersonsEmailIDC], [PersonsEmailIDN])
+);
+2025-07-14 23:36:28.154 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [PersonsIDDetails] (
+    [PersonsIDDetailIDC] nvarchar(450) NOT NULL,
+    [PersonsIDDetailIDN] int NOT NULL IDENTITY,
+    [Persons_IDN] int NULL,
+    [IDPrimary] bit NULL,
+    [IDType] nvarchar(max) NULL,
+    [IDNationality] nvarchar(max) NULL,
+    [IDPlaceOfIssue] nvarchar(max) NULL,
+    [IDNumber] nvarchar(max) NULL,
+    [IDIssueDate] datetime2 NULL,
+    [IDExpiryDate] datetime2 NULL,
+    [IDExpiryActiveReminder] bit NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_PersonsIDDetails] PRIMARY KEY ([PersonsIDDetailIDC], [PersonsIDDetailIDN])
+);
+2025-07-14 23:36:30.973 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [PersonsOtherDocuments] (
+    [PersonsOtherDocumentIDC] nvarchar(450) NOT NULL,
+    [PersonsOtherDocumentIDN] int NOT NULL IDENTITY,
+    [Persons_IDN] int NOT NULL,
+    [DocumentType] nvarchar(max) NOT NULL,
+    [DocumentDescription] nvarchar(max) NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_PersonsOtherDocuments] PRIMARY KEY ([PersonsOtherDocumentIDC], [PersonsOtherDocumentIDN])
+);
+2025-07-14 23:36:30.976 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [PersonsPhones] (
+    [PersonsPhoneIDC] nvarchar(450) NOT NULL,
+    [PersonsPhoneIDN] int NOT NULL IDENTITY,
+    [Persons_IDN] int NULL,
+    [PhonePrimary] bit NULL,
+    [PhoneType] nvarchar(max) NULL,
+    [PhoneNumber] nvarchar(max) NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_PersonsPhones] PRIMARY KEY ([PersonsPhoneIDC], [PersonsPhoneIDN])
+);
+2025-07-14 23:36:30.986 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Properties] (
+    [PropertyIDC] nvarchar(450) NOT NULL,
+    [PropertyIDN] int NOT NULL IDENTITY,
+    [PropertyCode] nvarchar(max) NOT NULL,
+    [PropertiesTypeOfTitle] nvarchar(max) NULL,
+    [PropertiesGrantor] bit NULL,
+    [PropertiesGrantorAddress] nvarchar(max) NULL,
+    [PropertiesGrantorTitleCommencementDate] datetime2 NULL,
+    [PropertiesGrantorTitleExpiryDate] datetime2 NULL,
+    [PropertiesGrantorTitleExpiryActiveReminder] bit NULL,
+    [PropertiesGrantorDescription] nvarchar(max) NULL,
+    [PropertiesLocationCountryIdn] nvarchar(max) NULL,
+    [PropertiesLocationCountry] nvarchar(max) NULL,
+    [PropertiesLocationCityIdn] nvarchar(max) NULL,
+    [PropertiesLocationCity] nvarchar(max) NULL,
+    [PropertiesLocationAreaIdn] nvarchar(max) NULL,
+    [PropertiesLocationArea] nvarchar(max) NULL,
+    [PropertiesLocationDetails] nvarchar(max) NULL,
+    [PropertiesType] nvarchar(max) NULL,
+    [PropertiesPurpose] nvarchar(max) NULL,
+    [PropertiesStatus] nvarchar(max) NULL,
+    [PropertyStatus] nvarchar(max) NOT NULL,
+    [Private] bit NOT NULL,
+    [PropertiesPlot] nvarchar(max) NULL,
+    [FArea] nvarchar(max) NULL,
+    [MArea] nvarchar(max) NULL,
+    [PropertyFArea] nvarchar(max) NULL,
+    [PropertyMArea] nvarchar(max) NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_Properties] PRIMARY KEY ([PropertyIDC], [PropertyIDN])
+);
+2025-07-14 23:36:33.746 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [PropertiesOwners] (
+    [PropertiesOwnerIDC] nvarchar(450) NOT NULL,
+    [PropertiesOwnerIDN] int NOT NULL IDENTITY,
+    [Properties_IDN] int NOT NULL,
+    [Registers_IDC] nvarchar(max) NOT NULL,
+    [Registers_IDN] int NOT NULL,
+    [Relation] nvarchar(max) NULL,
+    [OwnStartDate] datetime2 NULL,
+    [OwnFinishDate] datetime2 NULL,
+    [OwnActive] bit NULL,
+    [Remarks] nvarchar(max) NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_PropertiesOwners] PRIMARY KEY ([PropertiesOwnerIDC], [PropertiesOwnerIDN])
+);
+2025-07-14 23:36:36.381 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [PropertiesStatus] (
+    [id] int NOT NULL IDENTITY,
+    [Property_IDN] int NULL,
+    [Property_Code] nvarchar(max) NULL,
+    [Status] nvarchar(max) NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_PropertiesStatus] PRIMARY KEY ([id])
+);
+2025-07-14 23:36:36.384 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [PropertyDocuments] (
+    [PropertyDocumentsIdc] nvarchar(450) NOT NULL,
+    [PropertyDocumentsIdn] int NOT NULL IDENTITY,
+    [Property_IDN] int NULL,
+    [DocumentType] nvarchar(max) NULL,
+    [DocumentPlaceOfIssue] nvarchar(max) NULL,
+    [DocumentIssueDate] datetime2 NULL,
+    [DocumentExpiryDate] datetime2 NULL,
+    [DocumentExpiryActiveReminder] bit NULL,
+    [Description] nvarchar(max) NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_PropertyDocuments] PRIMARY KEY ([PropertyDocumentsIdc], [PropertyDocumentsIdn])
+);
+2025-07-14 23:36:36.388 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [PropertyLinks] (
+    [PropertyLinksIdc] nvarchar(450) NOT NULL,
+    [PropertyLinksIdn] int NOT NULL IDENTITY,
+    [Registers_IDC] nvarchar(max) NOT NULL,
+    [Registers_IDN] int NOT NULL,
+    [PropertyLinksValue] nvarchar(max) NOT NULL,
+    [PropertyLinksRemarks] nvarchar(max) NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_PropertyLinks] PRIMARY KEY ([PropertyLinksIdc], [PropertyLinksIdn])
+);
+2025-07-14 23:36:39.122 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [RegistersCodes] (
+    [Code] nvarchar(450) NOT NULL,
+    [CodeCounter] int NOT NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_RegistersCodes] PRIMARY KEY ([Code])
+);
+2025-07-14 23:36:39.125 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [RegistersNotes] (
+    [RegistersNoteIDC] nvarchar(450) NOT NULL,
+    [RegistersNoteIDN] int NOT NULL IDENTITY,
+    [Registers_IDC] nvarchar(max) NOT NULL,
+    [Registers_IDN] int NOT NULL,
+    [RegistersNotes] nvarchar(max) NOT NULL,
+    [NoteDate] datetime2 NOT NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_RegistersNotes] PRIMARY KEY ([RegistersNoteIDC], [RegistersNoteIDN])
+);
+2025-07-14 23:36:39.129 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [tblFiles] (
+    [FileID] int NOT NULL IDENTITY,
+    [Registers_IDC] nvarchar(max) NOT NULL,
+    [Registers_IDN] int NOT NULL,
+    [Name] nvarchar(max) NOT NULL,
+    [ContentType] nvarchar(max) NULL,
+    [Data] varbinary(max) NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_tblFiles] PRIMARY KEY ([FileID])
+);
+2025-07-14 23:36:41.790 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Transactions] (
+    [TransactionIDC] nvarchar(450) NOT NULL,
+    [TransactionIDN] int NOT NULL IDENTITY,
+    [TransactionDate] datetime2 NULL,
+    [TransactionCode] nvarchar(max) NOT NULL,
+    [TransactionSubjectType] nvarchar(max) NOT NULL,
+    [TransactionSubjectDescription] nvarchar(max) NULL,
+    [TransactionStatus] nvarchar(max) NULL,
+    [Private] bit NOT NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_Transactions] PRIMARY KEY ([TransactionIDC], [TransactionIDN])
+);
+2025-07-14 23:36:41.793 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [TransactionsActions] (
+    [TransactionsActionIDC] nvarchar(450) NOT NULL,
+    [TransactionsActionIDN] int NOT NULL IDENTITY,
+    [Transactions_IDN] int NOT NULL,
+    [Persons_IDN] int NOT NULL,
+    [Time] int NULL,
+    [Description] nvarchar(max) NOT NULL,
+    [DueDate] datetime2 NOT NULL,
+    [ClosedDate] datetime2 NULL,
+    [ActionStatus] nvarchar(max) NOT NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_TransactionsActions] PRIMARY KEY ([TransactionsActionIDC], [TransactionsActionIDN])
+);
+2025-07-14 23:36:44.477 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [TransactionsInvoices] (
+    [TransactionsInvoiceIDC] nvarchar(450) NOT NULL,
+    [TransactionsInvoiceIDN] int NOT NULL IDENTITY,
+    [Transactions_IDN] int NOT NULL,
+    [LawFirms_IDN] int NOT NULL,
+    [Invoice] nvarchar(max) NULL,
+    [InvoiceDate] datetime2 NULL,
+    [Amount] nvarchar(max) NULL,
+    [Paid] nvarchar(max) NULL,
+    [Currency] int NULL,
+    [Note] nvarchar(max) NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_TransactionsInvoices] PRIMARY KEY ([TransactionsInvoiceIDC], [TransactionsInvoiceIDN])
+);
+2025-07-14 23:36:44.483 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [TransactionsOTFs] (
+    [TransactionsOTFIDC] nvarchar(450) NOT NULL,
+    [TransactionsOTFIDN] int NOT NULL IDENTITY,
+    [Transactions_IDN] int NOT NULL,
+    [OTFRegisters_IDC] nvarchar(max) NOT NULL,
+    [OTFRegisters_IDN] int NOT NULL,
+    [id] nvarchar(max) NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_TransactionsOTFs] PRIMARY KEY ([TransactionsOTFIDC], [TransactionsOTFIDN])
+);
+2025-07-14 23:36:44.488 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [TransactionsRegisters] (
+    [TransactionsRegisterIDC] nvarchar(450) NOT NULL,
+    [TransactionsRegisterIDN] int NOT NULL IDENTITY,
+    [Transactions_IDN] int NOT NULL,
+    [Registers_IDC] nvarchar(max) NOT NULL,
+    [Registers_IDN] int NOT NULL,
+    [PrimaryRegister] bit NULL,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_TransactionsRegisters] PRIMARY KEY ([TransactionsRegisterIDC], [TransactionsRegisterIDN])
+);
+2025-07-14 23:36:47.253 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [GroupsMenus] (
+    [GroupID] int NOT NULL,
+    [MenuID] int NOT NULL,
+    [Access] int NULL,
+    [CanInsert] int NULL,
+    [CanUpdate] int NULL,
+    [CanDelete] int NULL,
+    [Admin] int NULL,
+    [id] int NOT NULL IDENTITY,
+    [CreatedBy] nvarchar(max) NOT NULL,
+    [CreationDate] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(max) NULL,
+    [Modification_Date] datetime2 NULL,
+    CONSTRAINT [PK_GroupsMenus] PRIMARY KEY ([GroupID], [MenuID]),
+    CONSTRAINT [FK_GroupsMenus_Groups_GroupID] FOREIGN KEY ([GroupID]) REFERENCES [Groups] ([id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_GroupsMenus_Menus_MenuID] FOREIGN KEY ([MenuID]) REFERENCES [Menus] ([id]) ON DELETE CASCADE
+);
+2025-07-14 23:36:47.263 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_GroupsMenus_MenuID] ON [GroupsMenus] ([MenuID]);
+2025-07-14 23:36:47.271 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20250714202819_set-base-entity-to-all', N'9.0.6');
+2025-07-14 23:36:47.285 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result

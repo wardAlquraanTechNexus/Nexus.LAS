@@ -20,7 +20,7 @@ namespace Nexus.LAS.Domain.Entities.DocumentEntities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("DocumentTrackingsActionIDN")]
-        public int DocumentTrackingsActionIdn { get; set; }
+        public override int Id { get; set; }
 
         [Required]
         [Column("DocumentTrackings_IDN")]

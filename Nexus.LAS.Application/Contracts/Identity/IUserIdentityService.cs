@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Nexus.LAS.Application.Contracts.Identity
 {
-    public interface IUserService
+    public interface IUserIdentityService
     {
         Task<UserDto?> FindUserByEmailOrUsename(string email);
         string UserId { get; }

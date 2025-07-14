@@ -35,58 +35,58 @@ namespace Nexus.LAS.Persistence.DatabaseContext
         protected void OnCompanyModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CompaniesActivities>()
-             .HasKey(ca => new { ca.CompaniesActivityIdc, ca.CompaniesActivityIdn });
+             .HasKey(ca => new { ca.CompaniesActivityIdc, ca.Id });
 
             modelBuilder.Entity<CompaniesAddress>()
-                .HasKey(ca => new { ca.CompaniesAddressIdc, ca.CompaniesAddressIdn });
+                .HasKey(ca => new { ca.CompaniesAddressIdc, ca.Id});
 
             modelBuilder.Entity<CompaniesAuthorizedSignatory>()
-                .HasKey(c => new { c.CompaniesAuthorizedSignatoryIdc, c.CompaniesAuthorizedSignatoryIdn });
+                .HasKey(c => new { c.CompaniesAuthorizedSignatoryIdc, c.Id });
 
             modelBuilder.Entity<CompaniesBankAccount>()
-                .HasKey(c => new { c.CompaniesBankAccountIdc, c.CompaniesBankAccountIdn });
+                .HasKey(c => new { c.CompaniesBankAccountIdc, c.Id });
 
             modelBuilder.Entity<CompaniesBoardMember>()
-                .HasKey(c => new { c.CompaniesBoardMemberIdc, c.CompaniesBoardMemberIdn });
+                .HasKey(c => new { c.CompaniesBoardMemberIdc, c.Id });
 
             modelBuilder.Entity<CompaniesBoard>()
-                .HasKey(cb => new { cb.CompaniesBoardIdc, cb.CompaniesBoardIdn });
+                .HasKey(cb => new { cb.CompaniesBoardIdc, cb.Id });
 
             modelBuilder.Entity<CompaniesCapital>()
-                .HasKey(cc => new { cc.CompaniesCapitalIdc, cc.CompaniesCapitalIdn });
+                .HasKey(cc => new { cc.CompaniesCapitalIdc, cc.Id });
 
             modelBuilder.Entity<CompaniesChamberOfCommerce>()
-                 .HasKey(c => new { c.CompaniesChamberOfCommerceIdc, c.CompaniesChamberOfCommerceIdn });
+                 .HasKey(c => new { c.CompaniesChamberOfCommerceIdc, c.Id });
 
             modelBuilder.Entity<CompaniesContract>()
-                .HasKey(c => new { c.CompaniesContractIdc, c.CompaniesContractIdn });
+                .HasKey(c => new { c.CompaniesContractIdc, c.Id });
 
             modelBuilder.Entity<CompaniesEmail>()
-                .HasKey(c => new { c.CompaniesEmailIdc, c.CompaniesEmailIdn });
+                .HasKey(c => new { c.CompaniesEmailIdc, c.Id });
 
             modelBuilder.Entity<CompaniesLeaseContractRegister>()
-                .HasKey(c => new { c.CompaniesLeaseContractsIdn, c.LeaseRegistersIdc });
+                .HasKey(c => new { c.Id, c.LeaseRegistersIdc });
 
             modelBuilder.Entity<CompaniesLeaseContract>()
-                .HasKey(c => new { c.CompaniesLeaseContractIdc, c.CompaniesLeaseContractIdn });
+                .HasKey(c => new { c.CompaniesLeaseContractIdc, c.Id });
 
             modelBuilder.Entity<CompaniesLicense>()
-                .HasKey(c => new { c.CompaniesLicenseIdc, c.CompaniesLicenseIdn });
+                .HasKey(c => new { c.CompaniesLicenseIdc, c.Id });
 
             modelBuilder.Entity<CompaniesOtherContract>()
-                .HasKey(c => new { c.CompaniesOtherContractIdc, c.CompaniesOtherContractIdn });
+                .HasKey(c => new { c.CompaniesOtherContractIdc, c.Id });
 
             modelBuilder.Entity<CompaniesPersonInCharge>()
-                .HasKey(c => new { c.CompaniesPersonInChargeIdc, c.CompaniesPersonInChargeIdn });
+                .HasKey(c => new { c.CompaniesPersonInChargeIdc, c.Id });
 
             modelBuilder.Entity<CompaniesPhone>()
-                .HasKey(c => new { c.CompaniesPhoneIdc, c.CompaniesPhoneIdn });
+                .HasKey(c => new { c.CompaniesPhoneIdc, c.Id });
 
             modelBuilder.Entity<CompaniesShareHolder>()
-                .HasKey(c => new { c.CompaniesShareHolderIdc, c.CompaniesShareHolderIdn });
+                .HasKey(c => new { c.CompaniesShareHolderIdc, c.Id });
 
             modelBuilder.Entity<CompaniesShareHoldersGroup>()
-                .HasKey(c => new { c.CompaniesShareHoldersGroupIdc, c.CompaniesShareHoldersGroupIdn });
+                .HasKey(c => new { c.CompaniesShareHoldersGroupIdc, c.Id });
 
 
         }

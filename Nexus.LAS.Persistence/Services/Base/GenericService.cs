@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Nexus.LAS.Application.Contracts.Presistence.Services.Base;
 using Nexus.LAS.Application.DTOs.Base;
+using Nexus.LAS.Domain.Entities.Base;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Repositories.BaseRepo;
 
 namespace Nexus.LAS.Persistence.Services.Base
 {
-    public class GenericService<T> where T : class
+    public class GenericService<T> :  IGenericService<T> where T : BaseEntity
     {
         protected readonly NexusLASDbContext _context;
         public GenericService(NexusLASDbContext context) 
@@ -19,7 +21,7 @@ namespace Nexus.LAS.Persistence.Services.Base
             return await repo.GetAsync();
         }
 
-        public async Task<T?> GetAsync(object id)
+        public async Task<T?> GetAsync(int id)
         {
             GenericRepo<T> repo = new GenericRepo<T>(_context);
             return await repo.GetAsync(id);
@@ -36,7 +38,7 @@ namespace Nexus.LAS.Persistence.Services.Base
             return await repo.GetAsync(query);
         }
 
-        public async Task<object> CreateAsync(T entity)
+        public async Task<int> CreateAsync(T entity)
         {
             GenericRepo<T> repo = new GenericRepo<T>(_context);
             return await repo.CreateAsync(entity);

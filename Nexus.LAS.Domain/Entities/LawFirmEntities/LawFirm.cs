@@ -20,7 +20,7 @@ namespace Nexus.LAS.Domain.Entities.LawFirmEntities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("LawFirmIDN")]
-        public int LawFirmIdn { get; set; }
+        public override int Id { get; set; }
 
         [Required]
         [Column("LawFirmCode")]

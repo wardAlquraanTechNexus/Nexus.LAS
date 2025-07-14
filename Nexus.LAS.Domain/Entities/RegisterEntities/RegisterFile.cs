@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nexus.LAS.Domain.Entities.Base;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,12 +10,12 @@ using System.Threading.Tasks;
 namespace Nexus.LAS.Domain.Entities.RegisterEntities
 {
     [Table("tblFiles")]
-    public class RegisterFile
+    public class RegisterFile:BaseEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("FileID")]
-        public int FileId { get; set; }
+        public override int Id { get; set; }
 
         [Column("Registers_IDC")]
         public string RegistersIdc { get; set; } = null!;

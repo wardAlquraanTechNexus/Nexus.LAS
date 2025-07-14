@@ -14,7 +14,7 @@ namespace Nexus.LAS.WebApi.Middlewares
             _next = next;
         }
 
-        public async Task InvokeAsync(HttpContext context, IUserService _userService)
+        public async Task InvokeAsync(HttpContext context, IUserIdentityService _userService)
         {
             var endpoint = context.GetEndpoint();
 

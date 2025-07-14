@@ -19,7 +19,8 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int CompanyIdn { get; set; }
+        [Column("CompanyIdn ")]
+        public override int Id { get; set; }
 
         [Required]
         [MaxLength(50)]

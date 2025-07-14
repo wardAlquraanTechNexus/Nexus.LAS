@@ -14,7 +14,9 @@ namespace Nexus.LAS.Domain.Entities.LawFirmEntities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int StaffID { get; set; }
+        [Column("StaffID")]
+        public override int Id { get; set; }
+
 
         [Column("LawFirms_IDN")]
         public int LawFirmsIdn { get; set; }

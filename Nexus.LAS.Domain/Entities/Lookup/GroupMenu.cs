@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nexus.LAS.Domain.Entities.Base;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 namespace Nexus.LAS.Domain.Entities.Lookup
 {
     [Table("GroupsMenus")]
-    public class GroupMenu
+    public class GroupMenu: BaseEntity
     {
         [Key]
         [ForeignKey("Group")]

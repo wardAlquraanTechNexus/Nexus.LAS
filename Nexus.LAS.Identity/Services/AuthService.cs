@@ -7,6 +7,7 @@ using Nexus.LAS.Application.Exceptions;
 using Nexus.LAS.Application.Identity;
 using Nexus.LAS.Domain.Constants;
 using Nexus.LAS.Domain.Entities;
+using Nexus.LAS.Identity.IdentityDbContext;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -86,6 +87,7 @@ namespace Nexus.LAS.Identity.Services
             {
                 throw new BadRequestException("Not Found Role");
             }
+
             var result = await _userManager.CreateAsync(user, request.Password);
             if (result.Succeeded)
             {

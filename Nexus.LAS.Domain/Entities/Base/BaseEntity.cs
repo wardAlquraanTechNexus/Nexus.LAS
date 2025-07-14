@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -9,17 +10,17 @@ namespace Nexus.LAS.Domain.Entities.Base
 {
     public abstract class BaseEntity
     {
-        [Column("CreatedBy_IDN")]
-        public int CreatedByIdN { get; set; }
-        [Column("CreatedBy_Name")]
-        public string CreatedByName { get; set; }
-        [Column("CreatedBy_Date")]
-        public DateTime CreatedByDate { get; set; }
-        [Column("UpdatedBy_IDN")]
-        public int? UpdatedByIdN { get; set; }
-        [Column("UpdatedBy_Name")]
-        public string? UpdatedByName { get; set; }
-        [Column("UpdatedBy_Date")]
-        public DateTime? UpdatedByDate { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("id")]
+        public virtual int Id { get; set; }
+        [Column("CreatedBy")]
+        public string CreatedBy { get; set; }
+        [Column("CreationDate")]
+        public DateTime CreationDate { get; set; }
+        [Column("UpdatedBy")]
+        public string? ModefiedBy{ get; set; }
+        [Column("Modification_Date")]
+        public DateTime? ModificationDate { get; set; }
     }
 }

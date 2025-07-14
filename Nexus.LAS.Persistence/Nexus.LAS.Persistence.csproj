@@ -20,4 +20,8 @@
     <ProjectReference Include="..\Nexus.LAS.Identity\Nexus.LAS.Identity.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\User\" />
+  </ItemGroup>
+
 </Project>

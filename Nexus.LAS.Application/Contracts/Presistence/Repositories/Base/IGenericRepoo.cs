@@ -11,13 +11,13 @@ using System.Threading.Tasks;
 
 namespace Nexus.LAS.Application.Contracts.Presistence.Repositories.Base
 {
-    public interface IGenericRepo<T> where T : class
+    public interface IGenericRepo<T> where T : BaseEntity
     {
         Task<IReadOnlyList<T>> GetAsync();
-        Task<T?> GetAsync(object id);
+        Task<T?> GetAsync(int id);
         Task<IReadOnlyList<T>> GetAllAsync(IQueryCollection query);
         Task<PagingResult<T>> GetAsync(IQueryCollection query);
-        Task<object> CreateAsync(T entity);
+        Task<int> CreateAsync(T entity);
         Task UpdateAsync(T entity);
         Task DeleteAsync(T entity);
 

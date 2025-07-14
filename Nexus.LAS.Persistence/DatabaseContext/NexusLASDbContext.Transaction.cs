@@ -21,18 +21,18 @@ namespace Nexus.LAS.Persistence.DatabaseContext
         {
 
             modelBuilder.Entity<Transaction>()
-                .HasKey(t => new { t.TransactionIdc, t.TransactionIdn });
+                .HasKey(t => new { t.TransactionIdc, t.Id });
 
             modelBuilder.Entity<TransactionAction>()
-                .HasKey(e => new { e.TransactionsActionIdc, e.TransactionsActionIdn });
+                .HasKey(e => new { e.TransactionsActionIdc, e.Id });
 
             modelBuilder.Entity<TransactionInvoice>()
-                .HasKey(e => new { e.TransactionsInvoiceIdc, e.TransactionsInvoiceIdn });
+                .HasKey(e => new { e.TransactionsInvoiceIdc, e.Id });
 
             modelBuilder.Entity<TransactionOtf>()
-                .HasKey(e => new { e.TransactionsOtfIdc, e.TransactionsOtfIdn });
+                .HasKey(e => new { e.TransactionsOtfIdc, e.Id });
             modelBuilder.Entity<TransactionRegister>()
-                .HasKey(e => new { e.TransactionsRegisterIdc, e.TransactionsRegisterIdn });
+                .HasKey(e => new { e.TransactionsRegisterIdc, e.Id });
 
         }
     }

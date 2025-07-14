@@ -12,10 +12,6 @@ namespace Nexus.LAS.Domain.Entities.Lookup
     [Table("Groups")]
     public class Group : BaseEntity
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column("id")]
-        public int Id { get; set; }
 
         [Required]
         [MaxLength(50)]

@@ -11,11 +11,8 @@ namespace Nexus.LAS.Domain.Entities.UserGroupEntities
 {
     [Table("Users")]
     public class User : BaseEntity
-    {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column("id")]
-        public int Id { get; set; }
+    {        
+        public string Username { get; set; }
 
         [Column("LoginName")]
         public string LoginName { get; set; }
