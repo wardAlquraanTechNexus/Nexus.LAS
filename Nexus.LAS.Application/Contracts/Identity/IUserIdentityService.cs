@@ -11,6 +11,7 @@ namespace Nexus.LAS.Application.Contracts.Identity
     {
         Task<UserDto?> FindUserByEmailOrUsename(string email);
         string UserId { get; }
+        string Username { get; }
 
 
     }

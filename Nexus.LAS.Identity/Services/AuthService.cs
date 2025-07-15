@@ -123,6 +123,7 @@ namespace Nexus.LAS.Identity.Services
             new Claim("LastName", user.LastName ?? string.Empty),
             new Claim("PhoneNumber", user.PhoneNumber?? string.Empty),
             new Claim("ProfilePicture", user.ProfilePicture?? string.Empty),
+            new Claim("Username", user.UserName?? string.Empty),
 
             }
             .Union(userClaims)

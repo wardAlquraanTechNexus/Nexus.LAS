@@ -12,14 +12,10 @@ namespace Nexus.LAS.Domain.Entities.UserGroupEntities
     [Table("UserGroups")]
     public class UserGroup:BaseEntity
     {
-        [NotMapped]
-        public override int Id { get; set; }
 
-        [Key]
         [Column("UserId", Order = 0)]
         public int UserId { get; set; }
 
-        [Key]
         [Column("GroupId", Order = 1)]
         public int GroupId { get; set; }
     }

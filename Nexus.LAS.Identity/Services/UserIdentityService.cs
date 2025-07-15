@@ -10,6 +10,7 @@ namespace Nexus.LAS.Identity.Services
     public class UserIdentityService(NexusLASIdentityDbContext _context, IHttpContextAccessor _contextAccessor) : IUserIdentityService
     {
         public string UserId => _contextAccessor?.HttpContext?.User?.FindFirstValue("uid") ?? string.Empty;
+        public string Username => _contextAccessor?.HttpContext?.User?.FindFirstValue("Username") ?? string.Empty;
 
         public async Task<UserDto?> FindUserByEmailOrUsename(string useremail)
         {

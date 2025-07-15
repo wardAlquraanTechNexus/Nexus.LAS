@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Nexus.LAS.Persistence.DatabaseContext;
 
@@ -11,9 +12,11 @@ using Nexus.LAS.Persistence.DatabaseContext;
 namespace Nexus.LAS.Persistence.Migrations
 {
     [DbContext(typeof(NexusLASDbContext))]
-    partial class NexusLASDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250715182920_user-group-table")]
+    partial class usergrouptable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -2525,9 +2528,6 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Description");
-
-                    b.Property<string>("IconClass")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");

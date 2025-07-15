@@ -31,5 +31,6 @@ namespace Nexus.LAS.Domain.Entities.Lookup
         [Column("Description")]
         [StringLength(50)]
         public string? Description { get; set; }
+        public string? IconClass { get; set; }
     }
 }

@@ -1,0 +1,1355 @@
+2025-07-16 00:01:34.040 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:01:34.047 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:01:36.267 +03:00 [INF] Executed DbCommand (24ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:02:20.921 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-16 00:02:20.966 +03:00 [INF] Hosting environment: Development
+2025-07-16 00:02:20.968 +03:00 [INF] Content root path: C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.WebApi
+2025-07-16 00:02:21.791 +03:00 [WRN] No instantiatable types implementing `IEntityTypeConfiguration` were found while while scanning assembly 'Nexus.LAS.Identity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+2025-07-16 00:02:22.640 +03:00 [INF] Executed DbCommand (45ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:02:22.797 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:02:22.810 +03:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2025-07-16 00:02:26.990 +03:00 [WRN] No instantiatable types implementing `IEntityTypeConfiguration` were found while while scanning assembly 'Nexus.LAS.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+2025-07-16 00:02:27.128 +03:00 [WRN] No store type was specified for the decimal property 'CapitalAmount' on entity type 'Company'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-07-16 00:02:27.230 +03:00 [INF] Executed DbCommand (16ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:24:09.924 +03:00 [INF] Executed DbCommand (15ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2025-07-16 00:24:09.955 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-07-16 00:24:10.125 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2025-07-16 00:24:10.148 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-07-16 00:24:10.179 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[id], [u].[CreatedBy], [u].[CreationDate], [u].[IsDeleted], [u].[LoginName], [u].[UpdatedBy], [u].[Modification_Date], [u].[NTLogin], [u].[Persons_IDN], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__username_0
+2025-07-16 00:24:17.912 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:24:17.923 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:24:17.938 +03:00 [INF] Executed DbCommand (11ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:24:52.018 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:24:52.026 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:24:52.037 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:24:58.951 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:24:58.956 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:24:58.961 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:31:31.506 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:31:31.541 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:31:31.551 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:32:03.699 +03:00 [INF] Executed DbCommand (11ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:32:03.740 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:32:03.749 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:32:33.116 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:32:33.123 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:32:33.136 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:32:54.699 +03:00 [INF] Executed DbCommand (11ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:32:54.737 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:32:54.748 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:33:47.962 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:33:47.969 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:33:47.982 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:34:16.480 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:34:16.526 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:34:16.534 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:34:19.571 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:34:19.576 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:34:19.584 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:34:26.873 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:34:26.875 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:34:26.879 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:34:47.623 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:34:47.661 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:34:47.664 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:41:52.056 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:41:52.061 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:41:52.069 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:42:45.931 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:42:45.970 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:42:45.977 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:42:55.485 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:42:55.495 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:42:55.514 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:43:24.869 +03:00 [INF] Executed DbCommand (42ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:43:24.872 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:43:24.879 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:44:01.534 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:44:01.535 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:44:01.536 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:45:48.682 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:45:48.759 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:45:48.773 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:45:57.693 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:45:57.695 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:45:57.697 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:45:59.989 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:45:59.990 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:45:59.993 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:47:05.506 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:47:05.516 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:47:05.526 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:47:18.588 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:47:18.591 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:47:18.593 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:48:01.418 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:48:01.423 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:48:01.429 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:49:28.241 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:49:28.246 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:49:28.258 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:49:30.941 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:49:30.943 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:49:30.951 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:50:18.093 +03:00 [INF] Executed DbCommand (12ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:50:18.098 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:50:18.107 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:50:52.708 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:50:52.713 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:50:52.722 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:51:20.639 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:51:20.686 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:51:20.689 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:51:40.181 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:51:40.184 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:51:40.187 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:52:27.319 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:52:27.323 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:52:27.331 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:52:57.069 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:52:57.099 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:52:57.110 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:53:05.525 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:53:05.534 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:53:05.545 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:53:27.894 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:53:27.896 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:53:27.900 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:53:40.108 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:53:40.112 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:53:40.115 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:54:02.563 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:54:02.567 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:54:02.575 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:54:26.016 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:54:26.022 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:54:26.032 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:54:53.099 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:54:53.101 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:54:53.106 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:54:56.987 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:54:56.990 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:54:56.994 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:55:12.678 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:55:12.685 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:55:12.695 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:56:08.399 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:56:08.401 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:56:08.412 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:56:26.779 +03:00 [INF] Executed DbCommand (11ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:56:26.790 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:56:26.799 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:56:49.441 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:56:49.453 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:56:49.457 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:57:30.110 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:57:30.115 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:57:30.124 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:57:41.375 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:57:41.377 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:57:41.379 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 00:58:05.369 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 00:58:05.403 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 00:58:05.406 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 01:01:40.584 +03:00 [INF] Executed DbCommand (16ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 01:01:40.589 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 01:01:40.597 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 01:02:18.105 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 01:02:18.140 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 01:02:18.149 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 01:04:45.254 +03:00 [INF] Executed DbCommand (18ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 01:04:45.262 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 01:04:45.277 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 01:07:00.939 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 01:07:00.943 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 01:07:00.951 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 01:07:18.026 +03:00 [INF] Executed DbCommand (12ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 01:07:18.032 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 01:07:18.043 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 01:07:41.662 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 01:07:41.665 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 01:07:41.669 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 01:08:07.543 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2025-07-16 01:08:07.547 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-07-16 01:08:07.615 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2025-07-16 01:08:07.618 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-07-16 01:08:07.622 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[id], [u].[CreatedBy], [u].[CreationDate], [u].[IsDeleted], [u].[LoginName], [u].[UpdatedBy], [u].[Modification_Date], [u].[NTLogin], [u].[Persons_IDN], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__username_0
+2025-07-16 01:08:07.640 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 01:08:07.641 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 01:08:07.645 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 01:10:07.823 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 01:10:07.829 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 01:10:07.836 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 01:10:08.227 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 01:10:08.229 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 01:10:08.230 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 01:13:23.634 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2025-07-16 01:13:23.636 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-07-16 01:13:23.704 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2025-07-16 01:13:23.709 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-07-16 01:13:23.713 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[id], [u].[CreatedBy], [u].[CreationDate], [u].[IsDeleted], [u].[LoginName], [u].[UpdatedBy], [u].[Modification_Date], [u].[NTLogin], [u].[Persons_IDN], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__username_0
+2025-07-16 01:14:34.409 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2025-07-16 01:14:34.411 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-07-16 01:14:34.477 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2025-07-16 01:14:34.481 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-07-16 01:14:34.484 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[id], [u].[CreatedBy], [u].[CreationDate], [u].[IsDeleted], [u].[LoginName], [u].[UpdatedBy], [u].[Modification_Date], [u].[NTLogin], [u].[Persons_IDN], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__username_0
+2025-07-16 01:15:18.183 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2025-07-16 01:15:18.192 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-07-16 01:15:18.265 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2025-07-16 01:15:18.268 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-07-16 01:15:18.271 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[id], [u].[CreatedBy], [u].[CreationDate], [u].[IsDeleted], [u].[LoginName], [u].[UpdatedBy], [u].[Modification_Date], [u].[NTLogin], [u].[Persons_IDN], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__username_0
+2025-07-16 01:15:38.694 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2025-07-16 01:15:38.695 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-07-16 01:15:38.761 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2025-07-16 01:15:38.762 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-07-16 01:15:38.763 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[id], [u].[CreatedBy], [u].[CreationDate], [u].[IsDeleted], [u].[LoginName], [u].[UpdatedBy], [u].[Modification_Date], [u].[NTLogin], [u].[Persons_IDN], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__username_0
+2025-07-16 01:15:38.774 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 01:15:38.778 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 01:15:38.785 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 01:16:42.078 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2025-07-16 01:16:42.080 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-07-16 01:16:42.149 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2025-07-16 01:16:42.151 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-07-16 01:16:42.154 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[id], [u].[CreatedBy], [u].[CreationDate], [u].[IsDeleted], [u].[LoginName], [u].[UpdatedBy], [u].[Modification_Date], [u].[NTLogin], [u].[Persons_IDN], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__username_0
+2025-07-16 01:16:42.164 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 01:16:42.167 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 01:16:42.172 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-16 01:19:15.965 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2025-07-16 01:19:15.968 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-07-16 01:19:16.040 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2025-07-16 01:19:16.043 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-07-16 01:19:16.045 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[id], [u].[CreatedBy], [u].[CreationDate], [u].[IsDeleted], [u].[LoginName], [u].[UpdatedBy], [u].[Modification_Date], [u].[NTLogin], [u].[Persons_IDN], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__username_0
+2025-07-16 01:19:16.056 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-16 01:19:16.058 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-16 01:19:16.064 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0

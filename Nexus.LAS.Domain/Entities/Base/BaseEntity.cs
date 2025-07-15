@@ -22,5 +22,6 @@ namespace Nexus.LAS.Domain.Entities.Base
         public string? ModefiedBy{ get; set; }
         [Column("Modification_Date")]
         public DateTime? ModificationDate { get; set; }
+        public bool IsDeleted { get; set; } = false;
     }
 }

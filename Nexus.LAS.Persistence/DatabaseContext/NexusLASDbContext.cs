@@ -1,29 +1,23 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Domain.Entities.Base;
-using Nexus.LAS.Domain.Entities.CompanyEntities;
-using Nexus.LAS.Domain.Entities.DocumentEntities;
-using Nexus.LAS.Domain.Entities.FPC;
-using Nexus.LAS.Domain.Entities.LawFirmEntities;
 using Nexus.LAS.Domain.Entities.Lookup;
 using Nexus.LAS.Domain.Entities.NumberEntities;
-using Nexus.LAS.Domain.Entities.PersonEntities;
-using Nexus.LAS.Domain.Entities.PropertyEntities;
-using Nexus.LAS.Domain.Entities.RegisterEntities;
-using Nexus.LAS.Domain.Entities.TransactionEntities;
 using Nexus.LAS.Domain.Entities.UserGroupEntities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Nexus.LAS.Persistence.DatabaseContext
 {
     public partial class NexusLASDbContext : DbContext
     {
-        public NexusLASDbContext(DbContextOptions<NexusLASDbContext> optins) : base(optins) { }
+        private readonly IUserIdentityService _userIdentityService;
+        public NexusLASDbContext(DbContextOptions<NexusLASDbContext> optins , IUserIdentityService userIdentityService) : base(optins) 
+        {
+            _userIdentityService = userIdentityService;
+        
+        }
         public DbSet<Group> Groups { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<UserGroup> UserGroups { get; set; }
         public DbSet<Menu> Menus { get; set; }
         public DbSet<GroupMenu> GroupsMenus { get; set; }
         public DbSet<Country> Countries { get; set; }
@@ -44,7 +38,9 @@ namespace Nexus.LAS.Persistence.DatabaseContext
             this.OnLawFirmModelCreating(modelBuilder);
             base.OnModelCreating(modelBuilder);
 
-           
+            modelBuilder.Entity<UserGroup>()
+             .HasKey(gm => new { gm.UserId, gm.GroupId });
+
             modelBuilder.Entity<GroupMenu>()
             .HasKey(gm => new { gm.GroupId, gm.MenuId });
 
@@ -54,10 +50,37 @@ namespace Nexus.LAS.Persistence.DatabaseContext
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-
-
-
+            SetCreationInfo();
+            SetModificationInfo();
             return base.SaveChangesAsync(cancellationToken);
         }
+
+
+        private void SetCreationInfo()
+        {
+            var entries = ChangeTracker.Entries<BaseEntity>()
+                .Where(e => e.State == EntityState.Added);
+
+            foreach (var entry in entries)
+            {
+                entry.Entity.CreationDate = DateTime.UtcNow;
+                entry.Entity.CreatedBy =
+                    string.IsNullOrEmpty(entry.Entity.CreatedBy) ?
+                    _userIdentityService.UserId :
+                    entry.Entity.CreatedBy;
+            }
+        }
+        private void SetModificationInfo()
+        {
+            var entries = ChangeTracker.Entries<BaseEntity>()
+                .Where(e => e.State == EntityState.Modified);
+
+            foreach (var entry in entries)
+            {
+                entry.Entity.ModificationDate = DateTime.UtcNow;
+                entry.Entity.ModefiedBy = _userIdentityService.UserId; // You can customize this
+            }
+        }
+        
     }
 }

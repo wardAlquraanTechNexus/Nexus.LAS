@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Nexus.LAS.Persistence.DatabaseContext;
 
@@ -11,9 +12,11 @@ using Nexus.LAS.Persistence.DatabaseContext;
 namespace Nexus.LAS.Persistence.Migrations
 {
     [DbContext(typeof(NexusLASDbContext))]
-    partial class NexusLASDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250715181215_deletion-info")]
+    partial class deletioninfo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -2526,9 +2529,6 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Description");
 
-                    b.Property<string>("IconClass")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -3889,50 +3889,6 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("Nexus.LAS.Domain.Entities.UserGroupEntities.UserGroup", b =>
-                {
-                    b.Property<int>("UserId")
-                        .HasColumnType("int")
-                        .HasColumnName("UserId")
-                        .HasColumnOrder(0);
-
-                    b.Property<int>("GroupId")
-                        .HasColumnType("int")
-                        .HasColumnName("GroupId")
-                        .HasColumnOrder(1);
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("CreatedBy");
-
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("CreationDate");
-
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("UpdatedBy");
-
-                    b.Property<DateTime?>("ModificationDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("Modification_Date");
-
-                    b.HasKey("UserId", "GroupId");
-
-                    b.ToTable("UserGroups");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.Lookup.GroupMenu", b =>

@@ -15,10 +15,10 @@ namespace Nexus.LAS.Domain.Entities.UserGroupEntities
         public string Username { get; set; }
 
         [Column("LoginName")]
-        public string LoginName { get; set; }
+        public string? LoginName { get; set; }
 
         [Column("NTLogin")]
-        public string NTLogin { get; set; }
+        public string? NTLogin { get; set; }
 
         [Column("Persons_IDN")]
         public int? PersonsIdN { get; set; }
