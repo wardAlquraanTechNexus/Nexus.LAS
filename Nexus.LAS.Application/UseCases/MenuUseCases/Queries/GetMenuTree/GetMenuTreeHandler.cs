@@ -26,6 +26,7 @@ namespace Nexus.LAS.Application.UseCases.MenuUseCases.Queries.GetMenu
                 MenuParentId = m.MenuParentId,
                 Name = m.Name,
                 Path = m.Path,
+                IconClass = m.IconClass
             });
      
 

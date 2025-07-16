@@ -10,7 +10,7 @@ namespace Nexus.LAS.WebApi.Controllers.Lookup
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    [Authorize(Policy = "PermissionPolicy")]
     public class MenusController : ControllerBase
     {
         private readonly IMediator _mediator;

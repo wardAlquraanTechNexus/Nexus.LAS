@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application;
 using Nexus.LAS.Identity;
@@ -58,6 +59,13 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IAuthorizationHandler, LasAuthorizeHandler>();
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("PermissionPolicy", policy =>
+        policy.Requirements.Add(new LasAuthorize("CanViewPage")));
+});
+
 
 
 builder.Services.AddScoped<RequestTimeLoggingMiddleware>();
@@ -78,7 +86,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 app.UseMiddleware<ExceptionMiddleware>();
-app.UseMiddleware<CheckRequestMiddleware>();
+//app.UseMiddleware<CheckRequestMiddleware>();
 
 app.MapControllers();
 
