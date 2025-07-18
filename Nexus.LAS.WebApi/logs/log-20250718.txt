@@ -1,0 +1,473 @@
+2025-07-18 08:59:26.876 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-18 08:59:26.962 +03:00 [INF] Hosting environment: Development
+2025-07-18 08:59:26.964 +03:00 [INF] Content root path: C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.WebApi
+2025-07-18 09:02:36.481 +03:00 [WRN] No instantiatable types implementing `IEntityTypeConfiguration` were found while while scanning assembly 'Nexus.LAS.Identity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+2025-07-18 09:02:38.872 +03:00 [INF] Executed DbCommand (143ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2025-07-18 09:02:38.987 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-07-18 09:02:44.244 +03:00 [ERR] {"Errors":null,"Type":"BadRequestException","Title":"Credentials for User Name 'ward@example.com aren't valid'.","Status":400,"Detail":"A bad request occurred.","Instance":null,"Extensions":{}}
+2025-07-18 09:02:49.902 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2025-07-18 09:02:49.905 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-07-18 09:02:50.299 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2025-07-18 09:02:50.368 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-07-18 09:02:51.000 +03:00 [WRN] No instantiatable types implementing `IEntityTypeConfiguration` were found while while scanning assembly 'Nexus.LAS.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+2025-07-18 09:02:51.272 +03:00 [WRN] No store type was specified for the decimal property 'CapitalAmount' on entity type 'Company'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-07-18 09:02:51.442 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[id], [u].[CreatedBy], [u].[CreationDate], [u].[IsDeleted], [u].[LoginName], [u].[UpdatedBy], [u].[Modification_Date], [u].[NTLogin], [u].[Persons_IDN], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__username_0
+2025-07-18 09:02:51.757 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-18 09:02:51.865 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-18 09:02:51.891 +03:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2025-07-18 09:02:52.020 +03:00 [INF] Executed DbCommand (21ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-18 14:00:50.439 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-18 14:00:50.563 +03:00 [INF] Hosting environment: Development
+2025-07-18 14:00:50.564 +03:00 [INF] Content root path: C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.WebApi
+2025-07-18 14:01:10.095 +03:00 [WRN] No instantiatable types implementing `IEntityTypeConfiguration` were found while while scanning assembly 'Nexus.LAS.Identity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+2025-07-18 14:01:11.992 +03:00 [INF] Executed DbCommand (98ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2025-07-18 14:01:12.044 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-07-18 14:01:12.254 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2025-07-18 14:01:12.284 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-07-18 14:01:12.558 +03:00 [WRN] No instantiatable types implementing `IEntityTypeConfiguration` were found while while scanning assembly 'Nexus.LAS.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+2025-07-18 14:01:12.666 +03:00 [WRN] No store type was specified for the decimal property 'CapitalAmount' on entity type 'Company'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-07-18 14:01:12.746 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[id], [u].[CreatedBy], [u].[CreationDate], [u].[IsDeleted], [u].[LoginName], [u].[UpdatedBy], [u].[Modification_Date], [u].[NTLogin], [u].[Persons_IDN], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__username_0
+2025-07-18 14:01:12.873 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-18 14:01:12.916 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-18 14:01:12.928 +03:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2025-07-18 14:01:12.989 +03:00 [INF] Executed DbCommand (17ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g0].[Access], [g0].[CanDelete], [g0].[CanInsert], [g0].[CanUpdate], [m].[IconClass], [g0].[MenuID] AS [MenuId], [m].[Name], [m].[Path], [m].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN [UserGroups] AS [u0] ON [u].[id] = [u0].[UserId]
+INNER JOIN [Groups] AS [g] ON [u0].[GroupId] = [g].[id]
+INNER JOIN [GroupsMenus] AS [g0] ON [g].[id] = [g0].[GroupID]
+INNER JOIN [Menus] AS [m] ON [g0].[MenuID] = [m].[id]
+WHERE LOWER([u].[Username]) = @__ToLower_0
+2025-07-18 15:36:23.037 +03:00 [WRN] No instantiatable types implementing `IEntityTypeConfiguration` were found while while scanning assembly 'Nexus.LAS.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+2025-07-18 15:36:23.274 +03:00 [WRN] No store type was specified for the decimal property 'CapitalAmount' on entity type 'Company'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-07-18 15:36:41.264 +03:00 [WRN] No instantiatable types implementing `IEntityTypeConfiguration` were found while while scanning assembly 'Nexus.LAS.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+2025-07-18 15:36:41.468 +03:00 [WRN] No store type was specified for the decimal property 'CapitalAmount' on entity type 'Company'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-07-18 15:36:42.162 +03:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-07-18 15:36:42.171 +03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-07-18 15:36:42.196 +03:00 [INF] Executed DbCommand (24ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result
+2025-07-18 15:36:42.250 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;
+2025-07-18 15:36:42.256 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-07-18 15:36:42.258 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2025-07-18 15:36:42.276 +03:00 [INF] Executed DbCommand (18ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2025-07-18 15:36:42.280 +03:00 [INF] Applying migration '20250718123623_set-person-status-as-int'.
+2025-07-18 15:36:42.428 +03:00 [INF] Executed DbCommand (94ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var sysname;
+SELECT @var = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Persons]') AND [c].[name] = N'PersonStatus');
+IF @var IS NOT NULL EXEC(N'ALTER TABLE [Persons] DROP CONSTRAINT [' + @var + '];');
+ALTER TABLE [Persons] ALTER COLUMN [PersonStatus] int NOT NULL;
+2025-07-18 15:36:42.434 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20250718123623_set-person-status-as-int', N'9.0.6');
+2025-07-18 15:36:42.441 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result
+2025-07-18 16:08:52.227 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-18 16:08:52.278 +03:00 [INF] Hosting environment: Development
+2025-07-18 16:08:52.279 +03:00 [INF] Content root path: C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.WebApi
+2025-07-18 16:10:23.637 +03:00 [WRN] No instantiatable types implementing `IEntityTypeConfiguration` were found while while scanning assembly 'Nexus.LAS.Identity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+2025-07-18 16:10:24.487 +03:00 [INF] Executed DbCommand (63ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-18 16:10:24.617 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-18 16:10:24.639 +03:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2025-07-18 16:10:25.020 +03:00 [WRN] No instantiatable types implementing `IEntityTypeConfiguration` were found while while scanning assembly 'Nexus.LAS.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+2025-07-18 16:10:25.120 +03:00 [WRN] No store type was specified for the decimal property 'CapitalAmount' on entity type 'Company'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-07-18 16:10:25.205 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Persons] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit)
+2025-07-18 16:10:25.210 +03:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-07-18 16:10:25.211 +03:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-07-18 16:10:25.220 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[PersonIDN], [p].[CreatedBy], [p].[CreationDate], [p].[IsDeleted], [p].[UpdatedBy], [p].[Modification_Date], [p].[PersonArabicName], [p].[PersonCode], [p].[PersonEnglishName], [p].[PersonIDC], [p].[PersonShortName], [p].[PersonStatus], [p].[Private], [p].[Website]
+FROM [Persons] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit)
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-07-18 16:11:16.099 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-18 16:11:16.202 +03:00 [INF] Hosting environment: Development
+2025-07-18 16:11:16.204 +03:00 [INF] Content root path: C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.WebApi
+2025-07-18 16:11:16.826 +03:00 [WRN] No instantiatable types implementing `IEntityTypeConfiguration` were found while while scanning assembly 'Nexus.LAS.Identity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+2025-07-18 16:11:17.616 +03:00 [INF] Executed DbCommand (40ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-18 16:11:17.739 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-18 16:11:17.761 +03:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2025-07-18 16:11:18.028 +03:00 [WRN] No instantiatable types implementing `IEntityTypeConfiguration` were found while while scanning assembly 'Nexus.LAS.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+2025-07-18 16:11:18.124 +03:00 [WRN] No store type was specified for the decimal property 'CapitalAmount' on entity type 'Company'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-07-18 16:11:18.185 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Persons] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit)
+2025-07-18 16:11:18.189 +03:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-07-18 16:11:18.190 +03:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-07-18 16:11:18.199 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[PersonIDN], [p].[CreatedBy], [p].[CreationDate], [p].[IsDeleted], [p].[UpdatedBy], [p].[Modification_Date], [p].[PersonArabicName], [p].[PersonCode], [p].[PersonEnglishName], [p].[PersonIDC], [p].[PersonShortName], [p].[PersonStatus], [p].[Private], [p].[Website]
+FROM [Persons] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit)
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-07-18 16:11:46.843 +03:00 [ERR] {"Errors":{},"Type":"InternalServerError","Title":"Missing type map configuration or unsupported mapping.\r\n\r\nMapping types:\r\nPagingResult`1 -> PagingResult`1\r\nNexus.LAS.Application.DTOs.Base.PagingResult`1[[Nexus.LAS.Domain.Entities.PersonEntities.Person, Nexus.LAS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> Nexus.LAS.Application.DTOs.Base.PagingResult`1[[Nexus.LAS.Application.DTOs.PersonDTOs.GetAllPersonDto, Nexus.LAS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]","Status":500,"Detail":"An internal server error occurred.","Instance":null,"Extensions":{}}
+2025-07-18 16:12:14.889 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-18 16:12:14.898 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-18 16:12:14.903 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Persons] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit)
+2025-07-18 16:12:14.906 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[PersonIDN], [p].[CreatedBy], [p].[CreationDate], [p].[IsDeleted], [p].[UpdatedBy], [p].[Modification_Date], [p].[PersonArabicName], [p].[PersonCode], [p].[PersonEnglishName], [p].[PersonIDC], [p].[PersonShortName], [p].[PersonStatus], [p].[Private], [p].[Website]
+FROM [Persons] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit)
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-07-18 16:12:24.326 +03:00 [ERR] {"Errors":{},"Type":"InternalServerError","Title":"Missing type map configuration or unsupported mapping.\r\n\r\nMapping types:\r\nPagingResult`1 -> PagingResult`1\r\nNexus.LAS.Application.DTOs.Base.PagingResult`1[[Nexus.LAS.Domain.Entities.PersonEntities.Person, Nexus.LAS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> Nexus.LAS.Application.DTOs.Base.PagingResult`1[[Nexus.LAS.Application.DTOs.PersonDTOs.GetAllPersonDto, Nexus.LAS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]","Status":500,"Detail":"An internal server error occurred.","Instance":null,"Extensions":{}}
+2025-07-18 16:12:30.689 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-18 16:12:30.726 +03:00 [INF] Hosting environment: Development
+2025-07-18 16:12:30.727 +03:00 [INF] Content root path: C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.WebApi
+2025-07-18 16:12:37.714 +03:00 [WRN] No instantiatable types implementing `IEntityTypeConfiguration` were found while while scanning assembly 'Nexus.LAS.Identity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+2025-07-18 16:12:38.502 +03:00 [INF] Executed DbCommand (44ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-18 16:12:38.674 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-18 16:12:38.715 +03:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2025-07-18 16:13:27.555 +03:00 [WRN] No instantiatable types implementing `IEntityTypeConfiguration` were found while while scanning assembly 'Nexus.LAS.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+2025-07-18 16:13:27.641 +03:00 [WRN] No store type was specified for the decimal property 'CapitalAmount' on entity type 'Company'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-07-18 16:13:27.713 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Persons] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit)
+2025-07-18 16:13:27.720 +03:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-07-18 16:13:27.723 +03:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-07-18 16:13:27.731 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[PersonIDN], [p].[CreatedBy], [p].[CreationDate], [p].[IsDeleted], [p].[UpdatedBy], [p].[Modification_Date], [p].[PersonArabicName], [p].[PersonCode], [p].[PersonEnglishName], [p].[PersonIDC], [p].[PersonShortName], [p].[PersonStatus], [p].[Private], [p].[Website]
+FROM [Persons] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit)
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-07-18 16:14:50.328 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-18 16:14:50.375 +03:00 [INF] Hosting environment: Development
+2025-07-18 16:14:50.376 +03:00 [INF] Content root path: C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.WebApi
+2025-07-18 16:14:55.720 +03:00 [WRN] No instantiatable types implementing `IEntityTypeConfiguration` were found while while scanning assembly 'Nexus.LAS.Identity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+2025-07-18 16:14:56.498 +03:00 [INF] Executed DbCommand (50ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-18 16:14:56.638 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-18 16:14:56.661 +03:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2025-07-18 16:14:57.078 +03:00 [WRN] No instantiatable types implementing `IEntityTypeConfiguration` were found while while scanning assembly 'Nexus.LAS.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+2025-07-18 16:14:57.204 +03:00 [WRN] No store type was specified for the decimal property 'CapitalAmount' on entity type 'Company'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-07-18 16:14:57.272 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Persons] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit)
+2025-07-18 16:14:57.277 +03:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-07-18 16:14:57.277 +03:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-07-18 16:14:57.289 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[PersonIDN], [p].[CreatedBy], [p].[CreationDate], [p].[IsDeleted], [p].[UpdatedBy], [p].[Modification_Date], [p].[PersonArabicName], [p].[PersonCode], [p].[PersonEnglishName], [p].[PersonIDC], [p].[PersonShortName], [p].[PersonStatus], [p].[Private], [p].[Website]
+FROM [Persons] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit)
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-07-18 18:40:50.824 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-18 18:40:50.872 +03:00 [INF] Hosting environment: Development
+2025-07-18 18:40:50.873 +03:00 [INF] Content root path: C:\Users\w.alquraan\Desktop\LAS\Nexus.LAS\Nexus.LAS.WebApi
+2025-07-18 18:44:32.901 +03:00 [WRN] No instantiatable types implementing `IEntityTypeConfiguration` were found while while scanning assembly 'Nexus.LAS.Identity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+2025-07-18 18:44:33.825 +03:00 [INF] Executed DbCommand (59ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2025-07-18 18:44:33.862 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-07-18 18:44:34.081 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2025-07-18 18:44:34.104 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-07-18 18:44:34.318 +03:00 [WRN] No instantiatable types implementing `IEntityTypeConfiguration` were found while while scanning assembly 'Nexus.LAS.Persistence, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+2025-07-18 18:44:34.431 +03:00 [WRN] No store type was specified for the decimal property 'CapitalAmount' on entity type 'Company'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-07-18 18:44:34.512 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[id], [u].[CreatedBy], [u].[CreationDate], [u].[IsDeleted], [u].[LoginName], [u].[UpdatedBy], [u].[Modification_Date], [u].[NTLogin], [u].[Persons_IDN], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[IsDeleted] = CAST(0 AS bit) AND [u].[Username] = @__username_0
+2025-07-18 18:44:40.269 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-18 18:44:40.306 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-18 18:44:40.315 +03:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2025-07-18 18:44:40.383 +03:00 [INF] Executed DbCommand (25ms) [Parameters=[@__ToLower_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT DISTINCT [g2].[Access], [g2].[CanDelete], [g2].[CanInsert], [g2].[CanUpdate], [m0].[IconClass], [g2].[MenuID] AS [MenuId], [m0].[Name], [m0].[Path], [m0].[ParentID] AS [MenuParentId]
+FROM [Users] AS [u]
+INNER JOIN (
+    SELECT [u0].[UserId], [u0].[GroupId]
+    FROM [UserGroups] AS [u0]
+    WHERE [u0].[IsDeleted] = CAST(0 AS bit)
+) AS [u1] ON [u].[id] = [u1].[UserId]
+INNER JOIN (
+    SELECT [g].[id]
+    FROM [Groups] AS [g]
+    WHERE [g].[IsDeleted] = CAST(0 AS bit)
+) AS [g0] ON [u1].[GroupId] = [g0].[id]
+INNER JOIN (
+    SELECT [g1].[GroupID], [g1].[MenuID], [g1].[Access], [g1].[CanDelete], [g1].[CanInsert], [g1].[CanUpdate]
+    FROM [GroupsMenus] AS [g1]
+    WHERE [g1].[IsDeleted] = CAST(0 AS bit)
+) AS [g2] ON [g0].[id] = [g2].[GroupID]
+INNER JOIN (
+    SELECT [m].[id], [m].[IconClass], [m].[Name], [m].[ParentID], [m].[Path]
+    FROM [Menus] AS [m]
+    WHERE [m].[IsDeleted] = CAST(0 AS bit)
+) AS [m0] ON [g2].[MenuID] = [m0].[id]
+WHERE [u].[IsDeleted] = CAST(0 AS bit) AND LOWER([u].[Username]) = @__ToLower_0
+2025-07-18 18:44:52.955 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-18 18:44:52.961 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-18 18:45:16.110 +03:00 [INF] Executed DbCommand (30ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Boolean), @p3='?' (Size = 4000), @p4='?' (DbType = DateTime2), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (Size = 4000), @p10='?' (DbType = Int32), @p11='?' (DbType = Boolean), @p12='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Persons] ([CreatedBy], [CreationDate], [IsDeleted], [UpdatedBy], [Modification_Date], [PersonArabicName], [PersonCode], [PersonEnglishName], [PersonIDC], [PersonShortName], [PersonStatus], [Private], [Website])
+OUTPUT INSERTED.[PersonIDN]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12);
+2025-07-18 18:45:16.144 +03:00 [ERR] An exception occurred in the database while saving changes for context type 'Nexus.LAS.Persistence.DatabaseContext.NexusLASDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot insert the value NULL into column 'PersonCode', table 'RGLAS.dbo.Persons'; column does not allow nulls. INSERT fails.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:b7b457a5-e1a5-4af9-9d20-a68fa929c98d
+Error Number:515,State:2,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot insert the value NULL into column 'PersonCode', table 'RGLAS.dbo.Persons'; column does not allow nulls. INSERT fails.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:b7b457a5-e1a5-4af9-9d20-a68fa929c98d
+Error Number:515,State:2,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2025-07-18 18:45:18.695 +03:00 [ERR] {"Errors":{},"Type":"InternalServerError","Title":"An error occurred while saving the entity changes. See the inner exception for details.","Status":500,"Detail":"Cannot insert the value NULL into column 'PersonCode', table 'RGLAS.dbo.Persons'; column does not allow nulls. INSERT fails.","Instance":null,"Extensions":{}}
+2025-07-18 18:45:52.809 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-18 18:45:52.813 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-18 18:45:56.250 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Boolean), @p3='?' (Size = 4000), @p4='?' (DbType = DateTime2), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (Size = 4000), @p10='?' (DbType = Int32), @p11='?' (DbType = Boolean), @p12='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Persons] ([CreatedBy], [CreationDate], [IsDeleted], [UpdatedBy], [Modification_Date], [PersonArabicName], [PersonCode], [PersonEnglishName], [PersonIDC], [PersonShortName], [PersonStatus], [Private], [Website])
+OUTPUT INSERTED.[PersonIDN]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12);
+2025-07-18 18:46:25.906 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__useremail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePicture], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Email] = @__useremail_0 OR [a].[UserName] = @__useremail_0
+2025-07-18 18:46:25.972 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[RoleId]
+    FROM [AspNetUserRoles] AS [a0]
+    WHERE [a0].[UserId] = @__user_Id_0
+)
+2025-07-18 18:46:40.117 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Boolean), @p3='?' (Size = 4000), @p4='?' (DbType = DateTime2), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (Size = 4000), @p10='?' (DbType = Int32), @p11='?' (DbType = Boolean), @p12='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Persons] ([CreatedBy], [CreationDate], [IsDeleted], [UpdatedBy], [Modification_Date], [PersonArabicName], [PersonCode], [PersonEnglishName], [PersonIDC], [PersonShortName], [PersonStatus], [Private], [Website])
+OUTPUT INSERTED.[PersonIDN]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12);

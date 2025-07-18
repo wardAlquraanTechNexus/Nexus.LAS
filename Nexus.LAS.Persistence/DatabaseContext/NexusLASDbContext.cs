@@ -4,6 +4,7 @@ using Nexus.LAS.Domain.Entities.Base;
 using Nexus.LAS.Domain.Entities.Lookup;
 using Nexus.LAS.Domain.Entities.NumberEntities;
 using Nexus.LAS.Domain.Entities.UserGroupEntities;
+using System.Linq.Expressions;
 
 namespace Nexus.LAS.Persistence.DatabaseContext
 {
@@ -46,6 +47,24 @@ namespace Nexus.LAS.Persistence.DatabaseContext
 
             modelBuilder.Entity<DynamicList>()
                 .HasKey(gm => new { gm.DynamicListIdC, gm.Id });
+
+
+
+            foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+            {
+                // Check if entity inherits from BaseEntity
+                if (typeof(BaseEntity).IsAssignableFrom(entityType.ClrType))
+                {
+                    var parameter = Expression.Parameter(entityType.ClrType, "e");
+                    var isDeletedProp = Expression.Property(parameter, nameof(BaseEntity.IsDeleted));
+                    var filter = Expression.Lambda(
+                        Expression.Equal(isDeletedProp, Expression.Constant(false)),
+                        parameter
+                    );
+
+                    modelBuilder.Entity(entityType.ClrType).HasQueryFilter(filter);
+                }
+            }
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

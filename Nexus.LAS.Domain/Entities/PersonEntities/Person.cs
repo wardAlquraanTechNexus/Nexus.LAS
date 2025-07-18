@@ -36,7 +36,7 @@ namespace Nexus.LAS.Domain.Entities.PersonEntities
         public string? Website { get; set; }
 
         [Required, Column("PersonStatus")]
-        public string PersonStatus { get; set; } = null!;
+        public int? PersonStatus { get; set; }
 
         [Required, Column("Private")]
         public bool Private { get; set; }

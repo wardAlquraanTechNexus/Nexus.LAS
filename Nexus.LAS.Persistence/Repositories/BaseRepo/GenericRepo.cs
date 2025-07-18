@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 
 namespace Nexus.LAS.Persistence.Repositories.BaseRepo
 {
-    public class GenericRepo<T>  :  IGenericRepo<T> where T : BaseEntity
+    public class GenericRepo<T> : IGenericRepo<T> where T : BaseEntity
     {
         protected readonly NexusLASDbContext _context;
         protected readonly DbSet<T> _dbSet;
@@ -28,18 +28,18 @@ namespace Nexus.LAS.Persistence.Repositories.BaseRepo
             _dbSet = _context.Set<T>();
         }
 
-        public async Task<IReadOnlyList<T>> GetAsync()
+        public virtual async Task<IReadOnlyList<T>> GetAsync()
         {
             return await _dbSet.AsNoTracking().ToListAsync();
         }
 
-        public async Task<T?> GetAsync(int id)
+        public virtual async Task<T?> GetAsync(int id)
         {
-            return await _dbSet.AsNoTracking().FirstOrDefaultAsync(x=>x.Id == id);
+            return await _dbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
 
         }
 
-        public async Task<IReadOnlyList<T>> GetAllAsync(IQueryCollection query)
+        public virtual async Task<IReadOnlyList<T>> GetAllAsync(IQueryCollection query)
         {
             IQueryable<T> queryable = _dbSet;
 
@@ -50,58 +50,59 @@ namespace Nexus.LAS.Persistence.Repositories.BaseRepo
 
             return await queryable.ToListAsync();
 
-        
+
         }
-        public async Task<PagingResult<T>> GetAsync(IQueryCollection query)
+        public virtual async Task<PagingResult<T>> GetAsync(IQueryCollection query)
         {
             IQueryable<T> queryable = _dbSet;
             int page;
             int pageSize;
             int totalRecords;
             int totalPages;
-            queryable =queryable.SearchByProperties<T>(query);
+            queryable = queryable.SearchByProperties<T>(query);
             totalRecords = await queryable.CountAsync();
 
-            queryable =queryable.Order<T>(query);
+            queryable = queryable.Order<T>(query);
 
             queryable = queryable.Paginate(query, out page, out pageSize);
-     
+
             totalPages = (int)Math.Ceiling((double)totalRecords / pageSize);
 
             var data = await queryable.ToListAsync();
 
-            return new PagingResult<T>() { 
-                Collection = data , 
-                Page = page , 
-                PageSize = pageSize , 
-                TotalPages = totalPages , 
+            return new PagingResult<T>()
+            {
+                Collection = data,
+                Page = page,
+                PageSize = pageSize,
+                TotalPages = totalPages,
                 TotalRecords = totalRecords
             };
         }
 
 
 
-        public async Task<int> CreateAsync(T entity)
+        public virtual async Task<int> CreateAsync(T entity)
         {
             await _dbSet.AddAsync(entity);
             await _context.SaveChangesAsync();
-         
+
             return entity.Id;
         }
 
-        public async Task UpdateAsync(T entity)
+        public virtual async Task UpdateAsync(T entity)
         {
             _context.Entry(entity).State = EntityState.Modified; //more efficient
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(T entity)
+        public virtual async Task DeleteAsync(T entity)
         {
             _dbSet.Remove(entity);
             await _context.SaveChangesAsync();
         }
 
-       
+
     }
 
 }

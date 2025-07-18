@@ -7,49 +7,49 @@ using Nexus.LAS.Persistence.Repositories.BaseRepo;
 
 namespace Nexus.LAS.Persistence.Services.Base
 {
-    public class GenericService<T> :  IGenericService<T> where T : BaseEntity
+    public class GenericService<T> : IGenericService<T> where T : BaseEntity
     {
         protected readonly NexusLASDbContext _context;
-        public GenericService(NexusLASDbContext context) 
+        public GenericService(NexusLASDbContext context)
         {
             _context = context;
         }
 
-        public async Task<IReadOnlyList<T>> GetAsync()
+        public virtual async Task<IReadOnlyList<T>> GetAsync()
         {
             GenericRepo<T> repo = new GenericRepo<T>(_context);
             return await repo.GetAsync();
         }
 
-        public async Task<T?> GetAsync(int id)
+        public virtual async Task<T?> GetAsync(int id)
         {
             GenericRepo<T> repo = new GenericRepo<T>(_context);
             return await repo.GetAsync(id);
         }
-        public async Task<IReadOnlyList<T>> GetAllAsync(IQueryCollection query)
+        public virtual async Task<IReadOnlyList<T>> GetAllAsync(IQueryCollection query)
         {
             GenericRepo<T> repo = new GenericRepo<T>(_context);
             return await repo.GetAllAsync(query);
         }
 
-        public async Task<PagingResult<T>> GetAsync(IQueryCollection query)
+        public virtual async Task<PagingResult<T>> GetAsync(IQueryCollection query)
         {
             GenericRepo<T> repo = new GenericRepo<T>(_context);
             return await repo.GetAsync(query);
         }
 
-        public async Task<int> CreateAsync(T entity)
+        public virtual async Task<int> CreateAsync(T entity)
         {
             GenericRepo<T> repo = new GenericRepo<T>(_context);
             return await repo.CreateAsync(entity);
         }
 
-        public async Task UpdateAsync(T entity)
+        public virtual async Task UpdateAsync(T entity)
         {
             GenericRepo<T> repo = new GenericRepo<T>(_context);
             await repo.UpdateAsync(entity);
         }
-        public async Task DeleteAsync(T entity)
+        public virtual async Task DeleteAsync(T entity)
         {
             GenericRepo<T> repo = new GenericRepo<T>(_context);
             await repo.DeleteAsync(entity);

@@ -83,6 +83,11 @@ namespace Nexus.LAS.Domain.ExtensionMethods
             queryable = queryable.Skip((page - 1) * pageSize).Take(pageSize);
             return queryable;
         }
+        public static IQueryable<T> Paginate<T>(this IQueryable<T> queryable, int page , int pageSize)
+        {
+            queryable = queryable.Skip((page - 1) * pageSize).Take(pageSize);
+            return queryable;
+        }
 
         public static PropertyInfo GetKeyProperty<T>()
         {
