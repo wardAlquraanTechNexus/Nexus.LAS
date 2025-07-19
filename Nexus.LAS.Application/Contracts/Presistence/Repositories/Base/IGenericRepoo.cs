@@ -19,7 +19,7 @@ namespace Nexus.LAS.Application.Contracts.Presistence.Repositories.Base
         Task<PagingResult<T>> GetAsync(IQueryCollection query);
         Task<int> CreateAsync(T entity);
         Task UpdateAsync(T entity);
-        Task DeleteAsync(T entity);
+        Task DeleteAsync(int id);
 
 
     }

@@ -66,6 +66,10 @@ builder.Services.AddAuthorization(options =>
         policy.Requirements.Add(new LasAuthorize("CanViewPage")));
 });
 
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add<PathnameValidationFilter>();
+});
 
 
 builder.Services.AddScoped<RequestTimeLoggingMiddleware>();
@@ -86,6 +90,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 app.UseMiddleware<ExceptionMiddleware>();
+
 //app.UseMiddleware<CheckRequestMiddleware>();
 
 app.MapControllers();

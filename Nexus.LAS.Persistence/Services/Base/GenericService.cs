@@ -49,10 +49,10 @@ namespace Nexus.LAS.Persistence.Services.Base
             GenericRepo<T> repo = new GenericRepo<T>(_context);
             await repo.UpdateAsync(entity);
         }
-        public virtual async Task DeleteAsync(T entity)
+        public virtual async Task DeleteAsync(int id)
         {
             GenericRepo<T> repo = new GenericRepo<T>(_context);
-            await repo.DeleteAsync(entity);
+            await repo.DeleteAsync(id);
         }
     }
 }

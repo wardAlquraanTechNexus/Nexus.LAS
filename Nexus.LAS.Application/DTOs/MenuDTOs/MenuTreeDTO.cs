@@ -17,6 +17,7 @@ namespace Nexus.LAS.Application.DTOs.MenuDTOs
         public int? CanInsert { get; set; }
         public int? CanUpdate { get; set; }
         public int? CanDelete { get; set; }
+        public string Username { get; set; }
         public List<MenuTreeDTO> Children { get; set; } = new();
     }
 }

@@ -17,6 +17,6 @@ namespace Nexus.LAS.Application.Contracts.Presistence.Services.Base
         Task<PagingResult<T>> GetAsync(IQueryCollection query);
         Task<int> CreateAsync(T entity);
         Task UpdateAsync(T entity);
-        Task DeleteAsync(T entity);
+        Task DeleteAsync(int entity);
     }
 }

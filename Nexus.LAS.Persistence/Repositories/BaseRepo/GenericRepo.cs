@@ -96,10 +96,15 @@ namespace Nexus.LAS.Persistence.Repositories.BaseRepo
             await _context.SaveChangesAsync();
         }
 
-        public virtual async Task DeleteAsync(T entity)
+        public virtual async Task DeleteAsync(int id)
         {
-            _dbSet.Remove(entity);
-            await _context.SaveChangesAsync();
+            var entity = _dbSet.FirstOrDefault(x=>x.Id == id);
+            if(entity != null)
+            {
+                _dbSet.Remove(entity);
+                await _context.SaveChangesAsync();
+
+            }
         }
 
 

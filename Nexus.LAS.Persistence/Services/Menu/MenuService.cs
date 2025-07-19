@@ -21,6 +21,11 @@ namespace Nexus.LAS.Persistence.Services
             MenuRepo menuRepo = new MenuRepo(_context);
             return await menuRepo.GetAllByUsername(_userIdentityService.Username);
         }
+        public async Task<List<MenuGroupAuthorizeVM>> GetAllMenusByPath(string path)
+        {
+            MenuRepo menuRepo = new MenuRepo(_context);
+            return await menuRepo.GetAllByPathname(path);
+        }
 
     }
 }

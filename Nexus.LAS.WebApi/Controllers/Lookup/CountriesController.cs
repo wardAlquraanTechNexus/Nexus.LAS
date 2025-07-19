@@ -1,32 +1,20 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Nexus.LAS.Application.UseCases.CountryUseCases.Queries.GetCountry;
+using Nexus.LAS.Application.Contracts.Presistence.Services;
+using Nexus.LAS.Domain.Entities.Lookup;
+using Nexus.LAS.WebApi.Controllers._GenericController;
 
 namespace Nexus.LAS.WebApi.Controllers.Lookup
 {
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class CountriesController : ControllerBase
+    public class CountriesController : GenericController<ICountryService , Country>
     {
-        private readonly IMediator _mediator;
-
-        public CountriesController(IMediator mediator)
+        public CountriesController(ICountryService service, IMediator mediator) : base(service, mediator)
         {
-            _mediator = mediator;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Get()
-        {
-            var query = Request.Query;
-            var getCountryQuery = new GetCountryQuery()
-            {
-                query = query
-            };
-
-            return Ok(await _mediator.Send(getCountryQuery)) ;
-        }
     }
 }
