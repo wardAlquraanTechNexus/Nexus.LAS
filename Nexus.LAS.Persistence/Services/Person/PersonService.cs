@@ -1,5 +1,6 @@
 ﻿using Nexus.LAS.Application.Contracts;
 using Nexus.LAS.Application.DTOs.Base;
+using Nexus.LAS.Application.UseCases.PersonUseCases.GetAllActivePerson;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Queries;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
@@ -23,6 +24,11 @@ namespace Nexus.LAS.Persistence.Services
         {
             PersonRepo personRepo = new PersonRepo(_context);
             return await personRepo.GetAllPerson(personQuery);
+        }
+        public async Task<PagingResult<Person>> GetAllActivePerson(GetAllActivePersonQuery personQuery)
+        {
+            PersonRepo personRepo = new PersonRepo(_context);
+            return await personRepo.GetAllActivePerson(personQuery);
         }
 
         public async override Task<int> CreateAsync(Person entity)

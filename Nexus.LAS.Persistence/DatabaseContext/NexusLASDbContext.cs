@@ -85,7 +85,7 @@ namespace Nexus.LAS.Persistence.DatabaseContext
                 entry.Entity.CreationDate = DateTime.UtcNow;
                 entry.Entity.CreatedBy =
                     string.IsNullOrEmpty(entry.Entity.CreatedBy) ?
-                    _userIdentityService.UserId :
+                    _userIdentityService.Username :
                     entry.Entity.CreatedBy;
             }
         }

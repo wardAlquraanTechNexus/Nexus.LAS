@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Nexus.LAS.Application.DTOs.Base;
+using Nexus.LAS.Application.UseCases.PersonUseCases.GetAllActivePerson;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Queries;
 using Nexus.LAS.Domain.Constants.Enums;
 using Nexus.LAS.Domain.Entities.PersonEntities;
@@ -27,6 +28,39 @@ namespace Nexus.LAS.Persistence.Repositories
                 x => 
                 (personQuery.Private == null || personQuery.Private == x.Private) 
                 && (personQuery.Status== null || personQuery.Status == x.PersonStatus) 
+                && (
+                        personQuery.SearchBy == null 
+                    || (x.PersonIdc.ToLower().Contains(personQuery.SearchBy.ToLower()))
+                    || (!string.IsNullOrEmpty(x.PersonEnglishName) && x.PersonEnglishName.ToLower().Contains(personQuery.SearchBy.ToLower()))
+                    || (!string.IsNullOrEmpty(x.PersonArabicName) && x.PersonArabicName.ToLower().Contains(personQuery.SearchBy.ToLower()))
+                    || (!string.IsNullOrEmpty(x.PersonShortName) && x.PersonShortName.ToLower().Contains(personQuery.SearchBy.ToLower()))
+                    
+                    ) 
+                ).AsQueryable();
+
+            int totalRecords = await personsQueryable.CountAsync();
+
+            personsQueryable = personsQueryable.Paginate(personQuery.Page ,personQuery.PageSize);
+
+            int totalPages = (int)Math.Ceiling((double)totalRecords / personQuery.PageSize);
+
+            var data = await personsQueryable.ToListAsync();
+
+            return new PagingResult<Person>()
+            {
+                Collection = data,
+                Page = personQuery.Page,
+                PageSize = personQuery.PageSize,
+                TotalPages = totalPages,
+                TotalRecords = totalRecords
+            };
+        }
+        public async Task<PagingResult<Person>> GetAllActivePerson(GetAllActivePersonQuery personQuery)
+        {
+            var personsQueryable = _dbSet.Where(
+                x => 
+                (personQuery.Private == null || personQuery.Private == x.Private) 
+                && (x.PersonStatus == (int)PersonStatus.Active) 
                 && (
                         personQuery.SearchBy == null 
                     || (x.PersonIdc.ToLower().Contains(personQuery.SearchBy.ToLower()))

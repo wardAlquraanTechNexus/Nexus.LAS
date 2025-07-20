@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts;
 using Nexus.LAS.Application.UseCases.PersonUseCases.CreatePerson.Commands;
+using Nexus.LAS.Application.UseCases.PersonUseCases.GetAllActivePerson;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Queries;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 using Nexus.LAS.WebApi.Controllers._GenericController;
@@ -18,6 +19,11 @@ namespace Nexus.LAS.WebApi.Controllers
 
         [HttpGet(nameof(GetAllPerson))]
         public async Task<IActionResult> GetAllPerson([FromQuery]GetAllPersonQuery personQuery)
+        {
+            return Ok(await _mediator.Send(personQuery));
+        }
+        [HttpGet(nameof(GetAllActivePerson))]
+        public async Task<IActionResult> GetAllActivePerson([FromQuery]GetAllActivePersonQuery personQuery)
         {
             return Ok(await _mediator.Send(personQuery));
         }

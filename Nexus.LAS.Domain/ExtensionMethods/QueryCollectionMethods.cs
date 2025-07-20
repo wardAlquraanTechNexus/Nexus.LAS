@@ -69,23 +69,23 @@ namespace Nexus.LAS.Domain.ExtensionMethods
         }
         public static IQueryable<T> Paginate<T>(this IQueryable<T> queryable, IQueryCollection query , out int page , out int pageSize)
         {
-            page = query.TryGetValue("page", out var pVal) && int.TryParse(pVal, out var pNum) ? pNum : 1;
+            page = query.TryGetValue("page", out var pVal) && int.TryParse(pVal, out var pNum) ? pNum : 0;
             pageSize = query.TryGetValue("pageSize", out var psVal) && int.TryParse(psVal, out var psNum) ? psNum : 10;
 
-            queryable = queryable.Skip((page - 1) * pageSize).Take(pageSize);
+            queryable = queryable.Skip((page) * pageSize).Take(pageSize);
             return queryable;
         }
         public static IQueryable<T> Paginate<T>(this IQueryable<T> queryable, IQueryCollection query)
         {
-            int page = query.TryGetValue("page", out var pVal) && int.TryParse(pVal, out var pNum) ? pNum : 1;
+            int page = query.TryGetValue("page", out var pVal) && int.TryParse(pVal, out var pNum) ? pNum : 0;
             int pageSize = query.TryGetValue("pageSize", out var psVal) && int.TryParse(psVal, out var psNum) ? psNum : 10;
 
-            queryable = queryable.Skip((page - 1) * pageSize).Take(pageSize);
+            queryable = queryable.Skip((page) * pageSize).Take(pageSize);
             return queryable;
         }
         public static IQueryable<T> Paginate<T>(this IQueryable<T> queryable, int page , int pageSize)
         {
-            queryable = queryable.Skip((page - 1) * pageSize).Take(pageSize);
+            queryable = queryable.Skip((page) * pageSize).Take(pageSize);
             return queryable;
         }
 

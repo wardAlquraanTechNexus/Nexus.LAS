@@ -35,7 +35,8 @@ namespace Nexus.LAS.Persistence.Repositories.BaseRepo
 
         public virtual async Task<T?> GetAsync(int id)
         {
-            return await _dbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+            var res = await _dbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+            return res;
 
         }
 
