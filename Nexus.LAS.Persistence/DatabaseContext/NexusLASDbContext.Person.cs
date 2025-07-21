@@ -26,8 +26,7 @@ namespace Nexus.LAS.Persistence.DatabaseContext
             modelBuilder.Entity<PersonsCapacity>()
                 .HasKey(e => new { e.PersonsCapacityIdc, e.Id});
 
-            modelBuilder.Entity<PersonsEmail>()
-               .HasKey(e => new { e.PersonsEmailIdc, e.Id });
+            
             modelBuilder.Entity<PersonsIDDetail>()
                 .HasKey(e => new { e.PersonsIDDetailIdc, e.Id });
 

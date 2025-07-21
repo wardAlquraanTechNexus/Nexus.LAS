@@ -11,7 +11,7 @@ namespace Nexus.LAS.Persistence.Services
     public class UserService : GenericService<User>, IUserService
     {
         private readonly IAuthService _authService;
-        public UserService(NexusLASDbContext context , IAuthService authService) : base(context)
+        public UserService(NexusLASDbContext context , IAuthService authService, IUserIdentityService userIdentityService) : base(context, userIdentityService)
         {
             _authService = authService;
         }

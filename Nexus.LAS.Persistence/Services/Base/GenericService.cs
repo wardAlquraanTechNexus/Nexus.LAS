@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.Contracts.Presistence.Services.Base;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Domain.Entities.Base;
@@ -10,8 +11,10 @@ namespace Nexus.LAS.Persistence.Services.Base
     public class GenericService<T> : IGenericService<T> where T : BaseEntity
     {
         protected readonly NexusLASDbContext _context;
-        public GenericService(NexusLASDbContext context)
+        private readonly IUserIdentityService _userIdentityService;
+        public GenericService(NexusLASDbContext context, IUserIdentityService userIdentityService)
         {
+            _userIdentityService = userIdentityService;
             _context = context;
         }
 
@@ -54,5 +57,27 @@ namespace Nexus.LAS.Persistence.Services.Base
             GenericRepo<T> repo = new GenericRepo<T>(_context);
             await repo.DeleteAsync(id);
         }
+        public virtual async Task<List<T>> BulkUpsertAsync(List<T> entities)
+        {
+            foreach (var entity in entities)
+            {
+                if (entity.Id is 0)
+                {
+                    entity.CreatedBy = _userIdentityService.Username;
+                    entity.CreationDate = DateTime.Now;
+                }
+                else
+                {
+                    entity.ModefiedBy = _userIdentityService.Username;
+                    entity.ModificationDate = DateTime.Now;
+                }
+
+            }
+
+            GenericRepo<T> repo = new GenericRepo<T>(_context);
+
+            return await repo.BulkUpsertAsync(entities);
+        }
+
     }
 }

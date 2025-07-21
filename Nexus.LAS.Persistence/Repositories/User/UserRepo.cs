@@ -1,4 +1,5 @@
-﻿using Nexus.LAS.Domain.Entities.UserGroupEntities;
+﻿using Microsoft.EntityFrameworkCore;
+using Nexus.LAS.Domain.Entities.UserGroupEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Repositories.BaseRepo;
 using System;
@@ -17,7 +18,7 @@ namespace Nexus.LAS.Persistence.Repositories
 
         public async Task<User?> GetByUsernameAsync(string username)
         {
-            return _context.Users.FirstOrDefault(x => x.Username == username);
+            return await _context.Users.FirstOrDefaultAsync(x => x.Username == username);
         }
     }
 }

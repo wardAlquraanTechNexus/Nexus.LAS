@@ -13,8 +13,8 @@ namespace Nexus.LAS.Domain.Entities.PersonEntities
     [Table("PersonsEmails")]
     public class PersonsEmail : BaseEntity
     {
-        [Key, Column("PersonsEmailIDC", Order = 0)]
-        public string PersonsEmailIdc { get; set; } = null!;
+        [Column("PersonsEmailIDC", Order = 0)]
+        public string? PersonsEmailIdc { get; set; } = null!;
 
         [Key, Column("PersonsEmailIDN", Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

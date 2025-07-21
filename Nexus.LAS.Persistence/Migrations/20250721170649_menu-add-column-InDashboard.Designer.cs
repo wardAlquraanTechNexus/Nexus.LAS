@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Nexus.LAS.Persistence.DatabaseContext;
 
@@ -11,9 +12,11 @@ using Nexus.LAS.Persistence.DatabaseContext;
 namespace Nexus.LAS.Persistence.Migrations
 {
     [DbContext(typeof(NexusLASDbContext))]
-    partial class NexusLASDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250721170649_menu-add-column-InDashboard")]
+    partial class menuaddcolumnInDashboard
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -2800,6 +2803,11 @@ namespace Nexus.LAS.Persistence.Migrations
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.PersonEntities.PersonsEmail", b =>
                 {
+                    b.Property<string>("PersonsEmailIdc")
+                        .HasColumnType("nvarchar(450)")
+                        .HasColumnName("PersonsEmailIDC")
+                        .HasColumnOrder(0);
+
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
@@ -2838,16 +2846,11 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("Modification_Date");
 
-                    b.Property<string>("PersonsEmailIdc")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("PersonsEmailIDC")
-                        .HasColumnOrder(0);
-
                     b.Property<int>("PersonsIdn")
                         .HasColumnType("int")
                         .HasColumnName("Persons_IDN");
 
-                    b.HasKey("Id");
+                    b.HasKey("PersonsEmailIdc", "Id");
 
                     b.ToTable("PersonsEmails");
                 });

@@ -1,8 +1,10 @@
 ﻿using Nexus.LAS.Application.Contracts;
+using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.UseCases.PersonUseCases.GetAllActivePerson;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Queries;
 using Nexus.LAS.Domain.Entities.PersonEntities;
+using Nexus.LAS.Identity.Services;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Repositories;
 using Nexus.LAS.Persistence.Services.Base;
@@ -16,7 +18,7 @@ namespace Nexus.LAS.Persistence.Services
 {
     public class PersonService : GenericService<Person>, IPersonService
     {
-        public PersonService(NexusLASDbContext context) : base(context)
+        public PersonService(NexusLASDbContext context , IUserIdentityService userIdentityService) : base(context, userIdentityService)
         {
         }
 

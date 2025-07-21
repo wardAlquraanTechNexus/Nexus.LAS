@@ -11,7 +11,7 @@ namespace Nexus.LAS.Persistence.Services
     public class MenuService : GenericService<Menu>, IMenuService
     {
         private readonly IUserIdentityService _userIdentityService;
-        public MenuService(NexusLASDbContext context, IUserIdentityService userIdentityService) : base(context)
+        public MenuService(NexusLASDbContext context, IUserIdentityService userIdentityService) : base(context,userIdentityService)
         {
             _userIdentityService = userIdentityService;
         }

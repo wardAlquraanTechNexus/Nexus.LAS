@@ -18,5 +18,6 @@ namespace Nexus.LAS.Domain.ViewModels.Menus
         public int? CanUpdate { get; set; }
         public int? CanDelete { get; set; }
         public string Username { get; set; }
+        public bool InDashboard { get; set; }
     }
 }

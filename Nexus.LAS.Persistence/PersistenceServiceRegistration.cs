@@ -22,6 +22,7 @@ namespace Nexus.LAS.Persistence
             services.AddScoped<ICountryService, CountryService>();
             services.AddScoped<IMenuService, MenuService>();
             services.AddScoped<IPersonService, PersonService>();
+            services.AddScoped<IPersonEmailService, PersonEmailService>();
             services.AddScoped<IUserService, UserService>();
 
 

@@ -27,7 +27,8 @@ namespace Nexus.LAS.Application.UseCases.MenuUseCases.Queries.GetMenu
                 Name = m.Name,
                 Path = m.Path,
                 IconClass = m.IconClass,
-                Username = m.Username
+                Username = m.Username,
+                InDashboard = m.InDashboard
             });
      
 

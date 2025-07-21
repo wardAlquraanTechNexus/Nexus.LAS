@@ -20,7 +20,7 @@ namespace Nexus.LAS.Application.Contracts.Presistence.Repositories.Base
         Task<int> CreateAsync(T entity);
         Task UpdateAsync(T entity);
         Task DeleteAsync(int id);
-
+        Task<List<T>> BulkUpsertAsync(List<T> entities);
 
     }
 }

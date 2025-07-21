@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.DTOs.PersonDTOs;
+using Nexus.LAS.Application.DTOs.PersonEmailDTOs;
+using Nexus.LAS.Application.UseCases.PersonEmailUseCases.Commands;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 using System;
 using System.Collections.Generic;
@@ -16,6 +18,11 @@ namespace Nexus.LAS.Application.MappingProfiles
         {
             CreateMap<Person , GetAllPersonDto>();
             CreateMap<PagingResult<Person>, PagingResult<GetAllPersonDto>>();
+
+            CreateMap<UpsertPersonEmailCommand, PersonsEmail>()
+            .ForMember(dest => dest.Id, opt => opt.Condition(src => src.Id.HasValue));
+
+            CreateMap<PersonsEmail, PersonEmailDto>();
 
         }
     }

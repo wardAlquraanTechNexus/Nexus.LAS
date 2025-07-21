@@ -1,19 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using EFCore.BulkExtensions;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Nexus.LAS.Application.Contracts.Presistence.Repositories.Base;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Domain.Entities.Base;
 using Nexus.LAS.Domain.ExtensionMethods;
 using Nexus.LAS.Persistence.DatabaseContext;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Linq.Dynamic.Core;
-using System.Linq.Expressions;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Nexus.LAS.Persistence.Repositories.BaseRepo
 {
@@ -44,9 +37,13 @@ namespace Nexus.LAS.Persistence.Repositories.BaseRepo
         {
             IQueryable<T> queryable = _dbSet;
 
-            queryable
-                .SearchByProperties<T>(query)
-                .Order<T>(query)
+            queryable = queryable
+                .SearchByProperties<T>(query);
+            
+            queryable = queryable
+                .Order<T>(query);
+
+            queryable = queryable
                 .Paginate(query);
 
             return await queryable.ToListAsync();
@@ -108,6 +105,24 @@ namespace Nexus.LAS.Persistence.Repositories.BaseRepo
             }
         }
 
+        public async Task<List<T>> BulkUpsertAsync(List<T> entities)
+        {
+            using var transaction = await _context.Database.BeginTransactionAsync();
+
+            try
+            {
+                await _context.BulkInsertOrUpdateAsync(entities);
+
+                await transaction.CommitAsync();
+                return entities;
+
+            }
+            catch
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
+        }
 
     }
 

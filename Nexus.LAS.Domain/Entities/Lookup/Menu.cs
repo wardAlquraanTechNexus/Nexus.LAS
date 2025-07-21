@@ -32,5 +32,6 @@ namespace Nexus.LAS.Domain.Entities.Lookup
         [StringLength(50)]
         public string? Description { get; set; }
         public string? IconClass { get; set; }
+        public bool InDashboard { get; set; }
     }
 }

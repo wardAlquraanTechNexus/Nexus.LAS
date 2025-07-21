@@ -26,7 +26,11 @@ namespace Nexus.LAS.WebApi.Controllers._GenericController
         public async Task<IActionResult> GetByQuery() 
         {
             return Ok(await _service.GetAsync(Request.Query));
-            
+        }
+        [HttpGet(nameof(GetAllByQuery))]
+        public async Task<IActionResult> GetAllByQuery() 
+        {
+            return Ok(await _service.GetAllAsync(Request.Query));
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id) 
@@ -42,6 +46,15 @@ namespace Nexus.LAS.WebApi.Controllers._GenericController
             return StatusCode(201 , res);
 
         }
+
+        [HttpPost(nameof(BulkUpsertAsync))]
+        public virtual async Task<IActionResult> BulkUpsertAsync(List<Entity> entities)
+        {
+            var res = await _service.BulkUpsertAsync(entities);
+            return StatusCode(201, res);
+
+        }
+
         [HttpPut]
         public async Task<IActionResult> UpdateAsync(Entity entity)
         {

@@ -18,5 +18,6 @@ namespace Nexus.LAS.Application.Contracts.Presistence.Services.Base
         Task<int> CreateAsync(T entity);
         Task UpdateAsync(T entity);
         Task DeleteAsync(int entity);
+        Task<List<T>> BulkUpsertAsync(List<T> entities);
     }
 }
