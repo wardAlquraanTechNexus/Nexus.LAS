@@ -12,8 +12,8 @@ namespace Nexus.LAS.Domain.Entities.PersonEntities
     [Table("PersonsPhones")]
     public class PersonsPhone : BaseEntity
     {
-        [Key, Column("PersonsPhoneIDC", Order = 0)]
-        public string PersonsPhoneIdc { get; set; } = null!;
+        [Column("PersonsPhoneIDC", Order = 0)]
+        public string? PersonsPhoneIdc { get; set; } = null!;
 
         [Key, Column("PersonsPhoneIDN", Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -26,7 +26,7 @@ namespace Nexus.LAS.Domain.Entities.PersonEntities
         public bool? PhonePrimary { get; set; }
 
         [Column("PhoneType")]
-        public string? PhoneType { get; set; }
+        public int? PhoneType { get; set; }
 
         [Column("PhoneNumber")]
         public string? PhoneNumber { get; set; }

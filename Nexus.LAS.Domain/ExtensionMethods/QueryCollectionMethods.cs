@@ -40,7 +40,10 @@ namespace Nexus.LAS.Domain.ExtensionMethods
                     }
                     else
                     {
-                        queryable = queryable.Where($"{prop.Name} == @0", Convert.ChangeType(value, prop.PropertyType));
+                        var targetType = Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType;
+                        var typedValue = Convert.ChangeType(value, targetType);
+
+                        queryable = queryable.Where($"{prop.Name} == @0", typedValue);
                     }
                 }
             }

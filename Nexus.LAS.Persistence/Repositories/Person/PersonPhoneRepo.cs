@@ -1,26 +1,30 @@
-﻿using AutoMapper;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Repositories.BaseRepo;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Nexus.LAS.Persistence.Repositories
 {
-    public class PersonEmailRepo : GenericRepo<PersonsEmail>
+    public class PersonPhoneRepo : GenericRepo<PersonsPhone>
     {
-        public PersonEmailRepo(NexusLASDbContext context) : base(context)
+        public PersonPhoneRepo(NexusLASDbContext context) : base(context)
         {
         }
 
         public override async Task DeleteAsync(int id)
         {
             var item = await _dbSet.FindAsync(id);
-            if (item.EmailPrimary is true)
+            if (item.PhonePrimary is true)
             {
                 var firstItem = await _dbSet.FirstOrDefaultAsync(x => x.PersonsIdn == item.PersonsIdn);
                 if (firstItem != null)
                 {
-                    firstItem.EmailPrimary = true;
+                    firstItem.PhonePrimary = true;
                 }
                 _dbSet.Remove(item);
 

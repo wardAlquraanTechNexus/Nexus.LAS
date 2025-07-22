@@ -21,8 +21,7 @@ namespace Nexus.LAS.Persistence.DatabaseContext
 
         protected void OnPersonModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<PersonsAddress>()
-                .HasKey(e => new { e.PersonsAddressIdc, e.Id });
+            
             modelBuilder.Entity<PersonsCapacity>()
                 .HasKey(e => new { e.PersonsCapacityIdc, e.Id});
 
@@ -34,8 +33,7 @@ namespace Nexus.LAS.Persistence.DatabaseContext
                .HasKey(e => new { e.PersonsOtherDocumentIdc, e.Id });
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(NexusLASDbContext).Assembly);
 
-            modelBuilder.Entity<PersonsPhone>()
-               .HasKey(e => new { e.PersonsPhoneIdc, e.Id });
+            
 
         }
     }

@@ -3,31 +3,31 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts;
 using Nexus.LAS.Application.UseCases.PersonEmailUseCases;
+using Nexus.LAS.Application.UseCases.PersonPhoneUseCases;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 using Nexus.LAS.WebApi.Controllers._GenericController;
 
 namespace Nexus.LAS.WebApi.Controllers
 {
-    public class PersonEmailController : GenericController<IPersonEmailService, PersonsEmail>
+    public class PersonPhoneController : GenericController<IPersonPhoneService, PersonsPhone>
     {
-        public PersonEmailController(IPersonEmailService service, IMediator mediator) : base(service, mediator)
+        public PersonPhoneController(IPersonPhoneService service, IMediator mediator) : base(service, mediator)
         {
         }
 
         [NonAction]
-        public override Task<IActionResult> BulkUpsertAsync(List<PersonsEmail> entities)
+        public override Task<IActionResult> BulkUpsertAsync(List<PersonsPhone> entities)
         {
             return base.BulkUpsertAsync(entities);
         }
         [HttpPost(nameof(BulkUpsertAsync))]
-        public async Task<IActionResult> BulkUpsertAsync([FromBody] List<UpsertPersonEmailCommand> commands)
+        public async Task<IActionResult> BulkUpsertAsync([FromBody] List<UpsertPersonPhoneCommand> commands)
         {
-            BulkUpsertPersonEmailCommand bulkUpsertPersonEmailCommand = new BulkUpsertPersonEmailCommand()
+            BulkUpsertPersonPhoneCommand bulkUpsertPersonEmailCommand = new BulkUpsertPersonPhoneCommand()
             {
                 Commands = commands
             };
             return Ok(await _mediator.Send(bulkUpsertPersonEmailCommand));
         }
-
     }
 }

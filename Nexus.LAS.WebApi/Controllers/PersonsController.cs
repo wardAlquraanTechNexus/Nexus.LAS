@@ -6,6 +6,7 @@ using Nexus.LAS.Application.Contracts;
 using Nexus.LAS.Application.UseCases.PersonUseCases.CreatePerson.Commands;
 using Nexus.LAS.Application.UseCases.PersonUseCases.GetAllActivePerson;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Queries;
+using Nexus.LAS.Application.UseCases.PersonUseCases.UpdatePerson.Commands;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 using Nexus.LAS.WebApi.Controllers._GenericController;
 
@@ -29,6 +30,11 @@ namespace Nexus.LAS.WebApi.Controllers
         }
         [HttpPost(nameof(CreatePerson))]
         public async Task<IActionResult> CreatePerson([FromBody]CreatePersonCommand command)
+        {
+            return Ok(await _mediator.Send(command));
+        }
+        [HttpPut(nameof(UpdatePerson))]
+        public async Task<IActionResult> UpdatePerson([FromBody]UpdatePersonCommand command)
         {
             return Ok(await _mediator.Send(command));
         }

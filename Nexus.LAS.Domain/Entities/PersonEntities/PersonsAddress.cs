@@ -1,19 +1,14 @@
 ﻿using Nexus.LAS.Domain.Entities.Base;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Nexus.LAS.Domain.Entities.PersonEntities
 {
     [Table("PersonsAddresses")]
     public class PersonsAddress : BaseEntity
     {
-        [Key, Column("PersonsAddressIDC", Order = 0)]
-        public string PersonsAddressIdc { get; set; } = null!;
+        [Column("PersonsAddressIDC", Order = 0)]
+        public string? PersonsAddressIdc { get; set; } = null!;
 
         [Key, Column("PersonsAddressIDN", Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

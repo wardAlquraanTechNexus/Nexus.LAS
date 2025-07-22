@@ -25,22 +25,22 @@ namespace Nexus.LAS.Persistence.Repositories
         public async Task<PagingResult<Person>> GetAllPerson(GetAllPersonQuery personQuery)
         {
             var personsQueryable = _dbSet.Where(
-                x => 
-                (personQuery.Private == null || personQuery.Private == x.Private) 
-                && (personQuery.Status== null || personQuery.Status == x.PersonStatus) 
+                x =>
+                (personQuery.Private == null || personQuery.Private == x.Private)
+                && (personQuery.Status == null || personQuery.Status == x.PersonStatus)
                 && (
-                        personQuery.SearchBy == null 
+                        personQuery.SearchBy == null
                     || (x.PersonIdc.ToLower().Contains(personQuery.SearchBy.ToLower()))
                     || (!string.IsNullOrEmpty(x.PersonEnglishName) && x.PersonEnglishName.ToLower().Contains(personQuery.SearchBy.ToLower()))
                     || (!string.IsNullOrEmpty(x.PersonArabicName) && x.PersonArabicName.ToLower().Contains(personQuery.SearchBy.ToLower()))
                     || (!string.IsNullOrEmpty(x.PersonShortName) && x.PersonShortName.ToLower().Contains(personQuery.SearchBy.ToLower()))
-                    
-                    ) 
+
+                    )
                 ).AsQueryable();
 
             int totalRecords = await personsQueryable.CountAsync();
 
-            personsQueryable = personsQueryable.Paginate(personQuery.Page ,personQuery.PageSize);
+            personsQueryable = personsQueryable.Paginate(personQuery.Page, personQuery.PageSize);
 
             int totalPages = (int)Math.Ceiling((double)totalRecords / personQuery.PageSize);
 
@@ -58,22 +58,22 @@ namespace Nexus.LAS.Persistence.Repositories
         public async Task<PagingResult<Person>> GetAllActivePerson(GetAllActivePersonQuery personQuery)
         {
             var personsQueryable = _dbSet.Where(
-                x => 
-                (personQuery.Private == null || personQuery.Private == x.Private) 
-                && (x.PersonStatus == (int)PersonStatus.Active) 
+                x =>
+                (personQuery.Private == null || personQuery.Private == x.Private)
+                && (x.PersonStatus == (int)PersonStatus.Active)
                 && (
-                        personQuery.SearchBy == null 
+                        personQuery.SearchBy == null
                     || (x.PersonIdc.ToLower().Contains(personQuery.SearchBy.ToLower()))
                     || (!string.IsNullOrEmpty(x.PersonEnglishName) && x.PersonEnglishName.ToLower().Contains(personQuery.SearchBy.ToLower()))
                     || (!string.IsNullOrEmpty(x.PersonArabicName) && x.PersonArabicName.ToLower().Contains(personQuery.SearchBy.ToLower()))
                     || (!string.IsNullOrEmpty(x.PersonShortName) && x.PersonShortName.ToLower().Contains(personQuery.SearchBy.ToLower()))
-                    
-                    ) 
+
+                    )
                 ).AsQueryable();
 
             int totalRecords = await personsQueryable.CountAsync();
 
-            personsQueryable = personsQueryable.Paginate(personQuery.Page ,personQuery.PageSize);
+            personsQueryable = personsQueryable.Paginate(personQuery.Page, personQuery.PageSize);
 
             int totalPages = (int)Math.Ceiling((double)totalRecords / personQuery.PageSize);
 
@@ -97,6 +97,28 @@ namespace Nexus.LAS.Persistence.Repositories
             await _dbSet.AddAsync(entity);
             await _context.SaveChangesAsync();
             return entity.Id;
+        }
+        public async Task<Person> UpdatePersonAsync(Person entity)
+        {
+            var oldEntity = await _dbSet.FindAsync(entity.Id);
+
+            if (oldEntity is null)
+                throw new Exception("Not found person");
+
+            // Only update if values actually changed
+            if (oldEntity.PersonEnglishName != entity.PersonEnglishName)
+                oldEntity.PersonEnglishName = entity.PersonEnglishName;
+
+            if (oldEntity.PersonArabicName != entity.PersonArabicName)
+                oldEntity.PersonArabicName = entity.PersonArabicName;
+
+            if (oldEntity.PersonShortName != entity.PersonShortName)
+                oldEntity.PersonShortName = entity.PersonShortName;
+
+            //_context.Entry(entity).State = EntityState.Modified;
+
+            await _context.SaveChangesAsync();
+            return oldEntity;
         }
     }
 }

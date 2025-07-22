@@ -7,16 +7,15 @@ using Nexus.LAS.Persistence.Services.Base;
 
 namespace Nexus.LAS.Persistence.Services
 {
-    public class PersonEmailService : GenericService<PersonsEmail>, IPersonEmailService
+    public class PersonPhoneService : GenericService<PersonsPhone>, IPersonPhoneService
     {
-        public PersonEmailService(NexusLASDbContext context, IUserIdentityService userIdentityService) : base(context, userIdentityService)
+        public PersonPhoneService(NexusLASDbContext context, IUserIdentityService userIdentityService) : base(context, userIdentityService)
         {
-            
         }
 
         public override async Task DeleteAsync(int id)
         {
-            var repo = new PersonEmailRepo(_context);
+            var repo = new PersonPhoneRepo(_context);
             await repo.DeleteAsync(id);
         }
     }

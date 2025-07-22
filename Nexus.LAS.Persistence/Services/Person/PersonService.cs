@@ -38,5 +38,10 @@ namespace Nexus.LAS.Persistence.Services
             PersonRepo personRepo = new PersonRepo(_context);
             return await personRepo.CreateAsync(entity);
         }
+        public async Task<Person> UpdatePersonAsync(Person entity)
+        {
+            PersonRepo personRepo = new PersonRepo(_context);
+            return await personRepo.UpdatePersonAsync(entity);
+        }
     }
 }

@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Nexus.LAS.Application.Contracts.Presistence.Repositories.Base;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Domain.Entities.Base;
+using Nexus.LAS.Domain.Entities.Lookup;
 using Nexus.LAS.Domain.ExtensionMethods;
 using Nexus.LAS.Persistence.DatabaseContext;
 using System.Linq.Dynamic.Core;
@@ -43,8 +44,7 @@ namespace Nexus.LAS.Persistence.Repositories.BaseRepo
             queryable = queryable
                 .Order<T>(query);
 
-            queryable = queryable
-                .Paginate(query);
+            
 
             return await queryable.ToListAsync();
 
@@ -90,7 +90,7 @@ namespace Nexus.LAS.Persistence.Repositories.BaseRepo
 
         public virtual async Task UpdateAsync(T entity)
         {
-            _context.Entry(entity).State = EntityState.Modified; //more efficient
+            _context.Entry(entity).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
 

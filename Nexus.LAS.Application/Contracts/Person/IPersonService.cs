@@ -16,6 +16,7 @@ namespace Nexus.LAS.Application.Contracts
     {
         Task<PagingResult<Person>> GetAllPerson(GetAllPersonQuery personQuery);
         Task<PagingResult<Person>> GetAllActivePerson(GetAllActivePersonQuery personQuery);
+        Task<Person> UpdatePersonAsync(Person entity);
 
     }
 }
