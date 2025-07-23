@@ -27,7 +27,9 @@ namespace Nexus.LAS.Application.UseCases.PersonUseCases.UpdatePerson.Commands
                 Id = command.Id,
                 PersonEnglishName = nameEn,
                 PersonArabicName = nameAr,
-                PersonShortName = command.ShortName
+                PersonShortName = command.ShortName,
+                PersonStatus = command.PersonStatus,
+                Private = command.Private.HasValue  ? command.Private.Value : true
             };
             person = await _personService.UpdatePersonAsync(person);
 

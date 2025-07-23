@@ -12,6 +12,8 @@ namespace Nexus.LAS.Application.UseCases.PersonUseCases.UpdatePerson.Commands
         public string FirstNameAr { get; set; }
         public string? MiddleNameAr { get; set; }
         public string LastNameAr { get; set; }
+        public int? PersonStatus { get; set; }
+        public bool? Private { get; set; }
         public string ShortName { get; set; }
     }
 }

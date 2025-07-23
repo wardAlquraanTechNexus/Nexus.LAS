@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Nexus.LAS.Application.DTOs.Base;
+using Nexus.LAS.Application.DTOs.PersonAddressDTOs;
 using Nexus.LAS.Application.DTOs.PersonDTOs;
 using Nexus.LAS.Application.DTOs.PersonEmailDTOs;
 using Nexus.LAS.Application.DTOs.PersonPhoneDTOs;
+using Nexus.LAS.Application.UseCases.PersonAddressUseCases;
 using Nexus.LAS.Application.UseCases.PersonEmailUseCases;
 using Nexus.LAS.Application.UseCases.PersonPhoneUseCases;
 using Nexus.LAS.Application.UseCases.PersonUseCases.UpdatePerson.Commands;
@@ -29,6 +31,13 @@ namespace Nexus.LAS.Application.MappingProfiles
 
             CreateMap<UpsertPersonPhoneCommand, PersonsPhone>()
             .ForMember(dest => dest.Id, opt => opt.Condition(src => src.Id.HasValue));
+
+
+            CreateMap<PersonsAddress, PersonAddressDto>();
+
+            CreateMap<UpsertPersonAddressCommand, PersonsAddress>()
+            .ForMember(dest => dest.Id, opt => opt.Condition(src => src.Id.HasValue));
+
 
             CreateMap<PersonsPhone, PersonPhoneDTO>();
             CreateMap<Person, UpdatePersonCommand>();

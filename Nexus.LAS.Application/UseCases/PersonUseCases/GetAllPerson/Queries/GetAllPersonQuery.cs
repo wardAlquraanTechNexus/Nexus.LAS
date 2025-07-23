@@ -16,5 +16,7 @@ namespace Nexus.LAS.Application.UseCases.PersonUseCases.Queries
         public string? Nationality { get; set; }
         public bool? Private { get; set; }
         public int? Status { get; set; }
+        public string? OrderBy { get; set; }
+        public string? OrderDir { get; set; }
     }
 }

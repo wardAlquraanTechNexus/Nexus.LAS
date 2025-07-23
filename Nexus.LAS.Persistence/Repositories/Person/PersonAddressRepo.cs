@@ -2,29 +2,24 @@
 using Nexus.LAS.Domain.Entities.PersonEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Repositories.BaseRepo;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Nexus.LAS.Persistence.Repositories
 {
-    public class PersonPhoneRepo : GenericRepo<PersonsPhone>
+    public class PersonAddressRepo : GenericRepo<PersonsAddress>
     {
-        public PersonPhoneRepo(NexusLASDbContext context) : base(context)
+        public PersonAddressRepo(NexusLASDbContext context) : base(context)
         {
         }
 
         public override async Task DeleteAsync(int id)
         {
             var item = await _dbSet.FindAsync(id);
-            if (item.PhonePrimary is true)
+            if (item.AddressPrimary is true)
             {
                 var firstItem = await _dbSet.FirstOrDefaultAsync(x => x.PersonsIdn == item.PersonsIdn);
                 if (firstItem != null)
                 {
-                    firstItem.PhonePrimary = true;
+                    firstItem.AddressPrimary = true;
                 }
 
             }

@@ -22,9 +22,9 @@ namespace Nexus.LAS.Persistence.Repositories
                 {
                     firstItem.EmailPrimary = true;
                 }
-                _dbSet.Remove(item);
 
             }
+            item.IsDeleted = true;
 
             await _context.SaveChangesAsync();
         }

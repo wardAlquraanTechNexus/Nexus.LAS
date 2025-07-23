@@ -99,7 +99,7 @@ namespace Nexus.LAS.Persistence.Repositories.BaseRepo
             var entity = _dbSet.FirstOrDefault(x=>x.Id == id);
             if(entity != null)
             {
-                _dbSet.Remove(entity);
+                entity.IsDeleted = true;
                 await _context.SaveChangesAsync();
 
             }

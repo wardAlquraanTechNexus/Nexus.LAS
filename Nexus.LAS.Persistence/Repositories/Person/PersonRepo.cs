@@ -42,6 +42,11 @@ namespace Nexus.LAS.Persistence.Repositories
 
             personsQueryable = personsQueryable.Paginate(personQuery.Page, personQuery.PageSize);
 
+            if (!string.IsNullOrEmpty(personQuery.OrderBy))
+            {
+                personsQueryable = personsQueryable.Order(personQuery.OrderBy,personQuery.OrderDir ?? "asc");
+            }
+
             int totalPages = (int)Math.Ceiling((double)totalRecords / personQuery.PageSize);
 
             var data = await personsQueryable.ToListAsync();
@@ -114,6 +119,19 @@ namespace Nexus.LAS.Persistence.Repositories
 
             if (oldEntity.PersonShortName != entity.PersonShortName)
                 oldEntity.PersonShortName = entity.PersonShortName;
+            
+            if (oldEntity.PersonStatus != entity.PersonStatus)
+            {
+                oldEntity.PersonStatus = entity.PersonStatus;
+                if(entity.PersonStatus == (int)PersonStatus.Active)
+                {
+                    oldEntity.PersonCode = "PP" + entity.Id.ToString().PadLeft(6, '0');
+
+                }
+            }
+            
+            if (oldEntity.Private != entity.Private)
+                oldEntity.Private = entity.Private;
 
             //_context.Entry(entity).State = EntityState.Modified;
 

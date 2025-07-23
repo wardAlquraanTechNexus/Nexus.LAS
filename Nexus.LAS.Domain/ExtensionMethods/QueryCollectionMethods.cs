@@ -59,6 +59,15 @@ namespace Nexus.LAS.Domain.ExtensionMethods
 
             if (!string.IsNullOrEmpty(orderBy))
             {
+                return queryable.OrderBy(orderBy , orderDir);
+            }
+            return queryable;
+        }
+        public static IQueryable<T> Order<T>(this IQueryable<T> queryable, string orderBy , string orderDir = "asc")
+        {
+
+            if (!string.IsNullOrEmpty(orderBy))
+            {
                 var orderByProp = typeof(T).GetProperties()
                     .FirstOrDefault(p => p.Name.Equals(orderBy, StringComparison.OrdinalIgnoreCase));
 

@@ -14,7 +14,7 @@ namespace Nexus.LAS.Application.DTOs.PersonDTOs
         public string? PersonEnglishName { get; set; }
         public string? PersonArabicName { get; set; }
         public string? PersonShortName { get; set; }
-        public string PersonStatus { get; set; } = null!;
+        public int PersonStatus { get; set; }
         public string FPCCode { get; set; }
         public bool Private { get; set; }
 
