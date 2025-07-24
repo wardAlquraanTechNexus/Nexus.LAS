@@ -34,6 +34,7 @@ namespace Nexus.LAS.Persistence.Repositories
                     || (!string.IsNullOrEmpty(x.PersonEnglishName) && x.PersonEnglishName.ToLower().Contains(personQuery.SearchBy.ToLower()))
                     || (!string.IsNullOrEmpty(x.PersonArabicName) && x.PersonArabicName.ToLower().Contains(personQuery.SearchBy.ToLower()))
                     || (!string.IsNullOrEmpty(x.PersonShortName) && x.PersonShortName.ToLower().Contains(personQuery.SearchBy.ToLower()))
+                    || (!string.IsNullOrEmpty(x.PersonCode) && x.PersonCode.ToLower().Contains(personQuery.SearchBy.ToLower()))
 
                     )
                 ).AsQueryable();
