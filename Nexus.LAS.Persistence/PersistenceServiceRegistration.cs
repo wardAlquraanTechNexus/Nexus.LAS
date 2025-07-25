@@ -25,6 +25,8 @@ namespace Nexus.LAS.Persistence
             services.AddScoped<IPersonEmailService, PersonEmailService>();
             services.AddScoped<IPersonPhoneService, PersonPhoneService>();
             services.AddScoped<IPersonAddressService, PersonAddressService>();
+            services.AddScoped<IPersonIdDetailService, PersonIdDetailService>();
+            services.AddScoped<IPersonOtherDocumentService, PersonOtherDocumentService>();
             services.AddScoped<IUserService, UserService>();
 
 

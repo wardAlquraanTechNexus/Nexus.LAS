@@ -12,8 +12,8 @@ namespace Nexus.LAS.Domain.Entities.PersonEntities
     [Table("PersonsOtherDocuments")]
     public class PersonsOtherDocument : BaseEntity
     {
-        [Key, Column("PersonsOtherDocumentIDC", Order = 0)]
-        public string PersonsOtherDocumentIdc { get; set; } = null!;
+        [Column("PersonsOtherDocumentIDC", Order = 0)]
+        public string? PersonsOtherDocumentIdc { get; set; } = null!;
 
         [Key, Column("PersonsOtherDocumentIDN", Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

@@ -12,8 +12,8 @@ namespace Nexus.LAS.Domain.Entities.PersonEntities
     [Table("PersonsIDDetails")]
     public class PersonsIDDetail : BaseEntity
     {
-        [Key, Column("PersonsIDDetailIDC", Order = 0)]
-        public string PersonsIDDetailIdc { get; set; } = null!;
+        [Column("PersonsIDDetailIDC", Order = 0)]
+        public string? PersonsIDDetailIdc { get; set; } = null!;
 
         [Key, Column("PersonsIDDetailIDN", Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -23,16 +23,16 @@ namespace Nexus.LAS.Domain.Entities.PersonEntities
         public int? PersonsIdn { get; set; }
 
         [Column("IDPrimary")]
-        public bool? IDPrimary { get; set; }
+        public bool? IsPrimary { get; set; }
 
         [Column("IDType")]
-        public string? IDType { get; set; }
+        public string? Type { get; set; }
 
         [Column("IDNationality")]
-        public string? IDNationality { get; set; }
+        public string? Nationality { get; set; }
 
         [Column("IDPlaceOfIssue")]
-        public string? IDPlaceOfIssue { get; set; }
+        public string? PlaceOfIssue { get; set; }
 
         [Column("IDNumber")]
         public string? IDNumber { get; set; }
@@ -41,10 +41,10 @@ namespace Nexus.LAS.Domain.Entities.PersonEntities
         public DateTime? IDIssueDate { get; set; }
 
         [Column("IDExpiryDate")]
-        public DateTime? IDExpiryDate { get; set; }
+        public DateTime? ExpiryDate { get; set; }
 
         [Column("IDExpiryActiveReminder")]
-        public bool? IDExpiryActiveReminder { get; set; }
+        public bool? ActiveReminder { get; set; }
     }
 
 }

@@ -2854,11 +2854,6 @@ namespace Nexus.LAS.Persistence.Migrations
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.PersonEntities.PersonsIDDetail", b =>
                 {
-                    b.Property<string>("PersonsIDDetailIdc")
-                        .HasColumnType("nvarchar(450)")
-                        .HasColumnName("PersonsIDDetailIDC")
-                        .HasColumnOrder(0);
-
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
@@ -2866,6 +2861,10 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnOrder(1);
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool?>("ActiveReminder")
+                        .HasColumnType("bit")
+                        .HasColumnName("IDExpiryActiveReminder");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -2876,11 +2875,7 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("CreationDate");
 
-                    b.Property<bool?>("IDExpiryActiveReminder")
-                        .HasColumnType("bit")
-                        .HasColumnName("IDExpiryActiveReminder");
-
-                    b.Property<DateTime?>("IDExpiryDate")
+                    b.Property<DateTime?>("ExpiryDate")
                         .HasColumnType("datetime2")
                         .HasColumnName("IDExpiryDate");
 
@@ -2888,28 +2883,16 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("IDIssueDate");
 
-                    b.Property<string>("IDNationality")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("IDNationality");
-
                     b.Property<string>("IDNumber")
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("IDNumber");
 
-                    b.Property<string>("IDPlaceOfIssue")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("IDPlaceOfIssue");
-
-                    b.Property<bool?>("IDPrimary")
-                        .HasColumnType("bit")
-                        .HasColumnName("IDPrimary");
-
-                    b.Property<string>("IDType")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("IDType");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<bool?>("IsPrimary")
+                        .HasColumnType("bit")
+                        .HasColumnName("IDPrimary");
 
                     b.Property<string>("ModefiedBy")
                         .HasColumnType("nvarchar(max)")
@@ -2919,22 +2902,34 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("Modification_Date");
 
+                    b.Property<string>("Nationality")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("IDNationality");
+
+                    b.Property<string>("PersonsIDDetailIdc")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("PersonsIDDetailIDC")
+                        .HasColumnOrder(0);
+
                     b.Property<int?>("PersonsIdn")
                         .HasColumnType("int")
                         .HasColumnName("Persons_IDN");
 
-                    b.HasKey("PersonsIDDetailIdc", "Id");
+                    b.Property<string>("PlaceOfIssue")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("IDPlaceOfIssue");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("IDType");
+
+                    b.HasKey("Id");
 
                     b.ToTable("PersonsIDDetails");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.PersonEntities.PersonsOtherDocument", b =>
                 {
-                    b.Property<string>("PersonsOtherDocumentIdc")
-                        .HasColumnType("nvarchar(450)")
-                        .HasColumnName("PersonsOtherDocumentIDC")
-                        .HasColumnOrder(0);
-
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
@@ -2976,7 +2971,12 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("int")
                         .HasColumnName("Persons_IDN");
 
-                    b.HasKey("PersonsOtherDocumentIdc", "Id");
+                    b.Property<string>("PersonsOtherDocumentIdc")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("PersonsOtherDocumentIDC")
+                        .HasColumnOrder(0);
+
+                    b.HasKey("Id");
 
                     b.ToTable("PersonsOtherDocuments");
                 });
