@@ -6,6 +6,7 @@ using Nexus.LAS.Application.DTOs.PersonEmailDTOs;
 using Nexus.LAS.Application.DTOs.PersonPhoneDTOs;
 using Nexus.LAS.Application.UseCases.PersonAddressUseCases;
 using Nexus.LAS.Application.UseCases.PersonEmailUseCases;
+using Nexus.LAS.Application.UseCases.PersonIdDetail;
 using Nexus.LAS.Application.UseCases.PersonPhoneUseCases;
 using Nexus.LAS.Application.UseCases.PersonUseCases.UpdatePerson.Commands;
 using Nexus.LAS.Domain.Entities.PersonEntities;
@@ -43,6 +44,8 @@ namespace Nexus.LAS.Application.MappingProfiles
             CreateMap<Person, UpdatePersonCommand>();
             CreateMap<UpdatePersonCommand, Person>();
 
+            CreateMap<PersonsIDDetail, CreatePersonIdDetailCommand>();
+            CreateMap<CreatePersonIdDetailCommand, PersonsIDDetail>();
         }
     }
 }

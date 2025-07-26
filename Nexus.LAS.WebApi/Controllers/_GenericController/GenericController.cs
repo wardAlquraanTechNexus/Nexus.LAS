@@ -40,7 +40,7 @@ namespace Nexus.LAS.WebApi.Controllers._GenericController
             
         }
         [HttpPost]
-        public async Task<IActionResult> CreateAsync(Entity entity)
+        public virtual async Task<IActionResult> CreateAsync(Entity entity)
         {
             var res = await _service.CreateAsync(entity);
             return StatusCode(201 , res);

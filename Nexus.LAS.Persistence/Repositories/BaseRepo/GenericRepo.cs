@@ -7,6 +7,7 @@ using Nexus.LAS.Domain.Entities.Base;
 using Nexus.LAS.Domain.Entities.Lookup;
 using Nexus.LAS.Domain.ExtensionMethods;
 using Nexus.LAS.Persistence.DatabaseContext;
+using System.Data.SqlTypes;
 using System.Linq.Dynamic.Core;
 
 namespace Nexus.LAS.Persistence.Repositories.BaseRepo
@@ -65,9 +66,19 @@ namespace Nexus.LAS.Persistence.Repositories.BaseRepo
             queryable = queryable.Paginate(query, out page, out pageSize);
 
             totalPages = (int)Math.Ceiling((double)totalRecords / pageSize);
-
-            var data = await queryable.ToListAsync();
-
+            List<T> data = new();
+            try
+            {
+                data = await queryable.ToListAsync();
+            }
+            catch (SqlNullValueException ex)
+            {
+                //ignore
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
             return new PagingResult<T>()
             {
                 Collection = data,

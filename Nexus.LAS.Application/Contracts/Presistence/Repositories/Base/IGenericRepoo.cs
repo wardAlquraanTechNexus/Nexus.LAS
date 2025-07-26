@@ -1,13 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Domain.Entities.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Dynamic.Core;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Nexus.LAS.Application.Contracts.Presistence.Repositories.Base
 {

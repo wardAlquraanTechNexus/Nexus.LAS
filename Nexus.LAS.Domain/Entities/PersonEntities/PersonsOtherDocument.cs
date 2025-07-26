@@ -13,7 +13,7 @@ namespace Nexus.LAS.Domain.Entities.PersonEntities
     public class PersonsOtherDocument : BaseEntity
     {
         [Column("PersonsOtherDocumentIDC", Order = 0)]
-        public string? PersonsOtherDocumentIdc { get; set; } = null!;
+        public string? PersonsOtherDocumentIdc { get; set; } = "POD";
 
         [Key, Column("PersonsOtherDocumentIDN", Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
