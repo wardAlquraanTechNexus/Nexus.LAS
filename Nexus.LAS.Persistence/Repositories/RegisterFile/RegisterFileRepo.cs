@@ -1,4 +1,5 @@
-﻿using Nexus.LAS.Domain.Entities.RegisterEntities;
+﻿using Microsoft.EntityFrameworkCore;
+using Nexus.LAS.Domain.Entities.RegisterEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Repositories.BaseRepo;
 using System;
@@ -13,6 +14,11 @@ namespace Nexus.LAS.Persistence.Repositories
     {
         public RegisterFileRepo(NexusLASDbContext context) : base(context)
         {
+        }
+
+        public async Task<List<RegisterFile>> GetByIds(string idc, int idn)
+        {
+            return await _dbSet.Where(x=>x.RegistersIdc == idc && x.RegistersIdn == idn).ToListAsync();
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nexus.LAS.Application.UseCases.PersonIdDetail.CreatePersonIdDetail
+namespace Nexus.LAS.Application.UseCases.PersonIdDetail.Commands.CreatePersonIdDetail
 {
     public class CreatePersonIdDetailHandler : IRequestHandler<CreatePersonIdDetailCommand, int>
     {

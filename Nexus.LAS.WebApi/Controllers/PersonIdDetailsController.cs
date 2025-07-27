@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts;
-using Nexus.LAS.Application.UseCases.PersonIdDetail;
+using Nexus.LAS.Application.UseCases.PersonIdDetail.Commands.CreatePersonIdDetail;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 using Nexus.LAS.WebApi.Controllers._GenericController;
 
@@ -21,9 +21,17 @@ namespace Nexus.LAS.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateAsync(CreatePersonIdDetailCommand command)
+        public async Task<IActionResult> CreateAsync([FromForm]CreatePersonIdDetailCommand command)
         {
             return StatusCode(201, await _mediator.Send(command));
+        }
+
+        [HttpGet("GetDTOById/{id}")]
+        public async Task<IActionResult> GetDTOById(int id)
+        {
+            var res = await _service.GetDTOAsync(id);
+            return Ok(res);
+
         }
     }
 }

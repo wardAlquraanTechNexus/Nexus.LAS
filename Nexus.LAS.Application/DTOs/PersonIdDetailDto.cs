@@ -1,14 +1,13 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nexus.LAS.Application.UseCases.PersonIdDetail
+namespace Nexus.LAS.Application.DTOs
 {
-    public class CreatePersonIdDetailCommand:IRequest<int>
+    public class PersonIdDetailDto
     {
         public string PersonsIDDetailIdc { get; set; } = "PID";
         public int Id { get; set; }
@@ -21,7 +20,8 @@ namespace Nexus.LAS.Application.UseCases.PersonIdDetail
         public DateTime? IDIssueDate { get; set; }
         public DateTime? ExpiryDate { get; set; }
         public bool? ActiveReminder { get; set; }
-        public IFormFile File { get; set; }
-
+        public string? FileName { get; set; }
+        public string? ContentType { get; set; }
+        public byte[]? DataFile { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Nexus.LAS.Application.DTOs;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.DTOs.PersonAddressDTOs;
 using Nexus.LAS.Application.DTOs.PersonDTOs;
@@ -6,7 +7,8 @@ using Nexus.LAS.Application.DTOs.PersonEmailDTOs;
 using Nexus.LAS.Application.DTOs.PersonPhoneDTOs;
 using Nexus.LAS.Application.UseCases.PersonAddressUseCases;
 using Nexus.LAS.Application.UseCases.PersonEmailUseCases;
-using Nexus.LAS.Application.UseCases.PersonIdDetail;
+using Nexus.LAS.Application.UseCases.PersonIdDetail.Commands.CreatePersonIdDetail;
+using Nexus.LAS.Application.UseCases.PersonOtherDocumentUseCases.Commands.CreatePersonOtherDocument;
 using Nexus.LAS.Application.UseCases.PersonPhoneUseCases;
 using Nexus.LAS.Application.UseCases.PersonUseCases.UpdatePerson.Commands;
 using Nexus.LAS.Domain.Entities.PersonEntities;
@@ -46,6 +48,10 @@ namespace Nexus.LAS.Application.MappingProfiles
 
             CreateMap<PersonsIDDetail, CreatePersonIdDetailCommand>();
             CreateMap<CreatePersonIdDetailCommand, PersonsIDDetail>();
+            CreateMap<PersonIdDetailDto, PersonsIDDetail>();
+            CreateMap<PersonsIDDetail, PersonIdDetailDto>();
+            CreateMap<CreatePersonOtherDocumentCommand, PersonsOtherDocument>();
+            CreateMap<PersonsOtherDocument,CreatePersonOtherDocumentCommand>();
         }
     }
 }

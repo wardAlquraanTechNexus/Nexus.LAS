@@ -2,17 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts;
 using Nexus.LAS.Application.Contracts.Identity;
-using Nexus.LAS.Application.UseCases.PersonIdDetail;
+using Nexus.LAS.Application.DTOs;
+using Nexus.LAS.Application.UseCases.PersonIdDetail.Commands.CreatePersonIdDetail;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 using Nexus.LAS.Domain.Entities.RegisterEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Repositories;
 using Nexus.LAS.Persistence.Services.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Nexus.LAS.Persistence.Services
 {
@@ -34,7 +30,7 @@ namespace Nexus.LAS.Persistence.Services
                     PersonIdDetailRepo repo = new PersonIdDetailRepo(_context);
 
                     var personIdDetail = _mapper.Map<PersonsIDDetail>(command);
-                    var personIdDetailId = await repo.CreateAsync(personIdDetail);   
+                    var personIdDetailId = await repo.CreateAsync(personIdDetail);
 
 
 
@@ -71,6 +67,32 @@ namespace Nexus.LAS.Persistence.Services
 
             }
 
+        }
+
+        public async Task<PersonIdDetailDto?> GetDTOAsync(int id)
+        {
+            PersonIdDetailRepo repo = new PersonIdDetailRepo(_context);
+            RegisterFileRepo registerFileRepo = new RegisterFileRepo(_context);
+
+            var detail = await repo.GetAsync(id);
+
+            if (detail is null)
+                throw new Exception("The id details not found");
+
+            var detailDto = _mapper.Map<PersonIdDetailDto>(detail);
+
+            var fileData = await registerFileRepo.GetByIds(detail.PersonsIDDetailIdc, detail.Id);
+            var firstFile = fileData.FirstOrDefault();
+
+            if (fileData != null)
+            {
+                detailDto.FileName = firstFile?.Name;
+                detailDto.ContentType = firstFile?.ContentType;
+                detailDto.DataFile = firstFile?.Data;
+
+            }
+
+            return detailDto;
         }
     }
 }
