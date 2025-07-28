@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts.Presistence.Services.Base;
+using Nexus.LAS.Application.DTOs;
 using Nexus.LAS.Application.UseCases.PersonOtherDocumentUseCases.Commands.CreatePersonOtherDocument;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 using System;
@@ -13,6 +14,7 @@ namespace Nexus.LAS.Application.Contracts
     public interface IPersonOtherDocumentService: IGenericService<PersonsOtherDocument>
     {
         Task<int> CreatePersonOtherDocument(CreatePersonOtherDocumentCommand command);
+        Task<PersonOtherDocumentDTO?> GetDTOAsync(int id);
 
     }
 }

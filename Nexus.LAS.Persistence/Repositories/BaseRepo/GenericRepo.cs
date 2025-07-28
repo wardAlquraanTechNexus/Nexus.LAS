@@ -99,10 +99,46 @@ namespace Nexus.LAS.Persistence.Repositories.BaseRepo
             return entity.Id;
         }
 
-        public virtual async Task UpdateAsync(T entity)
+        
+
+        public virtual async Task<bool> UpdateAsync(T entity)
         {
-            _context.Entry(entity).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Entry(entity).State = EntityState.Modified;
+                var affectedRows = await _context.SaveChangesAsync();
+
+                if (affectedRows == 0)
+                {
+                    // No rows were affected, meaning it was deleted or modified by another user
+                    return false;
+                }
+
+                return true;
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                foreach (var entry in ex.Entries)
+                {
+                    if (entry.Entity is T)
+                    {
+                        var databaseValues = await entry.GetDatabaseValuesAsync();
+                        if (databaseValues == null)
+                        {
+                            // Entity was deleted
+                            throw new Exception("The record you're trying to update was deleted.");
+                        }
+                        else
+                        {
+                            // Entity was modified by someone else
+                            // You could either refresh, merge, or throw a more detailed error
+                            throw new Exception("The record was updated by someone else. Please reload and try again.");
+                        }
+                    }
+                }
+
+                throw; // Re-throw if not handled
+            }
         }
 
         public virtual async Task DeleteAsync(int id)

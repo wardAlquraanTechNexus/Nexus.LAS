@@ -84,7 +84,7 @@ namespace Nexus.LAS.Persistence.Services
             var fileData = await registerFileRepo.GetByIds(detail.PersonsIDDetailIdc, detail.Id);
             var firstFile = fileData.FirstOrDefault();
 
-            if (fileData != null)
+            if (firstFile != null)
             {
                 detailDto.FileName = firstFile?.Name;
                 detailDto.ContentType = firstFile?.ContentType;

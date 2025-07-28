@@ -20,17 +20,8 @@ namespace Nexus.LAS.Application.UseCases.PersonUseCases.UpdatePerson.Commands
 
         public async Task<GetAllPersonDto> Handle(UpdatePersonCommand command , CancellationToken cancellationToken)
         {
-            string nameEn = $"{command.FirstNameEn} {command.MiddleNameEn} {command.LastNameEn}";
-            string nameAr = $"{command.FirstNameAr} {command.MiddleNameAr} {command.LastNameAr}";
-            Person person = new Person()
-            {
-                Id = command.Id,
-                PersonEnglishName = nameEn,
-                PersonArabicName = nameAr,
-                PersonShortName = command.ShortName,
-                PersonStatus = command.PersonStatus,
-                Private = command.Private.HasValue  ? command.Private.Value : true
-            };
+
+            Person person = _mapper.Map<Person>(command);
             person = await _personService.UpdatePersonAsync(person);
 
             return _mapper.Map<GetAllPersonDto>(person);

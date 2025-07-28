@@ -98,6 +98,8 @@ namespace Nexus.LAS.Persistence.DatabaseContext
             {
                 entry.Entity.ModifiedAt = DateTime.UtcNow;
                 entry.Entity.ModefiedBy = _userIdentityService.Username;
+                entry.Property(nameof(BaseEntity.CreatedAt)).IsModified = false;
+                entry.Property(nameof(BaseEntity.CreatedBy)).IsModified = false;
             }
         }
         

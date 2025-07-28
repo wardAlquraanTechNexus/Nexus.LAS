@@ -9,12 +9,8 @@ namespace Nexus.LAS.Application.UseCases.PersonUseCases.CreatePerson.Commands
 {
     public class CreatePersonCommand: IRequest<int>
     {
-        public string FirstNameEn {  get; set; }
-        public string? MiddleNameEn {  get; set; } = string.Empty;
-        public string LastNameEn {  get; set; }
-        public string FirstNameAr {  get; set; }
-        public string? MiddleNameAr {  get; set; }
-        public string LastNameAr {  get; set; }
-        public string ShortName {  get; set; }
+        public string PersonEnglishName {  get; set; }
+        public string PersonArabicName {  get; set; }
+        public string PersonShortName {  get; set; }
     }
 }

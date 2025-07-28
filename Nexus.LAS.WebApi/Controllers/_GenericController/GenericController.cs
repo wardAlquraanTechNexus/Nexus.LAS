@@ -56,7 +56,7 @@ namespace Nexus.LAS.WebApi.Controllers._GenericController
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateAsync(Entity entity)
+        public virtual async Task<IActionResult> UpdateAsync(Entity entity)
         {
             await _service.UpdateAsync(entity);
             return Ok(200);

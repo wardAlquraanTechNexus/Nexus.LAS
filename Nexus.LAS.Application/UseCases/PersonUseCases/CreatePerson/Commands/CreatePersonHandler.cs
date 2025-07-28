@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using Nexus.LAS.Application.Contracts;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 using System;
@@ -12,22 +13,17 @@ namespace Nexus.LAS.Application.UseCases.PersonUseCases.CreatePerson.Commands
     public class CreatePersonHandler: IRequestHandler<CreatePersonCommand , int>
     {
         private readonly IPersonService _personService;
+        private readonly IMapper _mapper;
 
-        public CreatePersonHandler(IPersonService personService)
+        public CreatePersonHandler(IPersonService personService, IMapper mapper)
         {
             _personService = personService;
+            _mapper = mapper;
         }
 
         public async Task<int> Handle(CreatePersonCommand command , CancellationToken cancellationToken)
         {
-            string nameEn = $"{command.FirstNameEn} {command.MiddleNameEn} {command.LastNameEn}"; 
-            string nameAr = $"{command.FirstNameAr} {command.MiddleNameAr} {command.LastNameAr}";
-            Person person = new Person()
-            {
-                PersonEnglishName = nameEn,
-                PersonArabicName = nameAr,
-                PersonShortName = command.ShortName
-            };
+            Person person = _mapper.Map<Person>(command);
 
             return await _personService.CreateAsync(person);
         }

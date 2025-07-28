@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts;
 using Nexus.LAS.Application.Contracts.Identity;
+using Nexus.LAS.Application.DTOs;
 using Nexus.LAS.Application.UseCases.PersonIdDetail.Commands.CreatePersonIdDetail;
 using Nexus.LAS.Application.UseCases.PersonOtherDocumentUseCases.Commands.CreatePersonOtherDocument;
 using Nexus.LAS.Domain.Entities.PersonEntities;
@@ -67,6 +68,38 @@ namespace Nexus.LAS.Persistence.Services
             }
 
         }
+
+        public async Task<PersonOtherDocumentDTO?> GetDTOAsync(int id)
+        {
+            PersonOtherDocumentRepo repo = new(_context);
+            RegisterFileRepo registerFileRepo = new RegisterFileRepo(_context);
+            var detail = await repo.GetAsync(id);
+            if (detail is null)
+                throw new Exception("The id details not found");
+
+            var otherDocument = await repo.GetAsync(id);
+            if(otherDocument is null)
+            {
+                throw new Exception("The Other Document Not found");
+            }
+
+            var otherDocumentDto = _mapper.Map<PersonOtherDocumentDTO>(detail);
+
+            var fileData = await registerFileRepo.GetByIds(detail.PersonsOtherDocumentIdc, detail.Id);
+            var firstFile = fileData.FirstOrDefault();
+
+            if (firstFile != null)
+            {
+                otherDocumentDto.FileName = firstFile?.Name;
+                otherDocumentDto.ContentType = firstFile?.ContentType;
+                otherDocumentDto.DataFile = firstFile?.Data;
+
+            }
+
+            return otherDocumentDto;
+
+        }
+
 
     }
 }

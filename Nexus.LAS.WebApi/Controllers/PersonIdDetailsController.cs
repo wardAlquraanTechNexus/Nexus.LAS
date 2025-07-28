@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts;
 using Nexus.LAS.Application.UseCases.PersonIdDetail.Commands.CreatePersonIdDetail;
+using Nexus.LAS.Application.UseCases.PersonIdDetail.Commands.EditPersonIdDetail;
+using Nexus.LAS.Application.UseCases.PersonUseCases.UpdatePerson.Commands;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 using Nexus.LAS.WebApi.Controllers._GenericController;
 
@@ -22,6 +24,17 @@ namespace Nexus.LAS.WebApi.Controllers
 
         [HttpPost]
         public async Task<IActionResult> CreateAsync([FromForm]CreatePersonIdDetailCommand command)
+        {
+            return StatusCode(201, await _mediator.Send(command));
+        }
+        [NonAction]
+        public override Task<IActionResult> UpdateAsync(PersonsIDDetail entity)
+        {
+            return base.UpdateAsync(entity);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdatePersonDetail(EditPersonIdDetailCommand command)
         {
             return StatusCode(201, await _mediator.Send(command));
         }
