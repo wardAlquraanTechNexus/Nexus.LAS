@@ -81,11 +81,11 @@ namespace Nexus.LAS.Identity.Services
                 PhoneNumber = request.PhoneNumber,
                 EmailConfirmed = false
             };
-            string role = UserRoles.Employee;
+            string role = UserRoles.General;
             var isRoleExist = await _roleManager.RoleExistsAsync(role);
             if (!isRoleExist)
             {
-                throw new BadRequestException("Not Found Role");
+                throw new BadRequestException("Role not found");
             }
 
             var result = await _userManager.CreateAsync(user, request.Password);

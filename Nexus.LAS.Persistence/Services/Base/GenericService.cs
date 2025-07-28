@@ -64,12 +64,12 @@ namespace Nexus.LAS.Persistence.Services.Base
                 if (entity.Id is 0)
                 {
                     entity.CreatedBy = _userIdentityService.Username;
-                    entity.CreationDate = DateTime.Now;
+                    entity.CreatedAt = DateTime.Now;
                 }
                 else
                 {
                     entity.ModefiedBy = _userIdentityService.Username;
-                    entity.ModificationDate = DateTime.Now;
+                    entity.ModifiedAt = DateTime.Now;
                 }
 
             }

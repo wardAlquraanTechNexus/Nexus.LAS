@@ -82,7 +82,7 @@ namespace Nexus.LAS.Persistence.DatabaseContext
 
             foreach (var entry in entries)
             {
-                entry.Entity.CreationDate = DateTime.UtcNow;
+                entry.Entity.CreatedAt = DateTime.UtcNow;
                 entry.Entity.CreatedBy =
                     string.IsNullOrEmpty(entry.Entity.CreatedBy) ?
                     _userIdentityService.Username :
@@ -96,7 +96,7 @@ namespace Nexus.LAS.Persistence.DatabaseContext
 
             foreach (var entry in entries)
             {
-                entry.Entity.ModificationDate = DateTime.UtcNow;
+                entry.Entity.ModifiedAt = DateTime.UtcNow;
                 entry.Entity.ModefiedBy = _userIdentityService.Username;
             }
         }
