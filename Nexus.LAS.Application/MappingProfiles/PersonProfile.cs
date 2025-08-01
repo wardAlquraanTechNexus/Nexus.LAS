@@ -13,7 +13,7 @@ using Nexus.LAS.Application.UseCases.PersonOtherDocumentUseCases.Commands.Create
 using Nexus.LAS.Application.UseCases.PersonOtherDocumentUseCases.Commands.EditPersonOtherDocument;
 using Nexus.LAS.Application.UseCases.PersonPhoneUseCases;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Commands.CreatePerson;
-using Nexus.LAS.Application.UseCases.PersonUseCases.Commands.UpdatePerson.Commands;
+using Nexus.LAS.Application.UseCases.PersonUseCases.Commands.UpdatePerson;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 
 namespace Nexus.LAS.Application.MappingProfiles

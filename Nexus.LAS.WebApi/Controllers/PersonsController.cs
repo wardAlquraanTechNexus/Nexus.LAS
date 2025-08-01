@@ -4,7 +4,7 @@ using Nexus.LAS.Application.Contracts;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Commands.BulkChangePrivate;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Commands.BulkChangeStatus;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Commands.CreatePerson;
-using Nexus.LAS.Application.UseCases.PersonUseCases.Commands.UpdatePerson.Commands;
+using Nexus.LAS.Application.UseCases.PersonUseCases.Commands.UpdatePerson;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Queries.GetAllActivePerson;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Queries.GetAllPerson;
 using Nexus.LAS.Domain.Entities.PersonEntities;
