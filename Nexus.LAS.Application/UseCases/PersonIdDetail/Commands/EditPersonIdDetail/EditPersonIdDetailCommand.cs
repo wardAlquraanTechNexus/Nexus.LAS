@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,5 +20,7 @@ namespace Nexus.LAS.Application.UseCases.PersonIdDetail.Commands.EditPersonIdDet
         public DateTime? IDIssueDate { get; set; }
         public DateTime? ExpiryDate { get; set; }
         public bool? ActiveReminder { get; set; }
+        public IFormFile? File { get; set; }
+
     }
 }

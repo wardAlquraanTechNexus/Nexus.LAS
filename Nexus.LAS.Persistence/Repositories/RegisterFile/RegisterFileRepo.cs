@@ -18,7 +18,7 @@ namespace Nexus.LAS.Persistence.Repositories
 
         public async Task<List<RegisterFile>> GetByIds(string idc, int idn)
         {
-            return await _dbSet.Where(x=>x.RegistersIdc == idc && x.RegistersIdn == idn).ToListAsync();
+            return await _dbSet.Where(x=>x.RegistersIdc == idc && x.RegistersIdn == idn).OrderByDescending(x=>x.Id).ToListAsync();
         }
     }
 }

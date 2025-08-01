@@ -24,9 +24,8 @@ namespace Nexus.LAS.Application.UseCases.PersonIdDetail.Commands.EditPersonIdDet
 
         public async Task<int> Handle(EditPersonIdDetailCommand request, CancellationToken cancellationToken)
         {
-            var personDetail = _mapper.Map<PersonsIDDetail>(request);
-            await _personIdDetailService.UpdateAsync(personDetail);
-            return personDetail.Id;
+            await _personIdDetailService.EditPersonIdDetail(request);
+            return request.Id;
         }
     }
 }

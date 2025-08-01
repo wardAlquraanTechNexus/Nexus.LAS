@@ -33,12 +33,12 @@ namespace Nexus.LAS.WebApi.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdatePersonDetail(EditPersonIdDetailCommand command)
+        public async Task<IActionResult> UpdatePersonDetail([FromForm]EditPersonIdDetailCommand command)
         {
             return StatusCode(201, await _mediator.Send(command));
         }
 
-        [HttpGet("GetDTOById/{id}")]
+        [HttpGet("GetDTOById/{id}")] 
         public async Task<IActionResult> GetDTOById(int id)
         {
             var res = await _service.GetDTOAsync(id);

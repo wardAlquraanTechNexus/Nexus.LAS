@@ -4,6 +4,7 @@ using Nexus.LAS.Application.Contracts;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.DTOs;
 using Nexus.LAS.Application.UseCases.PersonIdDetail.Commands.CreatePersonIdDetail;
+using Nexus.LAS.Application.UseCases.PersonIdDetail.Commands.EditPersonIdDetail;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 using Nexus.LAS.Domain.Entities.RegisterEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
@@ -21,7 +22,7 @@ namespace Nexus.LAS.Persistence.Services
             _mapper = mapper;
         }
 
-        public async Task<int> CreatePersonIdDetail([FromForm] CreatePersonIdDetailCommand command)
+        public async Task<int> CreatePersonIdDetail(CreatePersonIdDetailCommand command)
         {
             using (var transaction = await _context.Database.BeginTransactionAsync())
             {
@@ -57,6 +58,56 @@ namespace Nexus.LAS.Persistence.Services
 
                     await transaction.CommitAsync();
                     return personIdDetailId;
+
+                }
+                catch (Exception)
+                {
+                    await transaction.RollbackAsync();
+                    throw;
+                }
+
+            }
+
+        }
+        public async Task<int> EditPersonIdDetail(EditPersonIdDetailCommand command)
+        {
+            using (var transaction = await _context.Database.BeginTransactionAsync())
+            {
+                try
+                {
+                    PersonIdDetailRepo repo = new PersonIdDetailRepo(_context);
+
+                    var personIdDetail = _mapper.Map<PersonsIDDetail>(command);
+                    var personIdDetailId = await repo.UpdateAsync(personIdDetail);
+
+                    if(command.File is not null)
+                    {
+
+                        byte[] bytes;
+
+                        using (var memoryStream = new MemoryStream())
+                        {
+                            await command.File.CopyToAsync(memoryStream);
+                            bytes = memoryStream.ToArray();
+                        }
+
+                        RegisterFileRepo registerFileRepo = new RegisterFileRepo(_context);
+                        RegisterFile registerFile = new RegisterFile
+                        {
+                            RegistersIdc = personIdDetail.PersonsIDDetailIdc,
+                            RegistersIdn = command.Id,
+                            Data = bytes,
+                            ContentType = command.File.ContentType,
+                            Name = command.File.FileName,
+                        };
+
+
+                        await registerFileRepo.CreateAsync(registerFile);
+                    }
+
+
+                    await transaction.CommitAsync();
+                    return command.Id;
 
                 }
                 catch (Exception)
