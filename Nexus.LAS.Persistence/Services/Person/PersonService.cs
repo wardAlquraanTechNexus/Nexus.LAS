@@ -1,8 +1,11 @@
-﻿using Nexus.LAS.Application.Contracts;
+﻿using EFCore.BulkExtensions;
+using Microsoft.EntityFrameworkCore;
+using Nexus.LAS.Application.Contracts;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.DTOs.Base;
-using Nexus.LAS.Application.UseCases.PersonUseCases.GetAllActivePerson;
-using Nexus.LAS.Application.UseCases.PersonUseCases.Queries;
+using Nexus.LAS.Application.UseCases.PersonUseCases.Queries.GetAllActivePerson;
+using Nexus.LAS.Application.UseCases.PersonUseCases.Queries.GetAllPerson;
+using Nexus.LAS.Domain.Constants.Enums;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Repositories;
@@ -36,6 +39,55 @@ namespace Nexus.LAS.Persistence.Services
         {
             PersonRepo personRepo = new PersonRepo(_context);
             return await personRepo.UpdatePersonAsync(entity);
+        }
+
+        public async Task<int> BulkChangeStatus(List<int> personIds, int status)
+        {
+            using var transaction = await _context.Database.BeginTransactionAsync();
+
+            try
+            {
+                var persons = await BulkEditProperty<int>(personIds , nameof(Person.PersonStatus) , status);
+                await transaction.CommitAsync();
+                return persons.Count;
+
+            }
+            catch
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
+        }
+        public async Task<int> BulkChangePrivate(List<int> personIds, bool isPrivate)
+        {
+            using var transaction = await _context.Database.BeginTransactionAsync();
+
+            try
+            {
+                var persons = await BulkEditProperty<bool>(personIds, nameof(Person.Private), isPrivate);
+                await transaction.CommitAsync();
+                return persons.Count;
+
+            }
+            catch
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
+        }
+
+
+
+        private async Task<List<Person>> BulkEditProperty<V>(List<int> personIds, string propertyName , V value)
+        {
+            var people = await _context.People.Where(x => personIds.Contains(x.Id)).ToListAsync();
+            var property = typeof(Person).GetProperty(propertyName);
+            foreach (var person in people)
+            {
+                property.SetValue(person, value);
+            }
+            await _context.BulkInsertOrUpdateAsync(people);
+            return people;
         }
     }
 }

@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts;
 using Nexus.LAS.Application.UseCases.PersonIdDetail.Commands.CreatePersonIdDetail;
 using Nexus.LAS.Application.UseCases.PersonIdDetail.Commands.EditPersonIdDetail;
-using Nexus.LAS.Application.UseCases.PersonUseCases.UpdatePerson.Commands;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 using Nexus.LAS.WebApi.Controllers._GenericController;
 

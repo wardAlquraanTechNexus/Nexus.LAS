@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nexus.LAS.Application.UseCases.PersonUseCases.CreatePerson.Commands
+namespace Nexus.LAS.Application.UseCases.PersonUseCases.Commands.CreatePerson
 {
     public class CreatePersonCommand: IRequest<int>
     {

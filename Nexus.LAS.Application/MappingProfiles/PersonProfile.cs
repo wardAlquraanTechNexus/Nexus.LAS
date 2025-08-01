@@ -12,14 +12,9 @@ using Nexus.LAS.Application.UseCases.PersonIdDetail.Commands.EditPersonIdDetail;
 using Nexus.LAS.Application.UseCases.PersonOtherDocumentUseCases.Commands.CreatePersonOtherDocument;
 using Nexus.LAS.Application.UseCases.PersonOtherDocumentUseCases.Commands.EditPersonOtherDocument;
 using Nexus.LAS.Application.UseCases.PersonPhoneUseCases;
-using Nexus.LAS.Application.UseCases.PersonUseCases.CreatePerson.Commands;
-using Nexus.LAS.Application.UseCases.PersonUseCases.UpdatePerson.Commands;
+using Nexus.LAS.Application.UseCases.PersonUseCases.Commands.CreatePerson;
+using Nexus.LAS.Application.UseCases.PersonUseCases.Commands.UpdatePerson.Commands;
 using Nexus.LAS.Domain.Entities.PersonEntities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Nexus.LAS.Application.MappingProfiles
 {

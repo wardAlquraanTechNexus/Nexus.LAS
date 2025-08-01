@@ -4,7 +4,7 @@ using Nexus.LAS.Application.Contracts;
 using Nexus.LAS.Application.DTOs.PersonDTOs;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 
-namespace Nexus.LAS.Application.UseCases.PersonUseCases.UpdatePerson.Commands
+namespace Nexus.LAS.Application.UseCases.PersonUseCases.Commands.UpdatePerson.Commands
 {
     public class UpdatePersonHandler: IRequestHandler<UpdatePersonCommand, GetAllPersonDto>
     {

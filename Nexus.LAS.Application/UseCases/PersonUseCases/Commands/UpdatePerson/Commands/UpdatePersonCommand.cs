@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Nexus.LAS.Application.DTOs.PersonDTOs;
 
-namespace Nexus.LAS.Application.UseCases.PersonUseCases.UpdatePerson.Commands
+namespace Nexus.LAS.Application.UseCases.PersonUseCases.Commands.UpdatePerson.Commands
 {
     public class UpdatePersonCommand: IRequest<GetAllPersonDto>
     {

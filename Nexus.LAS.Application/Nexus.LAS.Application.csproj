@@ -20,8 +20,4 @@
     <ProjectReference Include="..\Nexus.LAS.Domain\Nexus.LAS.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="UseCases\PersonUseCases\NewFolder\" />
-  </ItemGroup>
-
 </Project>

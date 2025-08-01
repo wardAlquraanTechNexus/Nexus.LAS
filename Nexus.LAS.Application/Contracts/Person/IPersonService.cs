@@ -1,14 +1,8 @@
 ﻿using Nexus.LAS.Application.Contracts.Presistence.Services.Base;
 using Nexus.LAS.Application.DTOs.Base;
-using Nexus.LAS.Application.UseCases.PersonUseCases.GetAllActivePerson;
-using Nexus.LAS.Application.UseCases.PersonUseCases.Queries;
-using Nexus.LAS.Domain.Entities.Base;
+using Nexus.LAS.Application.UseCases.PersonUseCases.Queries.GetAllActivePerson;
+using Nexus.LAS.Application.UseCases.PersonUseCases.Queries.GetAllPerson;
 using Nexus.LAS.Domain.Entities.PersonEntities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Nexus.LAS.Application.Contracts
 {
@@ -17,6 +11,8 @@ namespace Nexus.LAS.Application.Contracts
         Task<PagingResult<Person>> GetAllPerson(GetAllPersonQuery personQuery);
         Task<PagingResult<Person>> GetAllActivePerson(GetAllActivePersonQuery personQuery);
         Task<Person> UpdatePersonAsync(Person entity);
+        Task<int> BulkChangeStatus(List<int> personIds, int status);
+        Task<int> BulkChangePrivate(List<int> personIds, bool isPrivate);
 
     }
 }

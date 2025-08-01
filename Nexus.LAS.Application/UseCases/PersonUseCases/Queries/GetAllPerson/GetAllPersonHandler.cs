@@ -5,7 +5,7 @@ using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.DTOs.PersonDTOs;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 
-namespace Nexus.LAS.Application.UseCases.PersonUseCases.Queries
+namespace Nexus.LAS.Application.UseCases.PersonUseCases.Queries.GetAllPerson
 {
     public class GetAllPersonHandler : IRequestHandler<GetAllPersonQuery,PagingResult<GetAllPersonDto>>
     {
