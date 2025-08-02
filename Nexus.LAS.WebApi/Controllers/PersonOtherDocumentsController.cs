@@ -42,7 +42,7 @@ namespace Nexus.LAS.WebApi.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdatePersonDetail(EditPersonOtherDocumentCommand command)
+        public async Task<IActionResult> UpdatePersonDetail([FromForm]EditPersonOtherDocumentCommand command)
         {
             return StatusCode(201, await _mediator.Send(command));
         }

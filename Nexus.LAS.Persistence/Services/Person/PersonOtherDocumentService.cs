@@ -4,7 +4,9 @@ using Nexus.LAS.Application.Contracts;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.DTOs;
 using Nexus.LAS.Application.UseCases.PersonIdDetail.Commands.CreatePersonIdDetail;
+using Nexus.LAS.Application.UseCases.PersonIdDetail.Commands.EditPersonIdDetail;
 using Nexus.LAS.Application.UseCases.PersonOtherDocumentUseCases.Commands.CreatePersonOtherDocument;
+using Nexus.LAS.Application.UseCases.PersonOtherDocumentUseCases.Commands.EditPersonOtherDocument;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 using Nexus.LAS.Domain.Entities.RegisterEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
@@ -99,6 +101,58 @@ namespace Nexus.LAS.Persistence.Services
             return otherDocumentDto;
 
         }
+
+        public async Task<int> EditPersonOtherDocument(EditPersonOtherDocumentCommand command)
+        {
+            using (var transaction = await _context.Database.BeginTransactionAsync())
+            {
+                try
+                {
+                    PersonOtherDocumentRepo repo = new(_context);
+
+                    var personsOtherDocument = _mapper.Map<PersonsOtherDocument>(command);
+                    await repo.UpdateAsync(personsOtherDocument);
+
+                    if (command.File is not null)
+                    {
+
+                        byte[] bytes;
+
+                        using (var memoryStream = new MemoryStream())
+                        {
+                            await command.File.CopyToAsync(memoryStream);
+                            bytes = memoryStream.ToArray();
+                        }
+
+                        RegisterFileRepo registerFileRepo = new RegisterFileRepo(_context);
+                        RegisterFile registerFile = new RegisterFile
+                        {
+                            RegistersIdc = personsOtherDocument.PersonsOtherDocumentIdc,
+                            RegistersIdn = command.Id,
+                            Data = bytes,
+                            ContentType = command.File.ContentType,
+                            Name = command.File.FileName,
+                        };
+
+
+                        await registerFileRepo.CreateAsync(registerFile);
+                    }
+
+
+                    await transaction.CommitAsync();
+                    return command.Id;
+
+                }
+                catch (Exception)
+                {
+                    await transaction.RollbackAsync();
+                    throw;
+                }
+
+            }
+
+        }
+
 
 
     }

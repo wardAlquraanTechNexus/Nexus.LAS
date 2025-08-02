@@ -23,8 +23,7 @@ namespace Nexus.LAS.Application.UseCases.PersonOtherDocumentUseCases.Commands.Ed
 
         public async Task<int> Handle(EditPersonOtherDocumentCommand command , CancellationToken cancellationToken)
         {
-            var otherDocument = _mapper.Map<PersonsOtherDocument>(command);
-            await _personOtherDocumentService.UpdateAsync(otherDocument);
+            await _personOtherDocumentService.EditPersonOtherDocument(command);
             return 1;
         }
     }
