@@ -26,7 +26,7 @@ namespace Nexus.LAS.WebApi.Controllers
         {
             return StatusCode(201, await _mediator.Send(command));
         }
-        [NonAction]
+        [HttpPut("UpdateByBody")]
         public override Task<IActionResult> UpdateAsync(PersonsIDDetail entity)
         {
             return base.UpdateAsync(entity);
