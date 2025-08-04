@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.DTOs;
@@ -80,18 +79,25 @@ namespace Nexus.LAS.Persistence.Services
                     var personIdDetail = _mapper.Map<PersonsIDDetail>(command);
                     var personIdDetailId = await repo.UpdateAsync(personIdDetail);
 
-                    if(command.File is not null)
+                    if (command.File is not null)
                     {
+                        RegisterFileRepo registerFileRepo = new RegisterFileRepo(_context);
+                        
+                        // Delete existing files for this ID detail
+                        var existingFiles = await registerFileRepo.GetByIds(personIdDetail.PersonsIDDetailIdc, command.Id);
+                        foreach (var existingFile in existingFiles)
+                        {
+                            await registerFileRepo.DeleteAsync(existingFile.Id);
+                        }
 
+                        // Add new file
                         byte[] bytes;
-
                         using (var memoryStream = new MemoryStream())
                         {
                             await command.File.CopyToAsync(memoryStream);
                             bytes = memoryStream.ToArray();
                         }
 
-                        RegisterFileRepo registerFileRepo = new RegisterFileRepo(_context);
                         RegisterFile registerFile = new RegisterFile
                         {
                             RegistersIdc = personIdDetail.PersonsIDDetailIdc,
@@ -101,10 +107,8 @@ namespace Nexus.LAS.Persistence.Services
                             Name = command.File.FileName,
                         };
 
-
                         await registerFileRepo.CreateAsync(registerFile);
                     }
-
 
                     await transaction.CommitAsync();
                     return command.Id;

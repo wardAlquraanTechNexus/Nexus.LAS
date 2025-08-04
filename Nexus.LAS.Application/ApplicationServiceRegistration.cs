@@ -1,6 +1,8 @@
-﻿using MediatR;
+﻿using FluentValidation;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Nexus.LAS.Application.Behaviors;
 using Nexus.LAS.Application.UseCases;
 
 namespace Nexus.LAS.Application
@@ -14,6 +16,12 @@ namespace Nexus.LAS.Application
             services.AddAutoMapper(applicationAssembly);
 
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
+            
+            // Add FluentValidation
+            services.AddValidatorsFromAssembly(applicationAssembly);
+            
+            // Add validation behavior to MediatR pipeline
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
             
             services.AddScoped<IUserContext, UserContext>();
 

@@ -76,7 +76,41 @@ namespace Nexus.LAS.Persistence.Services
             }
         }
 
+        public async Task<bool> IsPersonEnglishNameUniqueAsync(string personEnglishName, int? excludeId = null)
+        {
+            var query = _context.People.Where(p => p.PersonEnglishName == personEnglishName);
+            
+            if (excludeId.HasValue)
+            {
+                query = query.Where(p => p.Id != excludeId.Value);
+            }
+            
+            return !await query.AnyAsync();
+        }
 
+        public async Task<bool> IsPersonArabicNameUniqueAsync(string personArabicName, int? excludeId = null)
+        {
+            var query = _context.People.Where(p => p.PersonArabicName == personArabicName);
+            
+            if (excludeId.HasValue)
+            {
+                query = query.Where(p => p.Id != excludeId.Value);
+            }
+            
+            return !await query.AnyAsync();
+        }
+
+        public async Task<bool> IsPersonShortNameUniqueAsync(string personShortName, int? excludeId = null)
+        {
+            var query = _context.People.Where(p => p.PersonShortName == personShortName);
+            
+            if (excludeId.HasValue)
+            {
+                query = query.Where(p => p.Id != excludeId.Value);
+            }
+            
+            return !await query.AnyAsync();
+        }
 
         private async Task<List<Person>> BulkEditProperty<V>(List<int> personIds, string propertyName , V value)
         {
