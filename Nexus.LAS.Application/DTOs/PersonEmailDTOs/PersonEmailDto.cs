@@ -12,9 +12,9 @@ namespace Nexus.LAS.Application.DTOs.PersonEmailDTOs
         public string Email { get; set; }
         public bool EmailPrimary { get; set; }
         public string? CreatedBy { get; set; }
-        public DateTime? CreationDate { get; set; }
-        public string? ModefiedBy { get; set; }
-        public DateTime? ModificationDate { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public string? ModifiedBy { get; set; }
+        public DateTime? ModifiedAt { get; set; }
         public int PersonsIdn { get; set; }
 
     }

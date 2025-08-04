@@ -97,7 +97,7 @@ namespace Nexus.LAS.Persistence.DatabaseContext
             foreach (var entry in entries)
             {
                 entry.Entity.ModifiedAt = DateTime.UtcNow;
-                entry.Entity.ModefiedBy = _userIdentityService.Username;
+                entry.Entity.ModifiedBy = _userIdentityService.Username;
                 entry.Property(nameof(BaseEntity.CreatedAt)).IsModified = false;
                 entry.Property(nameof(BaseEntity.CreatedBy)).IsModified = false;
             }

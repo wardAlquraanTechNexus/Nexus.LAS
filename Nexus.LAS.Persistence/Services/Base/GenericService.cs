@@ -68,7 +68,7 @@ namespace Nexus.LAS.Persistence.Services.Base
                 }
                 else
                 {
-                    entity.ModefiedBy = _userIdentityService.Username;
+                    entity.ModifiedBy = _userIdentityService.Username;
                     entity.ModifiedAt = DateTime.Now;
                 }
 
