@@ -27,5 +27,11 @@ namespace Nexus.LAS.Persistence.Repositories
 
             await _context.SaveChangesAsync();
         }
+
+        public async Task<List<PersonsAddress>> GetListByPersonId(int personId)
+        {
+            IQueryable<PersonsAddress> queryable = _dbSet.Where(x => x.PersonsIdn == personId);
+            return await queryable.ToListAsync();
+        }
     }
 }

@@ -1,21 +1,29 @@
-﻿using EFCore.BulkExtensions;
+﻿using ClosedXML.Excel;
+using EFCore.BulkExtensions;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Nexus.LAS.Application.Contracts;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.DTOs.Base;
+using Nexus.LAS.Application.UseCases.PersonUseCases.Queries;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Queries.GetAllActivePerson;
-using Nexus.LAS.Application.UseCases.PersonUseCases.Queries.GetAllPerson;
 using Nexus.LAS.Domain.Constants.Enums;
+using Nexus.LAS.Domain.Entities.Base;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Repositories;
 using Nexus.LAS.Persistence.Services.Base;
+using QuestPDF.Fluent;
+using QuestPDF.Helpers;
+using QuestPDF.Infrastructure;
+using System.Reflection;
+using System.Threading.Tasks;
 
 namespace Nexus.LAS.Persistence.Services
 {
     public class PersonService : GenericService<Person>, IPersonService
     {
-        public PersonService(NexusLASDbContext context , IUserIdentityService userIdentityService) : base(context, userIdentityService)
+        public PersonService(NexusLASDbContext context, IUserIdentityService userIdentityService) : base(context, userIdentityService)
         {
         }
 
@@ -47,7 +55,7 @@ namespace Nexus.LAS.Persistence.Services
 
             try
             {
-                var persons = await BulkEditProperty<int>(personIds , nameof(Person.PersonStatus) , status);
+                var persons = await BulkEditProperty<int>(personIds, nameof(Person.PersonStatus), status);
                 await transaction.CommitAsync();
                 return persons.Count;
 
@@ -79,40 +87,40 @@ namespace Nexus.LAS.Persistence.Services
         public async Task<bool> IsPersonEnglishNameUniqueAsync(string personEnglishName, int? excludeId = null)
         {
             var query = _context.People.Where(p => p.PersonEnglishName == personEnglishName);
-            
+
             if (excludeId.HasValue)
             {
                 query = query.Where(p => p.Id != excludeId.Value);
             }
-            
+
             return !await query.AnyAsync();
         }
 
         public async Task<bool> IsPersonArabicNameUniqueAsync(string personArabicName, int? excludeId = null)
         {
             var query = _context.People.Where(p => p.PersonArabicName == personArabicName);
-            
+
             if (excludeId.HasValue)
             {
                 query = query.Where(p => p.Id != excludeId.Value);
             }
-            
+
             return !await query.AnyAsync();
         }
 
         public async Task<bool> IsPersonShortNameUniqueAsync(string personShortName, int? excludeId = null)
         {
             var query = _context.People.Where(p => p.PersonShortName == personShortName);
-            
+
             if (excludeId.HasValue)
             {
                 query = query.Where(p => p.Id != excludeId.Value);
             }
-            
+
             return !await query.AnyAsync();
         }
 
-        private async Task<List<Person>> BulkEditProperty<V>(List<int> personIds, string propertyName , V value)
+        private async Task<List<Person>> BulkEditProperty<V>(List<int> personIds, string propertyName, V value)
         {
             var people = await _context.People.Where(x => personIds.Contains(x.Id)).ToListAsync();
             var property = typeof(Person).GetProperty(propertyName);
@@ -123,5 +131,94 @@ namespace Nexus.LAS.Persistence.Services
             await _context.BulkInsertOrUpdateAsync(people);
             return people;
         }
+
+
+        public async Task<byte[]> ExportToPdf(int id)
+        {
+            var repo = new PersonRepo(_context);
+            PersonIdDetailRepo personIdDetailRepo = new(_context);
+            PersonOtherDocumentRepo personOtherDocumentRepo = new(_context);
+            PersonEmailRepo personEmailRepo = new(_context);
+            PersonPhoneRepo personPhoneRepo = new(_context);
+            PersonAddressRepo personAddressRepo = new(_context);
+
+            var person = await repo.GetAsync(id);
+            var personIdDetails = await personIdDetailRepo.GetListByPersonId(id);
+            var personsOtherDocuments = await personOtherDocumentRepo.GetListByPersonId(id);
+            var personEmails = await personEmailRepo.GetListByPersonId(id);
+            var personPhones = await personPhoneRepo.GetListByPersonId(id);
+            var personAddress = await personAddressRepo.GetListByPersonId(id);
+
+            var document = Document.Create(container =>
+            {
+                container.Page(page =>
+                {
+                    page.Margin(30);
+                    page.Size(PageSizes.A4);
+                    page.Content()
+                        .Column(column =>
+                        {
+                            column.Item().Background(Colors.Black).Padding(10).AlignCenter().Text("Person Details")
+                                            .FontSize(20)
+                                            .FontColor(Colors.White)
+                                            .Bold();
+
+                            column.Item().Text($"Name En: {person.PersonEnglishName}");
+                            column.Item().Text($"Name Ar: {person.PersonArabicName}");
+                            column.Item().Text($"Short Name: {person.PersonShortName}");
+
+                            column.Item().Padding(10).Text(string.Empty);
+
+                            column.CreateTable(personIdDetails, new List<PdfDisplayColumn>()
+                                {
+                                    new PdfDisplayColumn("Type", nameof(PersonsIDDetail.Type)),
+                                    new PdfDisplayColumn("Nationality", nameof(PersonsIDDetail.Nationality)),
+                                    new PdfDisplayColumn("Place Of Issue", nameof(PersonsIDDetail.PlaceOfIssue)),
+                                    new PdfDisplayColumn("Number", nameof(PersonsIDDetail.IDNumber)),
+                                    new PdfDisplayColumn("Issue Date", nameof(PersonsIDDetail.IDIssueDate)),
+                                    new PdfDisplayColumn("Expiry Date", nameof(PersonsIDDetail.ExpiryDate)),
+                                    new PdfDisplayColumn("Primary", nameof(PersonsIDDetail.IsPrimary)),
+                                }, "Document Details");
+                            
+                            column.Item().Padding(10).Text(string.Empty);
+
+                            column.CreateTable(personPhones, new List<PdfDisplayColumn>()
+                                {
+                                    new PdfDisplayColumn("Type", nameof(PersonsPhone.PhoneType)),
+                                    new PdfDisplayColumn("Phone Number", nameof(PersonsPhone.PhoneNumber)),
+                                    new PdfDisplayColumn("Phone Primary", nameof(PersonsPhone.PhonePrimary)),
+                                }, "Phones");
+
+                            column.Item().Padding(10).Text(string.Empty);
+
+                            column.CreateTable(personEmails, new List<PdfDisplayColumn>()
+                                {
+                                    new PdfDisplayColumn("Email Primary", nameof(PersonsEmail.EmailPrimary)),
+                                    new PdfDisplayColumn("Email", nameof(PersonsEmail.Email)),
+                                }, "Emails");
+                            
+                            column.Item().Padding(10).Text(string.Empty);
+
+                            column.CreateTable(personAddress, new List<PdfDisplayColumn>()
+                                {
+                                    new PdfDisplayColumn("Address Primary", nameof(PersonsAddress.AddressPrimary)),
+                                    new PdfDisplayColumn("Address 1", nameof(PersonsAddress.AddressLine1)),
+                                    new PdfDisplayColumn("Address 2", nameof(PersonsAddress.AddressLine2)),
+                                    new PdfDisplayColumn("Address 3", nameof(PersonsAddress.AddressLine3)),
+                                    new PdfDisplayColumn("Po Box Numeber", nameof(PersonsAddress.POBoxNumber)),
+                                    new PdfDisplayColumn("Po Box City", nameof(PersonsAddress.POBoxCity)),
+                                    new PdfDisplayColumn("Po Box Country", nameof(PersonsAddress.POBoxCountry)),
+                                }, "Addresses");
+                        });
+                });
+            });
+
+            using var ms = new MemoryStream();
+            document.GeneratePdf(ms);
+            return ms.ToArray();
+        }
+
+        
+
     }
 }

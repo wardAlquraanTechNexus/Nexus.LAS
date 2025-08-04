@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Nexus.LAS.Application.DTOs.PersonDTOs
+﻿namespace Nexus.LAS.Application.DTOs.PersonDTOs
 {
     public class GetAllPersonDto
     {
@@ -17,8 +11,5 @@ namespace Nexus.LAS.Application.DTOs.PersonDTOs
         public int PersonStatus { get; set; }
         public string FPCCode { get; set; }
         public bool Private { get; set; }
-
-
-
     }
 }

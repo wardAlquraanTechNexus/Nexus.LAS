@@ -7,6 +7,7 @@ using Nexus.LAS.Persistence;
 using Nexus.LAS.WebApi.Extensions;
 using Nexus.LAS.WebApi.HealthChecks;
 using Nexus.LAS.WebApi.Middlewares;
+using QuestPDF.Infrastructure;
 using Serilog;
 using System.Text.Json.Serialization;
 
@@ -86,13 +87,15 @@ builder.Services.AddControllers(options =>
 // Register middleware services
 builder.Services.AddScoped<RequestTimeLoggingMiddleware>();
 
+QuestPDF.Settings.License = LicenseType.Community;
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline - ORDER MATTERS!
 
 // 1. Exception handling should be first to catch all exceptions
 app.UseGlobalExceptionHandling();
-
+QuestPDF.Settings.License = LicenseType.Community;
 // 2. HTTPS redirection
 app.UseHttpsRedirection();
 

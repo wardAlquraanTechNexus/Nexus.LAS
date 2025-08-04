@@ -1,4 +1,5 @@
-﻿using Nexus.LAS.Domain.Entities.PersonEntities;
+﻿using Microsoft.EntityFrameworkCore;
+using Nexus.LAS.Domain.Entities.PersonEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Repositories.BaseRepo;
 using System;
@@ -13,6 +14,12 @@ namespace Nexus.LAS.Persistence.Repositories
     {
         public PersonIdDetailRepo(NexusLASDbContext context) : base(context)
         {
+        }
+
+        public async Task<List<PersonsIDDetail>> GetListByPersonId(int personId)
+        {
+            IQueryable<PersonsIDDetail> queryable = _dbSet.Where(x=>x.PersonsIdn == personId);
+            return await queryable.ToListAsync();
         }
     }
 }

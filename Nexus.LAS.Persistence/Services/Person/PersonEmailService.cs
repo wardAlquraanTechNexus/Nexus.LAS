@@ -1,4 +1,5 @@
-﻿using Nexus.LAS.Application.Contracts;
+﻿using Microsoft.AspNetCore.Http;
+using Nexus.LAS.Application.Contracts;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
@@ -11,9 +12,10 @@ namespace Nexus.LAS.Persistence.Services
     {
         public PersonEmailService(NexusLASDbContext context, IUserIdentityService userIdentityService) : base(context, userIdentityService)
         {
-            
+
         }
 
+        
         public override async Task DeleteAsync(int id)
         {
             var repo = new PersonEmailRepo(_context);

@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nexus.LAS.Application.UseCases.PersonUseCases.Queries.GetAllPerson
+namespace Nexus.LAS.Application.UseCases.PersonUseCases.Queries
 {
     public class GetAllPersonQuery: BaseParams , IRequest<PagingResult<GetAllPersonDto>>
     {

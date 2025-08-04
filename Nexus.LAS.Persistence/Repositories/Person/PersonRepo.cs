@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Nexus.LAS.Application.DTOs.Base;
+using Nexus.LAS.Application.UseCases.PersonUseCases.Queries;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Queries.GetAllActivePerson;
-using Nexus.LAS.Application.UseCases.PersonUseCases.Queries.GetAllPerson;
 using Nexus.LAS.Domain.Constants.Enums;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 using Nexus.LAS.Domain.ExtensionMethods;

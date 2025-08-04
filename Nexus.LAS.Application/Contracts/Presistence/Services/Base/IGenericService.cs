@@ -4,6 +4,7 @@ using Nexus.LAS.Domain.Entities.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,5 +20,7 @@ namespace Nexus.LAS.Application.Contracts.Presistence.Services.Base
         Task UpdateAsync(T entity);
         Task DeleteAsync(int entity);
         Task<List<T>> BulkUpsertAsync(List<T> entities);
+        Task<byte[]> ExportToExcel(IQueryCollection query);
+        Task<byte[]> ExportToExcel(IQueryCollection query, PropertyInfo[] properties);
     }
 }

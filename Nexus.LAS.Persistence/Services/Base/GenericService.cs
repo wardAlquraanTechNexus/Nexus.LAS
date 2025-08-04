@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ClosedXML.Excel;
+using Microsoft.AspNetCore.Http;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.Contracts.Presistence.Services.Base;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Domain.Entities.Base;
 using Nexus.LAS.Persistence.DatabaseContext;
+using Nexus.LAS.Persistence.Repositories;
 using Nexus.LAS.Persistence.Repositories.BaseRepo;
+using System.Reflection;
 
 namespace Nexus.LAS.Persistence.Services.Base
 {
@@ -79,5 +82,57 @@ namespace Nexus.LAS.Persistence.Services.Base
             return await repo.BulkUpsertAsync(entities);
         }
 
+        public async Task<byte[]> ExportToExcel(IQueryCollection query)
+        {
+            var properties = typeof(T).GetProperties();
+            return await ExportToExcel(query , properties);   
+        }
+        public async Task<byte[]> ExportToExcel(IQueryCollection query , PropertyInfo[] properties)
+        {
+            var repo = new GenericRepo<T>(_context);
+            var data = await repo.GetAllAsync(query);
+            using (var workbook = new XLWorkbook())
+            {
+                var worksheet = workbook.Worksheets.Add(nameof(T));
+                var propertyNames = properties.Select(x => x.Name).ToArray();
+                var entityProps = typeof(T).GetProperties().Where(x => propertyNames.Contains(x.Name)).ToArray();
+
+                // Set header cells
+                for (int col = 0; col < entityProps.Length; col++)
+                {
+                    worksheet.Cell(1, col + 1).Value = properties[col].Name;
+                }
+                var headerRange = worksheet.Range(1, 1, 1, entityProps.Length);
+                headerRange.SetAutoFilter();
+
+                // Style header
+                headerRange.Style.Fill.BackgroundColor = XLColor.Teal;
+                headerRange.Style.Font.Bold = true;
+                headerRange.Style.Font.FontColor = XLColor.White;
+                headerRange.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                headerRange.Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
+
+                // Add autofilter to header row
+
+                int row = 2;
+                foreach (var item in data)
+                {
+                    for (int col = 0; col < entityProps.Length; col++)
+                    {
+                        var value = entityProps[col].GetValue(item);
+                        worksheet.Cell(row, col + 1).Value = value is null ? string.Empty : value.ToString();
+                    }
+                    row++;
+                }
+                worksheet.Columns().AdjustToContents();
+
+                using (var stream = new MemoryStream())
+                {
+                    workbook.SaveAs(stream);
+                    stream.Seek(0, SeekOrigin.Begin);
+                    return stream.ToArray();
+                }
+            }
+        }
     }
 }

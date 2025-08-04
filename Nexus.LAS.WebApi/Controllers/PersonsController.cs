@@ -1,12 +1,14 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts;
+using Nexus.LAS.Application.DTOs;
+using Nexus.LAS.Application.UseCases._GenericUseCases.Queries;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Commands.BulkChangePrivate;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Commands.BulkChangeStatus;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Commands.CreatePerson;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Commands.UpdatePerson;
+using Nexus.LAS.Application.UseCases.PersonUseCases.Queries;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Queries.GetAllActivePerson;
-using Nexus.LAS.Application.UseCases.PersonUseCases.Queries.GetAllPerson;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 using Nexus.LAS.WebApi.Controllers._GenericController;
 
@@ -47,6 +49,19 @@ namespace Nexus.LAS.WebApi.Controllers
         public async Task<IActionResult> BulkChangePrivate([FromBody]BulkChangePrivateCommand command)
         {
             return Ok(await _mediator.Send(command));
+        }
+
+        [HttpGet(nameof(ExportToExcel))]
+        public async Task<IActionResult> ExportToExcel()
+        {
+            var query = new GetBaseQuery<ExportPersonToExcelDto>() { Query = Request.Query };
+            return Ok(await _mediator.Send(query));
+        }
+        [HttpGet(nameof(ExportToPdf))]
+        public async Task<IActionResult> ExportToPdf([FromQuery]int id)
+        {
+            var query = new ExportPersonToPdfQuery() { Id = id};
+            return Ok(await _mediator.Send(query));
         }
     }
 }
