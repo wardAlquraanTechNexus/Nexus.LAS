@@ -2953,6 +2953,10 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasDatabaseName("IX_PersonsEmails_Email_Unique");
+
                     b.ToTable("PersonsEmails");
                 });
 

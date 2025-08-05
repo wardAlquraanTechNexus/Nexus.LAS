@@ -12,8 +12,8 @@ using Nexus.LAS.Persistence.DatabaseContext;
 namespace Nexus.LAS.Persistence.Migrations
 {
     [DbContext(typeof(NexusLASDbContext))]
-    [Migration("20250728130657_Initial Migration New Dev")]
-    partial class InitialMigrationNewDev
+    [Migration("20250805111124_Initial Migration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -87,11 +87,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("ToAmount")
                         .HasColumnType("bigint")
@@ -141,11 +141,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CompaniesActivityIdc", "Id");
 
@@ -208,11 +208,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PoBoxCity")
                         .IsRequired()
@@ -271,11 +271,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("PersonsIdn")
                         .HasColumnType("int")
@@ -352,11 +352,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Note")
                         .IsRequired()
@@ -410,11 +410,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CompaniesBoardIdc", "Id");
 
@@ -465,11 +465,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PersonIdn")
                         .HasColumnType("int")
@@ -548,11 +548,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CompaniesCapitalIdc", "Id");
 
@@ -623,11 +623,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CompaniesChamberOfCommerceIdc", "Id");
 
@@ -701,11 +701,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CompaniesContractIdc", "Id");
 
@@ -756,11 +756,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CompaniesEmailIdc", "Id");
 
@@ -813,11 +813,11 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("LeaseContractExpiryDate");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CompaniesLeaseContractIdc", "Id");
 
@@ -858,11 +858,11 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("int")
                         .HasColumnName("LeaseRegisters_IDN");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id", "LeaseRegistersIdc");
 
@@ -937,11 +937,11 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("LicenseStatus");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CompaniesLicenseIdc", "Id");
 
@@ -992,11 +992,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CompaniesOtherContractIdc", "Id");
 
@@ -1043,11 +1043,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Notes")
                         .IsRequired()
@@ -1106,11 +1106,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
@@ -1167,11 +1167,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RegistersIdc")
                         .IsRequired()
@@ -1234,11 +1234,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("ShareHolderGroupActive")
                         .HasColumnType("bit")
@@ -1357,11 +1357,11 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("NumberOfPartners")
                         .HasColumnType("int");
@@ -1489,11 +1489,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SharepointFilename")
                         .IsRequired()
@@ -1548,11 +1548,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("DocumentIdc", "Id", "RegistersIdc", "RegistersIdn", "Owner");
 
@@ -1602,11 +1602,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PersonsIdn")
                         .HasColumnType("int")
@@ -1683,11 +1683,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -1736,11 +1736,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Private")
                         .HasColumnType("bit")
@@ -1806,11 +1806,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("FPCsOdIdc", "Id");
 
@@ -1866,11 +1866,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("FPCsOdsActionIdc", "Id");
 
@@ -1951,11 +1951,11 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("LawFirmWebsite");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Private")
                         .HasColumnType("bit")
@@ -2006,11 +2006,11 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("int")
                         .HasColumnName("LawFirms_IDN");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -2086,11 +2086,11 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("int")
                         .HasColumnName("LawFirms_IDN");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone1")
                         .HasMaxLength(50)
@@ -2153,11 +2153,11 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("int")
                         .HasColumnName("LawFirms_IDN");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -2197,11 +2197,11 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("int")
                         .HasColumnName("LawFirms_IDN");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasMaxLength(100)
@@ -2299,11 +2299,11 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("nvarchar(1000)")
                         .HasColumnName("MapReference");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NationalityPlural")
                         .HasMaxLength(500)
@@ -2382,11 +2382,11 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("nvarchar(1)")
                         .HasColumnName("MinorUnit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NumericCode")
                         .HasMaxLength(3)
@@ -2450,11 +2450,11 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("MenuValue");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Rank")
                         .HasColumnType("int")
@@ -2501,11 +2501,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -2567,11 +2567,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("GroupId", "MenuId");
 
@@ -2616,11 +2616,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -2668,11 +2668,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -2705,14 +2705,15 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PersonArabicName")
-                        .HasColumnType("nvarchar(max)")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)")
                         .HasColumnName("PersonArabicName");
 
                     b.Property<string>("PersonCode")
@@ -2721,7 +2722,8 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnName("PersonCode");
 
                     b.Property<string>("PersonEnglishName")
-                        .HasColumnType("nvarchar(max)")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)")
                         .HasColumnName("PersonEnglishName");
 
                     b.Property<string>("PersonIdc")
@@ -2731,7 +2733,8 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnOrder(0);
 
                     b.Property<string>("PersonShortName")
-                        .HasColumnType("nvarchar(max)")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)")
                         .HasColumnName("PersonShortName");
 
                     b.Property<int>("PersonStatus")
@@ -2747,6 +2750,21 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnName("Website");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PersonArabicName")
+                        .IsUnique()
+                        .HasDatabaseName("IX_Persons_PersonArabicName_Unique")
+                        .HasFilter("[PersonArabicName] IS NOT NULL");
+
+                    b.HasIndex("PersonEnglishName")
+                        .IsUnique()
+                        .HasDatabaseName("IX_Persons_PersonEnglishName_Unique")
+                        .HasFilter("[PersonEnglishName] IS NOT NULL");
+
+                    b.HasIndex("PersonShortName")
+                        .IsUnique()
+                        .HasDatabaseName("IX_Persons_PersonShortName_Unique")
+                        .HasFilter("[PersonShortName] IS NOT NULL");
 
                     b.ToTable("Persons");
                 });
@@ -2794,11 +2812,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("POBoxCity")
                         .HasColumnType("nvarchar(max)")
@@ -2870,11 +2888,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PersonsIdn")
                         .HasColumnType("int")
@@ -2921,11 +2939,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PersonsEmailIdc")
                         .HasColumnType("nvarchar(max)")
@@ -2937,6 +2955,10 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnName("Persons_IDN");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasDatabaseName("IX_PersonsEmails_Email_Unique");
 
                     b.ToTable("PersonsEmails");
                 });
@@ -2987,11 +3009,11 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("bit")
                         .HasColumnName("IDPrimary");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nationality")
                         .HasColumnType("nvarchar(max)")
@@ -3055,11 +3077,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PersonsIdn")
                         .HasColumnType("int")
@@ -3101,11 +3123,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("PersonsIdn")
                         .HasColumnType("int")
@@ -3157,11 +3179,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PropertyCode")
                         .HasColumnType("nvarchar(max)")
@@ -3216,11 +3238,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<string>("MArea")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Private")
                         .HasColumnType("bit");
@@ -3348,11 +3370,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("PropertyIdn")
                         .HasColumnType("int")
@@ -3393,11 +3415,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PropertyLinksRemarks")
                         .HasColumnType("nvarchar(max)");
@@ -3451,11 +3473,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("OwnActive")
                         .HasColumnType("bit");
@@ -3523,11 +3545,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -3572,11 +3594,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Code");
 
@@ -3614,11 +3636,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("NoteDate")
                         .HasColumnType("datetime2")
@@ -3672,11 +3694,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Private")
                         .HasColumnType("bit")
@@ -3756,11 +3778,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PersonsIdn")
                         .HasColumnType("int")
@@ -3828,11 +3850,11 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("int")
                         .HasColumnName("LawFirms_IDN");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Note")
                         .HasColumnType("nvarchar(max)")
@@ -3884,11 +3906,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OtfRegistersIdc")
                         .IsRequired()
@@ -3937,11 +3959,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("PrimaryRegister")
                         .HasColumnType("bit")
@@ -3994,11 +4016,11 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("LoginName");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NTLogin")
                         .HasColumnType("nvarchar(max)")
@@ -4052,11 +4074,11 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ModefiedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId", "GroupId");
 

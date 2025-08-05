@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Nexus.LAS.Identity.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigrationNewDev : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
