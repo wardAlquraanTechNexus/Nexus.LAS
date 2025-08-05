@@ -32,27 +32,17 @@ namespace Nexus.LAS.Persistence.Services
                     var personIdDetailId = await repo.CreateAsync(otherDocument);
 
 
-
-                    byte[] bytes;
-
-                    using (var memoryStream = new MemoryStream())
-                    {
-                        await command.File.CopyToAsync(memoryStream);
-                        bytes = memoryStream.ToArray();
-                    }
-
                     RegisterFileRepo registerFileRepo = new RegisterFileRepo(_context);
                     RegisterFile registerFile = new RegisterFile
                     {
                         RegistersIdc = command.PersonsOtherDocumentIdc,
                         RegistersIdn = personIdDetailId,
-                        Data = bytes,
                         ContentType = command.File.ContentType,
                         Name = command.File.FileName,
                     };
 
 
-                    await registerFileRepo.CreateAsync(registerFile);
+                    await registerFileRepo.CreateAsync(registerFile , command.File);
 
                     await transaction.CommitAsync();
                     return personIdDetailId;

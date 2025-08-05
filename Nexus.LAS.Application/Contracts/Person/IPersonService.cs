@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Nexus.LAS.Application.Contracts.Presistence.Services.Base;
+using Nexus.LAS.Application.DTOs;
 using Nexus.LAS.Application.DTOs.Base;
+using Nexus.LAS.Application.DTOs.PersonDTOs;
+using Nexus.LAS.Application.UseCases.PersonUseCases.Commands;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Queries;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Queries.GetAllActivePerson;
 using Nexus.LAS.Domain.Entities.PersonEntities;
@@ -19,5 +22,7 @@ namespace Nexus.LAS.Application.Contracts
         Task<bool> IsPersonArabicNameUniqueAsync(string personArabicName, int? excludeId = null);
         Task<bool> IsPersonShortNameUniqueAsync(string personShortName, int? excludeId = null);
         Task<byte[]> ExportToPdf(int id);
+        Task<UploadImageDto> UploadUserImage(UploadPersonImageCommand command);
+        Task<PersonDto> GetPersonDto(int id);
     }
 }

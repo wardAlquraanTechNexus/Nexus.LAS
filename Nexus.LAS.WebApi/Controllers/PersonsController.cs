@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts;
 using Nexus.LAS.Application.DTOs;
 using Nexus.LAS.Application.UseCases._GenericUseCases.Queries;
+using Nexus.LAS.Application.UseCases.PersonUseCases.Commands;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Commands.BulkChangePrivate;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Commands.BulkChangeStatus;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Commands.CreatePerson;
@@ -19,6 +20,26 @@ namespace Nexus.LAS.WebApi.Controllers
         public PersonsController(IPersonService service, IMediator mediator) : base(service, mediator)
         {
         }
+
+
+        [NonAction]
+        public override async Task<IActionResult> GetById(int id)
+        {
+            var res = await _service.GetAsync(id);
+            return Ok(res);
+
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetPersonDto(int id)
+        {
+            GetPersonDtoQuery personQuery = new GetPersonDtoQuery()
+            {
+                Id = id
+            };
+            return Ok(await _mediator.Send(personQuery));
+        }
+
 
         [HttpGet(nameof(GetAllPerson))]
         public async Task<IActionResult> GetAllPerson([FromQuery]GetAllPersonQuery personQuery)
@@ -62,6 +83,12 @@ namespace Nexus.LAS.WebApi.Controllers
         {
             var query = new ExportPersonToPdfQuery() { Id = id};
             return Ok(await _mediator.Send(query));
+        }
+
+        [HttpPost(nameof(UploadImage))]
+        public async Task<IActionResult> UploadImage([FromForm] UploadPersonImageCommand command)
+        {
+            return Ok(await _mediator.Send(command));
         }
     }
 }

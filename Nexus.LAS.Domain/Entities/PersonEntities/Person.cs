@@ -1,4 +1,5 @@
-﻿using Nexus.LAS.Domain.Entities.Base;
+﻿using Nexus.LAS.Domain.Constants;
+using Nexus.LAS.Domain.Entities.Base;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,7 +15,7 @@ namespace Nexus.LAS.Domain.Entities.PersonEntities
     public class Person : BaseEntity
     {
         [Column("PersonIDC", Order = 0)]
-        public string PersonIdc { get; set; } = null!; // PP
+        public string PersonIdc { get; set; } = EntityIDCs.Person;
 
         [Key, Column("PersonIDN", Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

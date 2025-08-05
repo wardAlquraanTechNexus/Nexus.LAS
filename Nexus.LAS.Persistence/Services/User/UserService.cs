@@ -1,6 +1,9 @@
-﻿using Nexus.LAS.Application.Contracts.Identity;
+﻿using Microsoft.AspNetCore.Http;
+using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
+using Nexus.LAS.Application.DTOs;
 using Nexus.LAS.Application.Identity;
+using Nexus.LAS.Domain.Entities.RegisterEntities;
 using Nexus.LAS.Domain.Entities.UserGroupEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Repositories;
@@ -36,5 +39,7 @@ namespace Nexus.LAS.Persistence.Services
             return authResponse;
 
         }
+
+
     }
 }

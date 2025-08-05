@@ -33,7 +33,7 @@ namespace Nexus.LAS.WebApi.Controllers._GenericController
             return Ok(await _service.GetAllAsync(Request.Query));
         }
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id) 
+        public virtual async Task<IActionResult> GetById(int id) 
         {
             var res = await _service.GetAsync(id);
             return Ok(res);

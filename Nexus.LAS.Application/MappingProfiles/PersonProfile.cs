@@ -60,6 +60,7 @@ namespace Nexus.LAS.Application.MappingProfiles
             CreateMap<PersonsOtherDocument, PersonOtherDocumentDTO>();
             CreateMap<PersonOtherDocumentDTO,PersonsOtherDocument>();
             CreateMap<EditPersonOtherDocumentCommand,PersonsOtherDocument>();
+            CreateMap<Person,PersonDto>();
         }
     }
 }

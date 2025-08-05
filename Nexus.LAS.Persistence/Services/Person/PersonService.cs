@@ -1,31 +1,53 @@
-﻿using ClosedXML.Excel;
+﻿using AutoMapper;
 using EFCore.BulkExtensions;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Nexus.LAS.Application.Contracts;
 using Nexus.LAS.Application.Contracts.Identity;
+using Nexus.LAS.Application.DTOs;
 using Nexus.LAS.Application.DTOs.Base;
+using Nexus.LAS.Application.DTOs.PersonDTOs;
+using Nexus.LAS.Application.UseCases.PersonUseCases.Commands;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Queries;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Queries.GetAllActivePerson;
-using Nexus.LAS.Domain.Constants.Enums;
-using Nexus.LAS.Domain.Entities.Base;
+using Nexus.LAS.Domain.Constants;
 using Nexus.LAS.Domain.Entities.PersonEntities;
+using Nexus.LAS.Domain.Entities.RegisterEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Repositories;
 using Nexus.LAS.Persistence.Services.Base;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
-using QuestPDF.Infrastructure;
-using System.Reflection;
-using System.Threading.Tasks;
 
 namespace Nexus.LAS.Persistence.Services
 {
     public class PersonService : GenericService<Person>, IPersonService
     {
-        public PersonService(NexusLASDbContext context, IUserIdentityService userIdentityService) : base(context, userIdentityService)
+        private readonly IMapper _mapper;
+        public PersonService(NexusLASDbContext context, IUserIdentityService userIdentityService, IMapper mapper) : base(context, userIdentityService)
         {
+            _mapper = mapper;
         }
+
+        public async Task<PersonDto> GetPersonDto(int id)
+        {
+            PersonRepo personRepo = new PersonRepo(_context);
+            RegisterFileRepo registerFileRepo = new RegisterFileRepo(_context);
+
+            var person = await personRepo.GetAsync(id);
+
+            var fileData = await registerFileRepo.GetLastByIds(EntityIDCs.Person, id);
+
+            var personDto = _mapper.Map<PersonDto>(person);
+
+            personDto.PersonImage = fileData?.Data;
+            personDto.FileName = fileData?.Name;
+            personDto.ContentType = fileData?.ContentType;
+
+            return personDto;
+
+
+        }
+
 
         public async Task<PagingResult<Person>> GetAllPerson(GetAllPersonQuery personQuery)
         {
@@ -181,6 +203,14 @@ namespace Nexus.LAS.Persistence.Services
                                 }, "Document Details");
                             
                             column.Item().Padding(10).Text(string.Empty);
+                            
+                            column.CreateTable(personsOtherDocuments, new List<PdfDisplayColumn>()
+                                {
+                                    new PdfDisplayColumn("Type", nameof(PersonsOtherDocument.DocumentType)),
+                                    new PdfDisplayColumn("Document Description", nameof(PersonsOtherDocument.DocumentType)),
+                                }, "Other Document Details");
+                            
+                            column.Item().Padding(10).Text(string.Empty);
 
                             column.CreateTable(personPhones, new List<PdfDisplayColumn>()
                                 {
@@ -218,7 +248,31 @@ namespace Nexus.LAS.Persistence.Services
             return ms.ToArray();
         }
 
-        
+
+        public async Task<UploadImageDto> UploadUserImage(UploadPersonImageCommand command)
+        {
+            RegisterFileRepo registerFileRepo = new RegisterFileRepo(_context);
+
+
+            RegisterFile registerFile = new RegisterFile
+            {
+                RegistersIdc = EntityIDCs.Person,
+                RegistersIdn = command.PersonId,
+                ContentType = command.File.ContentType,
+                Name = command.File.FileName,
+            };
+
+
+            await registerFileRepo.CreateAsync(registerFile, command.File);
+            return new UploadUserImageDto()
+            {
+                ContentType = command.File.ContentType,
+                FileName = command.File.FileName,
+                Data = registerFile.Data
+            };
+        }
+
+
 
     }
 }
