@@ -12,46 +12,53 @@ using Serilog;
 using System.Text.Json.Serialization;
 
 
+// Set QuestPDF license once at the start
+QuestPDF.Settings.License = LicenseType.Community;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Configure Serilog first
+builder.Host.UseSerilog((context, loggerConfig) =>
+    loggerConfig.ReadFrom.Configuration(context.Configuration));
 
-builder.Services.AddControllers(option =>
+// Add controllers with configuration
+builder.Services.AddControllers(options =>
 {
-    option.CacheProfiles.Add("Default30",
-        new CacheProfile()
-        {
-            Duration = 30
-        });
-})
-    .AddJsonOptions(options =>
+    // Add cache profile
+    options.CacheProfiles.Add("Default30", new CacheProfile()
     {
-        // Configure JsonSerializerOptions
-        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()); // Enum as strings
-                                                                                     // options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;//for Json cycle
-                                                                                     // Other configuration options as needed
+        Duration = 30
     });
+    
+    // Add global filters
+    options.Filters.Add<PathnameValidationFilter>();
+})
+.AddJsonOptions(options =>
+{
+    // Configure JSON serialization
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    options.JsonSerializerOptions.PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase;
+    options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+});
 
+// Add application services
 builder.Services.AddApplicationServicesDI();
 builder.Services.AddInfrastructureServiceDI(builder.Configuration);
 builder.Services.AddPersistenceServicesDI(builder.Configuration);
 builder.Services.AddIdentityServicesDI(builder.Configuration);
 
-// Add Health Checks with custom checks
+// Add Health Checks
 builder.Services.AddHealthChecks()
     .AddCheck<DatabaseHealthCheck>("database")
     .AddCheck("self", () => Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult.Healthy("API is running"));
 
-// Configure Serilog
-builder.Host.UseSerilog((context, loggerConfig) =>
-loggerConfig.ReadFrom.Configuration(context.Configuration));
-
 // Configure CORS
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("all", builder => builder.AllowAnyOrigin()
-    .AllowAnyHeader()
-    .AllowAnyMethod());
+    options.AddPolicy("all", policy => policy
+        .AllowAnyOrigin()
+        .AllowAnyHeader()
+        .AllowAnyMethod());
 });
 
 // Add Response Caching
@@ -78,24 +85,16 @@ builder.Services.AddAuthorization(options =>
         policy.Requirements.Add(new LasAuthorize("CanViewPage")));
 });
 
-// Configure Global Filters
-builder.Services.AddControllers(options =>
-{
-    options.Filters.Add<PathnameValidationFilter>();
-});
-
-// Register middleware services
+// Register middleware services - FIX: Add proper registration for IMiddleware
 builder.Services.AddScoped<RequestTimeLoggingMiddleware>();
-
-QuestPDF.Settings.License = LicenseType.Community;
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline - ORDER MATTERS!
 
-// 1. Exception handling should be first to catch all exceptions
+// 1. Exception handling first
 app.UseGlobalExceptionHandling();
-QuestPDF.Settings.License = LicenseType.Community;
+
 // 2. HTTPS redirection
 app.UseHttpsRedirection();
 
@@ -106,11 +105,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Nexus LAS API V1");
-        c.RoutePrefix = string.Empty; // Serve Swagger UI at root
+        c.RoutePrefix = string.Empty; // Serve Swagger UI at root (/)
+        c.DocumentTitle = "Nexus LAS API Documentation";
+        c.DisplayRequestDuration();
     });
 }
 
-// 4. Request time logging (optional, can be moved based on requirements)
+// 4. Request time logging
 app.UseRequestTimeLogging();
 
 // 5. CORS
@@ -131,10 +132,21 @@ app.MapHealthChecks("/health/live", new Microsoft.AspNetCore.Diagnostics.HealthC
     Predicate = check => check.Tags.Contains("live") || check.Name == "self"
 });
 
-// 9. Custom request middleware (if needed, uncomment)
-// app.UseCustomAuthenticationCheck();
-
-// 10. Map controllers last
+// 9. Map controllers
 app.MapControllers();
 
-app.Run();
+// Run the application
+try
+{
+    Log.Information("Starting Nexus LAS API...");
+    Log.Information("Swagger UI available at: {BaseUrl}", app.Environment.IsDevelopment() ? "https://localhost:7210 or http://localhost:5195" : "Not available in production");
+    app.Run();
+}
+catch (Exception ex)
+{
+    Log.Fatal(ex, "Application terminated unexpectedly");
+}
+finally
+{
+    Log.CloseAndFlush();
+}

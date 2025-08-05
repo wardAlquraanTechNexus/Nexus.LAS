@@ -2,7 +2,10 @@
 Nexus Legal Assistance System(LAS)
 # Legal Assistance System
 
-
+ nvm install lts  --install latest stable version from node
+ nvm list
+ nvm use 18
+ 
 dotnet ef migrations add "Initial Migration New Dev" --startup-project "C:\Dev\Nexus.LAS\Nexus.LAS.WebApi" --project "C:\Dev\Nexus.LAS\Nexus.LAS.Identity" --context NexusLASIdentityDbContext
 
 dotnet ef database update --startup-project "C:\Dev\Nexus.LAS\Nexus.LAS.WebApi" --project "C:\Dev\Nexus.LAS\Nexus.LAS.Identity" --context NexusLASIdentityDbContext

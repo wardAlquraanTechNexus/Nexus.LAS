@@ -1,0 +1,53 @@
+2025-08-05 14:53:55.886 +04:00 [INF] Starting Nexus LAS API...
+2025-08-05 14:53:56.045 +04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-08-05 14:53:56.046 +04:00 [INF] Hosting environment: Development
+2025-08-05 14:53:56.047 +04:00 [INF] Content root path: C:\Dev\Nexus.LAS\Nexus.LAS.WebApi
+2025-08-05 14:53:56.269 +04:00 [ERR] Unhandled exception occurred. CorrelationId: 4000000e-0001-ff00-b63f-84710c7967bb
+System.InvalidOperationException: No service for type 'Nexus.LAS.WebApi.Middlewares.RequestTimeLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Nexus.LAS.WebApi.Middlewares.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Dev\Nexus.LAS\Nexus.LAS.WebApi\Middlewares\ExceptionMiddleware.cs:line 27
+2025-08-05 14:53:56.386 +04:00 [ERR] Unhandled exception occurred. CorrelationId: 4000000d-000c-ff00-b63f-84710c7967bb
+System.InvalidOperationException: No service for type 'Nexus.LAS.WebApi.Middlewares.RequestTimeLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Nexus.LAS.WebApi.Middlewares.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Dev\Nexus.LAS\Nexus.LAS.WebApi\Middlewares\ExceptionMiddleware.cs:line 27
+2025-08-05 14:55:15.974 +04:00 [INF] Starting Nexus LAS API...
+2025-08-05 14:55:16.632 +04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-08-05 14:55:16.696 +04:00 [INF] Hosting environment: Development
+2025-08-05 14:55:16.697 +04:00 [INF] Content root path: C:\Dev\Nexus.LAS\Nexus.LAS.WebApi
+2025-08-05 14:55:16.792 +04:00 [ERR] Unhandled exception occurred. CorrelationId: 4000000a-0008-ff00-b63f-84710c7967bb
+System.InvalidOperationException: No service for type 'Nexus.LAS.WebApi.Middlewares.RequestTimeLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Nexus.LAS.WebApi.Middlewares.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Dev\Nexus.LAS\Nexus.LAS.WebApi\Middlewares\ExceptionMiddleware.cs:line 27
+2025-08-05 14:55:16.994 +04:00 [ERR] Unhandled exception occurred. CorrelationId: 4000000b-0007-ff00-b63f-84710c7967bb
+System.InvalidOperationException: No service for type 'Nexus.LAS.WebApi.Middlewares.RequestTimeLoggingMiddleware' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Http.MiddlewareFactory.Create(Type middlewareType)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Nexus.LAS.WebApi.Middlewares.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Dev\Nexus.LAS\Nexus.LAS.WebApi\Middlewares\ExceptionMiddleware.cs:line 27
+2025-08-05 14:59:04.733 +04:00 [INF] Starting Nexus LAS API...
+2025-08-05 14:59:04.924 +04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-08-05 14:59:04.982 +04:00 [INF] Hosting environment: Development
+2025-08-05 14:59:04.983 +04:00 [INF] Content root path: C:\Dev\Nexus.LAS\Nexus.LAS.WebApi
+2025-08-05 15:02:33.209 +04:00 [INF] Starting Nexus LAS API...
+2025-08-05 15:02:33.230 +04:00 [INF] Swagger UI available at: https://localhost:7210 or http://localhost:5195
+2025-08-05 15:02:33.367 +04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-08-05 15:02:33.367 +04:00 [INF] Hosting environment: Development
+2025-08-05 15:02:33.367 +04:00 [INF] Content root path: C:\Dev\Nexus.LAS\Nexus.LAS.WebApi
