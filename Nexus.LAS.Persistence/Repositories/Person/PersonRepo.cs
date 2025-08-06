@@ -22,12 +22,12 @@ namespace Nexus.LAS.Persistence.Repositories
         }
 
 
-        public async Task<PagingResult<Person>> GetAllPerson(GetAllPersonQuery personQuery)
+        public async Task<PagingResult<Person>> GetPersons(GetPersonsQuery personQuery)
         {
             var personsQueryable = _dbSet.Where(
                 x =>
-                (personQuery.Private == null || personQuery.Private == x.Private)
-                && (personQuery.Status == null || personQuery.Status == x.PersonStatus)
+                (!personQuery.Privates.Any() || personQuery.Privates.Contains(x.Private))
+                && (!personQuery.Statuses.Any() || (x.PersonStatus.HasValue && personQuery.Statuses.Contains(x.PersonStatus.Value)))
                 && (
                         personQuery.SearchBy == null
                     || (x.PersonIdc.ToLower().Contains(personQuery.SearchBy.ToLower()))

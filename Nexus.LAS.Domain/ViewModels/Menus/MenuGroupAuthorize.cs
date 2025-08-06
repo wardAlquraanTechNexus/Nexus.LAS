@@ -19,5 +19,6 @@ namespace Nexus.LAS.Domain.ViewModels.Menus
         public int? CanDelete { get; set; }
         public string Username { get; set; }
         public bool InDashboard { get; set; }
+        public int? Rank { get; set; }
     }
 }

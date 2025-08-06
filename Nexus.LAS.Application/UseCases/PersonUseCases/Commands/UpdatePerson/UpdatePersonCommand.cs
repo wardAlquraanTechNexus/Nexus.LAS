@@ -3,7 +3,7 @@ using Nexus.LAS.Application.DTOs.PersonDTOs;
 
 namespace Nexus.LAS.Application.UseCases.PersonUseCases.Commands.UpdatePerson;
 
-public class UpdatePersonCommand: IRequest<GetAllPersonDto>
+public class UpdatePersonCommand: IRequest<GetPersonsDto>
 {
     public int Id { get; set; }
     public string PersonEnglishName { get; set; }

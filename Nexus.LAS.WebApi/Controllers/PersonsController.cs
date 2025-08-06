@@ -41,8 +41,8 @@ namespace Nexus.LAS.WebApi.Controllers
         }
 
 
-        [HttpGet(nameof(GetAllPerson))]
-        public async Task<IActionResult> GetAllPerson([FromQuery]GetAllPersonQuery personQuery)
+        [HttpGet(nameof(GetPersons))]
+        public async Task<IActionResult> GetPersons([FromQuery]GetPersonsQuery personQuery)
         {
             return Ok(await _mediator.Send(personQuery));
         }

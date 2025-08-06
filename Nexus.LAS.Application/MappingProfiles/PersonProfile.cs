@@ -22,8 +22,8 @@ namespace Nexus.LAS.Application.MappingProfiles
     {
         public PersonProfile() 
         {
-            CreateMap<Person , GetAllPersonDto>();
-            CreateMap<PagingResult<Person>, PagingResult<GetAllPersonDto>>();
+            CreateMap<Person , GetPersonsDto>();
+            CreateMap<PagingResult<Person>, PagingResult<GetPersonsDto>>();
 
             CreateMap<CreatePersonCommand, Person>();
             CreateMap<Person, CreatePersonCommand>();

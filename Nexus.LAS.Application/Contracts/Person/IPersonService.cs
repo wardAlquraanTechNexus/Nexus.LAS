@@ -13,7 +13,7 @@ namespace Nexus.LAS.Application.Contracts
 {
     public interface IPersonService: IGenericService<Person>
     {
-        Task<PagingResult<Person>> GetAllPerson(GetAllPersonQuery personQuery);
+        Task<PagingResult<Person>> GetPersons(GetPersonsQuery personQuery);
         Task<PagingResult<Person>> GetAllActivePerson(GetAllActivePersonQuery personQuery);
         Task<Person> UpdatePersonAsync(Person entity);
         Task<int> BulkChangeStatus(List<int> personIds, int status);

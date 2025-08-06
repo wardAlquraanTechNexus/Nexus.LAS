@@ -22,7 +22,7 @@ namespace Nexus.LAS.Application.UseCases.PersonUseCases.Queries
 
         public async Task<ExportPersonToPdfDto> Handle(ExportPersonToPdfQuery query, CancellationToken cancellationToken)
         {
-            var props = typeof(GetAllPersonDto).GetProperties();
+            var props = typeof(GetPersonsDto).GetProperties();
             var res = await _personService.ExportToPdf(query.Id);
             return new ExportPersonToPdfDto()
             {

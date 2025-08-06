@@ -19,6 +19,7 @@ namespace Nexus.LAS.Application.DTOs.MenuDTOs
         public int? CanDelete { get; set; }
         public string Username { get; set; }
         public bool InDashboard { get; set; }
+        public int? Rank { get; set; }
         public List<MenuTreeDTO> Children { get; set; } = new();
     }
 }

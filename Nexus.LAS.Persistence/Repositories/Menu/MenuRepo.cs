@@ -31,7 +31,8 @@ namespace Nexus.LAS.Persistence.Repositories
                              Name = m.Name,
                              Path = m.Path,
                              MenuParentId = m.ParentId,
-                             InDashboard = m.InDashboard
+                             InDashboard = m.InDashboard,
+                             Rank = m.Rank,
                          })
                    .Distinct().ToListAsync();
                    

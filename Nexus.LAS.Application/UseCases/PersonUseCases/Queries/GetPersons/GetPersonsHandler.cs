@@ -7,20 +7,20 @@ using Nexus.LAS.Domain.Entities.PersonEntities;
 
 namespace Nexus.LAS.Application.UseCases.PersonUseCases.Queries
 {
-    public class GetAllPersonHandler : IRequestHandler<GetAllPersonQuery,PagingResult<GetAllPersonDto>>
+    public class GetPersonsHandler : IRequestHandler<GetPersonsQuery,PagingResult<GetPersonsDto>>
     {
         private readonly IPersonService _personService;
         private readonly IMapper _mapper;
-        public GetAllPersonHandler(IPersonService personService, IMapper mapper) 
+        public GetPersonsHandler(IPersonService personService, IMapper mapper) 
         {
             _mapper = mapper;
             _personService = personService;
         }
-        public async Task<PagingResult<GetAllPersonDto>> Handle(GetAllPersonQuery request, CancellationToken cancellationToken)
+        public async Task<PagingResult<GetPersonsDto>> Handle(GetPersonsQuery request, CancellationToken cancellationToken)
 
         {
-            PagingResult<Person> persons = await _personService.GetAllPerson(request);
-            PagingResult<GetAllPersonDto> personDtos = _mapper.Map<PagingResult<GetAllPersonDto>>(persons);
+            PagingResult<Person> persons = await _personService.GetPersons(request);
+            PagingResult<GetPersonsDto> personDtos = _mapper.Map<PagingResult<GetPersonsDto>>(persons);
             return personDtos;
         }
     }

@@ -1,6 +1,6 @@
 ﻿namespace Nexus.LAS.Application.DTOs.PersonDTOs
 {
-    public class GetAllPersonDto
+    public class GetPersonsDto
     {
         public int Id { get; set; }
         public string? PersonIdc { get; set; }

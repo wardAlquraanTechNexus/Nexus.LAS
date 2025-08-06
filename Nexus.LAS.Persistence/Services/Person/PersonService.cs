@@ -49,10 +49,10 @@ namespace Nexus.LAS.Persistence.Services
         }
 
 
-        public async Task<PagingResult<Person>> GetAllPerson(GetAllPersonQuery personQuery)
+        public async Task<PagingResult<Person>> GetPersons(GetPersonsQuery personQuery)
         {
             PersonRepo personRepo = new PersonRepo(_context);
-            return await personRepo.GetAllPerson(personQuery);
+            return await personRepo.GetPersons(personQuery);
         }
         public async Task<PagingResult<Person>> GetAllActivePerson(GetAllActivePersonQuery personQuery)
         {
