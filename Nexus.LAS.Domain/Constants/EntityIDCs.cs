@@ -12,5 +12,7 @@ namespace Nexus.LAS.Domain.Constants
         public const string User = "U";
         public const string PersonIdDetail = "PID";
         public const string PersonOtherDocument = "POD";
+        public const string RegistersNote = "RN";
+
     }
 }

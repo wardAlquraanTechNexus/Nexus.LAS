@@ -1,4 +1,5 @@
-﻿using Nexus.LAS.Domain.Entities.Base;
+﻿using Nexus.LAS.Domain.Constants;
+using Nexus.LAS.Domain.Entities.Base;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,7 +14,7 @@ namespace Nexus.LAS.Domain.Entities.RegisterEntities
     public class RegistersNote : BaseEntity
     {
         [Column("RegistersNoteIDC", Order = 0)]
-        public string RegistersNoteIdc { get; set; } = null!;
+        public string RegistersNoteIdc { get; set; } = EntityIDCs.RegistersNote;
 
         [Key, Column("RegistersNoteIDN", Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

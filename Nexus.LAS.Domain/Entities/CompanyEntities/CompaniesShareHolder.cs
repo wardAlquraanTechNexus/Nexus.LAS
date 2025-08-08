@@ -28,11 +28,11 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
         [Required]
         [MaxLength(50)]
         [Column("Registers_IDC")]
-        public string RegistersIdc { get; set; }
+        public string RegistersIdc { get; set; } // Person or company
 
         [Required]
         [Column("Registers_IDN")]
-        public int RegistersIdn { get; set; }
+        public int RegistersIdn { get; set; } //List of person or companies
 
         [Column("ShareHolderNumbersOfShares")]
         public long? ShareHolderNumbersOfShares { get; set; }

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 namespace Nexus.LAS.Domain.Entities.CompanyEntities
 {
     [Table("CompaniesPersonInCharges")]
+    //Person Contact
     public class CompaniesPersonInCharge:BaseEntity
     {
         [Required]

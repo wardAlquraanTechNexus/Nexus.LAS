@@ -33,7 +33,7 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
         public double? CompaniesCapitalAmount { get; set; }
 
         [Column("CompaniesCapitalNumberOfShares")]
-        public long? CompaniesCapitalNumberOfShares { get; set; }
+        public long? CompaniesCapitalNumberOfShares { get; set; } //must great or equal the total of number of shareheloder linked to it
 
         [Column("CompaniesCapitalAuthorized")]
         public double? CompaniesCapitalAuthorized { get; set; }
