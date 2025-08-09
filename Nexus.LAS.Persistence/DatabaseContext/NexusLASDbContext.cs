@@ -71,6 +71,7 @@ namespace Nexus.LAS.Persistence.DatabaseContext
         {
             SetCreationInfo();
             SetModificationInfo();
+            SetSoftDeleteInfo();
             return base.SaveChangesAsync(cancellationToken);
         }
 
@@ -102,6 +103,31 @@ namespace Nexus.LAS.Persistence.DatabaseContext
                 entry.Property(nameof(BaseEntity.CreatedBy)).IsModified = false;
             }
         }
-        
+
+        private void SetSoftDeleteInfo()
+        {
+            var entries = ChangeTracker.Entries<BaseEntity>()
+                .Where(e => e.State == EntityState.Modified);
+
+            foreach (var entry in entries)
+            {
+                // Check if IsDeleted was changed to true
+                var isDeletedCurrent = (bool)entry.CurrentValues["IsDeleted"];
+                var isDeletedOriginal = (bool)entry.OriginalValues["IsDeleted"];
+
+                if (!isDeletedOriginal && isDeletedCurrent)
+                {
+                    entry.Entity.DeletedAt = DateTime.UtcNow;
+                    entry.Entity.DeletedBy = _userIdentityService.Username;
+                }
+                else if (isDeletedOriginal && !isDeletedCurrent)
+                {
+                    // Optional: If you want to clear deleted info if undeleted
+                    entry.Entity.DeletedAt = null;
+                    entry.Entity.DeletedBy = null;
+                }
+            }
+        }
+
     }
 }

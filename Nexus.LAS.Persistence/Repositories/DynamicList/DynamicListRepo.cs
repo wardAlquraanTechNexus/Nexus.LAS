@@ -27,7 +27,7 @@ public class DynamicListRepo : GenericRepo<DynamicList>
 
         var totalRecords = await query.CountAsync();
 
-        query = query.Paginate(param.Page , param.PageSize);
+        query = query.Paginate(param.Page, param.PageSize);
 
         query.OrderByDescending(dl => dl.Rank);
 
@@ -51,12 +51,43 @@ public class DynamicListRepo : GenericRepo<DynamicList>
                 break;
 
             // Move to parent id (LinkedCategory)
-            
+
             pathParts.Add(item);
             currentId = item.MainListId ?? 0;
 
         }
 
-        return pathParts;
+        return pathParts.AsEnumerable().Reverse().ToList();
+    }
+
+
+    public override async Task DeleteAsync(int id)
+    {
+        var toDelete = new List<DynamicList>();
+        await GetDescendantsAndSelfAsync(id, toDelete);
+
+        foreach (var item in toDelete)
+        {
+            item.IsDeleted = true;
+            // optionally, update other fields like DeletedAt, DeletedBy, etc.
+        }
+
+        await _context.SaveChangesAsync();
+    }
+
+    private async Task GetDescendantsAndSelfAsync(int id, List<DynamicList> accumulator)
+    {
+        var node = await _dbSet.FirstOrDefaultAsync(dl => dl.Id == id);
+        if (node == null)
+            return;
+
+        accumulator.Add(node);
+
+        var children = await _dbSet.Where(dl => dl.MainListId == id).ToListAsync();
+
+        foreach (var child in children)
+        {
+            await GetDescendantsAndSelfAsync(child.Id, accumulator);
+        }
     }
 }

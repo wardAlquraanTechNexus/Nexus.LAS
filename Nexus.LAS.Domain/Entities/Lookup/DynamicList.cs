@@ -1,4 +1,5 @@
-﻿using Nexus.LAS.Domain.Entities.Base;
+﻿using Nexus.LAS.Domain.Constants;
+using Nexus.LAS.Domain.Entities.Base;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -10,7 +11,7 @@ public class DynamicList: BaseEntity
     [Key]
     [Column("DynamicListIDC")]
     [MaxLength(50)]
-    public string DynamicListIdC { get; set; } = null!;
+    public string DynamicListIdC { get; set; } = EntityIDCs.DynamicList;
 
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Column("DynamicListIDN")]

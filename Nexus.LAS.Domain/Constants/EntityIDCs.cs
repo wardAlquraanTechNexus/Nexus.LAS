@@ -13,6 +13,7 @@ namespace Nexus.LAS.Domain.Constants
         public const string PersonIdDetail = "PID";
         public const string PersonOtherDocument = "POD";
         public const string RegistersNote = "RN";
+        public const string DynamicList = "DL";
 
     }
 }

@@ -27,4 +27,25 @@ public class DynamicListService : GenericService<DynamicList>, IDynamicListServi
         DynamicListRepo repo = new(_context);
         return await repo.GetParents(id);
     }
+
+    public override async Task DeleteAsync(int id)
+    {
+        using(var trans = _context.Database.BeginTransaction())
+        {
+            try
+            {
+                DynamicListRepo repo = new(_context);
+                await repo.DeleteAsync(id);
+                await trans.CommitAsync();
+
+            }
+            catch (Exception)
+            {
+                await trans.RollbackAsync();
+                throw;
+            }
+
+            
+        }
+    }
 }
