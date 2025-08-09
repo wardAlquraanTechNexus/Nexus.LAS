@@ -18,3 +18,20 @@ obj/
 *.suo
 *.userosscache
 *.sln.docstates
+
+# Ignore log files and folders
+# WebApi project logs folder
+Nexus.LAS.WebApi/logs/
+# Ignore all log files and folders
+**/logs/
+logs/
+*.log
+
+# Specific log file patterns (Serilog)
+**/log-*.txt
+**/dev-log-*.txt
+**/nexus-las-*.log
+**/nexus-las-errors-*.log
+
+# Production log paths
+**/var/log/nexus-las/
