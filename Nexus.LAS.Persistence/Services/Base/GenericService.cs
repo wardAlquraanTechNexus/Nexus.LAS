@@ -14,7 +14,7 @@ namespace Nexus.LAS.Persistence.Services.Base
     public class GenericService<T> : IGenericService<T> where T : BaseEntity
     {
         protected readonly NexusLASDbContext _context;
-        private readonly IUserIdentityService _userIdentityService;
+        protected readonly IUserIdentityService _userIdentityService;
         public GenericService(NexusLASDbContext context, IUserIdentityService userIdentityService)
         {
             _userIdentityService = userIdentityService;

@@ -12,13 +12,13 @@ namespace Nexus.LAS.Application.DTOs.Base
         {
         }
 
-        public PagingResult(List<T> collection , int page, int pageSize, int totalRecords, int totalPages)
+        public PagingResult(List<T> collection , int page, int pageSize, int totalRecords)
         {
             Page = page;
             PageSize = pageSize;
             Collection = collection;
             TotalRecords = totalRecords;
-            TotalPages = totalPages;
+            TotalPages = totalRecords/pageSize;
         }
 
         public int Page {  get; set; }

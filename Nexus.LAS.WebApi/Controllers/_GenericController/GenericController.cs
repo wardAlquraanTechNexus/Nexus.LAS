@@ -23,7 +23,7 @@ namespace Nexus.LAS.WebApi.Controllers._GenericController
             _mediator = mediator;
         }
         [HttpGet]
-        public async Task<IActionResult> GetByQuery() 
+        public virtual async Task<IActionResult> GetByQuery() 
         {
             return Ok(await _service.GetAsync(Request.Query));
         }
