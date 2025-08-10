@@ -15,7 +15,7 @@ public class DynamicListRepo : GenericRepo<DynamicList>
     {
     }
 
-    public async Task<PagingResult<DynamicList>> GetListAsync(GetDynamicListDTOQuery param)
+    public async Task<List<DynamicList>> GetListAsync(GetDynamicListDTOQuery param)
     {
         var query = _dbSet.Where(dl =>
         (!param.Id.HasValue || param.Id == dl.Id) &&
@@ -25,14 +25,11 @@ public class DynamicListRepo : GenericRepo<DynamicList>
         (string.IsNullOrEmpty(param.MenuValue) || dl.LinkedCategory.Contains(param.MenuValue, StringComparison.OrdinalIgnoreCase))
         ).AsQueryable();
 
-        var totalRecords = await query.CountAsync();
-
-        query = query.Paginate(param.Page, param.PageSize);
 
         query.OrderByDescending(dl => dl.Rank);
 
         var data = await query.ToListAsync();
-        return new PagingResult<DynamicList>(data, param.Page, param.PageSize, totalRecords);
+        return data;
     }
 
     public async Task<List<DynamicList>> GetParents(int id)
@@ -89,5 +86,16 @@ public class DynamicListRepo : GenericRepo<DynamicList>
         {
             await GetDescendantsAndSelfAsync(child.Id, accumulator);
         }
+    }
+
+    public async Task<bool> CheckMenuValueExist(string menuValue , int? mainListId, int? currentId = null)
+    {
+        var normalizedMenuValue = menuValue.ToLower();
+
+        return await _dbSet.AnyAsync(x =>
+            (!currentId.HasValue || x.Id != currentId) &&
+            !string.IsNullOrEmpty(x.MenuValue) &&
+            x.MenuValue.ToLower() == normalizedMenuValue &&
+            x.MainListId == mainListId);
     }
 }

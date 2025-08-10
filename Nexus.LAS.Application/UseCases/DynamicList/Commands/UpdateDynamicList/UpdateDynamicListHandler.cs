@@ -3,7 +3,7 @@ using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.UseCases._GenericUseCases.Commands;
 using Nexus.LAS.Domain.Entities.Lookup;
 
-namespace Nexus.LAS.Application.UseCases.DynamicListUseCases.Commands;
+namespace Nexus.LAS.Application.UseCases.Commands.UpdateDynamicList;
 
 public class UpdateDynamicListHandler : UpdateBaseCommandHandler<DynamicList, UpdateDynamicListCommand, IDynamicListService>
 {

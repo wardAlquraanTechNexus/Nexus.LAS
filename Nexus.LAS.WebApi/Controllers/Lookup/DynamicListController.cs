@@ -1,13 +1,14 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
+using Nexus.LAS.Application.UseCases.Commands.UpdateDynamicList;
 using Nexus.LAS.Application.UseCases.DynamicListUseCases.Commands;
 using Nexus.LAS.Application.UseCases.Queries.GetDynamicListDto;
 using Nexus.LAS.Application.UseCases.Queries.GetParents;
 using Nexus.LAS.Domain.Entities.Lookup;
 using Nexus.LAS.WebApi.Controllers._GenericController;
 
-namespace Nexus.LAS.WebApi.Controllers;
+namespace Nexus.LAS.WebApi.Controllers.Lookup;
 
 public class DynamicListController : GenericController<IDynamicListService, DynamicList>
 {
@@ -39,11 +40,11 @@ public class DynamicListController : GenericController<IDynamicListService, Dyna
     }
 
     [NonAction]
-    public override async Task<IActionResult> GetByQuery()
+    public override async Task<IActionResult> GetAllByQuery()
     {
-        return Ok(await _service.GetAsync(Request.Query));
+        return Ok(await _service.GetAllAsync(Request.Query));
     }
-    [HttpGet]
+    [HttpGet(nameof(GetAllByQuery))]
     public async Task<IActionResult> GetList([FromQuery]GetDynamicListDTOQuery query)
     {
         return Ok(await _mediator.Send(query));

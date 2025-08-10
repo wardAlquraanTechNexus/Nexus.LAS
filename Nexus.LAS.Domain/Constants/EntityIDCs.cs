@@ -31,7 +31,7 @@ public class EntityIDCs
     public const string Documents = "DOC";
     public const string DocumentTrackings = "D";
     public const string DocumentTrackingsActions = "DA";
-    public const string DynamicListIDC = "DL";
+    public const string DynamicList = "DL";
     public const string FPCs = "F";
     public const string FPCsODs = "OD";
     public const string FPCsODsActions = "ODA";

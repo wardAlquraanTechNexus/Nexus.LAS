@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.DTOs.DynamicListDtos;
+using Nexus.LAS.Application.UseCases.Commands.UpdateDynamicList;
 using Nexus.LAS.Application.UseCases.DynamicListUseCases.Commands;
 using Nexus.LAS.Domain.Entities.Lookup;
 

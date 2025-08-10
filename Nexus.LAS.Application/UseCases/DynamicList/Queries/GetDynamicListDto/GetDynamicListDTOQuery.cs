@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Nexus.LAS.Application.UseCases.Queries.GetDynamicListDto
 {
-    public class GetDynamicListDTOQuery: BaseParams , IRequest<PagingResult<DynamicListDTO>>
+    public class GetDynamicListDTOQuery: BaseParams , IRequest<List<DynamicListDTO>>
     {
         public int? Id { get; set; }
         public int? MainListId { get; set; }

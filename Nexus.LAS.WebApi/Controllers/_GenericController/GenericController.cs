@@ -28,7 +28,7 @@ namespace Nexus.LAS.WebApi.Controllers._GenericController
             return Ok(await _service.GetAsync(Request.Query));
         }
         [HttpGet(nameof(GetAllByQuery))]
-        public async Task<IActionResult> GetAllByQuery() 
+        public virtual async Task<IActionResult> GetAllByQuery() 
         {
             return Ok(await _service.GetAllAsync(Request.Query));
         }

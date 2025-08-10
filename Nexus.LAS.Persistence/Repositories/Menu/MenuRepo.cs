@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Nexus.LAS.Application.UseCases.MenuUseCases.Queries;
 using Nexus.LAS.Domain.Entities.Lookup;
 using Nexus.LAS.Domain.ViewModels.Menus;
 using Nexus.LAS.Persistence.DatabaseContext;
@@ -63,5 +64,48 @@ namespace Nexus.LAS.Persistence.Repositories
                    
             return await menus;
         }
+
+        public async Task<List<Menu>> GetListAsync(GetMenuDtoQuery param)
+        {
+            var query = _dbSet.Where(dl =>
+            (!param.Id.HasValue || param.Id == dl.Id) &&
+            (param.ParentId == dl.ParentId) &&
+            (!param.Rank.HasValue || param.Rank == dl.Rank) &&
+            (string.IsNullOrEmpty(param.Name) || dl.Name.Contains(param.Name, StringComparison.OrdinalIgnoreCase))
+            ).AsQueryable();
+
+
+            query.OrderByDescending(dl => dl.Rank);
+
+            var data = await query.ToListAsync();
+            return data;
+        }
+
+
+        public async Task<List<Menu>> GetParents(int id)
+        {
+            var pathParts = new List<Menu>();
+            var currentId = id;
+
+            Menu? item = null;
+            while (currentId != 0)
+            {
+                item = await _dbSet
+                    .Where(dl => dl.Id == currentId)
+                    .FirstOrDefaultAsync();
+
+                if (item == null)
+                    break;
+
+                // Move to parent id (LinkedCategory)
+
+                pathParts.Add(item);
+                currentId = item.ParentId ?? 0;
+
+            }
+
+            return pathParts.AsEnumerable().Reverse().ToList();
+        }
+
     }
 }

@@ -5,7 +5,7 @@ using Nexus.LAS.Application.UseCases.CompanyPersonInChargeUseCases;
 using Nexus.LAS.Domain.Entities.CompanyEntities;
 using Nexus.LAS.WebApi.Controllers._GenericController;
 
-namespace Nexus.LAS.WebApi.Controllers;
+namespace Nexus.LAS.WebApi.Controllers.Companies;
 
 public class CompanyPersonInChargeController : GenericController<ICompanyPersonInChargeService, CompaniesPersonInCharge>
 {

@@ -6,7 +6,6 @@ using Nexus.LAS.Domain.Entities.PersonEntities;
 using Nexus.LAS.WebApi.Controllers._GenericController;
 
 namespace Nexus.LAS.WebApi.Controllers;
-
 public class PersonPhoneController : GenericController<IPersonPhoneService, PersonsPhone>
 {
     public PersonPhoneController(IPersonPhoneService service, IMediator mediator) : base(service, mediator)

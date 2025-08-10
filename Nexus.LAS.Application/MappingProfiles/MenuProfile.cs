@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
+using Nexus.LAS.Application.DTOs;
 using Nexus.LAS.Application.DTOs.MenuDTOs;
+using Nexus.LAS.Application.UseCases.MenuUseCases.Commands;
+using Nexus.LAS.Domain.Entities.Lookup;
 using Nexus.LAS.Domain.ViewModels.Menus;
 using System;
 using System.Collections.Generic;
@@ -14,6 +17,10 @@ namespace Nexus.LAS.Application.MappingProfiles
         public MenuProfile() 
         {
             CreateMap<MenuGroupAuthorizeVM, MenuTreeDTO>();
+            CreateMap<Menu, MenuDto>();
+            CreateMap<CreateMenuCommand, Menu>();
+            CreateMap<UpdateMenuCommand, Menu>();
+
         }
     }
 }

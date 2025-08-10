@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Nexus.LAS.Application.UseCases.Queries.GetDynamicListDto
 {
-    public class GetDynamicListDtoHandler : IRequestHandler<GetDynamicListDTOQuery, PagingResult<DynamicListDTO>>
+    public class GetDynamicListDtoHandler : IRequestHandler<GetDynamicListDTOQuery, List<DynamicListDTO>>
     {
         private readonly IDynamicListService _service;
         private readonly IMapper _mapper;
@@ -22,14 +22,10 @@ namespace Nexus.LAS.Application.UseCases.Queries.GetDynamicListDto
             _mapper = mapper;
         }
 
-        public async Task<PagingResult<DynamicListDTO>> Handle(GetDynamicListDTOQuery query, CancellationToken cancellationToken)
+        public async Task<List<DynamicListDTO>> Handle(GetDynamicListDTOQuery query, CancellationToken cancellationToken)
         {
             var data = await _service.GetListAsync(query);
-            var dataMapped = new PagingResult<DynamicListDTO>(
-                                data.Collection.Select(x => _mapper.Map<DynamicListDTO>(x)).ToList(),
-                                query.Page,
-                                query.PageSize,
-                                data.TotalRecords);
+            var dataMapped = data.Select(x => _mapper.Map<DynamicListDTO>(x)).ToList();
 
             return dataMapped;
         }

@@ -1,6 +1,6 @@
 ﻿using Nexus.LAS.Application.UseCases._GenericUseCases.Commands;
 
-namespace Nexus.LAS.Application.UseCases.DynamicListUseCases.Commands;
+namespace Nexus.LAS.Application.UseCases.Commands.UpdateDynamicList;
 
 public class UpdateDynamicListCommand:UpdateBaseCommand
 {

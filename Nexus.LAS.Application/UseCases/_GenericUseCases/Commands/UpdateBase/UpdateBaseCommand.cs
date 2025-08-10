@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Nexus.LAS.Application.UseCases._GenericUseCases.Commands
 {
-    public class UpdateBaseCommand:IRequest
+    public class UpdateBaseCommand:IRequest<bool>
     {
     }
 }

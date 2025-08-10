@@ -16,7 +16,7 @@ public class DynamicListService : GenericService<DynamicList>, IDynamicListServi
     {
     }
 
-    public async Task<PagingResult<DynamicList>> GetListAsync(GetDynamicListDTOQuery param)
+    public async Task<List<DynamicList>> GetListAsync(GetDynamicListDTOQuery param)
     {
         DynamicListRepo repo = new(_context);
         return await repo.GetListAsync(param);
@@ -47,5 +47,11 @@ public class DynamicListService : GenericService<DynamicList>, IDynamicListServi
 
             
         }
+    }
+
+    public async Task<bool> CheckMenuValueExist(string menuValue, int? mainListId, int? currentId = null)
+    {
+        DynamicListRepo repo = new(_context);
+        return await repo.CheckMenuValueExist(menuValue, mainListId, currentId);
     }
 }
