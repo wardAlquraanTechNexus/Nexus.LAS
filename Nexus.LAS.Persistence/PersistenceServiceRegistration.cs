@@ -17,9 +17,15 @@ namespace Nexus.LAS.Persistence
         public static IServiceCollection AddPersistenceServicesDI(this IServiceCollection services,
         IConfiguration configuration)
         {
+            services.AddScoped<ICountryRepo, CountryRepo>();
+            services.AddScoped<ICountryService, CountryService>();
 
             services.AddScoped<IUserIdentityService, UserIdentityService>();
-            services.AddScoped<ICountryService, CountryService>();
+            services.AddScoped<IUserService, UserService>();
+
+
+          
+
             services.AddScoped<IMenuService, MenuService>();
             services.AddScoped<IGroupMenuService, GroupMenuService>();
             services.AddScoped<IGroupService, GroupService>();
@@ -31,12 +37,25 @@ namespace Nexus.LAS.Persistence
             services.AddScoped<IPersonAddressService, PersonAddressService>();
             services.AddScoped<IPersonIdDetailService, PersonIdDetailService>();
             services.AddScoped<IPersonOtherDocumentService, PersonOtherDocumentService>();
+
             services.AddScoped<IRegisterNoteService, RegisterNoteService>();
+
             services.AddScoped<ICompanyService, CompanyService>();
-            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ICompanyActivityService, CompanyActivityService>();
+            services.AddScoped<ICompanyAddressService, CompanyAddressService>();
+            services.AddScoped<ICompanyBankAccountService, CompanyBankAccountService>();
+            services.AddScoped<ICompanyBoardMemberService, CompanyBoardMemberService>();
+            services.AddScoped<ICompanyCapitalService, CompanyCapitalService>();
+            services.AddScoped<ICompanyChamberOfCommerceService, CompanyChamberOfCommerceService>();
+            services.AddScoped<ICompanyContractService, CompanyContractService>();
+            services.AddScoped<ICompanyEmailService, CompanyEmailService>();
+            services.AddScoped<ICompanyLicenseService, CompanyLicenseService>();
+            services.AddScoped<ICompanyOtherContractService, CompanyOtherContractService>();
+            services.AddScoped<ICompanyPersonInChargeService, CompanyPersonInChargeService>();
+            services.AddScoped<ICompanyPhoneService, CompanyPhoneService>();
+            services.AddScoped<ICompanyShareHolderService, CompanyShareHolderService>();
 
 
-            services.AddScoped<ICountryRepo, CountryRepo>();
 
             var connectionStr = configuration.GetConnectionString("NexusLASConnectionString");
             services.AddDbContext<NexusLASDbContext>(options => {

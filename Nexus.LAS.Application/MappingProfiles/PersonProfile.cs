@@ -45,7 +45,7 @@ namespace Nexus.LAS.Application.MappingProfiles
             .ForMember(dest => dest.Id, opt => opt.Condition(src => src.Id.HasValue));
 
 
-            CreateMap<PersonsPhone, PersonPhoneDTO>();
+            CreateMap<PersonsPhone, PersonPhoneDto>();
             CreateMap<Person, UpdatePersonCommand>();
             CreateMap<UpdatePersonCommand, Person>();
 

@@ -99,7 +99,7 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.ToTable("CompaniesAccountSignatory");
                 });
 
-            modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompaniesActivities", b =>
+            modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompaniesActivity", b =>
                 {
                     b.Property<string>("CompaniesActivityIdc")
                         .HasMaxLength(50)
@@ -146,7 +146,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("CompaniesActivityIdc", "Id");
 
-                    b.ToTable("CompaniesActivities");
+                    b.ToTable("CompaniesActivity");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompaniesAddress", b =>
@@ -2900,7 +2900,7 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.ToTable("PersonsCapacities");
                 });
 
-            modelBuilder.Entity("Nexus.LAS.Domain.Entities.PersonEntities.PersonsEmail", b =>
+            modelBuilder.Entity("Nexus.LAS.Domain.Entities.PersonEntities.CompaniesEmail", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

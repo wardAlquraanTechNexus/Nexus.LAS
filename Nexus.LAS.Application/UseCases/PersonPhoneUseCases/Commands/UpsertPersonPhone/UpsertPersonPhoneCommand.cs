@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Nexus.LAS.Application.UseCases.PersonPhoneUseCases
 {
-    public class UpsertPersonPhoneCommand:PersonPhoneDTO
+    public class UpsertPersonPhoneCommand:PersonPhoneDto
     {
     }
 }

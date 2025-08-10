@@ -32,6 +32,12 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
         [Column("CompaniesCapitalAmount")]
         public double? CompaniesCapitalAmount { get; set; }
 
+        [Column("NominalValueOfShare")]
+        public double? NominalValueOfShare { get; set; }
+
+        [MaxLength(50)]
+        public string ClassOfSahres { get; set; }
+
         [Column("CompaniesCapitalNumberOfShares")]
         public long? CompaniesCapitalNumberOfShares { get; set; } //must great or equal the total of number of shareheloder linked to it
 

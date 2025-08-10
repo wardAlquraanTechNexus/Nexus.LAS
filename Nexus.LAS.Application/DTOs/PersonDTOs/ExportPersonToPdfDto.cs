@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Nexus.LAS.Application.DTOs;
 
-namespace Nexus.LAS.Application.DTOs
+public class ExportPersonToPdfDto: ExportPersonToExcelDto
 {
-    public class ExportPersonToPdfDto: ExportPersonToExcelDto
-    {
-    }
 }

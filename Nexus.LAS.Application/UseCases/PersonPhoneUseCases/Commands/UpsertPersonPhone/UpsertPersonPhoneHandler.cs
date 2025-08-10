@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Nexus.LAS.Application.UseCases.PersonPhoneUseCases
 {
-    public class UpsertPersonPhoneHandler: IRequestHandler<BulkUpsertPersonPhoneCommand , List<PersonPhoneDTO>>
+    public class UpsertPersonPhoneHandler: IRequestHandler<BulkUpsertPersonPhoneCommand , List<PersonPhoneDto>>
     {
         private readonly IPersonPhoneService _personPhoneService;
         private readonly IMapper _mapper;
@@ -24,11 +24,11 @@ namespace Nexus.LAS.Application.UseCases.PersonPhoneUseCases
             _mapper = mapper;
         }
 
-        public async Task<List<PersonPhoneDTO>> Handle(BulkUpsertPersonPhoneCommand command, CancellationToken cancellationToken)
+        public async Task<List<PersonPhoneDto>> Handle(BulkUpsertPersonPhoneCommand command, CancellationToken cancellationToken)
         {
             var personsEmail = command.Commands.Select(cmd => _mapper.Map<PersonsPhone>(cmd)).ToList();
             var personEmailsRes = await _personPhoneService.BulkUpsertAsync(personsEmail);
-            return personEmailsRes.Select(e => _mapper.Map<PersonPhoneDTO>(e)).ToList();
+            return personEmailsRes.Select(e => _mapper.Map<PersonPhoneDto>(e)).ToList();
         }
     }
 }

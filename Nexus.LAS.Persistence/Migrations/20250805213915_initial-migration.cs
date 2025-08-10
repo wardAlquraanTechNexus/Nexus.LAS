@@ -88,7 +88,7 @@ namespace Nexus.LAS.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CompaniesActivities",
+                name: "CompaniesActivity",
                 columns: table => new
                 {
                     CompaniesActivityIDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
@@ -1633,7 +1633,7 @@ namespace Nexus.LAS.Persistence.Migrations
                 name: "CompaniesAccountSignatory");
 
             migrationBuilder.DropTable(
-                name: "CompaniesActivities");
+                name: "CompaniesActivity");
 
             migrationBuilder.DropTable(
                 name: "CompaniesAddresses");

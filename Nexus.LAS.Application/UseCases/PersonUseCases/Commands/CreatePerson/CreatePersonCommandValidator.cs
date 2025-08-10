@@ -13,27 +13,27 @@ public class CreatePersonCommandValidator : AbstractValidator<CreatePersonComman
 
         RuleFor(p => p.PersonEnglishName)
             .NotEmpty()
-            .WithMessage("PersonEnglishName is required.")
+            .WithMessage("Person English Name is required.")
             .MaximumLength(200)
-            .WithMessage("PersonEnglishName must not exceed 200 characters.")
+            .WithMessage("Person English Name must not exceed 200 characters.")
             .MustAsync(BeUniqueEnglishName)
-            .WithMessage("PersonEnglishName '{PropertyValue}' already exists. Please choose a different name.");
+            .WithMessage("Person English Name '{PropertyValue}' already exists. Please choose a different name.");
 
         RuleFor(p => p.PersonArabicName)
             .NotEmpty()
-            .WithMessage("PersonArabicName is required.")
+            .WithMessage("Person Arabic Name is required.")
             .MaximumLength(200)
-            .WithMessage("PersonArabicName must not exceed 200 characters.")
+            .WithMessage("Person Arabic Name must not exceed 200 characters.")
             .MustAsync(BeUniqueArabicName)
-            .WithMessage("PersonArabicName '{PropertyValue}' already exists. Please choose a different name.");
+            .WithMessage("Person Arabic Name '{PropertyValue}' already exists. Please choose a different name.");
 
         RuleFor(p => p.PersonShortName)
             .NotEmpty()
-            .WithMessage("PersonShortName is required.")
+            .WithMessage("Person Short Name is required.")
             .MaximumLength(100)
-            .WithMessage("PersonShortName must not exceed 100 characters.")
+            .WithMessage("Person Short Name must not exceed 100 characters.")
             .MustAsync(BeUniqueShortName)
-            .WithMessage("PersonShortName '{PropertyValue}' already exists. Please choose a different name.");
+            .WithMessage("Person Short Name '{PropertyValue}' already exists. Please choose a different name.");
     }
 
     private async Task<bool> BeUniqueEnglishName(string personEnglishName, CancellationToken cancellationToken)

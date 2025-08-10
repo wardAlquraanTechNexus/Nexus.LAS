@@ -1,38 +1,36 @@
-﻿using AutoMapper;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Repositories.BaseRepo;
 
-namespace Nexus.LAS.Persistence.Repositories
+namespace Nexus.LAS.Persistence.Repositories;
+
+public class PersonEmailRepo : GenericRepo<PersonsEmail>
 {
-    public class PersonEmailRepo : GenericRepo<PersonsEmail>
+    public PersonEmailRepo(NexusLASDbContext context) : base(context)
     {
-        public PersonEmailRepo(NexusLASDbContext context) : base(context)
-        {
-        }
+    }
 
-        public override async Task DeleteAsync(int id)
+    public override async Task DeleteAsync(int id)
+    {
+        var item = await _dbSet.FindAsync(id);
+        if (item.EmailPrimary is true)
         {
-            var item = await _dbSet.FindAsync(id);
-            if (item.EmailPrimary is true)
+            var firstItem = await _dbSet.FirstOrDefaultAsync(x => x.PersonsIdn == item.PersonsIdn);
+            if (firstItem != null)
             {
-                var firstItem = await _dbSet.FirstOrDefaultAsync(x => x.PersonsIdn == item.PersonsIdn);
-                if (firstItem != null)
-                {
-                    firstItem.EmailPrimary = true;
-                }
-
+                firstItem.EmailPrimary = true;
             }
-            item.IsDeleted = true;
 
-            await _context.SaveChangesAsync();
         }
+        item.IsDeleted = true;
 
-        public async Task<List<PersonsEmail>> GetListByPersonId(int personId)
-        {
-            IQueryable<PersonsEmail> queryable = _dbSet.Where(x => x.PersonsIdn == personId);
-            return await queryable.ToListAsync();
-        }
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task<List<PersonsEmail>> GetListByPersonId(int personId)
+    {
+        IQueryable<PersonsEmail> queryable = _dbSet.Where(x => x.PersonsIdn == personId);
+        return await queryable.ToListAsync();
     }
 }

@@ -2,30 +2,24 @@
 using MediatR;
 using Nexus.LAS.Application.Contracts;
 using Nexus.LAS.Domain.Entities.PersonEntities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Nexus.LAS.Application.UseCases.PersonUseCases.Commands.CreatePerson
+namespace Nexus.LAS.Application.UseCases.PersonUseCases.Commands.CreatePerson;
+
+public class CreatePersonHandler: IRequestHandler<CreatePersonCommand , int>
 {
-    public class CreatePersonHandler: IRequestHandler<CreatePersonCommand , int>
+    private readonly IPersonService _personService;
+    private readonly IMapper _mapper;
+
+    public CreatePersonHandler(IPersonService personService, IMapper mapper)
     {
-        private readonly IPersonService _personService;
-        private readonly IMapper _mapper;
+        _personService = personService;
+        _mapper = mapper;
+    }
 
-        public CreatePersonHandler(IPersonService personService, IMapper mapper)
-        {
-            _personService = personService;
-            _mapper = mapper;
-        }
+    public async Task<int> Handle(CreatePersonCommand command , CancellationToken cancellationToken)
+    {
+        Person person = _mapper.Map<Person>(command);
 
-        public async Task<int> Handle(CreatePersonCommand command , CancellationToken cancellationToken)
-        {
-            Person person = _mapper.Map<Person>(command);
-
-            return await _personService.CreateAsync(person);
-        }
+        return await _personService.CreateAsync(person);
     }
 }

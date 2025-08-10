@@ -54,10 +54,10 @@ namespace Nexus.LAS.Persistence.Services
             PersonRepo personRepo = new PersonRepo(_context);
             return await personRepo.GetPersons(personQuery);
         }
-        public async Task<PagingResult<Person>> GetAllActivePerson(GetAllActivePersonQuery personQuery)
+        public async Task<PagingResult<Person>> GetActivePersons(GetAllActivePersonQuery personQuery)
         {
             PersonRepo personRepo = new PersonRepo(_context);
-            return await personRepo.GetAllActivePerson(personQuery);
+            return await personRepo.GetActivePersons(personQuery);
         }
 
         public async override Task<int> CreateAsync(Person entity)

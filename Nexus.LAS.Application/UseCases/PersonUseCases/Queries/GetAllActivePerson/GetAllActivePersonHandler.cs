@@ -24,7 +24,7 @@ namespace Nexus.LAS.Application.UseCases.PersonUseCases.Queries.GetAllActivePers
         public async Task<PagingResult<GetPersonsDto>> Handle(GetAllActivePersonQuery request, CancellationToken cancellationToken)
 
         {
-            PagingResult<Person> persons = await _personService.GetAllActivePerson(request);
+            PagingResult<Person> persons = await _personService.GetActivePersons(request);
             PagingResult<GetPersonsDto> personDtos = _mapper.Map<PagingResult<GetPersonsDto>>(persons);
             return personDtos;
         }

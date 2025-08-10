@@ -34,12 +34,20 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
         [Column("Designation")]
         public string Designation { get; set; }
 
+        [Required]
+        [MaxLength(50)]
+        [Column("AuthorityRule")]
+        public string AuthorityRule { get; set; }//Jointly, Single
+
         [MaxLength(4000)]
         [Column("Notes")]
         public string Notes { get; set; }
 
         [Column("PersonInChargeDate")]
         public DateTime? PersonInChargeDate { get; set; }
+
+        [Column("CessationDate")]
+        public DateTime? CessationDate { get; set; }
 
         [Column("PersonInChargeActive")]
         public bool? PersonInChargeActive { get; set; }

@@ -12,7 +12,7 @@ namespace Nexus.LAS.Persistence.DatabaseContext
     public partial class NexusLASDbContext
     {
         public DbSet<CompaniesAccountSignatory> CompaniesAccountSignatories { get; set; }
-        public DbSet<CompaniesActivities> CompaniesActivities { get; set; }
+        public DbSet<CompaniesActivity> CompaniesActivities { get; set; }
         public DbSet<CompaniesAddress> CompaniesAddresses { get; set; }
         public DbSet<CompaniesAuthorizedSignatory> CompaniesAuthorizedSignatories { get; set; }
         public DbSet<CompaniesBankAccount> CompaniesBankAccounts { get; set; }
@@ -34,7 +34,7 @@ namespace Nexus.LAS.Persistence.DatabaseContext
 
         protected void OnCompanyModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<CompaniesActivities>()
+            modelBuilder.Entity<CompaniesActivity>()
              .HasKey(ca => new { ca.CompaniesActivityIdc, ca.Id });
 
             modelBuilder.Entity<CompaniesAddress>()
