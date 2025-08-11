@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts;
 using Nexus.LAS.Application.UseCases.PersonPhoneUseCases;
+using Nexus.LAS.Application.UseCases.PersonPhoneUseCases.Commands.CreatePersonPhone;
+using Nexus.LAS.Application.UseCases.PersonPhoneUseCases.Commands.UpdatePersonPhone;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 using Nexus.LAS.WebApi.Controllers._GenericController;
 
@@ -20,10 +22,34 @@ public class PersonPhoneController : GenericController<IPersonPhoneService, Pers
     [HttpPost(nameof(BulkUpsertAsync))]
     public async Task<IActionResult> BulkUpsertAsync([FromBody] List<UpsertPersonPhoneCommand> commands)
     {
-        BulkUpsertPersonPhoneCommand bulkUpsertPersonEmailCommand = new BulkUpsertPersonPhoneCommand()
+        BulkUpsertPersonPhoneCommand bulkUpsertPersonPhoneCommand = new BulkUpsertPersonPhoneCommand()
         {
             Commands = commands
         };
-        return Ok(await _mediator.Send(bulkUpsertPersonEmailCommand));
+        return Ok(await _mediator.Send(bulkUpsertPersonPhoneCommand));
+    }
+
+
+    [NonAction]
+    public override Task<IActionResult> CreateAsync(PersonsPhone entity)
+    {
+        return base.CreateAsync(entity);
+    }
+    [HttpPost]
+    public async Task<IActionResult> CreateUseCase(CreatePersonPhoneCommand command)
+    {
+        return Ok(await _mediator.Send(command));
+    }
+
+    [NonAction]
+    public override Task<IActionResult> UpdateAsync(PersonsPhone entity)
+    {
+        return base.UpdateAsync(entity);
+    }
+    [HttpPut]
+    public async Task<IActionResult> UpdateUseCase(UpdatePersonPhoneCommand command)
+    {
+        await _mediator.Send(command);
+        return Ok();
     }
 }

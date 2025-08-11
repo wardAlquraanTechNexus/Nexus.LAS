@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts;
 using Nexus.LAS.Application.UseCases.CompanyAddressUseCases;
+using Nexus.LAS.Application.UseCases.CompanyAddressUseCases.Commands.CreateCompanyAddress;
+using Nexus.LAS.Application.UseCases.CompanyAddressUseCases.Commands.UpdateCompanyAddress;
 using Nexus.LAS.Domain.Entities.CompanyEntities;
 using Nexus.LAS.WebApi.Controllers._GenericController;
 
@@ -26,5 +28,28 @@ public class CompanyAddressController : GenericController<ICompanyAddressService
             Commands = commands
         };
         return Ok(await _mediator.Send(bulkUpsertCompanyEmailCommand));
+    }
+
+    [NonAction]
+    public override Task<IActionResult> CreateAsync(CompaniesAddress entity)
+    {
+        return base.CreateAsync(entity);
+    }
+    [HttpPost]
+    public async Task<IActionResult> CreateUseCase(CreateCompanyAddressCommand command)
+    {
+        return Ok(await _mediator.Send(command));
+    }
+
+    [NonAction]
+    public override Task<IActionResult> UpdateAsync(CompaniesAddress entity)
+    {
+        return base.UpdateAsync(entity);
+    }
+    [HttpPut]
+    public async Task<IActionResult> UpdateUseCase(UpdateCompanyAddressCommand command)
+    {
+        await _mediator.Send(command);
+        return Ok();
     }
 }

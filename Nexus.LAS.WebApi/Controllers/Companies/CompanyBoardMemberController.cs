@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts;
 using Nexus.LAS.Application.UseCases.CompanyBoardMemberUseCases;
+using Nexus.LAS.Application.UseCases.CompanyBoardMemberUseCases.Commands.CreateCompanyBoardMember;
+using Nexus.LAS.Application.UseCases.CompanyBoardMemberUseCases.Commands.UpdateCompanyBoardMember;
 using Nexus.LAS.Domain.Entities.CompanyEntities;
 using Nexus.LAS.WebApi.Controllers._GenericController;
 
@@ -28,4 +30,26 @@ public class CompanyBoardMemberController : GenericController<ICompanyBoardMembe
         return Ok(await _mediator.Send(bulkUpsertCompanyBoardMemberCommand));
     }
 
+    [NonAction]
+    public override Task<IActionResult> CreateAsync(CompaniesBoardMember entity)
+    {
+        return base.CreateAsync(entity);
+    }
+    [HttpPost]
+    public async Task<IActionResult> CreateUseCase(CreateCompanyBoardMemberCommand command)
+    {
+        return Ok(await _mediator.Send(command));
+    }
+
+    [NonAction]
+    public override Task<IActionResult> UpdateAsync(CompaniesBoardMember entity)
+    {
+        return base.UpdateAsync(entity);
+    }
+    [HttpPut]
+    public async Task<IActionResult> UpdateUseCase(UpdateCompanyBoardMemberCommand command)
+    {
+        await _mediator.Send(command);
+        return Ok();
+    }
 }

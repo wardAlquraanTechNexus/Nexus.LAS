@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts;
 using Nexus.LAS.Application.UseCases.CompanyChamberOfCommerceUseCases;
+using Nexus.LAS.Application.UseCases.CompanyChamberOfCommerceUseCases.Commands.CreateCompanyChamberOfCommerce;
+using Nexus.LAS.Application.UseCases.CompanyChamberOfCommerceUseCases.Commands.UpdateCompanyChamberOfCommerce;
 using Nexus.LAS.Domain.Entities.CompanyEntities;
 using Nexus.LAS.WebApi.Controllers._GenericController;
 
@@ -26,6 +28,30 @@ public class CompanyChamberOfCommerceController : GenericController<ICompanyCham
             Commands = commands
         };
         return Ok(await _mediator.Send(bulkUpsertCompanyChamberOfCommerceCommand));
+    }
+
+
+    [NonAction]
+    public override Task<IActionResult> CreateAsync(CompaniesChamberOfCommerce entity)
+    {
+        return base.CreateAsync(entity);
+    }
+    [HttpPost]
+    public async Task<IActionResult> CreateUseCase(CreateCompanyChamberOfCommerceCommand command)
+    {
+        return Ok(await _mediator.Send(command));
+    }
+
+    [NonAction]
+    public override Task<IActionResult> UpdateAsync(CompaniesChamberOfCommerce entity)
+    {
+        return base.UpdateAsync(entity);
+    }
+    [HttpPut]
+    public async Task<IActionResult> UpdateUseCase(UpdateCompanyChamberOfCommerceCommand command)
+    {
+        await _mediator.Send(command);
+        return Ok();
     }
 
 }

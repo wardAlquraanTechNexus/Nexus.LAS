@@ -7,6 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="UseCases\CompanyPersonInChargeUseCases\Commands\CreateCompanyPersonIn\**" />
+    <Compile Remove="UseCases\CompanyPersonInChargeUseCases\Commands\UpdateCompanyPersonIn\**" />
+    <EmbeddedResource Remove="UseCases\CompanyPersonInChargeUseCases\Commands\CreateCompanyPersonIn\**" />
+    <EmbeddedResource Remove="UseCases\CompanyPersonInChargeUseCases\Commands\UpdateCompanyPersonIn\**" />
+    <None Remove="UseCases\CompanyPersonInChargeUseCases\Commands\CreateCompanyPersonIn\**" />
+    <None Remove="UseCases\CompanyPersonInChargeUseCases\Commands\UpdateCompanyPersonIn\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="FluentValidation" Version="12.0.0" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.0.0" />
@@ -40,10 +49,6 @@
     <Folder Include="UseCases\CompanyLicenseUseCases\Commands\UpdateCompanyLicense\" />
     <Folder Include="UseCases\CompanyOtherContractUseCases\Commands\CreateCompanyOtherContract\" />
     <Folder Include="UseCases\CompanyOtherContractUseCases\Commands\UpdateCompanyOtherContract\" />
-    <Folder Include="UseCases\CompanyPersonInChargeUseCases\Commands\CreateCompanyPersonIn\" />
-    <Folder Include="UseCases\CompanyPersonInChargeUseCases\Commands\UpdateCompanyPersonIn\" />
-    <Folder Include="UseCases\CompanyPhoneUseCases\Commands\CreateCompanyPhone\" />
-    <Folder Include="UseCases\CompanyPhoneUseCases\Commands\UpdateCompanyPhone\" />
     <Folder Include="UseCases\CompanyShareHolderUseCases\Commands\CreateCompanyShareHolder\" />
     <Folder Include="UseCases\CompanyShareHolderUseCases\Commands\UpdateCompanyShareHolder\" />
   </ItemGroup>
