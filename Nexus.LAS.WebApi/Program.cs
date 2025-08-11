@@ -38,6 +38,7 @@ builder.Services.AddControllers(options =>
     // Configure JSON serialization
     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
     options.JsonSerializerOptions.PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase;
+    options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull; // FIXED: Added missing configuration
 });
 
 // Add application services
@@ -84,8 +85,9 @@ builder.Services.AddAuthorization(options =>
         policy.Requirements.Add(new LasAuthorize("CanViewPage")));
 });
 
-// Register middleware services - FIX: Add proper registration for IMiddleware
+// Register middleware services
 builder.Services.AddScoped<RequestTimeLoggingMiddleware>();
+builder.Services.AddScoped<CheckRequestMiddleware>();
 
 var app = builder.Build();
 
@@ -110,7 +112,7 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-// 4. Request time logging
+// 4. Request time logging (for performance monitoring)
 app.UseRequestTimeLogging();
 
 // 5. CORS
@@ -123,7 +125,10 @@ app.UseResponseCaching();
 app.UseAuthentication();
 app.UseAuthorization();
 
-// 8. Health checks endpoints
+// 8. Custom authentication check (FIXED: Only use extension method, not direct middleware)
+app.UseCustomAuthenticationCheck();
+
+// 9. Health checks endpoints
 app.MapHealthChecks("/health");
 app.MapHealthChecks("/health/ready");
 app.MapHealthChecks("/health/live", new Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions
@@ -131,7 +136,7 @@ app.MapHealthChecks("/health/live", new Microsoft.AspNetCore.Diagnostics.HealthC
     Predicate = check => check.Tags.Contains("live") || check.Name == "self"
 });
 
-// 9. Map controllers
+// 10. Map controllers
 app.MapControllers();
 
 // Run the application

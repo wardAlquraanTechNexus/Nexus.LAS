@@ -1,11 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Nexus.LAS.Domain.Entities.Lookup;
 using Nexus.LAS.Domain.Entities.RegisterEntities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Nexus.LAS.Persistence.DatabaseContext
 {
@@ -17,15 +11,44 @@ namespace Nexus.LAS.Persistence.DatabaseContext
 
         protected void OnRegisterModelCreating(ModelBuilder modelBuilder)
         {
+            // Configure RegistersCode
             modelBuilder.Entity<RegistersCode>(entity =>
             {
-                entity.Ignore(e => e.Id);               // Ignore Id completely
-                entity.HasKey(e => e.Code);             // Use Code as the primary key
+                entity.Ignore(e => e.Id);
+                entity.HasKey(e => e.Code);
+                entity.Property(e => e.Code)
+                    .IsRequired()
+                    .HasMaxLength(255);
             });
 
-            modelBuilder.Entity<RegistersNote>()
-               .HasKey(e => new { e.RegistersNoteIdc, e.Id });
+            // Configure RegistersNote composite key
+            modelBuilder.Entity<RegistersNote>(entity =>
+            {
+                entity.HasKey(e => new { e.RegistersNoteIdc, e.Id });
+                
+                entity.Property(e => e.RegistersNoteIdc)
+                    .IsRequired()
+                    .HasMaxLength(50);
+                    
+                entity.Property(e => e.RegistersIdc)
+                    .IsRequired()
+                    .HasMaxLength(50);
+                    
+                entity.Property(e => e.RegistersNotesText)
+                    .IsRequired();
+            });
 
+            // Configure RegisterFile
+            modelBuilder.Entity<RegisterFile>(entity =>
+            {
+                entity.Property(e => e.RegistersIdc)
+                    .IsRequired()
+                    .HasMaxLength(50);
+                    
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(255);
+            });
         }
     }
 }
