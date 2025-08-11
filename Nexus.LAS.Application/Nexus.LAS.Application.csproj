@@ -21,4 +21,31 @@
     <ProjectReference Include="..\Nexus.LAS.Domain\Nexus.LAS.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="UseCases\CompanyAddressUseCases\Commands\CreateCompanyAddress\" />
+    <Folder Include="UseCases\CompanyAddressUseCases\Commands\UpdateCompanyAddress\" />
+    <Folder Include="UseCases\CompanyBankAccountUseCases\Commands\CreateCompanyBankAccount\" />
+    <Folder Include="UseCases\CompanyBankAccountUseCases\Commands\UpdateCompanyBankAccount\" />
+    <Folder Include="UseCases\CompanyBoardMemberUseCases\Commands\CreateCompanyBoardMember\" />
+    <Folder Include="UseCases\CompanyBoardMemberUseCases\Commands\UpdateCompanyBoardMember\" />
+    <Folder Include="UseCases\CompanyCapitalUseCases\Commands\CreateCompanyCapital\" />
+    <Folder Include="UseCases\CompanyCapitalUseCases\Commands\UpdateCompanyCapital\" />
+    <Folder Include="UseCases\CompanyChamberOfCommerceUseCases\Commands\CreateCompanyChamberOfCommerce\" />
+    <Folder Include="UseCases\CompanyChamberOfCommerceUseCases\Commands\UpdateCompanyChamberOfCommerce\" />
+    <Folder Include="UseCases\CompanyContractUseCases\Commands\CreateCompanyContract\" />
+    <Folder Include="UseCases\CompanyContractUseCases\Commands\UpdateCompanyContract\" />
+    <Folder Include="UseCases\CompanyEmailUseCases\Commands\CreateCompanyEmail\" />
+    <Folder Include="UseCases\CompanyEmailUseCases\Commands\UpdateCompanyEmail\" />
+    <Folder Include="UseCases\CompanyLicenseUseCases\Commands\CreateCompanyLicense\" />
+    <Folder Include="UseCases\CompanyLicenseUseCases\Commands\UpdateCompanyLicense\" />
+    <Folder Include="UseCases\CompanyOtherContractUseCases\Commands\CreateCompanyOtherContract\" />
+    <Folder Include="UseCases\CompanyOtherContractUseCases\Commands\UpdateCompanyOtherContract\" />
+    <Folder Include="UseCases\CompanyPersonInChargeUseCases\Commands\CreateCompanyPersonIn\" />
+    <Folder Include="UseCases\CompanyPersonInChargeUseCases\Commands\UpdateCompanyPersonIn\" />
+    <Folder Include="UseCases\CompanyPhoneUseCases\Commands\CreateCompanyPhone\" />
+    <Folder Include="UseCases\CompanyPhoneUseCases\Commands\UpdateCompanyPhone\" />
+    <Folder Include="UseCases\CompanyShareHolderUseCases\Commands\CreateCompanyShareHolder\" />
+    <Folder Include="UseCases\CompanyShareHolderUseCases\Commands\UpdateCompanyShareHolder\" />
+  </ItemGroup>
+
 </Project>
