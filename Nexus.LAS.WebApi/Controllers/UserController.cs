@@ -1,5 +1,7 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
+using Nexus.LAS.Application.UseCases.UserUseCases.Queries;
 using Nexus.LAS.Domain.Entities.UserGroupEntities;
 using Nexus.LAS.WebApi.Controllers._GenericController;
 
@@ -12,5 +14,13 @@ namespace Nexus.LAS.WebApi.Controllers
         }
 
         
+
+        [HttpGet(nameof(SearchUser))]
+        public async Task<IActionResult> SearchUser([FromQuery]SearchUserQuery query)
+        {
+            return Ok(await _mediator.Send(query));
+        }
+
+
     }
 }

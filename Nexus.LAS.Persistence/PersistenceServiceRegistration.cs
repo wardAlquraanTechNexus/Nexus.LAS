@@ -22,6 +22,7 @@ namespace Nexus.LAS.Persistence
 
             services.AddScoped<IUserIdentityService, UserIdentityService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserGroupService, UserGroupService>();
 
 
           

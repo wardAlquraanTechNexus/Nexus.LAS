@@ -44,7 +44,7 @@ namespace Nexus.LAS.Persistence.Migrations
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UpdateDescription = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Persons_IDN = table.Column<int>(type: "int", nullable: true),
-                    CompanyStatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CompanyStatus = table.Column<int>(type: "int", nullable: false),
                     Private = table.Column<bool>(type: "bit", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -88,7 +88,7 @@ namespace Nexus.LAS.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CompaniesActivity",
+                name: "CompaniesActivities",
                 columns: table => new
                 {
                     CompaniesActivityIDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
@@ -197,7 +197,10 @@ namespace Nexus.LAS.Persistence.Migrations
                     CompaniesBoards_IDN = table.Column<int>(type: "int", nullable: true),
                     Person_IDN = table.Column<int>(type: "int", nullable: false),
                     BoardMemberPosition = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    MemberAppointmentDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    MemberCessationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     BoardMemberActive = table.Column<bool>(type: "bit", nullable: true),
+                    Companies_IDN = table.Column<int>(type: "int", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -244,6 +247,8 @@ namespace Nexus.LAS.Persistence.Migrations
                     Companies_IDN = table.Column<int>(type: "int", nullable: false),
                     CompaniesCapitalDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CompaniesCapitalAmount = table.Column<double>(type: "float", nullable: true),
+                    NominalValueOfShare = table.Column<double>(type: "float", nullable: true),
+                    ClassOfSahres = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CompaniesCapitalNumberOfShares = table.Column<long>(type: "bigint", nullable: true),
                     CompaniesCapitalAuthorized = table.Column<double>(type: "float", nullable: true),
                     CompaniesCapitalPaid = table.Column<double>(type: "float", nullable: true),
@@ -447,8 +452,10 @@ namespace Nexus.LAS.Persistence.Migrations
                     Companies_IDN = table.Column<int>(type: "int", nullable: false),
                     Persons_IDN = table.Column<int>(type: "int", nullable: false),
                     Designation = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    AuthorityRule = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Notes = table.Column<string>(type: "nvarchar(4000)", maxLength: 4000, nullable: false),
                     PersonInChargeDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CessationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     PersonInChargeActive = table.Column<bool>(type: "bit", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -499,7 +506,9 @@ namespace Nexus.LAS.Persistence.Migrations
                     Registers_IDN = table.Column<int>(type: "int", nullable: false),
                     ShareHolderNumbersOfShares = table.Column<long>(type: "bigint", nullable: true),
                     ShareHolderDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ShareHolderCessationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ShareHolderActive = table.Column<bool>(type: "bit", nullable: true),
+                    Companies_IDN = table.Column<int>(type: "int", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -1591,6 +1600,24 @@ namespace Nexus.LAS.Persistence.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Companies_CompanyArabicName_Unique",
+                table: "Companies",
+                column: "CompanyArabicName",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Companies_CompanyEnglishName_Unique",
+                table: "Companies",
+                column: "CompanyEnglishName",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Companies_CompanyShortName_Unique",
+                table: "Companies",
+                column: "CompanyShortName",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_GroupsMenus_MenuID",
                 table: "GroupsMenus",
                 column: "MenuID");
@@ -1633,7 +1660,7 @@ namespace Nexus.LAS.Persistence.Migrations
                 name: "CompaniesAccountSignatory");
 
             migrationBuilder.DropTable(
-                name: "CompaniesActivity");
+                name: "CompaniesActivities");
 
             migrationBuilder.DropTable(
                 name: "CompaniesAddresses");

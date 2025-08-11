@@ -8,7 +8,6 @@ namespace Nexus.LAS.Application.UseCases.CompanyUseCases.Queries;
 public class GetCompaniesQuery: BaseParams , IRequest<PagingResult<GetCompaniesDto>>
 {
     public string? SearchBy { get; set; }
-    public string? Nationality { get; set; }
     public string? Private 
     {
         get => _private;

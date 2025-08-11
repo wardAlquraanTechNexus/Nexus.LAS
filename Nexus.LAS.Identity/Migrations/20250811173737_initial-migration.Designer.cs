@@ -12,8 +12,8 @@ using Nexus.LAS.Identity.IdentityDbContext;
 namespace Nexus.LAS.Identity.Migrations
 {
     [DbContext(typeof(NexusLASIdentityDbContext))]
-    [Migration("20250805111026_Initial Migration")]
-    partial class InitialMigration
+    [Migration("20250811173737_initial-migration")]
+    partial class initialmigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

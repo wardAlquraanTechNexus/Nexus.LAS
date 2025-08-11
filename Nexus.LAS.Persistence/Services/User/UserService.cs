@@ -2,7 +2,9 @@
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.DTOs;
+using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.Identity;
+using Nexus.LAS.Application.UseCases.UserUseCases.Queries;
 using Nexus.LAS.Domain.Entities.RegisterEntities;
 using Nexus.LAS.Domain.Entities.UserGroupEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
@@ -40,6 +42,12 @@ namespace Nexus.LAS.Persistence.Services
 
         }
 
+
+        public async Task<PagingResult<User>> GetUserDTOs(SearchUserQuery query)
+        {
+            UserRepo userRepo = new UserRepo(_context);
+            return await userRepo.SearchUser(query);
+        }
 
     }
 }

@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
+using Nexus.LAS.Application.UseCases.GetGroupDTO;
 using Nexus.LAS.Application.UseCases.GroupUseCases.Commands;
 using Nexus.LAS.Domain.Entities.Lookup;
 using Nexus.LAS.WebApi.Controllers._GenericController;
@@ -35,5 +36,12 @@ public class GroupController : GenericController<IGroupService, Group>
     {
         await _mediator.Send(command);
         return Ok();
+    }
+
+    [HttpGet(nameof(SearchGroup))]
+    public async Task<IActionResult> SearchGroup([FromQuery]SearchGroupQuery query)
+    {
+        return Ok(await _mediator.Send(query));
+
     }
 }

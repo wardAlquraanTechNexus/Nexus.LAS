@@ -146,7 +146,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("CompaniesActivityIdc", "Id");
 
-                    b.ToTable("CompaniesActivity");
+                    b.ToTable("CompaniesActivities");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompaniesAddress", b =>
@@ -446,6 +446,10 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("int")
                         .HasColumnName("CompaniesBoards_IDN");
 
+                    b.Property<int>("CompaniesIdn")
+                        .HasColumnType("int")
+                        .HasColumnName("Companies_IDN");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -461,6 +465,14 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<DateTime?>("MemberAppointmentDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("MemberAppointmentDate");
+
+                    b.Property<DateTime?>("MemberCessationDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("MemberCessationDate");
 
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
@@ -490,6 +502,11 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnName("CompaniesCapitalIDN");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClassOfSahres")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<bool>("CompaniesCapitalActive")
                         .HasColumnType("bit")
@@ -550,6 +567,10 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("NominalValueOfShare")
+                        .HasColumnType("float")
+                        .HasColumnName("NominalValueOfShare");
 
                     b.HasKey("CompaniesCapitalIdc", "Id");
 
@@ -1014,6 +1035,16 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("AuthorityRule")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("AuthorityRule");
+
+                    b.Property<DateTime?>("CessationDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CessationDate");
+
                     b.Property<int>("CompaniesIdn")
                         .HasColumnType("int")
                         .HasColumnName("Companies_IDN");
@@ -1144,6 +1175,10 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("CompaniesIdn")
+                        .HasColumnType("int")
+                        .HasColumnName("Companies_IDN");
+
                     b.Property<int?>("CompaniesShareHoldersGroupsIdn")
                         .HasColumnType("int")
                         .HasColumnName("CompaniesShareHoldersGroups_IDN");
@@ -1183,6 +1218,10 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool?>("ShareHolderActive")
                         .HasColumnType("bit")
                         .HasColumnName("ShareHolderActive");
+
+                    b.Property<DateTime?>("ShareHolderCessationDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("ShareHolderCessationDate");
 
                     b.Property<DateTime?>("ShareHolderDate")
                         .HasColumnType("datetime2")
@@ -1311,9 +1350,8 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("CompanyStatus")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("CompanyStatus")
+                        .HasColumnType("int");
 
                     b.Property<string>("CompanyType")
                         .IsRequired()
@@ -1407,6 +1445,18 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CompanyArabicName")
+                        .IsUnique()
+                        .HasDatabaseName("IX_Companies_CompanyArabicName_Unique");
+
+                    b.HasIndex("CompanyEnglishName")
+                        .IsUnique()
+                        .HasDatabaseName("IX_Companies_CompanyEnglishName_Unique");
+
+                    b.HasIndex("CompanyShortName")
+                        .IsUnique()
+                        .HasDatabaseName("IX_Companies_CompanyShortName_Unique");
 
                     b.ToTable("Companies");
                 });
@@ -2900,7 +2950,7 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.ToTable("PersonsCapacities");
                 });
 
-            modelBuilder.Entity("Nexus.LAS.Domain.Entities.PersonEntities.CompaniesEmail", b =>
+            modelBuilder.Entity("Nexus.LAS.Domain.Entities.PersonEntities.PersonsEmail", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
