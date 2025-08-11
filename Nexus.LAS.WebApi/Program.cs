@@ -87,7 +87,6 @@ builder.Services.AddAuthorization(options =>
 
 // Register middleware services
 builder.Services.AddScoped<RequestTimeLoggingMiddleware>();
-builder.Services.AddScoped<CheckRequestMiddleware>();
 
 var app = builder.Build();
 
