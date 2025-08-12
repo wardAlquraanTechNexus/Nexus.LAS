@@ -11,10 +11,10 @@ public class CreateDynamicListCommandValidator : AbstractValidator<CreateDynamic
     {
         _service = service;
 
-        RuleFor(x => x.MenuValue)
+        RuleFor(x => x.Name)
             .NotEmpty().WithMessage("Menu value is required.")
             .MustAsync(async (command, menuValue, cancellation) =>
-                !await MenuExists(menuValue, command.MainListId))
+                !await MenuExists(menuValue, command.ParentId))
             .WithMessage("Menu value already exists for this main list.");
     }
 

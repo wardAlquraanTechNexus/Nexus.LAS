@@ -1,5 +1,6 @@
 ﻿using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
+using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.UseCases.Queries.GetDynamicListDto;
 using Nexus.LAS.Domain.Entities.Lookup;
 using Nexus.LAS.Persistence.DatabaseContext;
@@ -14,7 +15,7 @@ public class DynamicListService : GenericService<DynamicList>, IDynamicListServi
     {
     }
 
-    public async Task<List<DynamicList>> GetListAsync(GetDynamicListDTOQuery param)
+    public async Task<PagingResult<DynamicList>> GetListAsync(GetDynamicListDTOQuery param)
     {
         DynamicListRepo repo = new(_context);
         return await repo.GetListAsync(param);

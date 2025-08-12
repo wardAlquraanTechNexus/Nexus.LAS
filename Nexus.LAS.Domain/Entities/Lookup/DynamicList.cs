@@ -17,19 +17,12 @@ public class DynamicList: BaseEntity
     [Column("DynamicListIDN")]
     public override int Id { get; set; }
 
-    [Column("LinkedCategory")]
-    [MaxLength(50)]
-    public string? LinkedCategory { get; set; }
 
-    [Column("MainListID")]
-    public int? MainListId { get; set; }
+    [Column("ParentDynamicListIDN")]
+    public int? ParentId { get; set; }
 
-    [Column("MenuCategory")]
-    [MaxLength(50)]
-    public string? MenuCategory { get; set; }
-
-    [Column("MenuValue")]
-    public string? MenuValue { get; set; }
+    [Column("DynamicListItemName")]
+    public string? Name { get; set; }
 
     [Column("Active")]
     public bool? Active { get; set; }

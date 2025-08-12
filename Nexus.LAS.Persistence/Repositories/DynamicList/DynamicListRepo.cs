@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.UseCases.Queries.GetDynamicListDto;
 using Nexus.LAS.Domain.Entities.Lookup;
+using Nexus.LAS.Domain.ExtensionMethods;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Repositories.BaseRepo;
 
@@ -12,22 +14,25 @@ public class DynamicListRepo : GenericRepo<DynamicList>
     {
     }
 
-    public async Task<List<DynamicList>> GetListAsync(GetDynamicListDTOQuery param)
+    public async Task<PagingResult<DynamicList>> GetListAsync(GetDynamicListDTOQuery param)
     {
         var query = _dbSet.Where(dl =>
         (!param.Id.HasValue || param.Id == dl.Id) &&
-        (param.LinkedCategory == dl.LinkedCategory) &&
-        (param.MainListId == dl.MainListId) &&
+        (param.ParentId == dl.ParentId) &&
         (!param.Rank.HasValue || param.Rank == dl.Rank) &&
         (!param.Active.HasValue || param.Active == dl.Active) &&
-        (string.IsNullOrEmpty(param.MenuValue) || dl.LinkedCategory.Contains(param.MenuValue, StringComparison.OrdinalIgnoreCase))
+        (string.IsNullOrEmpty(param.Name) || (!string.IsNullOrEmpty(dl.Name) && dl.Name.ToLower().Contains(param.Name.ToLower())))
         ).AsQueryable();
 
 
         query.OrderByDescending(dl => dl.Rank);
 
+        var totalRecords = await query.CountAsync();
+
+        query = query.Paginate(param.Page , param.PageSize);
+
         var data = await query.ToListAsync();
-        return data;
+        return new PagingResult<DynamicList>(data , param.Page , param.PageSize , totalRecords);
     }
 
     public async Task<List<DynamicList>> GetParents(int id)
@@ -48,7 +53,7 @@ public class DynamicListRepo : GenericRepo<DynamicList>
             // Move to parent id (LinkedCategory)
 
             pathParts.Add(item);
-            currentId = item.MainListId ?? 0;
+            currentId = item.ParentId ?? 0;
 
         }
 
@@ -78,7 +83,7 @@ public class DynamicListRepo : GenericRepo<DynamicList>
 
         accumulator.Add(node);
 
-        var children = await _dbSet.Where(dl => dl.MainListId == id).ToListAsync();
+        var children = await _dbSet.Where(dl => dl.ParentId == id).ToListAsync();
 
         foreach (var child in children)
         {
@@ -92,8 +97,8 @@ public class DynamicListRepo : GenericRepo<DynamicList>
 
         return await _dbSet.AnyAsync(x =>
             (!currentId.HasValue || x.Id != currentId) &&
-            !string.IsNullOrEmpty(x.MenuValue) &&
-            x.MenuValue.ToLower() == normalizedMenuValue &&
-            x.MainListId == mainListId);
+            !string.IsNullOrEmpty(x.Name) &&
+            x.Name.ToLower() == normalizedMenuValue &&
+            x.ParentId == mainListId);
     }
 }

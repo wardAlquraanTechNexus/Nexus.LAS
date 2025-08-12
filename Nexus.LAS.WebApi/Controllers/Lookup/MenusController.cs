@@ -50,11 +50,11 @@ namespace Nexus.LAS.WebApi.Controllers.Lookup
             return Ok();
         }
         [NonAction]
-        public override async Task<IActionResult> GetAllByQuery()
+        public override async Task<IActionResult> GetByQuery()
         {
             return Ok(await _service.GetAllAsync(Request.Query));
         }
-        [HttpGet(nameof(GetAllByQuery))]
+        [HttpGet]
         public async Task<IActionResult> GetList([FromQuery] GetMenuDtoQuery query)
         {
             var data = await _mediator.Send(query);

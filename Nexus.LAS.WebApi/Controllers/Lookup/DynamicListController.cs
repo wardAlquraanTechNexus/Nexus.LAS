@@ -40,11 +40,11 @@ public class DynamicListController : GenericController<IDynamicListService, Dyna
     }
 
     [NonAction]
-    public override async Task<IActionResult> GetAllByQuery()
+    public override async Task<IActionResult> GetByQuery()
     {
         return Ok(await _service.GetAllAsync(Request.Query));
     }
-    [HttpGet(nameof(GetAllByQuery))]
+    [HttpGet]
     public async Task<IActionResult> GetList([FromQuery]GetDynamicListDTOQuery query)
     {
         return Ok(await _mediator.Send(query));

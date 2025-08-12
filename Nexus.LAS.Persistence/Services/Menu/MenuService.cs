@@ -1,5 +1,6 @@
 ﻿using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
+using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.UseCases.MenuUseCases.Queries;
 using Nexus.LAS.Domain.Entities.Lookup;
 using Nexus.LAS.Domain.ViewModels.Menus;
@@ -32,7 +33,7 @@ namespace Nexus.LAS.Persistence.Services
             return await menuRepo.GetParents(id);
         }
 
-        public async Task<List<Menu>> GetListAsync(GetMenuDtoQuery param)
+        public async Task<PagingResult<Menu>> GetListAsync(GetMenuDtoQuery param)
         {
             MenuRepo repo = new(_context);
             return await repo.GetListAsync(param);

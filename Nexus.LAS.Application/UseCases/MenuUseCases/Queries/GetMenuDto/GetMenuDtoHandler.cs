@@ -2,10 +2,11 @@
 using MediatR;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.DTOs;
+using Nexus.LAS.Application.DTOs.Base;
 
 namespace Nexus.LAS.Application.UseCases.MenuUseCases.Queries
 {
-    public class GetMenuDtoHandler:IRequestHandler<GetMenuDtoQuery , List<MenuDto>>
+    public class GetMenuDtoHandler:IRequestHandler<GetMenuDtoQuery , PagingResult<MenuDto>>
     {
         private readonly IMenuService _service;
         private readonly IMapper _mapper;
@@ -16,12 +17,12 @@ namespace Nexus.LAS.Application.UseCases.MenuUseCases.Queries
             _mapper = mapper;
         }
 
-        public async Task<List<MenuDto>> Handle(GetMenuDtoQuery query, CancellationToken cancellationToken)
+        public async Task<PagingResult<MenuDto>> Handle(GetMenuDtoQuery query, CancellationToken cancellationToken)
         {
             var data = await _service.GetListAsync(query);
-            var dataMapped = data.Select(x => _mapper.Map<MenuDto>(x)).ToList();
+            var dataCollection = data.Collection.Select(x => _mapper.Map<MenuDto>(x)).ToList();
 
-            return dataMapped;
+            return new PagingResult<MenuDto>(dataCollection , query.Page , query.PageSize , data.TotalRecords);
         }
     }
 }
