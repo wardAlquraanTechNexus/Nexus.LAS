@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Nexus.LAS.Application.DTOs.Base;
-using Nexus.LAS.Application.DTOs.DynamicListDtos;
 using Nexus.LAS.Application.UseCases.Queries.GetDynamicListDto;
 using Nexus.LAS.Domain.Entities.Lookup;
-using Nexus.LAS.Domain.ExtensionMethods;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Repositories.BaseRepo;
 
@@ -19,6 +16,7 @@ public class DynamicListRepo : GenericRepo<DynamicList>
     {
         var query = _dbSet.Where(dl =>
         (!param.Id.HasValue || param.Id == dl.Id) &&
+        (param.LinkedCategory == dl.LinkedCategory) &&
         (param.MainListId == dl.MainListId) &&
         (!param.Rank.HasValue || param.Rank == dl.Rank) &&
         (!param.Active.HasValue || param.Active == dl.Active) &&
