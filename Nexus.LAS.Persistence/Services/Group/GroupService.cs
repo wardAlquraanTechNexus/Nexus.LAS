@@ -2,6 +2,7 @@
 using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.UseCases.GetGroupDTO;
+using Nexus.LAS.Application.UseCases.Queries;
 using Nexus.LAS.Domain.Entities.Lookup;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Repositories;
@@ -20,5 +21,11 @@ namespace Nexus.LAS.Persistence.Services
             GroupRepo repo = new(_context);
             return await repo.SearchGroup(query);
         }
+        public async Task<PagingResult<Group>> GetGroupDTOs(GetGroupDtoQuery query)
+        {
+            GroupRepo repo = new(_context);
+            return await repo.GetGroupDTOs(query);
+        }
+
     }
 }
