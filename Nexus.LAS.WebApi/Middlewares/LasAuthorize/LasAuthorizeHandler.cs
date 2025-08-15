@@ -3,11 +3,12 @@ using Microsoft.AspNetCore.Http;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.Exceptions;
+using Nexus.LAS.WebApi.Attributes;
 using System.Security.Claims;
 
 namespace Nexus.LAS.WebApi.Middlewares
 {
-    public class LasAuthorizeHandler: AuthorizationHandler<LasAuthorize>
+    public class LasAuthorizeHandler : AuthorizationHandler<LasAuthorize>
     {
         private readonly IUserIdentityService _userService;
         private readonly IHttpContextAccessor _httpContextAccessor;
@@ -27,6 +28,9 @@ namespace Nexus.LAS.WebApi.Middlewares
                 if (httpContext == null)
                     return;
 
+                var endpoint = httpContext.GetEndpoint();
+
+
                 var userId = context.User.FindFirstValue("Username");
                 if (userId == null)
                     return;
@@ -34,11 +38,13 @@ namespace Nexus.LAS.WebApi.Middlewares
                 var pathname = httpContext.Request.Headers.FirstOrDefault(x => x.Key.Equals("pathname", StringComparison.OrdinalIgnoreCase));
                 if (string.IsNullOrEmpty(pathname.Key) || string.IsNullOrEmpty(pathname.Value))
                 {
-                    
+
                     return;
                 }
 
-                var menus = await _menuService.GetAllMenusByPath(pathname.Value.ToString().TrimStart('/'));
+
+                var pathes = pathname.Value.ToString().Split('/');
+                var menus = await _menuService.GetAllMenusByPath(pathes[pathes.Length - 1]);
 
                 if (menus.Any())
                 {
@@ -46,6 +52,22 @@ namespace Nexus.LAS.WebApi.Middlewares
                     if (menuUsers is null)
                     {
                         return; // no access
+                    }
+                    var methodTypeAttribute = endpoint.Metadata.GetMetadata<ApiMethodTypeAttribute>();
+
+                    if (methodTypeAttribute != null)
+                    {
+                        var methodType = methodTypeAttribute.Method;
+                        bool isAuth =
+                            (methodTypeAttribute.Method == Domain.Constants.Enums.MethodType.Get && menuUsers.Access) ||
+                            (methodTypeAttribute.Method == Domain.Constants.Enums.MethodType.Insert && menuUsers.CanInsert) ||
+                            (methodTypeAttribute.Method == Domain.Constants.Enums.MethodType.Update && menuUsers.CanUpdate) ||
+                            (methodTypeAttribute.Method == Domain.Constants.Enums.MethodType.Delete && menuUsers.CanDelete);
+
+                        if (!isAuth)
+                        {
+                            throw new NotAuthorizedException("You have no access on this page");
+                        }
                     }
                 }
 

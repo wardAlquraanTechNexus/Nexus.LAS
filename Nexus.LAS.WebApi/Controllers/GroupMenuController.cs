@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.UseCases.GroupMenuUseCases.Commands;
+using Nexus.LAS.Application.UseCases.Queries.SearchMenu;
 using Nexus.LAS.Domain.Entities.Lookup;
 using Nexus.LAS.WebApi.Controllers._GenericController;
 
@@ -34,5 +35,16 @@ public class GroupMenuController : GenericController<IGroupMenuService, GroupMen
     {
         await _mediator.Send(command);
         return Ok();
+    }
+
+    [NonAction]
+    public override Task<IActionResult> GetByQuery()
+    {
+        return base.GetByQuery();
+    }
+    [HttpGet]
+    public async Task<IActionResult> SearchGroupMenu([FromQuery]SearchGroupMenuQuery query)
+    {
+        return Ok(await _mediator.Send(query));
     }
 }

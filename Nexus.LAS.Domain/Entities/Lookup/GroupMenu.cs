@@ -18,19 +18,19 @@ public class GroupMenu: BaseEntity
     public int MenuId { get; set; }
 
     [Column("Access")]
-    public int? Access { get; set; }
+    public bool Access { get; set; }
 
     [Column("CanInsert")]
-    public int? CanInsert { get; set; }
+    public bool CanInsert { get; set; }
 
     [Column("CanUpdate")]
-    public int? CanUpdate { get; set; }
+    public bool CanUpdate { get; set; }
 
     [Column("CanDelete")]
-    public int? CanDelete { get; set; }
+    public bool CanDelete { get; set; }
 
     [Column("Admin")]
-    public int? Admin { get; set; }
+    public bool Admin { get; set; }
 
     // Navigation properties (optional)
     public virtual Group? Group { get; set; }

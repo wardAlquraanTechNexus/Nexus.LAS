@@ -38,6 +38,11 @@ namespace Nexus.LAS.Persistence.Services
             MenuRepo repo = new(_context);
             return await repo.GetListAsync(param);
         }
+        public async Task<PagingResult<Menu>> SearchMenu(GetMenuDtoQuery param)
+        {
+            MenuRepo repo = new(_context);
+            return await repo.SearchMenu(param);
+        }
 
     }
 }

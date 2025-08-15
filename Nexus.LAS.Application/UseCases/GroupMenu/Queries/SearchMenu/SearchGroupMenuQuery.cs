@@ -1,0 +1,22 @@
+﻿using MediatR;
+using Nexus.LAS.Application.DTOs.Base;
+using Nexus.LAS.Application.DTOs.GroupMenuDTOs;
+using Nexus.LAS.Application.UseCases.Base;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Nexus.LAS.Application.UseCases.Queries.SearchMenu
+{
+    public class SearchGroupMenuQuery: BaseParams , IRequest<PagingResult<SearchGroupMenuDTO>>
+    {
+        public int? GroupId { get; set; }
+        public int? MenuId { get; set; }
+        public string? GroupName { get; set; }
+        public string? MenuName { get; set; }
+        public string OrderBy { get; set; } = "id";
+        public string OrderDir { get; set; } = "desc";
+    }
+}

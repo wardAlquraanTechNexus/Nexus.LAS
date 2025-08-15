@@ -13,10 +13,10 @@ namespace Nexus.LAS.Domain.ViewModels.Menus
         public string Name { get; set; } = null!;
         public string? Path { get; set; }
         public string? IconClass { get; set; }
-        public int? Access { get; set; }
-        public int? CanInsert { get; set; }
-        public int? CanUpdate { get; set; }
-        public int? CanDelete { get; set; }
+        public bool Access { get; set; }
+        public bool CanInsert { get; set; }
+        public bool CanUpdate { get; set; }
+        public bool CanDelete { get; set; }
         public string Username { get; set; }
         public bool InDashboard { get; set; }
         public int? Rank { get; set; }

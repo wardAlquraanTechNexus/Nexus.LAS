@@ -86,6 +86,25 @@ namespace Nexus.LAS.Persistence.Repositories
             var data = await query.ToListAsync();
             return new PagingResult<Menu>(data , param.Page , param.PageSize , totalRecords);
         }
+        public async Task<PagingResult<Menu>> SearchMenu(GetMenuDtoQuery param)
+        {
+            var query = _dbSet.Where(dl =>
+            (!param.Id.HasValue || param.Id == dl.Id) &&
+            (!param.ParentId.HasValue || param.ParentId == dl.ParentId) &&
+            (!param.Rank.HasValue || param.Rank == dl.Rank) &&
+            (string.IsNullOrEmpty(param.Name) || dl.Name.ToLower().Contains(param.Name.ToLower()))
+            ).AsQueryable();
+
+
+            query.OrderByDescending(dl => dl.Rank);
+
+            var totalRecords = await query.CountAsync();
+
+            query = query.Paginate(param.Page, param.PageSize);
+
+            var data = await query.ToListAsync();
+            return new PagingResult<Menu>(data , param.Page , param.PageSize , totalRecords);
+        }
 
 
         public async Task<List<Menu>> GetParents(int id)

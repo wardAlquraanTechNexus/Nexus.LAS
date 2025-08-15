@@ -8,8 +8,8 @@ namespace Nexus.LAS.Application.UseCases.MenuUseCases.Queries
 {
     public class GetMenuDtoHandler:IRequestHandler<GetMenuDtoQuery , PagingResult<MenuDto>>
     {
-        private readonly IMenuService _service;
-        private readonly IMapper _mapper;
+        protected readonly IMenuService _service;
+        protected readonly IMapper _mapper;
 
         public GetMenuDtoHandler(IMenuService service, IMapper mapper)
         {

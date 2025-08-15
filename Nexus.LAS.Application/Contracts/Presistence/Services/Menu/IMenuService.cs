@@ -12,4 +12,5 @@ public interface IMenuService:IGenericService<Menu>
     Task<List<MenuGroupAuthorizeVM>> GetAllMenusByPath(string path);
     Task<List<Menu>> GetParents(int id);
     Task<PagingResult<Menu>> GetListAsync(GetMenuDtoQuery param);
+    Task<PagingResult<Menu>> SearchMenu(GetMenuDtoQuery param);
 }

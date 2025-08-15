@@ -8,6 +8,7 @@ using Nexus.LAS.Application.UseCases.MenuUseCases.Queries;
 using Nexus.LAS.Application.UseCases.MenuUseCases.Queries.GetMenu;
 using Nexus.LAS.Application.UseCases.Queries.GetDynamicListDto;
 using Nexus.LAS.Domain.Entities.Lookup;
+using Nexus.LAS.WebApi.Attributes;
 using Nexus.LAS.WebApi.Controllers._GenericController;
 using System.Threading.Tasks;
 
@@ -68,6 +69,12 @@ namespace Nexus.LAS.WebApi.Controllers.Lookup
             {
                 Id = id
             };
+            return Ok(await _mediator.Send(query));
+        }
+        [HttpGet(nameof(SearchMenu))]
+        [ApiMethodType(Domain.Constants.Enums.MethodType.Get)]
+        public async Task<IActionResult> SearchMenu([FromQuery]SearchMenuQuery query)
+        {
             return Ok(await _mediator.Send(query));
         }
     }
