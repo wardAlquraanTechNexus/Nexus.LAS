@@ -17,12 +17,13 @@ public class DynamicList: BaseEntity
     [Column("DynamicListIDN")]
     public override int Id { get; set; }
 
-
-    [Column("ParentDynamicListIDN")]
+    [Column("MainListID")]
     public int? ParentId { get; set; }
 
-    [Column("DynamicListItemName")]
+    [Column("MenuValue")]
     public string? Name { get; set; }
+    public string? LinkedCategory { get; set; }
+    public string? MenuCategory { get; set; }
 
     [Column("Active")]
     public bool? Active { get; set; }

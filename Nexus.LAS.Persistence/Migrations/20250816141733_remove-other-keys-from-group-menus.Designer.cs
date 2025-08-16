@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Nexus.LAS.Persistence.DatabaseContext;
 
@@ -11,9 +12,11 @@ using Nexus.LAS.Persistence.DatabaseContext;
 namespace Nexus.LAS.Persistence.Migrations
 {
     [DbContext(typeof(NexusLASDbContext))]
-    partial class NexusLASDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250816141733_remove-other-keys-from-group-menus")]
+    partial class removeotherkeysfromgroupmenus
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -211,14 +214,16 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PoBoxCity")
+                    b.Property<string>("PoBoxCity")
+                        .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("int")
+                        .HasColumnType("nvarchar(50)")
                         .HasColumnName("POBoxCity");
 
-                    b.Property<int>("PoBoxCountry")
+                    b.Property<string>("PoBoxCountry")
+                        .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("int")
+                        .HasColumnType("nvarchar(50)")
                         .HasColumnName("POBoxCountry");
 
                     b.Property<string>("PoBoxNumber")
@@ -2477,12 +2482,6 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("LinkedCategory")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MenuCategory")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
@@ -2491,11 +2490,11 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)")
-                        .HasColumnName("MenuValue");
+                        .HasColumnName("DynamicListItemName");
 
                     b.Property<int?>("ParentId")
                         .HasColumnType("int")
-                        .HasColumnName("MainListID");
+                        .HasColumnName("ParentDynamicListIDN");
 
                     b.Property<int?>("Rank")
                         .HasColumnType("int")
@@ -2861,12 +2860,12 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("POBoxCity")
-                        .HasColumnType("int")
+                    b.Property<string>("POBoxCity")
+                        .HasColumnType("nvarchar(max)")
                         .HasColumnName("POBoxCity");
 
-                    b.Property<int?>("POBoxCountry")
-                        .HasColumnType("int")
+                    b.Property<string>("POBoxCountry")
+                        .HasColumnType("nvarchar(max)")
                         .HasColumnName("POBoxCountry");
 
                     b.Property<string>("POBoxNumber")

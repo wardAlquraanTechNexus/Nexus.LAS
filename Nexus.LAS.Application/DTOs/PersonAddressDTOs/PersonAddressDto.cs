@@ -9,6 +9,8 @@ public class PersonAddressDto
     public string AddressLine1 { get; set; } = null!;
     public string? POBoxCity { get; set; }
     public string? POBoxCountry { get; set; }
+    public string CountryName { get; set; }
+    public string CityName { get; set; }
     public string? CreatedBy { get; set; }
     public DateTime? CreatedAt { get; set; }
     public string? ModifiedBy { get; set; }

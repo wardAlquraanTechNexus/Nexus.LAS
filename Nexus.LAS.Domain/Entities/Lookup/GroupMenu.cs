@@ -7,12 +7,10 @@ namespace Nexus.LAS.Domain.Entities.Lookup;
 [Table("GroupsMenus")]
 public class GroupMenu: BaseEntity
 {
-    [Key]
     [ForeignKey("Group")]
     [Column("GroupID", Order = 0)]
     public int GroupId { get; set; }
 
-    [Key]
     [ForeignKey("Menu")]
     [Column("MenuID", Order = 1)]
     public int MenuId { get; set; }

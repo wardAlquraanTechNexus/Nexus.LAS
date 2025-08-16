@@ -55,20 +55,20 @@ namespace Nexus.LAS.WebApi.Middlewares
                     }
                     var methodTypeAttribute = endpoint.Metadata.GetMetadata<ApiMethodTypeAttribute>();
 
-                    if (methodTypeAttribute != null)
-                    {
-                        var methodType = methodTypeAttribute.Method;
-                        bool isAuth =
-                            (methodTypeAttribute.Method == Domain.Constants.Enums.MethodType.Get && menuUsers.Access) ||
-                            (methodTypeAttribute.Method == Domain.Constants.Enums.MethodType.Insert && menuUsers.CanInsert) ||
-                            (methodTypeAttribute.Method == Domain.Constants.Enums.MethodType.Update && menuUsers.CanUpdate) ||
-                            (methodTypeAttribute.Method == Domain.Constants.Enums.MethodType.Delete && menuUsers.CanDelete);
+                    //if (methodTypeAttribute != null)
+                    //{
+                    //    var methodType = methodTypeAttribute.Method;
+                    //    bool isAuth =
+                    //        (methodTypeAttribute.Method == Domain.Constants.Enums.MethodType.Get && menuUsers.Access) ||
+                    //        (methodTypeAttribute.Method == Domain.Constants.Enums.MethodType.Insert && menuUsers.CanInsert) ||
+                    //        (methodTypeAttribute.Method == Domain.Constants.Enums.MethodType.Update && menuUsers.CanUpdate) ||
+                    //        (methodTypeAttribute.Method == Domain.Constants.Enums.MethodType.Delete && menuUsers.CanDelete);
 
-                        if (!isAuth)
-                        {
-                            throw new NotAuthorizedException("You have no access on this page");
-                        }
-                    }
+                    //    if (!isAuth)
+                    //    {
+                    //        return; // no access
+                    //    }
+                    //}
                 }
 
                 var userDto = await _userService.FindUserByEmailOrUsename(userId);

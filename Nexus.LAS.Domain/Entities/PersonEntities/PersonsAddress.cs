@@ -33,9 +33,9 @@ namespace Nexus.LAS.Domain.Entities.PersonEntities
         public string? POBoxNumber { get; set; }
 
         [Column("POBoxCity")]
-        public string? POBoxCity { get; set; }
+        public int? POBoxCity { get; set; }
 
         [Column("POBoxCountry")]
-        public string? POBoxCountry { get; set; }
+        public int? POBoxCountry { get; set; }
     }
 }

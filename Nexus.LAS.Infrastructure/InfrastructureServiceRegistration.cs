@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Nexus.LAS.Application.Contracts.Email;
 using Nexus.LAS.Application.Contracts.Logging;
+using Nexus.LAS.Application.Models;
 using Nexus.LAS.Application.Models.Email;
 using Nexus.LAS.Application.Models.File;
 using Nexus.LAS.Infrastructure.Logging;
@@ -18,6 +19,9 @@ namespace Nexus.LAS.Infrastructure
         public static IServiceCollection AddInfrastructureServiceDI(this IServiceCollection services, IConfiguration configuration)
         {
             services.Configure<EmailSettings>(configuration.GetSection("EmailSettings") ?? throw new Exception("EmailSettings is not set"));
+
+            services.Configure<DynamicListRoots>(configuration.GetSection("DynamicListRoots"));
+
 
             services.AddTransient<IEmailService, EmailService>();
 

@@ -49,10 +49,10 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
 
         [MaxLength(50)]
         [Column("POBoxCity")]
-        public string PoBoxCity { get; set; }
+        public int? PoBoxCity { get; set; }
 
         [MaxLength(50)]
         [Column("POBoxCountry")]
-        public string PoBoxCountry { get; set; }
+        public int PoBoxCountry { get; set; }
     }
 }

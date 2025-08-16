@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Nexus.LAS.Persistence.DatabaseContext;
 
@@ -11,9 +12,11 @@ using Nexus.LAS.Persistence.DatabaseContext;
 namespace Nexus.LAS.Persistence.Migrations
 {
     [DbContext(typeof(NexusLASDbContext))]
-    partial class NexusLASDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250816162435_change-dt-of-country-and-city")]
+    partial class changedtofcountryandcity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -2861,12 +2864,12 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("POBoxCity")
-                        .HasColumnType("int")
+                    b.Property<string>("POBoxCity")
+                        .HasColumnType("nvarchar(max)")
                         .HasColumnName("POBoxCity");
 
-                    b.Property<int?>("POBoxCountry")
-                        .HasColumnType("int")
+                    b.Property<string>("POBoxCountry")
+                        .HasColumnType("nvarchar(max)")
                         .HasColumnName("POBoxCountry");
 
                     b.Property<string>("POBoxNumber")

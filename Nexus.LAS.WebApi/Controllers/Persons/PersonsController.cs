@@ -11,6 +11,7 @@ using Nexus.LAS.Application.UseCases.PersonUseCases.Commands.UpdatePerson;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Queries;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Queries.GetAllActivePerson;
 using Nexus.LAS.Domain.Entities.PersonEntities;
+using Nexus.LAS.WebApi.Attributes;
 using Nexus.LAS.WebApi.Controllers._GenericController;
 
 namespace Nexus.LAS.WebApi.Controllers
@@ -40,7 +41,7 @@ namespace Nexus.LAS.WebApi.Controllers
             return Ok(await _mediator.Send(personQuery));
         }
 
-
+        [ApiMethodType(Domain.Constants.Enums.MethodType.Get)]
         [HttpGet(nameof(GetPersons))]
         public async Task<IActionResult> GetPersons([FromQuery]GetPersonsQuery personQuery)
         {

@@ -39,12 +39,7 @@ namespace Nexus.LAS.Persistence.DatabaseContext
             this.OnLawFirmModelCreating(modelBuilder);
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<UserGroup>()
-             .HasKey(gm => new { gm.UserId, gm.GroupId });
-
-            modelBuilder.Entity<GroupMenu>()
-            .HasKey(gm => new { gm.GroupId, gm.MenuId });
-
+          
             modelBuilder.Entity<DynamicList>()
                 .HasKey(gm => new { gm.DynamicListIdC, gm.Id });
 
