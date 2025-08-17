@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nexus.LAS.Application.Contracts;
+using Nexus.LAS.Application.Contracts._Repositories;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.Contracts.Presistence.Repositories;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
@@ -55,6 +56,9 @@ namespace Nexus.LAS.Persistence
             services.AddScoped<ICompanyPersonInChargeService, CompanyPersonInChargeService>();
             services.AddScoped<ICompanyPhoneService, CompanyPhoneService>();
             services.AddScoped<ICompanyShareHolderService, CompanyShareHolderService>();
+            
+            
+            services.AddScoped<IPersonRepo, PersonRepo>();
 
 
 

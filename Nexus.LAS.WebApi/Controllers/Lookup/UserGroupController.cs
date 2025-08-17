@@ -35,5 +35,17 @@ namespace Nexus.LAS.WebApi.Controllers.Lookup
             return StatusCode(201, await _mediator.Send(command));
 
         }
+        [HttpPut]
+        public async Task<IActionResult> UpdateUserGroup(UpdateUserGroupCommand command)
+        {
+            return StatusCode(201, await _mediator.Send(command));
+
+        }
+
+        [NonAction]
+        public override Task<IActionResult> UpdateAsync(UserGroup entity)
+        {
+            return base.UpdateAsync(entity);
+        }
     }
 }

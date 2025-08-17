@@ -20,7 +20,7 @@ namespace Nexus.LAS.Infrastructure
         {
             services.Configure<EmailSettings>(configuration.GetSection("EmailSettings") ?? throw new Exception("EmailSettings is not set"));
 
-            services.Configure<DynamicListRoots>(configuration.GetSection("DynamicListRoots"));
+            services.Configure<AppSettings>(configuration.GetSection("AppSettings"));
 
 
             services.AddTransient<IEmailService, EmailService>();

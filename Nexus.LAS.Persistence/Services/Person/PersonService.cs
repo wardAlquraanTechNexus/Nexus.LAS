@@ -2,6 +2,7 @@
 using EFCore.BulkExtensions;
 using Microsoft.EntityFrameworkCore;
 using Nexus.LAS.Application.Contracts;
+using Nexus.LAS.Application.Contracts._Repositories;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.DTOs;
 using Nexus.LAS.Application.DTOs.Base;
@@ -23,17 +24,19 @@ namespace Nexus.LAS.Persistence.Services
     public class PersonService : GenericService<Person>, IPersonService
     {
         private readonly IMapper _mapper;
-        public PersonService(NexusLASDbContext context, IUserIdentityService userIdentityService, IMapper mapper) : base(context, userIdentityService)
+        private readonly IPersonRepo _personRepo;
+        public PersonService(NexusLASDbContext context, IPersonRepo personRepo, IUserIdentityService userIdentityService, IMapper mapper) : base(context, userIdentityService)
         {
             _mapper = mapper;
+            _personRepo = personRepo;
         }
 
         public async Task<PersonDto> GetPersonDto(int id)
         {
-            PersonRepo personRepo = new PersonRepo(_context);
+            
             RegisterFileRepo registerFileRepo = new RegisterFileRepo(_context);
 
-            var person = await personRepo.GetAsync(id);
+            var person = await _personRepo.GetAsync(id);
 
             var fileData = await registerFileRepo.GetLastByIds(EntityIDCs.Person, id);
 
@@ -51,24 +54,20 @@ namespace Nexus.LAS.Persistence.Services
 
         public async Task<PagingResult<Person>> GetPersons(GetPersonsQuery personQuery)
         {
-            PersonRepo personRepo = new PersonRepo(_context);
-            return await personRepo.GetPersons(personQuery);
+            return await _personRepo.GetPersons(personQuery);
         }
         public async Task<PagingResult<Person>> GetActivePersons(GetAllActivePersonQuery personQuery)
         {
-            PersonRepo personRepo = new PersonRepo(_context);
-            return await personRepo.GetActivePersons(personQuery);
+            return await _personRepo.GetActivePersons(personQuery);
         }
 
         public async override Task<int> CreateAsync(Person entity)
         {
-            PersonRepo personRepo = new PersonRepo(_context);
-            return await personRepo.CreateAsync(entity);
+            return await _personRepo.CreateAsync(entity);
         }
         public async Task<Person> UpdatePersonAsync(Person entity)
         {
-            PersonRepo personRepo = new PersonRepo(_context);
-            return await personRepo.UpdatePersonAsync(entity);
+            return await _personRepo.UpdatePersonAsync(entity);
         }
 
         public async Task<int> BulkChangeStatus(List<int> personIds, int status)
@@ -157,14 +156,13 @@ namespace Nexus.LAS.Persistence.Services
 
         public async Task<byte[]> ExportToPdf(int id)
         {
-            var repo = new PersonRepo(_context);
             PersonIdDetailRepo personIdDetailRepo = new(_context);
             PersonOtherDocumentRepo personOtherDocumentRepo = new(_context);
             PersonEmailRepo personEmailRepo = new(_context);
             PersonPhoneRepo personPhoneRepo = new(_context);
             PersonAddressRepo personAddressRepo = new(_context);
 
-            var person = await repo.GetAsync(id);
+            var person = await _personRepo.GetAsync(id);
             var personIdDetails = await personIdDetailRepo.GetListByPersonId(id);
             var personsOtherDocuments = await personOtherDocumentRepo.GetListByPersonId(id);
             var personEmails = await personEmailRepo.GetListByPersonId(id);

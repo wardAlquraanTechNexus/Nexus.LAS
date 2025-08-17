@@ -1,5 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Nexus.LAS.Application.Contracts._Repositories;
 using Nexus.LAS.Application.DTOs.Base;
+using Nexus.LAS.Application.Models;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Queries;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Queries.GetAllActivePerson;
 using Nexus.LAS.Domain.Constants.Enums;
@@ -10,29 +13,68 @@ using Nexus.LAS.Persistence.Repositories.BaseRepo;
 
 namespace Nexus.LAS.Persistence.Repositories;
 
-public class PersonRepo : GenericRepo<Person>
+public class PersonRepo : GenericRepo<Person>, IPersonRepo
 {
-    public PersonRepo(NexusLASDbContext context) : base(context)
+    private readonly IOptions<AppSettings> _appSettings;
+    public PersonRepo(NexusLASDbContext context, IOptions<AppSettings> appSettings) : base(context)
     {
+        _appSettings = appSettings;
     }
 
 
     public async Task<PagingResult<Person>> GetPersons(GetPersonsQuery personQuery)
     {
         var personsQueryable = _dbSet.Where(
-            x =>
-            (!personQuery.Privates.Any() || personQuery.Privates.Contains(x.Private))
-            && (!personQuery.Statuses.Any() || (x.PersonStatus.HasValue && personQuery.Statuses.Contains(x.PersonStatus.Value)))
+            person =>
+            (!personQuery.Privates.Any() || personQuery.Privates.Contains(person.Private))
+            && (!personQuery.Statuses.Any() || (person.PersonStatus.HasValue && personQuery.Statuses.Contains(person.PersonStatus.Value)))
             && (
                     personQuery.SearchBy == null
-                || (x.PersonIdc.ToLower().Contains(personQuery.SearchBy.ToLower()))
-                || (!string.IsNullOrEmpty(x.PersonEnglishName) && x.PersonEnglishName.ToLower().Contains(personQuery.SearchBy.ToLower()))
-                || (!string.IsNullOrEmpty(x.PersonArabicName) && x.PersonArabicName.ToLower().Contains(personQuery.SearchBy.ToLower()))
-                || (!string.IsNullOrEmpty(x.PersonShortName) && x.PersonShortName.ToLower().Contains(personQuery.SearchBy.ToLower()))
-                || (!string.IsNullOrEmpty(x.PersonCode) && x.PersonCode.ToLower().Contains(personQuery.SearchBy.ToLower()))
+                || (person.PersonIdc.ToLower().Contains(personQuery.SearchBy.ToLower()))
+                || (!string.IsNullOrEmpty(person.PersonEnglishName) && person.PersonEnglishName.ToLower().Contains(personQuery.SearchBy.ToLower()))
+                || (!string.IsNullOrEmpty(person.PersonArabicName) && person.PersonArabicName.ToLower().Contains(personQuery.SearchBy.ToLower()))
+                || (!string.IsNullOrEmpty(person.PersonShortName) && person.PersonShortName.ToLower().Contains(personQuery.SearchBy.ToLower()))
+                || (!string.IsNullOrEmpty(person.PersonCode) && person.PersonCode.ToLower().Contains(personQuery.SearchBy.ToLower()))
 
                 )
             ).AsQueryable();
+
+        if (personQuery.Nationality.HasValue)
+        {
+            personsQueryable = personsQueryable.Where(x =>
+                _context.PersonsAddresses.Any(address => address.PersonsIdn == x.Id &&
+                                                         address.POBoxCountry == personQuery.Nationality));
+        }
+
+        if (personQuery.IsLdStaff.HasValue)
+        {
+            IQueryable<Person> filteredPersons;
+            if (personQuery.IsLdStaff.Value)
+            {
+                filteredPersons = from person in personsQueryable
+                                  join user in _context.Users
+                                      on person.Id equals user.PersonsIdN
+                                  join userGroup in _context.UserGroups
+                                      on user.Id equals userGroup.UserId
+                                  where userGroup.GroupId == _appSettings.Value.LdStaffId
+                                  select person;
+            }
+            else
+            {
+                filteredPersons = from person in personsQueryable
+                                      join user in _context.Users
+                                          on person.Id equals user.PersonsIdN into userGroupJoin
+                                      from user in userGroupJoin.DefaultIfEmpty()
+                                      join userGroup in _context.UserGroups
+                                          on user != null ? user.Id : 0 equals userGroup.UserId into userGroupJoin2
+                                      from userGroup in userGroupJoin2.DefaultIfEmpty()
+                                      where userGroup == null || userGroup.GroupId != _appSettings.Value.LdStaffId
+                                      select person;
+            }
+            personsQueryable = filteredPersons.Distinct().AsQueryable();
+        }
+
+
 
         int totalRecords = await personsQueryable.CountAsync();
 
@@ -40,7 +82,7 @@ public class PersonRepo : GenericRepo<Person>
 
         if (!string.IsNullOrEmpty(personQuery.OrderBy))
         {
-            personsQueryable = personsQueryable.Order(personQuery.OrderBy,personQuery.OrderDir ?? "asc");
+            personsQueryable = personsQueryable.Order(personQuery.OrderBy, personQuery.OrderDir ?? "asc");
         }
 
         int totalPages = (int)Math.Ceiling((double)totalRecords / personQuery.PageSize);
@@ -115,17 +157,17 @@ public class PersonRepo : GenericRepo<Person>
 
         if (oldEntity.PersonShortName != entity.PersonShortName)
             oldEntity.PersonShortName = entity.PersonShortName;
-        
+
         if (oldEntity.PersonStatus != entity.PersonStatus)
         {
             oldEntity.PersonStatus = entity.PersonStatus;
-            if(entity.PersonStatus == (int)PersonStatus.Active)
+            if (entity.PersonStatus == (int)PersonStatus.Active)
             {
                 oldEntity.PersonCode = "PP" + entity.Id.ToString().PadLeft(6, '0');
 
             }
         }
-        
+
         if (oldEntity.Private != entity.Private)
             oldEntity.Private = entity.Private;
 

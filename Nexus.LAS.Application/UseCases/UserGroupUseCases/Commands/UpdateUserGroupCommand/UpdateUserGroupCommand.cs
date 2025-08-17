@@ -1,17 +1,16 @@
-﻿using System;
+﻿using Nexus.LAS.Application.UseCases._GenericUseCases.Commands;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nexus.LAS.Application.DTOs
+namespace Nexus.LAS.Application.UseCases.UserGroupUseCases.Commands
 {
-    public class UserGroupDTO
+    public class UpdateUserGroupCommand : UpdateBaseCommand
     {
         public int Id { get; set; }
         public int UserId { get; set; }
         public int GroupId { get; set; }
-        public string Username { get; set; }
-        public string GroupName { get; set; }
     }
 }

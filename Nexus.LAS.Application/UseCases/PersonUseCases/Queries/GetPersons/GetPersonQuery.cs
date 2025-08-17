@@ -8,7 +8,7 @@ namespace Nexus.LAS.Application.UseCases.PersonUseCases.Queries;
 public class GetPersonsQuery: BaseParams , IRequest<PagingResult<GetPersonsDto>>
 {
     public string? SearchBy { get; set; }
-    public string? Nationality { get; set; }
+    public int? Nationality { get; set; }
     public string? Private 
     {
         get => _private;
@@ -45,6 +45,7 @@ public class GetPersonsQuery: BaseParams , IRequest<PagingResult<GetPersonsDto>>
     }
     private string? _status;
 
+    public bool? IsLdStaff { get; set; }
     public List<int> Statuses { get; set; } = new();
     public string? OrderBy { get; set; }
     public string? OrderDir { get; set; }

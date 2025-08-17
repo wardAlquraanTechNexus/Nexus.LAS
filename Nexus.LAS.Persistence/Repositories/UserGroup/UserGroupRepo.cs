@@ -35,6 +35,7 @@ namespace Nexus.LAS.Persistence.Repositories
                                 GroupId = g.Id,
                                 Username = u.Username,
                                 UserId = u.Id,
+                                Id = ug.Id,
                             }
                            ).AsQueryable();
 

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Nexus.LAS.Application.UseCases.UserUseCases.Queries
 {
-    public class SearchUserQueryHandler : IRequestHandler<SearchUserQuery, PagingResult<User>>
+    public class SearchUserQueryHandler : IRequestHandler<SearchUserQuery, PagingResult<UserDto>>
     {
         private readonly IUserService _service;
 
@@ -20,7 +20,7 @@ namespace Nexus.LAS.Application.UseCases.UserUseCases.Queries
             _service = service;
         }
 
-        public async Task<PagingResult<User>> Handle(SearchUserQuery request, CancellationToken cancellationToken)
+        public async Task<PagingResult<UserDto>> Handle(SearchUserQuery request, CancellationToken cancellationToken)
         {
             var users = await _service.GetUserDTOs(request);
 
