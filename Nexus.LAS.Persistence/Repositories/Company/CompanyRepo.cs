@@ -21,7 +21,7 @@ public class CompanyRepo : GenericRepo<Company>
         var companysQueryable = _dbSet.Where(
             x =>
             (!companyQuery.Privates.Any() || companyQuery.Privates.Contains(x.Private))
-            && (!companyQuery.Statuses.Any() || (x.CompanyStatus.HasValue && companyQuery.Statuses.Contains(x.CompanyStatus.Value)))
+            && (!companyQuery.Statuses.Any() || (companyQuery.Statuses.Contains(x.CompanyStatus)))
             && (
                     companyQuery.SearchBy == null
                 || (x.CompanyIdc.ToLower().Contains(companyQuery.SearchBy.ToLower()))
