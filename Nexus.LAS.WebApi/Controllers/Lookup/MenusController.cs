@@ -22,6 +22,7 @@ namespace Nexus.LAS.WebApi.Controllers.Lookup
         }
 
         [HttpGet(nameof(GetAllMenus))]
+        [ApiMethodType(Domain.Constants.Enums.MethodType.Get)]
         public async Task<IActionResult> GetAllMenus() 
         {
             GetMenuTreeQuery getMenuTreeQuery = new GetMenuTreeQuery();
@@ -34,6 +35,7 @@ namespace Nexus.LAS.WebApi.Controllers.Lookup
             return base.CreateAsync(entity);
         }
         [HttpPost]
+        [ApiMethodType(Domain.Constants.Enums.MethodType.Insert)]
         public async Task<IActionResult> CreateUseCase(CreateMenuCommand command)
         {
             return Ok(await _mediator.Send(command));
@@ -45,6 +47,7 @@ namespace Nexus.LAS.WebApi.Controllers.Lookup
             return base.UpdateAsync(entity);
         }
         [HttpPut]
+        [ApiMethodType(Domain.Constants.Enums.MethodType.Update)]
         public async Task<IActionResult> UpdateUseCase(UpdateMenuCommand command)
         {
             await _mediator.Send(command);
@@ -56,6 +59,7 @@ namespace Nexus.LAS.WebApi.Controllers.Lookup
             return Ok(await _service.GetAllAsync(Request.Query));
         }
         [HttpGet]
+        [ApiMethodType(Domain.Constants.Enums.MethodType.Get)]
         public async Task<IActionResult> GetList([FromQuery] GetMenuDtoQuery query)
         {
             var data = await _mediator.Send(query);
@@ -63,6 +67,7 @@ namespace Nexus.LAS.WebApi.Controllers.Lookup
         }
 
         [HttpGet("GetParents/{id}")]
+        [ApiMethodType(Domain.Constants.Enums.MethodType.Get)]
         public async Task<IActionResult> GetParents(int id)
         {
             GetManuParentQuery query = new GetManuParentQuery()

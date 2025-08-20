@@ -6,6 +6,7 @@ using Nexus.LAS.Application.Contracts.Presistence.Services.Base;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.UseCases._GenericUseCases.Queries;
 using Nexus.LAS.Domain.Entities.Base;
+using Nexus.LAS.WebApi.Attributes;
 
 namespace Nexus.LAS.WebApi.Controllers._GenericController
 {
@@ -23,16 +24,19 @@ namespace Nexus.LAS.WebApi.Controllers._GenericController
             _mediator = mediator;
         }
         [HttpGet]
+        [ApiMethodType(Domain.Constants.Enums.MethodType.Get)]
         public virtual async Task<IActionResult> GetByQuery() 
         {
             return Ok(await _service.GetAsync(Request.Query));
         }
         [HttpGet(nameof(GetAllByQuery))]
+        [ApiMethodType(Domain.Constants.Enums.MethodType.Get)]
         public virtual async Task<IActionResult> GetAllByQuery() 
         {
             return Ok(await _service.GetAllAsync(Request.Query));
         }
         [HttpGet("{id}")]
+        [ApiMethodType(Domain.Constants.Enums.MethodType.Get)]
         public virtual async Task<IActionResult> GetById(int id) 
         {
             var res = await _service.GetAsync(id);
@@ -40,6 +44,7 @@ namespace Nexus.LAS.WebApi.Controllers._GenericController
             
         }
         [HttpPost]
+        [ApiMethodType(Domain.Constants.Enums.MethodType.Insert)]
         public virtual async Task<IActionResult> CreateAsync(Entity entity)
         {
             var res = await _service.CreateAsync(entity);
@@ -48,6 +53,7 @@ namespace Nexus.LAS.WebApi.Controllers._GenericController
         }
 
         [HttpPost(nameof(BulkUpsertAsync))]
+        [ApiMethodType(Domain.Constants.Enums.MethodType.Update)]
         public virtual async Task<IActionResult> BulkUpsertAsync(List<Entity> entities)
         {
             var res = await _service.BulkUpsertAsync(entities);
@@ -56,6 +62,7 @@ namespace Nexus.LAS.WebApi.Controllers._GenericController
         }
 
         [HttpPut]
+        [ApiMethodType(Domain.Constants.Enums.MethodType.Update)]
         public virtual async Task<IActionResult> UpdateAsync(Entity entity)
         {
             await _service.UpdateAsync(entity);
@@ -63,6 +70,7 @@ namespace Nexus.LAS.WebApi.Controllers._GenericController
 
         }
         [HttpDelete("{id}")]
+        [ApiMethodType(Domain.Constants.Enums.MethodType.Delete)]
         public async Task<IActionResult> DeleteAsync(int id)
         {
             await _service.DeleteAsync(id);

@@ -20,7 +20,42 @@ namespace Nexus.LAS.Persistence.Repositories
         {
         }
 
-        public async Task<PagingResult<UserGroupDTO>> GerUserGroupDTO(GetUsetGroupDTOQuery query)
+        public async Task<PagingResult<UserGroupDTO>> GetUserGroupDTO(GetUsetGroupDTOQuery query)
+        {
+
+            var querable = (from u in _context.Users
+                            join ug in _context.UserGroups on u.Id equals ug.UserId
+                            join g in _context.Groups on ug.GroupId equals g.Id
+                            where (!query.UserId.HasValue || query.UserId == u.Id) &&
+                           (!query.GroupId.HasValue || query.GroupId == g.Id) &&
+                           (string.IsNullOrEmpty(query.Username) || u.Username.ToLower().Contains(query.Username.ToLower())) &&
+                           (string.IsNullOrEmpty(query.GroupName) || g.GroupName.ToLower().Contains(query.GroupName.ToLower()))
+                            select new UserGroupDTO()
+                            {
+                                GroupName = g.GroupName,
+                                GroupId = g.Id,
+                                Username = u.Username,
+                                UserId = u.Id,
+                                Id = ug.Id,
+                            }
+                                       ).AsQueryable();
+
+            if (!string.IsNullOrEmpty(query.OrderBy))
+            {
+                querable = querable.Order(query.OrderBy, query.OrderDir ?? "asc");
+            }
+
+            int totalRecords = await querable.CountAsync();
+
+            querable = querable.Paginate(query.Page, query.PageSize);
+
+
+
+            var data = await querable.ToListAsync();
+
+            return new PagingResult<UserGroupDTO>(data, query.Page, query.PageSize, totalRecords);
+        }
+        public async Task<List<UserGroupDTO>> GerAllUserGroupDTO(GetAllUsetGroupDTOQuery query)
         {
             var querable = (from u in _context.Users
                             join ug in _context.UserGroups on u.Id equals ug.UserId
@@ -37,26 +72,25 @@ namespace Nexus.LAS.Persistence.Repositories
                                 UserId = u.Id,
                                 Id = ug.Id,
                             }
-                           ).AsQueryable();
-
-            int totalRecords = await querable.CountAsync();
-
-            querable = querable.Paginate(query.Page, query.PageSize);
+                                       ).AsQueryable();
 
             if (!string.IsNullOrEmpty(query.OrderBy))
             {
                 querable = querable.Order(query.OrderBy, query.OrderDir ?? "asc");
             }
 
-
             var data = await querable.ToListAsync();
 
-            return new PagingResult<UserGroupDTO>(data, query.Page, query.PageSize, totalRecords);
+            return data;
         }
 
-        public async Task<bool> ExistsByGroupIdAndUserIdAsync(int userId , int groupId , int? currentId = null)
+        public async Task<bool> ExistsByGroupIdAndUserIdAsync(int userId, int groupId, int? currentId = null)
         {
-            return await _dbSet.AnyAsync(x=>x.UserId == userId && x.GroupId == groupId && (!currentId.HasValue || x.Id != currentId));
+            return await _dbSet.AnyAsync(x => x.UserId == userId && x.GroupId == groupId && (!currentId.HasValue || x.Id != currentId));
+        }
+        public async Task<UserGroup?> GetByGroupIdAndUserIdAsync(int userId, int groupId)
+        {
+            return await _dbSet.FirstOrDefaultAsync(x => x.UserId == userId && x.GroupId == groupId);
         }
 
 

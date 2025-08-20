@@ -17,29 +17,44 @@ namespace Nexus.LAS.Persistence.Repositories
 
         public async Task<List<MenuGroupAuthorizeVM>> GetAllByUsername(string username)
         {
-            var menus = (from u in _context.Users
-                         join ug in _context.UserGroups on u.Id equals ug.UserId
-                         join g in _context.Groups on ug.GroupId equals g.Id
-                         join gm in _context.GroupsMenus on g.Id equals gm.GroupId
-                         join m in _context.Menus on gm.MenuId equals m.Id
-                         where u.Username.ToLower() == username.ToLower()
-                         select new MenuGroupAuthorizeVM()
-                         {
-                             Access = gm.Access,
-                             CanDelete = gm.CanDelete,
-                             CanInsert = gm.CanInsert,
-                             CanUpdate = gm.CanUpdate,
-                             IconClass = m.IconClass,
-                             MenuId = gm.MenuId,
-                             Name = m.Name,
-                             Path = m.Path,
-                             MenuParentId = m.ParentId,
-                             InDashboard = m.InDashboard,
-                             Rank = m.Rank,
-                         })
-                   .Distinct().ToListAsync();
-                   
-            return await menus;
+            var menus = await (from u in _context.Users
+                               join ug in _context.UserGroups on u.Id equals ug.UserId
+                               join g in _context.Groups on ug.GroupId equals g.Id
+                               join gm in _context.GroupsMenus on g.Id equals gm.GroupId
+                               join m in _context.Menus on gm.MenuId equals m.Id
+                               where u.Username.ToLower() == username.ToLower()
+                               group new { gm, m } by new
+                               {
+                                   m.Id,
+                                   m.IconClass,
+                                   m.Name,
+                                   m.Path,
+                                   m.ParentId,
+                                   m.InDashboard,
+                                   m.Rank
+                               }
+                               into gData
+                               select new MenuGroupAuthorizeVM
+                               {
+                                   Id = gData.Max(x => x.gm.Id), // arbitrary pick (or Min if you prefer)
+                                   MenuId = gData.Key.Id,
+                                   IconClass = gData.Key.IconClass,
+                                   Name = gData.Key.Name,
+                                   Path = gData.Key.Path,
+                                   MenuParentId = gData.Key.ParentId,
+                                   InDashboard = gData.Key.InDashboard,
+                                   Rank = gData.Key.Rank,
+
+                                   // aggregate permissions (true if any group has it)
+                                   Access = gData.Any(x => x.gm.Access),
+                                   CanInsert = gData.Any(x => x.gm.CanInsert),
+                                   CanUpdate = gData.Any(x => x.gm.CanUpdate),
+                                   CanDelete = gData.Any(x => x.gm.CanDelete),
+                                   Admin = gData.Any(x => x.gm.Admin)
+                               })
+                               .ToListAsync();
+
+            return menus;
         }
         public async Task<List<MenuGroupAuthorizeVM>> GetAllByPathname(string path)
         {
@@ -63,7 +78,7 @@ namespace Nexus.LAS.Persistence.Repositories
                              Username = u.Username
                          })
                    .Distinct().ToListAsync();
-                   
+
             return await menus;
         }
 
@@ -84,7 +99,7 @@ namespace Nexus.LAS.Persistence.Repositories
             query = query.Paginate(param.Page, param.PageSize);
 
             var data = await query.ToListAsync();
-            return new PagingResult<Menu>(data , param.Page , param.PageSize , totalRecords);
+            return new PagingResult<Menu>(data, param.Page, param.PageSize, totalRecords);
         }
         public async Task<PagingResult<Menu>> SearchMenu(GetMenuDtoQuery param)
         {
@@ -103,7 +118,7 @@ namespace Nexus.LAS.Persistence.Repositories
             query = query.Paginate(param.Page, param.PageSize);
 
             var data = await query.ToListAsync();
-            return new PagingResult<Menu>(data , param.Page , param.PageSize , totalRecords);
+            return new PagingResult<Menu>(data, param.Page, param.PageSize, totalRecords);
         }
 
 

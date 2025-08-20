@@ -4,6 +4,7 @@ using Nexus.LAS.Application.Contracts;
 using Nexus.LAS.Application.RegisterNoteUseCases.Commands.CreateRegisterNote;
 using Nexus.LAS.Application.RegisterNoteUseCases.Commands.UpdateRegisterNote;
 using Nexus.LAS.Domain.Entities.RegisterEntities;
+using Nexus.LAS.WebApi.Attributes;
 using Nexus.LAS.WebApi.Controllers._GenericController;
 
 namespace Nexus.LAS.WebApi.Controllers;
@@ -20,6 +21,7 @@ public class RegisterNoteController : GenericController<IRegisterNoteService, Re
         return base.CreateAsync(entity);
     }
     [HttpPost]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Insert)]
     public async Task<IActionResult> CreateUseCase(CreateRegisterNoteCommand command)
     {
         return Ok(await _mediator.Send(command));
@@ -31,6 +33,7 @@ public class RegisterNoteController : GenericController<IRegisterNoteService, Re
         return base.UpdateAsync(entity);
     }
     [HttpPut]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Update)]
     public async Task<IActionResult> UpdateUseCase(UpdateRegisterNoteCommand command)
     {
         await _mediator.Send(command);

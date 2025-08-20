@@ -4,6 +4,7 @@ using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.UseCases.GroupMenuUseCases.Commands;
 using Nexus.LAS.Application.UseCases.Queries.SearchMenu;
 using Nexus.LAS.Domain.Entities.Lookup;
+using Nexus.LAS.WebApi.Attributes;
 using Nexus.LAS.WebApi.Controllers._GenericController;
 
 namespace Nexus.LAS.WebApi.Controllers;
@@ -20,6 +21,7 @@ public class GroupMenuController : GenericController<IGroupMenuService, GroupMen
         return base.CreateAsync(entity);
     }
     [HttpPost]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Insert)]
     public async Task<IActionResult> CreateUseCase(CreateGroupMenuCommand command)
     {
         return Ok(await _mediator.Send(command));
@@ -31,6 +33,7 @@ public class GroupMenuController : GenericController<IGroupMenuService, GroupMen
         return base.UpdateAsync(entity);
     }
     [HttpPut]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Update)]
     public async Task<IActionResult> UpdateUseCase(UpdateGroupMenuCommand command)
     {
         await _mediator.Send(command);
@@ -43,6 +46,7 @@ public class GroupMenuController : GenericController<IGroupMenuService, GroupMen
         return base.GetByQuery();
     }
     [HttpGet]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Get)]
     public async Task<IActionResult> SearchGroupMenu([FromQuery]SearchGroupMenuQuery query)
     {
         return Ok(await _mediator.Send(query));

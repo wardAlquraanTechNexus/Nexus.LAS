@@ -1,11 +1,10 @@
 ﻿using MediatR;
 using Nexus.LAS.Application.DTOs;
-using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.UseCases.Base;
 
 namespace Nexus.LAS.Application.UseCases.UserGroupUseCases.Queries
 {
-    public class GetUsetGroupDTOQuery : BaseParams, IRequest<PagingResult<UserGroupDTO>>
+    public class GetAllUsetGroupDTOQuery: BaseParams, IRequest<List<UserGroupDTO>>
     {
         public string? Username { get; set; }
         public string? GroupName { get; set; }
