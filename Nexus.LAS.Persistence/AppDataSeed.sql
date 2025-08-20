@@ -181,7 +181,11 @@ BEGIN
     (41, 1, N'Dynamic List', N'Dynamic-List', 1, N'Manage dynamic lists', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
     (42, 1, N'Menus', N'Menus', 2, N'Manage system menus', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
     (43, 1, N'Users', N'Users', 3, N'Manage users', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (44, 1, N'User Groups', N'User-Groups', 4, N'Manage user groups', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL);
+    (44, 1, N'User Groups', N'User-Groups', 4, N'Manage user groups', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (45, 1, N'Groups', N'Groups', 4, N'Manage groups', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (46, 1, N'Group Menu', N'Group-Menus', 4, N'Manage group menus', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL);
+
+
     
     SET IDENTITY_INSERT [dbo].[Menus] OFF
     PRINT 'Menus seeded successfully.'
@@ -201,7 +205,7 @@ BEGIN
            @systemUser as [CreatedBy], @currentDatetime as [CreatedAt], 
            NULL as [ModifiedBy], NULL as [ModifiedAt], 0 as [IsDeleted], NULL as [DeletedBy], NULL as [DeletedAt]
     FROM [dbo].[Menus] m
-    WHERE m.[id] BETWEEN 1 AND 44;
+    WHERE m.[id] BETWEEN 1 AND 46;
     
     SET IDENTITY_INSERT [dbo].[GroupsMenus] OFF
     PRINT 'Group menu permissions seeded successfully.'

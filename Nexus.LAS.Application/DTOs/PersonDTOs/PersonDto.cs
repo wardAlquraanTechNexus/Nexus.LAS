@@ -14,4 +14,10 @@ public class PersonDto
     public string? FileName { get; set; }
     public string? ContentType { get; set; }
     public byte[]? PersonImage { get; set; }
+    
+    // Auditing fields
+    public string? CreatedBy { get; set; }
+    public DateTime CreatedAt { get; set; }
+    public string? ModifiedBy { get; set; }
+    public DateTime? ModifiedAt { get; set; }
 }

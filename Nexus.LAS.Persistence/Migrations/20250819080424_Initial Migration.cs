@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Nexus.LAS.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class initialmigration : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -122,8 +122,8 @@ namespace Nexus.LAS.Persistence.Migrations
                     AddressLine2 = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     AddressLine3 = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     POBoxumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    POBoxCity = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    POBoxCountry = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    POBoxCity = table.Column<int>(type: "int", maxLength: 50, nullable: true),
+                    POBoxCountry = table.Column<int>(type: "int", maxLength: 50, nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -711,10 +711,10 @@ namespace Nexus.LAS.Persistence.Migrations
                     DynamicListIDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     DynamicListIDN = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    LinkedCategory = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     MainListID = table.Column<int>(type: "int", nullable: true),
-                    MenuCategory = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     MenuValue = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LinkedCategory = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MenuCategory = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Active = table.Column<bool>(type: "bit", nullable: true),
                     Rank = table.Column<int>(type: "int", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -1037,8 +1037,8 @@ namespace Nexus.LAS.Persistence.Migrations
                     AddressLine2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AddressLine3 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     POBoxumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    POBoxCity = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    POBoxCountry = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    POBoxCity = table.Column<int>(type: "int", nullable: true),
+                    POBoxCountry = table.Column<int>(type: "int", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -1535,7 +1535,7 @@ namespace Nexus.LAS.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserGroups", x => new { x.UserId, x.GroupId });
+                    table.PrimaryKey("PK_UserGroups", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -1567,13 +1567,13 @@ namespace Nexus.LAS.Persistence.Migrations
                 {
                     GroupID = table.Column<int>(type: "int", nullable: false),
                     MenuID = table.Column<int>(type: "int", nullable: false),
-                    Access = table.Column<int>(type: "int", nullable: true),
-                    CanInsert = table.Column<int>(type: "int", nullable: true),
-                    CanUpdate = table.Column<int>(type: "int", nullable: true),
-                    CanDelete = table.Column<int>(type: "int", nullable: true),
-                    Admin = table.Column<int>(type: "int", nullable: true),
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Access = table.Column<bool>(type: "bit", nullable: false),
+                    CanInsert = table.Column<bool>(type: "bit", nullable: false),
+                    CanUpdate = table.Column<bool>(type: "bit", nullable: false),
+                    CanDelete = table.Column<bool>(type: "bit", nullable: false),
+                    Admin = table.Column<bool>(type: "bit", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -1584,7 +1584,7 @@ namespace Nexus.LAS.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_GroupsMenus", x => new { x.GroupID, x.MenuID });
+                    table.PrimaryKey("PK_GroupsMenus", x => x.id);
                     table.ForeignKey(
                         name: "FK_GroupsMenus_Groups_GroupID",
                         column: x => x.GroupID,
@@ -1616,6 +1616,11 @@ namespace Nexus.LAS.Persistence.Migrations
                 table: "Companies",
                 column: "CompanyShortName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_GroupsMenus_GroupID",
+                table: "GroupsMenus",
+                column: "GroupID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_GroupsMenus_MenuID",

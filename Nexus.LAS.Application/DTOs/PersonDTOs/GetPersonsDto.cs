@@ -11,4 +11,10 @@ public class GetPersonsDto
     public int PersonStatus { get; set; }
     public string FPCCode { get; set; }
     public bool Private { get; set; }
+    
+    // Auditing fields
+    public string? CreatedBy { get; set; }
+    public DateTime CreatedAt { get; set; }
+    public string? ModifiedBy { get; set; }
+    public DateTime? ModifiedAt { get; set; }
 }

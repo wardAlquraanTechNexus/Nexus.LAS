@@ -12,8 +12,8 @@ using Nexus.LAS.Persistence.DatabaseContext;
 namespace Nexus.LAS.Persistence.Migrations
 {
     [DbContext(typeof(NexusLASDbContext))]
-    [Migration("20250816162435_change-dt-of-country-and-city")]
-    partial class changedtofcountryandcity
+    [Migration("20250819080424_Initial Migration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -2864,12 +2864,12 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("POBoxCity")
-                        .HasColumnType("nvarchar(max)")
+                    b.Property<int?>("POBoxCity")
+                        .HasColumnType("int")
                         .HasColumnName("POBoxCity");
 
-                    b.Property<string>("POBoxCountry")
-                        .HasColumnType("nvarchar(max)")
+                    b.Property<int?>("POBoxCountry")
+                        .HasColumnType("int")
                         .HasColumnName("POBoxCountry");
 
                     b.Property<string>("POBoxNumber")
