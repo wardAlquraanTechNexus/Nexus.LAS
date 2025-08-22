@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Nexus.LAS.Application.UseCases.UserGroupUseCases.Commands
 {
-    public class UpsertCollectionOfUsersCommandHandler : IRequestHandler<UpsertCollectionOfUsersCommand, bool>
+    public class UpsertCollectionOfUsersCommandHandler : IRequestHandler<UpsertCollectionOfUsersGroupsCommand, bool>
     {
         private readonly IUserGroupService _service;
 
@@ -18,7 +18,7 @@ namespace Nexus.LAS.Application.UseCases.UserGroupUseCases.Commands
             _service = service;
         }
 
-        public async Task<bool> Handle(UpsertCollectionOfUsersCommand request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(UpsertCollectionOfUsersGroupsCommand request, CancellationToken cancellationToken)
         {
             return await _service.UpsertCollectionOfUsers(request);
         }

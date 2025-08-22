@@ -40,7 +40,7 @@ namespace Nexus.LAS.Persistence.Services
         }
 
 
-        public async Task<bool> UpsertCollectionOfUsers(UpsertCollectionOfUsersCommand command)
+        public async Task<bool> UpsertCollectionOfUsers(UpsertCollectionOfUsersGroupsCommand command)
         {
             using (var transaction = await _context.Database.BeginTransactionAsync())
             {

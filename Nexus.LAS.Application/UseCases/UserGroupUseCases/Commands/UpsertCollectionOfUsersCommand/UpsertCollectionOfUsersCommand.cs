@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Nexus.LAS.Application.UseCases.UserGroupUseCases.Commands
 {
-    public class UpsertCollectionOfUsersCommand: IRequest<bool>
+    public class UpsertCollectionOfUsersGroupsCommand: IRequest<bool>
     {
         public int GroupId { get; set; }
         public List<UpsertUserCommand> Users { get; set; }

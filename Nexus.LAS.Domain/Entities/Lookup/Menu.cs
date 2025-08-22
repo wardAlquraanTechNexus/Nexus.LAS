@@ -28,4 +28,5 @@ public class Menu:BaseEntity
     public string? Description { get; set; }
     public string? IconClass { get; set; }
     public bool InDashboard { get; set; }
+    public Menu? Parent { get; set; }
 }

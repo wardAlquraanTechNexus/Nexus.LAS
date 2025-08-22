@@ -17,6 +17,6 @@ namespace Nexus.LAS.Application.Contracts
         Task<PagingResult<UserGroupDTO>> GetUserGroupDTO(GetUsetGroupDTOQuery query);
         Task<List<UserGroupDTO>> GerAllUserGroupDTO(GetAllUsetGroupDTOQuery query);
         Task<bool> ExistsByGroupIdAndUserIdAsync(int userId, int groupId, int? currentId = null);
-        Task<bool> UpsertCollectionOfUsers(UpsertCollectionOfUsersCommand command);
+        Task<bool> UpsertCollectionOfUsers(UpsertCollectionOfUsersGroupsCommand command);
     }
 }

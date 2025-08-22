@@ -1,6 +1,8 @@
 ﻿using Nexus.LAS.Application.Contracts.Presistence.Services.Base;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.DTOs.GroupMenuDTOs;
+using Nexus.LAS.Application.UseCases.Commands;
+using Nexus.LAS.Application.UseCases.Queries;
 using Nexus.LAS.Application.UseCases.Queries.SearchMenu;
 using Nexus.LAS.Domain.Entities.Lookup;
 
@@ -11,5 +13,7 @@ namespace Nexus.LAS.Application.Contracts.Presistence.Services
     {
         Task<PagingResult<SearchGroupMenuDTO>> SearchGroupMenus(SearchGroupMenuQuery query);
         Task<bool> IsGroupMenuExist(int groupId, int menuId, int? id = null);
+        Task<List<SearchGroupMenuDTO>> GetAllGroupMenus(GetAllGroupMenuQuery query);
+        Task<bool> UpsertCollectionOfMenus(UpsertCollectionOfGroupsMenusCommand command);
     }
 }

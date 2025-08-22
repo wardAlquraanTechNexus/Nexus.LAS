@@ -25,9 +25,7 @@ namespace Nexus.LAS.Application.UseCases.MenuUseCases.Queries
         public async Task<PagingResult<MenuDto>> Handle(SearchMenuQuery query, CancellationToken cancellationToken)
         {
             var data = await _service.SearchMenu(query);
-            var dataCollection = data.Collection.Select(x => _mapper.Map<MenuDto>(x)).ToList();
-
-            return new PagingResult<MenuDto>(dataCollection, query.Page, query.PageSize, data.TotalRecords);
+            return data;
         }
     }
 }

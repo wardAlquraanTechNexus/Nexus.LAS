@@ -1,9 +1,15 @@
-﻿using Nexus.LAS.Application.Contracts.Identity;
+﻿using DocumentFormat.OpenXml.Math;
+using DocumentFormat.OpenXml.Spreadsheet;
+using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.DTOs.GroupMenuDTOs;
+using Nexus.LAS.Application.UseCases.Commands;
+using Nexus.LAS.Application.UseCases.Queries;
 using Nexus.LAS.Application.UseCases.Queries.SearchMenu;
+using Nexus.LAS.Application.UseCases.UserGroupUseCases.Commands;
 using Nexus.LAS.Domain.Entities.Lookup;
+using Nexus.LAS.Domain.Entities.UserGroupEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Repositories;
 using Nexus.LAS.Persistence.Services.Base;
@@ -21,11 +27,73 @@ public class GroupMenuService : GenericService<GroupMenu>, IGroupMenuService
         GroupMenuRepo repo = new(_context);
         return await repo.SearchGroupMenus(query);
     }
+    public async Task<List<SearchGroupMenuDTO>> GetAllGroupMenus(GetAllGroupMenuQuery query)
+    {
+        GroupMenuRepo repo = new(_context);
+        return await repo.GetAllGroupMenu(query);
+    }
 
 
     public async Task<bool> IsGroupMenuExist(int groupId , int menuId , int? id = null)
     {
         GroupMenuRepo repo = new(_context);
         return await repo.IsGroupMenuExist(groupId , menuId , id);
+    }
+
+
+    public async Task<bool> UpsertCollectionOfMenus(UpsertCollectionOfGroupsMenusCommand command)
+    {
+        using (var transaction = await _context.Database.BeginTransactionAsync())
+        {
+            GroupMenuRepo repo = new(_context);
+
+            try
+            {
+                foreach (var menu in command.Menus)
+                {
+                    var gorupMenu = await repo.GetByGroupIdAndMenuIdAsync(command.GroupId , menu.Id);
+
+                    if (gorupMenu is null && menu.IsChecked)
+                    {
+
+                        await repo.CreateAsync(new GroupMenu()
+                        {
+                            MenuId = menu.Id,
+                            GroupId = command.GroupId,
+                            CanInsert = menu.CanInsert,
+                            CanDelete = menu.CanDelete,
+                            CanUpdate = menu.CanUpdate,
+                            Admin = menu.Admin,
+                            Access = menu.Access,
+                        });
+
+                    }
+                    else if (gorupMenu != null && !menu.IsChecked)
+                    {
+                        await repo.DeleteAsync(gorupMenu.Id);
+                    }
+                    else if(gorupMenu is not null)
+                    {
+                        gorupMenu.CanInsert = menu.CanInsert;
+                        gorupMenu.CanDelete = menu.CanDelete;
+                        gorupMenu.CanUpdate = menu.CanUpdate;
+                        gorupMenu.Admin = menu.Admin;
+                        gorupMenu.Access = menu.Access;
+                        await repo.UpdateAsync(gorupMenu);
+                    }
+
+                }
+
+                await transaction.CommitAsync();
+                return true;
+
+            }
+            catch
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
+        }
+
     }
 }

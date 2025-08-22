@@ -55,7 +55,7 @@ namespace Nexus.LAS.WebApi.Controllers.Lookup
         
         [HttpPut(nameof(UpsertCollectionOfUsers))]
         [ApiMethodType(Domain.Constants.Enums.MethodType.Update)]
-        public async Task<IActionResult> UpsertCollectionOfUsers(UpsertCollectionOfUsersCommand command)
+        public async Task<IActionResult> UpsertCollectionOfUsers(UpsertCollectionOfUsersGroupsCommand command)
         {
             return StatusCode(201, await _mediator.Send(command));
         }

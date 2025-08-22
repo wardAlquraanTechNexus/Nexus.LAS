@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Nexus.LAS.Application.DTOs;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.UseCases.MenuUseCases.Queries;
 using Nexus.LAS.Domain.Entities.Lookup;
@@ -82,14 +83,30 @@ namespace Nexus.LAS.Persistence.Repositories
             return await menus;
         }
 
-        public async Task<PagingResult<Menu>> GetListAsync(GetMenuDtoQuery param)
+        /// <summary>
+        /// All Will Search By Parent Id
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public async Task<PagingResult<MenuDto>> GetListAsync(GetMenuDtoQuery param)
         {
-            var query = _dbSet.Where(dl =>
+            var query = _dbSet
+                .Include(dl=>dl.Parent)
+                .Where(dl =>
             (!param.Id.HasValue || param.Id == dl.Id) &&
             (param.ParentId == dl.ParentId) &&
             (!param.Rank.HasValue || param.Rank == dl.Rank) &&
             (string.IsNullOrEmpty(param.Name) || dl.Name.ToLower().Contains(param.Name.ToLower()))
-            ).AsQueryable();
+            )
+                 .Select(dl => new MenuDto()
+                 {
+                     Id = dl.Id,
+                     Name = dl.Name,
+                     ParentId = dl.ParentId,
+                     ParentName = dl.Parent != null ? dl.Parent.Name : null,
+                     Rank = dl.Rank
+                 })
+                .AsQueryable();
 
 
             query.OrderByDescending(dl => dl.Rank);
@@ -99,16 +116,26 @@ namespace Nexus.LAS.Persistence.Repositories
             query = query.Paginate(param.Page, param.PageSize);
 
             var data = await query.ToListAsync();
-            return new PagingResult<Menu>(data, param.Page, param.PageSize, totalRecords);
+            return new PagingResult<MenuDto>(data, param.Page, param.PageSize, totalRecords);
         }
-        public async Task<PagingResult<Menu>> SearchMenu(GetMenuDtoQuery param)
+        public async Task<PagingResult<MenuDto>> SearchMenu(GetMenuDtoQuery param)
         {
-            var query = _dbSet.Where(dl =>
+            var query = _dbSet
+                .Include(dl => dl.Parent).Where(dl =>
             (!param.Id.HasValue || param.Id == dl.Id) &&
             (!param.ParentId.HasValue || param.ParentId == dl.ParentId) &&
             (!param.Rank.HasValue || param.Rank == dl.Rank) &&
             (string.IsNullOrEmpty(param.Name) || dl.Name.ToLower().Contains(param.Name.ToLower()))
-            ).AsQueryable();
+            )
+                .Select(dl=>new MenuDto()
+                {
+                    Id = dl.Id,
+                    Name = dl.Name,
+                    ParentId = dl.ParentId,
+                    ParentName = dl.Parent != null ? dl.Parent.Name : null,
+                    Rank = dl.Rank
+                })
+                .AsQueryable();
 
 
             query.OrderByDescending(dl => dl.Rank);
@@ -118,7 +145,7 @@ namespace Nexus.LAS.Persistence.Repositories
             query = query.Paginate(param.Page, param.PageSize);
 
             var data = await query.ToListAsync();
-            return new PagingResult<Menu>(data, param.Page, param.PageSize, totalRecords);
+            return new PagingResult<MenuDto>(data, param.Page, param.PageSize, totalRecords);
         }
 
 

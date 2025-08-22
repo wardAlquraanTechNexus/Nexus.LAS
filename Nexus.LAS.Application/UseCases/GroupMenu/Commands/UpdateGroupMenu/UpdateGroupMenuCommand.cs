@@ -8,7 +8,7 @@ public class UpdateGroupMenuCommand:UpdateBaseCommand
     public int GroupId { get; set; }
     public int MenuId { get; set; }
     public bool Access { get; set; }
-    public bool Canboolsert { get; set; }
+    public bool CanInsert { get; set; }
     public bool CanUpdate { get; set; }
     public bool CanDelete { get; set; }
     public bool Admin { get; set; }

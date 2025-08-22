@@ -28,33 +28,30 @@ namespace Nexus.LAS.WebApi.Middlewares
                 throw new NotFoundException("Header", "pathname");
 
             var pathes = pathname.Split('/');
+            var menus = await _menuService.GetAllMenusByPath(pathes[^1]);
 
-            var menus = await _menuService.GetAllMenusByPath(pathes[pathes.Length - 1]);
-            
-            // Only check authorization if menus exist and methodTypeAttribute is present
-            var methodTypeAttribute = endpoint.Metadata.GetMetadata<ApiMethodTypeAttribute>();
-
-            if (methodTypeAttribute != null && menus.Any())
+            if (menus.Any())
             {
-                var menuUsers = menus.FirstOrDefault(x => x.Username.Equals(userId, StringComparison.OrdinalIgnoreCase));
-
+                // Only perform checks if menus exist
+                var menuUsers = menus.FirstOrDefault(m => m.Username.Equals(userId, StringComparison.OrdinalIgnoreCase));
                 if (menuUsers == null)
-                {
                     throw new BadRequestException($"You have no menu on path {pathname}");
-                }
 
-                var methodType = methodTypeAttribute.Method;
-                bool isAuth =
-                    (methodTypeAttribute.Method == Domain.Constants.Enums.MethodType.Get && menuUsers.Access) ||
-                    (methodTypeAttribute.Method == Domain.Constants.Enums.MethodType.Insert && menuUsers.CanInsert) ||
-                    (methodTypeAttribute.Method == Domain.Constants.Enums.MethodType.Update && menuUsers.CanUpdate) ||
-                    (methodTypeAttribute.Method == Domain.Constants.Enums.MethodType.Delete && menuUsers.CanDelete);
-
-                if (!isAuth)
+                var methodTypeAttribute = endpoint.Metadata.GetMetadata<ApiMethodTypeAttribute>();
+                if (methodTypeAttribute != null)
                 {
-                    throw new Exception($"You have no access");
+                    bool isAuth =
+                    (methodTypeAttribute.Method == Domain.Constants.Enums.MethodType.Get && menus.Any(x => x.Access)) ||
+                    (methodTypeAttribute.Method == Domain.Constants.Enums.MethodType.Insert && menus.Any(x => x.CanInsert)) ||
+                    (methodTypeAttribute.Method == Domain.Constants.Enums.MethodType.Update && menus.Any(x => x.CanUpdate)) ||
+                    (methodTypeAttribute.Method == Domain.Constants.Enums.MethodType.Delete && menus.Any(x => x.CanDelete)) ||
+                    menus.Any(x => x.Admin);
+
+                    if (!isAuth)
+                        throw new Exception($"You have no access");
                 }
             }
+            // If menus do not exist, skip menu checks and continue
 
             await next();
         }
