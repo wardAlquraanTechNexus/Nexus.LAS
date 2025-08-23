@@ -45,6 +45,15 @@ public class GetCompaniesQuery: BaseParams , IRequest<PagingResult<GetCompaniesD
     private string? _status;
 
     public List<int> Statuses { get; set; } = new();
+    public int? CapitalAmount { get; set; }
+    public long? TotalShares { get; set; }
+    public int? NumberOfPartners { get; set; }
+    public int? CompanyTypeIdn { get; set; }
+    public int? CompanyClassIdn { get; set; }
+    public int? LegalTypeIdn { get; set; }
+    public int? PlaceOfRegistrationMainIdn { get; set; }
+    public int? PlaceOfRegistrationSubIdn { get; set; }
     public string? OrderBy { get; set; }
     public string? OrderDir { get; set; }
+
 }

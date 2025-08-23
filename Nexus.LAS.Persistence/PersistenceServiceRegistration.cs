@@ -26,7 +26,7 @@ namespace Nexus.LAS.Persistence
             services.AddScoped<IUserGroupService, UserGroupService>();
 
 
-          
+
 
             services.AddScoped<IMenuService, MenuService>();
             services.AddScoped<IGroupMenuService, GroupMenuService>();
@@ -56,9 +56,10 @@ namespace Nexus.LAS.Persistence
             services.AddScoped<ICompanyPersonInChargeService, CompanyPersonInChargeService>();
             services.AddScoped<ICompanyPhoneService, CompanyPhoneService>();
             services.AddScoped<ICompanyShareHolderService, CompanyShareHolderService>();
-            
-            
+
+
             services.AddScoped<IPersonRepo, PersonRepo>();
+            services.AddScoped <ICompanyRepo, CompanyRepo>();
 
 
 

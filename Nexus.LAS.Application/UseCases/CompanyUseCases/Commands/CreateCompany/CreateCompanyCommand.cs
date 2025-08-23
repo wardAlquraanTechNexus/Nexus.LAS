@@ -8,9 +8,16 @@ public class CreateCompanyCommand : IRequest<int>
     public string CompanyEnglishName { get; set; }
     public string CompanyArabicName { get; set; }
     public string CompanyShortName { get; set; }
-    public string CompanyType { get; set; }
-    public string CompanyClassIdn { get; set; }
-    public string LegalType { get; set; }
-    public string PlaceOfRegistrationMainIdn { get; set; }
-    public string PlaceOfRegistrationSubIdn { get; set; }
+    public int? CompanyTypeIdn { get; set; }
+    public int? CompanyClassIdn { get; set; }
+    public int? GroupCompanyIdn { get; set; }
+    public int? RelevantCompanyIdn { get; set; }
+    public int? LegalTypeIdn { get; set; }
+    public int? PlaceOfRegistrationMainIdn { get; set; }
+    public int? PlaceOfRegistrationSubIdn { get; set; }
+    public string? UpdateDescription { get; set; }
+    public string? CciNumber { get; set; }
+    public DateTime? CciIssueDate { get; set; }
+    public DateTime? CciExpiryDate { get; set; }
+    public bool Private { get; set; } = true;
 }

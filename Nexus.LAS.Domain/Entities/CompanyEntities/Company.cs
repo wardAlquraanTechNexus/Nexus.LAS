@@ -37,11 +37,10 @@ public class Company:BaseEntity
     public int? GroupCompanyIdn { get; set; }
     public int? RelevantCompanyIdn { get; set; }
 
-    [MaxLength(50)]
     public int? LegalTypeIdn { get; set; }
 
     [MaxLength(50)]
-    public string CciNumber { get; set; }
+    public string? CciNumber { get; set; }
     public DateTime? CciIssueDate { get; set; }
     public DateTime? CciExpiryDate { get; set; }
     public bool? CciExpiryActiveReminder { get; set; }
@@ -53,7 +52,7 @@ public class Company:BaseEntity
     public DateTime? UpdateDate { get; set; }
 
     [MaxLength(50)]
-    public string UpdateDescription { get; set; }
+    public string? UpdateDescription { get; set; }
 
     [Column("Persons_IDN")]
     public int? PersonsIdn { get; set; }

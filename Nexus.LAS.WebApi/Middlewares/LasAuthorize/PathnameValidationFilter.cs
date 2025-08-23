@@ -45,6 +45,7 @@ namespace Nexus.LAS.WebApi.Middlewares
                     (methodTypeAttribute.Method == Domain.Constants.Enums.MethodType.Insert && menus.Any(x => x.CanInsert)) ||
                     (methodTypeAttribute.Method == Domain.Constants.Enums.MethodType.Update && menus.Any(x => x.CanUpdate)) ||
                     (methodTypeAttribute.Method == Domain.Constants.Enums.MethodType.Delete && menus.Any(x => x.CanDelete)) ||
+                    (methodTypeAttribute.Method == Domain.Constants.Enums.MethodType.Admin && menus.Any(x => x.Admin)) ||
                     menus.Any(x => x.Admin);
 
                     if (!isAuth)

@@ -71,6 +71,7 @@ namespace Nexus.LAS.Persistence.Repositories
                              CanDelete = gm.CanDelete,
                              CanInsert = gm.CanInsert,
                              CanUpdate = gm.CanUpdate,
+                             Admin = gm.Admin,
                              IconClass = m.IconClass,
                              MenuId = gm.MenuId,
                              Name = m.Name,

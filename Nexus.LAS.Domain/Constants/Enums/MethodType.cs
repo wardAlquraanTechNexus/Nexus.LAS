@@ -11,6 +11,7 @@ namespace Nexus.LAS.Domain.Constants.Enums
         Insert,
         Update,
         Delete,
-        Get
+        Get,
+        Admin,
     }
 }

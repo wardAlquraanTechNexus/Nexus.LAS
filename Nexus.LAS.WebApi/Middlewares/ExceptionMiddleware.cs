@@ -1,9 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using FluentValidation;
+using Newtonsoft.Json;
 using Nexus.LAS.Application.Exceptions;
 using Nexus.LAS.WebApi.Models;
+using System.ComponentModel.DataAnnotations;
 using System.Net;
 using System.Security;
-using FluentValidation;
 
 namespace Nexus.LAS.WebApi.Middlewares
 {
@@ -42,6 +43,17 @@ namespace Nexus.LAS.WebApi.Middlewares
 
             switch (ex)
             {
+                case Application.Exceptions.MenuAuthorizeException menuException:
+                    statusCode = HttpStatusCode.BadRequest;
+                    problem = new CustomProblemDetails
+                    {
+                        Title = menuException.Message,
+                        Status = (int)statusCode,
+                        Type = nameof(Application.Exceptions.MenuAuthorizeException),
+                        Detail = "Menu Exception",
+                    };
+                    _logger.LogWarning(ex, "Validation error occurred. CorrelationId: {CorrelationId}", correlationId);
+                    break;
                 case Application.Exceptions.ValidationException validationException:
                     statusCode = HttpStatusCode.BadRequest;
                     problem = new CustomProblemDetails

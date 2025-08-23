@@ -2,11 +2,11 @@
 using EFCore.BulkExtensions;
 using Microsoft.EntityFrameworkCore;
 using Nexus.LAS.Application.Contracts;
+using Nexus.LAS.Application.Contracts._Repositories;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.DTOs.CompanyDTOs;
 using Nexus.LAS.Application.UseCases.CompanyUseCases.Queries;
-using Nexus.LAS.Application.UseCases.CompanyUseCases.Queries.GetAllActiveCompany;
 using Nexus.LAS.Domain.Constants;
 using Nexus.LAS.Domain.Entities.CompanyEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
@@ -21,17 +21,18 @@ namespace Nexus.LAS.Persistence.Services;
 public class CompanyService : GenericService<Company> , ICompanyService
 {
     private readonly IMapper _mapper;
-    public CompanyService(NexusLASDbContext context, IMapper mapper, IUserIdentityService userIdentityService) 
+    private readonly ICompanyRepo _repo;
+    public CompanyService(NexusLASDbContext context, ICompanyRepo companyRepo, IMapper mapper, IUserIdentityService userIdentityService) 
         : base(context, userIdentityService)
     {
         _mapper = mapper;
+        _repo = companyRepo;
     }
     public async Task<CompanyDto> GetCompanyDto(int id)
     {
-        CompanyRepo companyRepo = new CompanyRepo(_context);
         RegisterFileRepo registerFileRepo = new RegisterFileRepo(_context);
 
-        var company = await companyRepo.GetAsync(id);
+        var company = await _repo.GetAsync(id);
 
         var fileData = await registerFileRepo.GetLastByIds(EntityIDCs.Company, id);
 
@@ -43,24 +44,16 @@ public class CompanyService : GenericService<Company> , ICompanyService
 
     public async Task<PagingResult<Company>> GetCompanies(GetCompaniesQuery companyQuery)
     {
-        CompanyRepo companyRepo = new CompanyRepo(_context);
-        return await companyRepo.GetCompanies(companyQuery);
-    }
-    public async Task<PagingResult<Company>> GetAllActiveCompany(GetActiveCompaniesQuery companyQuery)
-    {
-        CompanyRepo companyRepo = new CompanyRepo(_context);
-        return await companyRepo.GetActiveCompanies(companyQuery);
+        return await _repo.GetCompanies(companyQuery);
     }
 
     public async override Task<int> CreateAsync(Company entity)
     {
-        CompanyRepo companyRepo = new CompanyRepo(_context);
-        return await companyRepo.CreateAsync(entity);
+        return await _repo.CreateAsync(entity);
     }
     public async Task<Company> UpdateCompanyAsync(Company entity)
     {
-        CompanyRepo companyRepo = new CompanyRepo(_context);
-        return await companyRepo.UpdateCompanyAsync(entity);
+        return await _repo.UpdateCompanyAsync(entity);
     }
 
     public async Task<int> BulkChangeStatus(List<int> companyIds, int status)
@@ -149,13 +142,12 @@ public class CompanyService : GenericService<Company> , ICompanyService
 
     public async Task<byte[]> ExportToPdf(int id)
     {
-        var repo = new CompanyRepo(_context);
 
         CompanyEmailRepo companyEmailRepo = new(_context);
         CompanyPhoneRepo companyPhoneRepo = new(_context);
         CompanyAddressRepo companyAddressRepo = new(_context);
 
-        var company = await repo.GetAsync(id);
+        var company = await _repo.GetAsync(id);
 
         var companyEmails = await companyEmailRepo.GetListByCompanyId(id);
         var companyPhones = await companyPhoneRepo.GetListByCompanyId(id);
@@ -223,11 +215,6 @@ public class CompanyService : GenericService<Company> , ICompanyService
         return ms.ToArray();
     }
 
-    public async Task<PagingResult<Company>> GetActiveCompanies(GetActiveCompaniesQuery companyQuery)
-    {
-        CompanyRepo companyRepo = new CompanyRepo(_context);
-        return await companyRepo.GetActiveCompanies(companyQuery);
-    }
 
 
 

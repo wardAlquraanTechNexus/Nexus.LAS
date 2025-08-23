@@ -9,13 +9,14 @@ public class GetCompaniesDto
     public string? CompanyEnglishName { get; set; }
     public string? CompanyArabicName { get; set; }
     public string? CompanyShortName { get; set; }
+    public DateTime? IncorporationDate { get; set; }
     public int CompanyStatus { get; set; }
     public int? CompanyTypeIdn { get; set; }
     public int? CompanyClassIdn { get; set; }
     public int? GroupCompanyIdn { get; set; }
     public int? RelevantCompanyIdn { get; set; }
     public int? LegalTypeIdn { get; set; }
-    public string CciNumber { get; set; }
+    public string? CciNumber { get; set; }
     public DateTime? CciIssueDate { get; set; }
     public DateTime? CciExpiryDate { get; set; }
     public bool? CciExpiryActiveReminder { get; set; }

@@ -47,6 +47,7 @@ namespace Nexus.LAS.Identity
 
             services.AddTransient<IAuthService, AuthService>();
             services.AddTransient<IUserIdentityService, UserIdentityService>();
+            services.AddTransient<IMenuAuthorizationService, MenuAuthorizationService>();
 
 
             services.AddAuthentication(options =>

@@ -31,7 +31,7 @@ builder.Services.AddControllers(options =>
     });
     
     // Add global filters
-    options.Filters.Add<PathnameValidationFilter>();
+    //options.Filters.Add<PathnameValidationFilter>();
 })
 .AddJsonOptions(options =>
 {
@@ -122,6 +122,17 @@ app.UseResponseCaching();
 // 7. Authentication and Authorization
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.Use(async (context, next) =>
+{
+    await next();
+
+    if (context.Response.StatusCode == 403)
+    {
+        context.Response.ContentType = "application/json";
+        await context.Response.WriteAsync("{\"error\":\"You are not authorized to access this resource.\"}");
+    }
+});
 
 // 8. Health checks endpoints
 app.MapHealthChecks("/health");
