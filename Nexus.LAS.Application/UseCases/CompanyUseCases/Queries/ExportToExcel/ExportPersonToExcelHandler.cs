@@ -22,7 +22,7 @@ namespace Nexus.LAS.Application.UseCases.CompanyUseCases.Queries
 
         public async Task<ExportCompanyToExcelDto> Handle(GetBaseQuery<ExportCompanyToExcelDto> query, CancellationToken cancellationToken)
         {
-            var props = typeof(GetCompaniesDto).GetProperties();
+            var props = typeof(GetCompanyDto).GetProperties();
             var res = await _companyService.ExportToExcel(query.Query, props);
             return new ExportCompanyToExcelDto()
             {

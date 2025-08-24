@@ -8,7 +8,7 @@ namespace Nexus.LAS.Application.UseCases.CompanyUseCases.Commands;
 
 
 
-public class UpdateCompanyCommandHandler : IRequestHandler<UpdateCompanyCommand, GetCompaniesDto>
+public class UpdateCompanyCommandHandler : IRequestHandler<UpdateCompanyCommand, GetCompanyDto>
 {
 
     private readonly ICompanyService _companyService;
@@ -20,13 +20,13 @@ public class UpdateCompanyCommandHandler : IRequestHandler<UpdateCompanyCommand,
         _mapper = mapper;
     }
 
-    public async Task<GetCompaniesDto> Handle(UpdateCompanyCommand command, CancellationToken cancellationToken)
+    public async Task<GetCompanyDto> Handle(UpdateCompanyCommand command, CancellationToken cancellationToken)
     {
 
         Company company = _mapper.Map<Company>(command);
         company = await _companyService.UpdateCompanyAsync(company);
 
-        return _mapper.Map<GetCompaniesDto>(company);
+        return _mapper.Map<GetCompanyDto>(company);
 
     }
 }

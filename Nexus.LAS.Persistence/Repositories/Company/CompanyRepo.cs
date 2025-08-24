@@ -2,6 +2,7 @@
 using Nexus.LAS.Application.Contracts._Repositories;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.UseCases.CompanyUseCases.Queries;
+using Nexus.LAS.Domain.Constants;
 using Nexus.LAS.Domain.Constants.Enums;
 using Nexus.LAS.Domain.Entities.CompanyEntities;
 using Nexus.LAS.Domain.ExtensionMethods;
@@ -66,7 +67,7 @@ public class CompanyRepo : GenericRepo<Company>, ICompanyRepo
 
     public override async Task<int> CreateAsync(Company entity)
     {
-        entity.CompanyIdc = "C000000";
+        entity.CompanyIdc = EntityIDCs.Company;
         entity.CompanyCode = "C000000";
         entity.CompanyStatus = (int)CompanyStatus.New;
         await _dbSet.AddAsync(entity);
@@ -75,37 +76,17 @@ public class CompanyRepo : GenericRepo<Company>, ICompanyRepo
     }
     public async Task<Company> UpdateCompanyAsync(Company entity)
     {
-        var oldEntity = await _dbSet.FindAsync(entity.Id);
+        _dbSet.Attach(entity);
+        _context.Entry(entity).State = EntityState.Modified;
 
-        if (oldEntity is null)
-            throw new Exception("Not found company");
-
-        // Only update if values actually changed
-        if (oldEntity.CompanyEnglishName != entity.CompanyEnglishName)
-            oldEntity.CompanyEnglishName = entity.CompanyEnglishName;
-
-        if (oldEntity.CompanyArabicName != entity.CompanyArabicName)
-            oldEntity.CompanyArabicName = entity.CompanyArabicName;
-
-        if (oldEntity.CompanyShortName != entity.CompanyShortName)
-            oldEntity.CompanyShortName = entity.CompanyShortName;
-
-        if (oldEntity.CompanyStatus != entity.CompanyStatus)
+        // Optionally, handle CompanyCode generation if status changed to Active
+        if (entity.CompanyStatus == (int)CompanyStatus.Active && string.IsNullOrEmpty(entity.CompanyCode))
         {
-            oldEntity.CompanyStatus = entity.CompanyStatus;
-            if (entity.CompanyStatus == (int)CompanyStatus.Active)
-            {
-                oldEntity.CompanyCode = "PP" + entity.Id.ToString().PadLeft(6, '0');
-
-            }
+            entity.CompanyCode = "PP" + entity.Id.ToString().PadLeft(6, '0');
         }
-
-        if (oldEntity.Private != entity.Private)
-            oldEntity.Private = entity.Private;
-
-        //_context.Entry(entity).State = EntityState.Modified;
+        entity.CompanyIdc = EntityIDCs.Company;
 
         await _context.SaveChangesAsync();
-        return oldEntity;
+        return entity;
     }
 }

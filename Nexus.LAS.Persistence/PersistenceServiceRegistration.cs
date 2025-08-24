@@ -60,6 +60,7 @@ namespace Nexus.LAS.Persistence
 
             services.AddScoped<IPersonRepo, PersonRepo>();
             services.AddScoped <ICompanyRepo, CompanyRepo>();
+            services.AddScoped <ICompanyPersonInChargeRepo, CompanyPersonInChargeRepo>();
 
 
 

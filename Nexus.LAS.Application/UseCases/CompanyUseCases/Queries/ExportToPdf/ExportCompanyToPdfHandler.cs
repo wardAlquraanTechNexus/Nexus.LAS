@@ -16,7 +16,7 @@ namespace Nexus.LAS.Application.UseCases.CompanyUseCases.Queries
 
         public async Task<ExportCompanyToPdfDto> Handle(ExportCompanyToPdfQuery query, CancellationToken cancellationToken)
         {
-            var props = typeof(GetCompaniesDto).GetProperties();
+            var props = typeof(GetCompanyDto).GetProperties();
             var res = await _companyService.ExportToPdf(query.Id);
             return new ExportCompanyToPdfDto()
             {

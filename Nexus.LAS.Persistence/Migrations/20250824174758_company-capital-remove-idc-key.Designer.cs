@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Nexus.LAS.Persistence.DatabaseContext;
 
@@ -11,9 +12,11 @@ using Nexus.LAS.Persistence.DatabaseContext;
 namespace Nexus.LAS.Persistence.Migrations
 {
     [DbContext(typeof(NexusLASDbContext))]
-    partial class NexusLASDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250824174758_company-capital-remove-idc-key")]
+    partial class companycapitalremoveidckey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -101,6 +104,11 @@ namespace Nexus.LAS.Persistence.Migrations
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompaniesActivity", b =>
                 {
+                    b.Property<string>("CompaniesActivityIdc")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("CompaniesActivityIDC");
+
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
@@ -112,12 +120,6 @@ namespace Nexus.LAS.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Activity");
-
-                    b.Property<string>("CompaniesActivityIdc")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("CompaniesActivityIDC");
 
                     b.Property<int>("CompaniesIdn")
                         .HasColumnType("int")
@@ -145,13 +147,18 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("CompaniesActivityIdc", "Id");
 
                     b.ToTable("CompaniesActivities");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompaniesAddress", b =>
                 {
+                    b.Property<string>("CompaniesAddressIdc")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("CompaniesAddressIDC");
+
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
@@ -180,12 +187,6 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("AddressPrimary")
                         .HasColumnType("bit")
                         .HasColumnName("AddressPrimary");
-
-                    b.Property<string>("CompaniesAddressIdc")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("CompaniesAddressIDC");
 
                     b.Property<int>("CompaniesIdn")
                         .HasColumnType("int")
@@ -229,25 +230,24 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("POBoxumber");
 
-                    b.HasKey("Id");
+                    b.HasKey("CompaniesAddressIdc", "Id");
 
                     b.ToTable("CompaniesAddresses");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompaniesAuthorizedSignatory", b =>
                 {
+                    b.Property<string>("CompaniesAuthorizedSignatoryIdc")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("CompaniesAuthorizedSignatoryIDC");
+
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("CompaniesAuthorizedSignatoryIDN");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("CompaniesAuthorizedSignatoryIdc")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("CompaniesAuthorizedSignatoryIDC");
 
                     b.Property<int>("CompaniesIdn")
                         .HasColumnType("int")
@@ -291,13 +291,18 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("POATypeDetails");
 
-                    b.HasKey("Id");
+                    b.HasKey("CompaniesAuthorizedSignatoryIdc", "Id");
 
                     b.ToTable("CompaniesAuthorizedSignatories");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompaniesBankAccount", b =>
                 {
+                    b.Property<string>("CompaniesBankAccountIdc")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("CompaniesBankAccountIDC");
+
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
@@ -324,12 +329,6 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)")
                         .HasColumnName("BankName");
-
-                    b.Property<string>("CompaniesBankAccountIdc")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("CompaniesBankAccountIDC");
 
                     b.Property<int>("CompaniesIdn")
                         .HasColumnType("int")
@@ -362,13 +361,18 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Note");
 
-                    b.HasKey("Id");
+                    b.HasKey("CompaniesBankAccountIdc", "Id");
 
                     b.ToTable("CompaniesBankAccount");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompaniesBoard", b =>
                 {
+                    b.Property<string>("CompaniesBoardIdc")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("CompaniesBoardIDC");
+
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
@@ -383,12 +387,6 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<DateTime>("BoardDate")
                         .HasColumnType("datetime2")
                         .HasColumnName("BoardDate");
-
-                    b.Property<string>("CompaniesBoardIdc")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("CompaniesBoardIDC");
 
                     b.Property<int>("CompaniesIdn")
                         .HasColumnType("int")
@@ -416,13 +414,18 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("CompaniesBoardIdc", "Id");
 
                     b.ToTable("CompaniesBoards");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompaniesBoardMember", b =>
                 {
+                    b.Property<string>("CompaniesBoardMemberIdc")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("CompaniesBoardMemberIDC");
+
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
@@ -439,12 +442,6 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("BoardMemberPosition");
-
-                    b.Property<string>("CompaniesBoardMemberIdc")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("CompaniesBoardMemberIDC");
 
                     b.Property<int?>("CompaniesBoardsIdn")
                         .HasColumnType("int")
@@ -488,13 +485,105 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("int")
                         .HasColumnName("Person_IDN");
 
-                    b.HasKey("Id");
+                    b.HasKey("CompaniesBoardMemberIdc", "Id");
 
                     b.ToTable("CompaniesBoardMembers");
                 });
 
+            modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompaniesCapital", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("CompaniesCapitalIDN");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClassOfSahres")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("CompaniesCapitalActive")
+                        .HasColumnType("bit")
+                        .HasColumnName("CompaniesCapitalActive");
+
+                    b.Property<double?>("CompaniesCapitalAmount")
+                        .HasColumnType("float")
+                        .HasColumnName("CompaniesCapitalAmount");
+
+                    b.Property<double?>("CompaniesCapitalAuthorized")
+                        .HasColumnType("float")
+                        .HasColumnName("CompaniesCapitalAuthorized");
+
+                    b.Property<string>("CompaniesCapitalCurrency")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("CompaniesCapitalCurrency");
+
+                    b.Property<DateTime?>("CompaniesCapitalDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CompaniesCapitalDate");
+
+                    b.Property<string>("CompaniesCapitalIdc")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("CompaniesCapitalIssuedShares")
+                        .HasColumnType("bigint")
+                        .HasColumnName("CompaniesCapitalIssuedShares");
+
+                    b.Property<long?>("CompaniesCapitalNumberOfShares")
+                        .HasColumnType("bigint")
+                        .HasColumnName("CompaniesCapitalNumberOfShares");
+
+                    b.Property<double?>("CompaniesCapitalPaid")
+                        .HasColumnType("float")
+                        .HasColumnName("CompaniesCapitalPaid");
+
+                    b.Property<int>("CompanyId")
+                        .HasColumnType("int")
+                        .HasColumnName("Companies_IDN");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("NominalValueOfShare")
+                        .HasColumnType("float")
+                        .HasColumnName("NominalValueOfShare");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CompaniesCapitals");
+                });
+
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompaniesChamberOfCommerce", b =>
                 {
+                    b.Property<string>("CompaniesChamberOfCommerceIdc")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("CompaniesChamberOfCommerceIDC");
+
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
@@ -532,12 +621,6 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("CCIUsername");
 
-                    b.Property<string>("CompaniesChamberOfCommerceIdc")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("CompaniesChamberOfCommerceIDC");
-
                     b.Property<int>("CompaniesIdn")
                         .HasColumnType("int")
                         .HasColumnName("Companies_IDN");
@@ -564,13 +647,18 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("CompaniesChamberOfCommerceIdc", "Id");
 
                     b.ToTable("CompaniesChamberOfCommerces");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompaniesContract", b =>
                 {
+                    b.Property<string>("CompaniesContractIdc")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("CompaniesContractIDC");
+
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
@@ -581,12 +669,6 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<DateTime?>("CommencementDate")
                         .HasColumnType("datetime2")
                         .HasColumnName("CommencementDate");
-
-                    b.Property<string>("CompaniesContractIdc")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("CompaniesContractIDC");
 
                     b.Property<int>("CompaniesIdn")
                         .HasColumnType("int")
@@ -643,25 +725,24 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("CompaniesContractIdc", "Id");
 
                     b.ToTable("CompaniesContracts");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompaniesEmail", b =>
                 {
+                    b.Property<string>("CompaniesEmailIdc")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("CompaniesEmailIDC");
+
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("CompaniesEmailIDN");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("CompaniesEmailIdc")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("CompaniesEmailIDC");
 
                     b.Property<int>("CompaniesIdn")
                         .HasColumnType("int")
@@ -699,13 +780,18 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("CompaniesEmailIdc", "Id");
 
                     b.ToTable("CompaniesEmails");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompaniesLeaseContract", b =>
                 {
+                    b.Property<string>("CompaniesLeaseContractIdc")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("CompaniesLeaseContractIDC");
+
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
@@ -720,12 +806,6 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<int>("CompaniesIdn")
                         .HasColumnType("int")
                         .HasColumnName("Companies_IDN");
-
-                    b.Property<string>("CompaniesLeaseContractIdc")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("CompaniesLeaseContractIDC");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -757,7 +837,7 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("CompaniesLeaseContractIdc", "Id");
 
                     b.ToTable("CompaniesLeaseContracts");
                 });
@@ -770,6 +850,11 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnName("CompaniesLeaseContracts_IDN");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("LeaseRegistersIdc")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("LeaseRegisters_IDC");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -787,12 +872,6 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("LeaseRegistersIdc")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("LeaseRegisters_IDC");
-
                     b.Property<int>("LeaseRegistersIdn")
                         .HasColumnType("int")
                         .HasColumnName("LeaseRegisters_IDN");
@@ -803,13 +882,18 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id", "LeaseRegistersIdc");
 
                     b.ToTable("CompaniesLeaseContractRegisters");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompaniesLicense", b =>
                 {
+                    b.Property<string>("CompaniesLicenseIdc")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("CompaniesLicenseIDC");
+
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
@@ -820,12 +904,6 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<int>("CompaniesIdn")
                         .HasColumnType("int")
                         .HasColumnName("Companies_IDN");
-
-                    b.Property<string>("CompaniesLicenseIdc")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("CompaniesLicenseIDC");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -883,13 +961,18 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("CompaniesLicenseIdc", "Id");
 
                     b.ToTable("CompaniesLicenses");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompaniesOtherContract", b =>
                 {
+                    b.Property<string>("CompaniesOtherContractIdc")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("CompaniesOtherContractIDC");
+
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
@@ -900,12 +983,6 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<int>("CompaniesIdn")
                         .HasColumnType("int")
                         .HasColumnName("Companies_IDN");
-
-                    b.Property<string>("CompaniesOtherContractIdc")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("CompaniesOtherContractIDC");
 
                     b.Property<DateTime?>("ContractDate")
                         .HasColumnType("datetime2")
@@ -939,13 +1016,97 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("CompaniesOtherContractIdc", "Id");
 
                     b.ToTable("CompaniesOtherContracts");
                 });
 
+            modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompaniesPersonInCharge", b =>
+                {
+                    b.Property<string>("CompaniesPersonInChargeIdc")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("CompaniesPersonInChargeIDC");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("CompaniesPersonInChargeIDN");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AuthorityRule")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("AuthorityRule");
+
+                    b.Property<DateTime?>("CessationDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CessationDate");
+
+                    b.Property<int>("CompaniesIdn")
+                        .HasColumnType("int")
+                        .HasColumnName("Companies_IDN");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Designation")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("Designation");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Notes")
+                        .IsRequired()
+                        .HasMaxLength(4000)
+                        .HasColumnType("nvarchar(4000)")
+                        .HasColumnName("Notes");
+
+                    b.Property<bool?>("PersonInChargeActive")
+                        .HasColumnType("bit")
+                        .HasColumnName("PersonInChargeActive");
+
+                    b.Property<DateTime?>("PersonInChargeDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("PersonInChargeDate");
+
+                    b.Property<int>("PersonsIdn")
+                        .HasColumnType("int")
+                        .HasColumnName("Persons_IDN");
+
+                    b.HasKey("CompaniesPersonInChargeIdc", "Id");
+
+                    b.ToTable("CompaniesPersonInCharges");
+                });
+
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompaniesPhone", b =>
                 {
+                    b.Property<string>("CompaniesPhoneIdc")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("CompaniesPhoneIDC");
+
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
@@ -956,12 +1117,6 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<int?>("CompaniesIdn")
                         .HasColumnType("int")
                         .HasColumnName("Companies_IDN");
-
-                    b.Property<string>("CompaniesPhoneIdc")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("CompaniesPhoneIDC");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -1001,13 +1156,18 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("PhoneType");
 
-                    b.HasKey("Id");
+                    b.HasKey("CompaniesPhoneIdc", "Id");
 
                     b.ToTable("CompaniesPhones");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompaniesShareHolder", b =>
                 {
+                    b.Property<string>("CompaniesShareHolderIdc")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("CompaniesShareHolderIDC");
+
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
@@ -1018,12 +1178,6 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<int>("CompaniesIdn")
                         .HasColumnType("int")
                         .HasColumnName("Companies_IDN");
-
-                    b.Property<string>("CompaniesShareHolderIdc")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("CompaniesShareHolderIDC");
 
                     b.Property<int?>("CompaniesShareHoldersGroupsIdn")
                         .HasColumnType("int")
@@ -1077,13 +1231,18 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("bigint")
                         .HasColumnName("ShareHolderNumbersOfShares");
 
-                    b.HasKey("Id");
+                    b.HasKey("CompaniesShareHolderIdc", "Id");
 
                     b.ToTable("CompaniesShareHolders");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompaniesShareHoldersGroup", b =>
                 {
+                    b.Property<string>("CompaniesShareHoldersGroupIdc")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("CompaniesShareHoldersGroupIDC");
+
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
@@ -1094,12 +1253,6 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<int>("CompaniesIdn")
                         .HasColumnType("int")
                         .HasColumnName("Companies_IDN");
-
-                    b.Property<string>("CompaniesShareHoldersGroupIdc")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("CompaniesShareHoldersGroupIDC");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -1131,7 +1284,7 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("ShareHolderGroupDate");
 
-                    b.HasKey("Id");
+                    b.HasKey("CompaniesShareHoldersGroupIdc", "Id");
 
                     b.ToTable("CompaniesShareHoldersGroups");
                 });
@@ -1270,175 +1423,6 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasDatabaseName("IX_Companies_CompanyShortName_Unique");
 
                     b.ToTable("Companies");
-                });
-
-            modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompanyCapital", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("CompaniesCapitalIDN");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<double?>("CapitalAuthorized")
-                        .HasColumnType("float")
-                        .HasColumnName("CompaniesCapitalAuthorized");
-
-                    b.Property<double?>("CapitalPaid")
-                        .HasColumnType("float")
-                        .HasColumnName("CompaniesCapitalPaid");
-
-                    b.Property<string>("ClassOfSahres")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<bool>("CompaniesCapitalActive")
-                        .HasColumnType("bit")
-                        .HasColumnName("CompaniesCapitalActive");
-
-                    b.Property<double?>("CompaniesCapitalAmount")
-                        .HasColumnType("float")
-                        .HasColumnName("CompaniesCapitalAmount");
-
-                    b.Property<string>("CompaniesCapitalCurrency")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("CompaniesCapitalCurrency");
-
-                    b.Property<DateTime?>("CompaniesCapitalDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("CompaniesCapitalDate");
-
-                    b.Property<string>("CompaniesCapitalIdc")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CompanyId")
-                        .HasColumnType("int")
-                        .HasColumnName("Companies_IDN");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DeletedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<long?>("IssuedShares")
-                        .HasColumnType("bigint")
-                        .HasColumnName("CompaniesCapitalIssuedShares");
-
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double?>("NominalValueOfShare")
-                        .HasColumnType("float")
-                        .HasColumnName("NominalValueOfShare");
-
-                    b.Property<long?>("NumberOfShares")
-                        .HasColumnType("bigint")
-                        .HasColumnName("CompaniesCapitalNumberOfShares");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("CompaniesCapitals");
-                });
-
-            modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompanyPersonInCharge", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("CompaniesPersonInChargeIDN");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("AuthorityRule")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("AuthorityRule");
-
-                    b.Property<DateTime?>("CessationDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("CessationDate");
-
-                    b.Property<int>("CompanyIdn")
-                        .HasColumnType("int")
-                        .HasColumnName("Companies_IDN");
-
-                    b.Property<string>("CompanyPersonInChargeIdc")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("CompaniesPersonInChargeIDC");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DeletedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Designation")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("Designation");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Notes")
-                        .IsRequired()
-                        .HasMaxLength(4000)
-                        .HasColumnType("nvarchar(4000)")
-                        .HasColumnName("Notes");
-
-                    b.Property<int>("PersonIdn")
-                        .HasColumnType("int")
-                        .HasColumnName("Persons_IDN");
-
-                    b.Property<bool?>("PersonInChargeActive")
-                        .HasColumnType("bit")
-                        .HasColumnName("PersonInChargeActive");
-
-                    b.Property<DateTime?>("PersonInChargeDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("PersonInChargeDate");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PersonIdn");
-
-                    b.ToTable("CompaniesPersonInCharges");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.DocumentEntities.Document", b =>
@@ -4110,17 +4094,6 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserGroups");
-                });
-
-            modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompanyPersonInCharge", b =>
-                {
-                    b.HasOne("Nexus.LAS.Domain.Entities.PersonEntities.Person", "Person")
-                        .WithMany()
-                        .HasForeignKey("PersonIdn")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Person");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.Lookup.GroupMenu", b =>

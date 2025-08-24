@@ -51,8 +51,8 @@ public class CompanyEntitiesProfile : Profile
 
 
     {
-        CreateMap<Company, GetCompaniesDto>();
-        CreateMap<PagingResult<Company>, PagingResult<GetCompaniesDto>>();
+        CreateMap<Company, GetCompanyDto>();
+        CreateMap<PagingResult<Company>, PagingResult<GetCompanyDto>>();
 
         CreateMap<CreateCompanyCommand, Company>();
         CreateMap<Company, CreateCompanyCommand>();
@@ -85,9 +85,9 @@ public class CompanyEntitiesProfile : Profile
     .ForMember(dest => dest.Id, opt => opt.Condition(src => src.Id.HasValue));
 
         // CompanyCapital
-        CreateMap<CreateCompanyCapitalCommand, CompaniesCapital>();
-        CreateMap<UpdateCompanyCapitalCommand, CompaniesCapital>();
-        CreateMap<UpsertCompanyCapitalCommand, CompaniesCapital>()
+        CreateMap<CreateCompanyCapitalCommand, CompanyCapital>();
+        CreateMap<UpdateCompanyCapitalCommand, CompanyCapital>();
+        CreateMap<UpsertCompanyCapitalCommand, CompanyCapital>()
     .ForMember(dest => dest.Id, opt => opt.Condition(src => src.Id.HasValue));
 
         // CompanyChamberOfCommerce
@@ -121,9 +121,9 @@ public class CompanyEntitiesProfile : Profile
     .ForMember(dest => dest.Id, opt => opt.Condition(src => src.Id.HasValue));
 
         // CompanyPersonInCharge
-        CreateMap<CreateCompanyPersonInChargeCommand, CompaniesPersonInCharge>();
-        CreateMap<UpdateCompanyPersonInChargeCommand, CompaniesPersonInCharge>();
-        CreateMap<UpsertCompanyPersonInChargeCommand, CompaniesPersonInCharge>()
+        CreateMap<CreateCompanyPersonInChargeCommand, CompanyPersonInCharge>();
+        CreateMap<UpdateCompanyPersonInChargeCommand, CompanyPersonInCharge>();
+        CreateMap<UpsertCompanyPersonInChargeCommand, CompanyPersonInCharge>()
     .ForMember(dest => dest.Id, opt => opt.Condition(src => src.Id.HasValue));
 
         // CompanyPhone

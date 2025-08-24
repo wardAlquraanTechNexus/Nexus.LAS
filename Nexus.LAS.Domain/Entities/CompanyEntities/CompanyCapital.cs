@@ -11,11 +11,8 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
 {
     [Table("CompaniesCapitals")]
 
-    public class CompaniesCapital:BaseEntity
+    public class CompanyCapital:BaseEntity
     {
-        [Required]
-        [MaxLength(50)]
-        [Column("CompaniesCapitalIDC")]
         public string CompaniesCapitalIdc { get; set; }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -24,7 +21,7 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
 
         [Required]
         [Column("Companies_IDN")]
-        public int CompaniesIdn { get; set; }
+        public int CompanyId { get; set; }
 
         [Column("CompaniesCapitalDate")]
         public DateTime? CompaniesCapitalDate { get; set; }
@@ -39,16 +36,16 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
         public string ClassOfSahres { get; set; }
 
         [Column("CompaniesCapitalNumberOfShares")]
-        public long? CompaniesCapitalNumberOfShares { get; set; } //must great or equal the total of number of shareheloder linked to it
+        public long? NumberOfShares { get; set; } //must great or equal the total of number of shareheloder linked to it
 
         [Column("CompaniesCapitalAuthorized")]
-        public double? CompaniesCapitalAuthorized { get; set; }
+        public double? CapitalAuthorized { get; set; }
 
         [Column("CompaniesCapitalPaid")]
-        public double? CompaniesCapitalPaid { get; set; }
+        public double? CapitalPaid { get; set; }
 
         [Column("CompaniesCapitalIssuedShares")]
-        public long? CompaniesCapitalIssuedShares { get; set; }
+        public long? IssuedShares { get; set; }
 
         [MaxLength(50)]
         [Column("CompaniesCapitalCurrency")]

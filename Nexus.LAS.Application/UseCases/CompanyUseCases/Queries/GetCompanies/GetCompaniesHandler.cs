@@ -7,7 +7,7 @@ using Nexus.LAS.Domain.Entities.CompanyEntities;
 
 namespace Nexus.LAS.Application.UseCases.CompanyUseCases.Queries;
 
-public class GetCompaniesHandler : IRequestHandler<GetCompaniesQuery,PagingResult<GetCompaniesDto>>
+public class GetCompaniesHandler : IRequestHandler<GetCompaniesQuery,PagingResult<GetCompanyDto>>
 {
     private readonly ICompanyService _companyService;
     private readonly IMapper _mapper;
@@ -16,11 +16,11 @@ public class GetCompaniesHandler : IRequestHandler<GetCompaniesQuery,PagingResul
         _mapper = mapper;
         _companyService = companyService;
     }
-    public async Task<PagingResult<GetCompaniesDto>> Handle(GetCompaniesQuery request, CancellationToken cancellationToken)
+    public async Task<PagingResult<GetCompanyDto>> Handle(GetCompaniesQuery request, CancellationToken cancellationToken)
 
     {
         PagingResult<Company> companies = await _companyService.GetCompanies(request);
-        PagingResult<GetCompaniesDto> companyDtos = _mapper.Map<PagingResult<GetCompaniesDto>>(companies);
+        PagingResult<GetCompanyDto> companyDtos = _mapper.Map<PagingResult<GetCompanyDto>>(companies);
         return companyDtos;
     }
 }

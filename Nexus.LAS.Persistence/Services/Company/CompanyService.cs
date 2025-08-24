@@ -18,25 +18,21 @@ using QuestPDF.Helpers;
 
 namespace Nexus.LAS.Persistence.Services;
 
-public class CompanyService : GenericService<Company> , ICompanyService
+public class CompanyService : GenericService<Company>, ICompanyService
 {
     private readonly IMapper _mapper;
     private readonly ICompanyRepo _repo;
-    public CompanyService(NexusLASDbContext context, ICompanyRepo companyRepo, IMapper mapper, IUserIdentityService userIdentityService) 
+    public CompanyService(NexusLASDbContext context, ICompanyRepo companyRepo, IMapper mapper, IUserIdentityService userIdentityService)
         : base(context, userIdentityService)
     {
         _mapper = mapper;
         _repo = companyRepo;
     }
-    public async Task<CompanyDto> GetCompanyDto(int id)
+    public async Task<GetCompanyDto> GetCompanyDto(int id)
     {
-        RegisterFileRepo registerFileRepo = new RegisterFileRepo(_context);
-
         var company = await _repo.GetAsync(id);
 
-        var fileData = await registerFileRepo.GetLastByIds(EntityIDCs.Company, id);
-
-        var companyDto = _mapper.Map<CompanyDto>(company);
+        var companyDto = _mapper.Map<GetCompanyDto>(company);
 
         return companyDto;
     }
@@ -176,7 +172,7 @@ public class CompanyService : GenericService<Company> , ICompanyService
 
                         column.Item().Padding(10).Text(string.Empty);
 
- 
+
                         column.Item().Padding(10).Text(string.Empty);
 
                         column.CreateTable(companyPhones, new List<PdfDisplayColumn>()

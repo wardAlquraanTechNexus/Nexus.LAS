@@ -7,7 +7,7 @@ using Nexus.LAS.Persistence.Services.Base;
 
 namespace Nexus.LAS.Persistence.Services;
 
-public class CompanyCapitalService : GenericService<CompaniesCapital> , ICompanyCapitalService
+public class CompanyCapitalService : GenericService<CompanyCapital> , ICompanyCapitalService
 {
     public CompanyCapitalService(NexusLASDbContext context, IUserIdentityService userIdentityService) : base(context, userIdentityService)
     {

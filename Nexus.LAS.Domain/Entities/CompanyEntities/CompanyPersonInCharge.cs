@@ -1,22 +1,19 @@
-﻿using Nexus.LAS.Domain.Entities.Base;
-using System;
-using System.Collections.Generic;
+﻿using Nexus.LAS.Domain.Constants;
+using Nexus.LAS.Domain.Entities.Base;
+using Nexus.LAS.Domain.Entities.PersonEntities;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Nexus.LAS.Domain.Entities.CompanyEntities
 {
     [Table("CompaniesPersonInCharges")]
     //Person Contact
-    public class CompaniesPersonInCharge:BaseEntity
+    public class CompanyPersonInCharge:BaseEntity
     {
         [Required]
         [MaxLength(50)]
         [Column("CompaniesPersonInChargeIDC")]
-        public string CompaniesPersonInChargeIdc { get; set; }
+        public string CompanyPersonInChargeIdc { get; set; } = EntityIDCs.CompanyPersonInChargeIDC;
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("CompaniesPersonInChargeIDN")]
@@ -24,11 +21,11 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
 
         [Required]
         [Column("Companies_IDN")]
-        public int CompaniesIdn { get; set; }
+        public int CompanyIdn { get; set; }
 
         [Required]
         [Column("Persons_IDN")]
-        public int PersonsIdn { get; set; }
+        public int PersonIdn { get; set; }
 
         [MaxLength(50)]
         [Column("Designation")]
@@ -51,5 +48,7 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
 
         [Column("PersonInChargeActive")]
         public bool? PersonInChargeActive { get; set; }
+        [ForeignKey(nameof(PersonIdn))]
+        public Person Person { get; set; }
     }
 }

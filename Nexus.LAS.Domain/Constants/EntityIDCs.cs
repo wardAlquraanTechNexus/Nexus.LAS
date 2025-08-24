@@ -23,7 +23,7 @@ public class EntityIDCs
     public const string CompaniesLeaseContracts = "CLC";
     public const string CompaniesLicenseIDC = "CL";
     public const string CompaniesOtherContractIDC = "COC";
-    public const string CompaniesPersonInChargeIDC = "CPIC";
+    public const string CompanyPersonInChargeIDC = "CPIC";
     public const string CompaniesPhoneIDC = "CP";
     public const string CompaniesShareHolderIDC = "CSH";
     public const string CompaniesShareHoldersGroupIDC = "CSHG";

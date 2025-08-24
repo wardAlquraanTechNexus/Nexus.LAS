@@ -4,7 +4,7 @@ using Nexus.LAS.Application.DTOs.CompanyDTOs;
 
 namespace Nexus.LAS.Application.UseCases.CompanyUseCases.Queries
 {
-    public class GetCompanyDtoQueryHandler:IRequestHandler<GetCompanyDtoQuery,CompanyDto>
+    public class GetCompanyDtoQueryHandler:IRequestHandler<GetCompanyDtoQuery, GetCompanyDto>
     {
         private readonly ICompanyService _companyService;
 
@@ -13,7 +13,7 @@ namespace Nexus.LAS.Application.UseCases.CompanyUseCases.Queries
             _companyService = companyService;
         }
 
-        public async Task<CompanyDto> Handle(GetCompanyDtoQuery query , CancellationToken cancellationToken)
+        public async Task<GetCompanyDto> Handle(GetCompanyDtoQuery query , CancellationToken cancellationToken)
         {
             return await _companyService.GetCompanyDto(query.Id);
         }

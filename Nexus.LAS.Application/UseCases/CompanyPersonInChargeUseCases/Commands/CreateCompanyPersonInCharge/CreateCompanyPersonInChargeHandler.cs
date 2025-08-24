@@ -6,7 +6,7 @@ using Nexus.LAS.Domain.Entities.CompanyEntities;
 
 namespace Nexus.LAS.Application.UseCases.CompanyPersonInChargeUseCases.Commands.CreateCompanyPersonInCharge;
 
-public class CreateCompanyPersonInChargeHandler : CreateBaseCommandHandler<CompaniesPersonInCharge, CreateCompanyPersonInChargeCommand, ICompanyPersonInChargeService>
+public class CreateCompanyPersonInChargeHandler : CreateBaseCommandHandler<CompanyPersonInCharge, CreateCompanyPersonInChargeCommand, ICompanyPersonInChargeService>
 {
     public CreateCompanyPersonInChargeHandler(ICompanyPersonInChargeService service, IMapper mapper) : base(service, mapper)
     {

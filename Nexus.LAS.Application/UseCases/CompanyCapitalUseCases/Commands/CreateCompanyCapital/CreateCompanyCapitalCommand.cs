@@ -5,7 +5,7 @@ namespace Nexus.LAS.Application.UseCases.CompanyCapitalUseCases.Commands.CreateC
 
 public class CreateCompanyCapitalCommand : CreateBaseCommand
 {
-    public int CompaniesIdn { get; set; }
+    public int CompanyId { get; set; }
     public DateTime? CompaniesCapitalDate { get; set; }
     public double? CompaniesCapitalAmount { get; set; }
     public double? NominalValueOfShare { get; set; }

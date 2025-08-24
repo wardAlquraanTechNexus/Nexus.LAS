@@ -6,7 +6,7 @@ using Nexus.LAS.Domain.Entities.CompanyEntities;
 
 namespace Nexus.LAS.Application.UseCases.CompanyPersonInChargeUseCases.Commands.UpdateCompanyPersonInCharge;
 
-public class UpdateCompanyPersonInChargeHandler : UpdateBaseCommandHandler<CompaniesPersonInCharge, UpdateCompanyPersonInChargeCommand, ICompanyPersonInChargeService>
+public class UpdateCompanyPersonInChargeHandler : UpdateBaseCommandHandler<CompanyPersonInCharge, UpdateCompanyPersonInChargeCommand, ICompanyPersonInChargeService>
 {
     public UpdateCompanyPersonInChargeHandler(ICompanyPersonInChargeService service, IMapper mapper) : base(service, mapper)
     {

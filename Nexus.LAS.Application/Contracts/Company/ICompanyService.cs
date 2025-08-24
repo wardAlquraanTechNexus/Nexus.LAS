@@ -16,5 +16,5 @@ public interface ICompanyService:IGenericService<Company>
     Task<bool> IsCompanyArabicNameUniqueAsync(string companyArabicName, int? excludeId = null);
     Task<bool> IsCompanyShortNameUniqueAsync(string companyShortName, int? excludeId = null);
     Task<byte[]> ExportToPdf(int id);
-    Task<CompanyDto> GetCompanyDto(int id);
+    Task<GetCompanyDto> GetCompanyDto(int id);
 }

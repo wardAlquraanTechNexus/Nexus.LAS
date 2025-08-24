@@ -7,14 +7,14 @@ using Nexus.LAS.WebApi.Controllers._GenericController;
 
 namespace Nexus.LAS.WebApi.Controllers.Companies;
 
-public class CompanyCapitalController : GenericController<ICompanyCapitalService, CompaniesCapital>
+public class CompanyCapitalController : GenericController<ICompanyCapitalService, CompanyCapital>
 {
     public CompanyCapitalController(ICompanyCapitalService service, IMediator mediator) : base(service, mediator)
     {
     }
 
     [NonAction]
-    public override Task<IActionResult> BulkUpsertAsync(List<CompaniesCapital> entities)
+    public override Task<IActionResult> BulkUpsertAsync(List<CompanyCapital> entities)
     {
         return base.BulkUpsertAsync(entities);
     }

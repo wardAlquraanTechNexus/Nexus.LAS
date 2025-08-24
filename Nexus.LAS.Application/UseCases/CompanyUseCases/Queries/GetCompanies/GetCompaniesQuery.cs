@@ -5,7 +5,7 @@ using Nexus.LAS.Application.UseCases.Base;
 
 namespace Nexus.LAS.Application.UseCases.CompanyUseCases.Queries;
 
-public class GetCompaniesQuery: BaseParams , IRequest<PagingResult<GetCompaniesDto>>
+public class GetCompaniesQuery: BaseParams , IRequest<PagingResult<GetCompanyDto>>
 {
     public string? SearchBy { get; set; }
     public string? Private 
