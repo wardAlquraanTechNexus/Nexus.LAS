@@ -6,7 +6,7 @@ using Nexus.LAS.Domain.Entities.CompanyEntities;
 
 namespace Nexus.LAS.Application.UseCases.CompanyLicenseUseCases.Commands.CreateCompanyLicense;
 
-public class CreateCompanyLicenseHandler : CreateBaseCommandHandler<CompaniesLicense, CreateCompanyLicenseCommand, ICompanyLicenseService>
+public class CreateCompanyLicenseHandler : CreateBaseCommandHandler<CompanyLicense, CreateCompanyLicenseCommand, ICompanyLicenseService>
 {
     public CreateCompanyLicenseHandler(ICompanyLicenseService service, IMapper mapper) : base(service, mapper)
     {

@@ -1,19 +1,20 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Nexus.LAS.Application.Contracts._Repositories;
 using Nexus.LAS.Domain.Entities.CompanyEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Repositories.BaseRepo;
 
 namespace Nexus.LAS.Persistence.Repositories;
 
-public class CompanyChamberOfCommerceRepo : GenericRepo<CompaniesChamberOfCommerce>
+public class CompanyChamberOfCommerceRepo : GenericRepo<CompanyChamberOfCommerce> , ICompanyChamberOfCommerceRepo
 {
     public CompanyChamberOfCommerceRepo(NexusLASDbContext context) : base(context)
     {
     }
 
-    public async Task<List<CompaniesChamberOfCommerce>> GetListByCompanyId(int companyId)
+    public async Task<List<CompanyChamberOfCommerce>> GetListByCompanyId(int companyId)
     {
-        IQueryable<CompaniesChamberOfCommerce> queryable = _dbSet.Where(x => x.CompaniesIdn == companyId);
+        IQueryable<CompanyChamberOfCommerce> queryable = _dbSet.Where(x => x.CompanyIdn == companyId);
         return await queryable.ToListAsync();
     }
 }

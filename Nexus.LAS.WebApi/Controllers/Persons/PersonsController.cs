@@ -47,6 +47,12 @@ namespace Nexus.LAS.WebApi.Controllers
         {
             return Ok(await _mediator.Send(personQuery));
         }
+        [ApiMethodType(Domain.Constants.Enums.MethodType.Get)]
+        [HttpGet(nameof(GetAllPersons))]
+        public async Task<IActionResult> GetAllPersons([FromQuery]GetAllPersonsQuery personQuery)
+        {
+            return Ok(await _mediator.Send(personQuery));
+        }
         [HttpGet(nameof(GetAllActivePerson))]
         public async Task<IActionResult> GetAllActivePerson([FromQuery]GetAllActivePersonQuery personQuery)
         {

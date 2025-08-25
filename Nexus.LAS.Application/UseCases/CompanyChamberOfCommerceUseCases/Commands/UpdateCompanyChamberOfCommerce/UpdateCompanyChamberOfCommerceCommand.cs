@@ -6,11 +6,11 @@ namespace Nexus.LAS.Application.UseCases.CompanyChamberOfCommerceUseCases.Comman
 public class UpdateCompanyChamberOfCommerceCommand : UpdateBaseCommand
 {
     public int Id { get; set; }
-    public int CompaniesIdn { get; set; }
-    public string CciNumber { get; set; } = null!;
+    public int CompanyIdn { get; set; }
+    public string CciNumber { get; set; }
     public DateTime CciIssueDate { get; set; }
     public DateTime? CciExpiryDate { get; set; }
-    public bool? CciExpiryActiveReminder { get; set; }
-    public string? CciUsername { get; set; }
-    public string? CciPassword { get; set; }
+    public bool CciExpiryActiveReminder { get; set; }
+    public string CciUsername { get; set; }
+    public string CciPassword { get; set; }
 }

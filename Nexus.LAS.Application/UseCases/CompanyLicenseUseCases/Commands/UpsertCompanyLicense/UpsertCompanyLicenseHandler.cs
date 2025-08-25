@@ -17,7 +17,7 @@ public class UpsertCompanyLicenseHandler: IRequestHandler<BulkUpsertCompanyLicen
     }
     public async Task<List<CompanyLicenseDto>> Handle(BulkUpsertCompanyLicenseCommand command , CancellationToken cancellationToken)
     {
-        var companiesLicense = command.Commands.Select(cmd => _mapper.Map<CompaniesLicense>(cmd)).ToList();
+        var companiesLicense = command.Commands.Select(cmd => _mapper.Map<CompanyLicense>(cmd)).ToList();
         var companyLicensesRes = await _companyLicenseService.BulkUpsertAsync(companiesLicense);
         return companyLicensesRes.Select(e => _mapper.Map<CompanyLicenseDto>(e)).ToList();
 

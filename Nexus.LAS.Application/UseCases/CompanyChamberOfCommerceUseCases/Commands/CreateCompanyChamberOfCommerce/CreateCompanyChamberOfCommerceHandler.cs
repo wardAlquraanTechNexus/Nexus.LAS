@@ -6,7 +6,7 @@ using Nexus.LAS.Domain.Entities.CompanyEntities;
 
 namespace Nexus.LAS.Application.UseCases.CompanyChamberOfCommerceUseCases.Commands.CreateCompanyChamberOfCommerce;
 
-public class CreateCompanyChamberOfCommerceHandler : CreateBaseCommandHandler<CompaniesChamberOfCommerce, CreateCompanyChamberOfCommerceCommand, ICompanyChamberOfCommerceService>
+public class CreateCompanyChamberOfCommerceHandler : CreateBaseCommandHandler<CompanyChamberOfCommerce, CreateCompanyChamberOfCommerceCommand, ICompanyChamberOfCommerceService>
 {
     public CreateCompanyChamberOfCommerceHandler(ICompanyChamberOfCommerceService service, IMapper mapper) : base(service, mapper)
     {

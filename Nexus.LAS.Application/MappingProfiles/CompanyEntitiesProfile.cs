@@ -91,9 +91,9 @@ public class CompanyEntitiesProfile : Profile
     .ForMember(dest => dest.Id, opt => opt.Condition(src => src.Id.HasValue));
 
         // CompanyChamberOfCommerce
-        CreateMap<CreateCompanyChamberOfCommerceCommand, CompaniesChamberOfCommerce>();
-        CreateMap<UpdateCompanyChamberOfCommerceCommand, CompaniesChamberOfCommerce>();
-        CreateMap<UpsertCompanyChamberOfCommerceCommand, CompaniesChamberOfCommerce>()
+        CreateMap<CreateCompanyChamberOfCommerceCommand, CompanyChamberOfCommerce>();
+        CreateMap<UpdateCompanyChamberOfCommerceCommand, CompanyChamberOfCommerce>();
+        CreateMap<UpsertCompanyChamberOfCommerceCommand, CompanyChamberOfCommerce>()
     .ForMember(dest => dest.Id, opt => opt.Condition(src => src.Id.HasValue));
 
         // CompanyContract
@@ -109,9 +109,9 @@ public class CompanyEntitiesProfile : Profile
     .ForMember(dest => dest.Id, opt => opt.Condition(src => src.Id.HasValue));
 
         // CompanyLicense
-        CreateMap<CreateCompanyLicenseCommand, CompaniesLicense>();
-        CreateMap<UpdateCompanyLicenseCommand, CompaniesLicense>();
-        CreateMap<UpsertCompanyLicenseCommand, CompaniesLicense>()
+        CreateMap<CreateCompanyLicenseCommand, CompanyLicense>();
+        CreateMap<UpdateCompanyLicenseCommand, CompanyLicense>();
+        CreateMap<UpsertCompanyLicenseCommand, CompanyLicense>()
     .ForMember(dest => dest.Id, opt => opt.Condition(src => src.Id.HasValue));
 
         // CompanyOtherContract

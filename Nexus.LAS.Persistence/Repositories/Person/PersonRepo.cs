@@ -26,7 +26,8 @@ public class PersonRepo : GenericRepo<Person>, IPersonRepo
     {
         var personsQueryable = _dbSet.Where(
             person =>
-            (!personQuery.Privates.Any() || personQuery.Privates.Contains(person.Private))
+            (!personQuery.Id.HasValue || personQuery.Id.Value == person.Id)
+            && (!personQuery.Privates.Any() || personQuery.Privates.Contains(person.Private))
             && (!personQuery.Statuses.Any() || (person.PersonStatus.HasValue && personQuery.Statuses.Contains(person.PersonStatus.Value)))
             && (
                     personQuery.SearchBy == null
@@ -97,6 +98,27 @@ public class PersonRepo : GenericRepo<Person>, IPersonRepo
             TotalPages = totalPages,
             TotalRecords = totalRecords
         };
+    }
+    public async Task<List<Person>> GetAllPersons(GetAllPersonsQuery personQuery)
+    {
+        var personsQueryable = _dbSet.Where(
+            person =>
+            (!personQuery.Id.HasValue || personQuery.Id.Value == person.Id)
+            && (
+                    personQuery.SearchBy == null
+                || (person.PersonIdc.ToLower().Contains(personQuery.SearchBy.ToLower()))
+                || (!string.IsNullOrEmpty(person.PersonEnglishName) && person.PersonEnglishName.ToLower().Contains(personQuery.SearchBy.ToLower()))
+                || (!string.IsNullOrEmpty(person.PersonArabicName) && person.PersonArabicName.ToLower().Contains(personQuery.SearchBy.ToLower()))
+                || (!string.IsNullOrEmpty(person.PersonShortName) && person.PersonShortName.ToLower().Contains(personQuery.SearchBy.ToLower()))
+                || (!string.IsNullOrEmpty(person.PersonCode) && person.PersonCode.ToLower().Contains(personQuery.SearchBy.ToLower()))
+
+                )
+            ).AsQueryable();
+
+        return await personsQueryable.ToListAsync();
+
+
+        
     }
     public async Task<PagingResult<Person>> GetActivePersons(GetAllActivePersonQuery personQuery)
     {

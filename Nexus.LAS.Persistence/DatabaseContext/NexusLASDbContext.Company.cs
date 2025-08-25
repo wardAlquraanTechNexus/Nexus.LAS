@@ -20,12 +20,12 @@ namespace Nexus.LAS.Persistence.DatabaseContext
         public DbSet<CompaniesBoardMember> CompaniesBoardMembers { get; set; }
         public DbSet<CompanyCapital> CompaniesCapitals { get; set; }
         public DbSet<Company> Companies { get; set; }
-        public DbSet<CompaniesChamberOfCommerce> CompaniesChamberOfCommerce { get; set; }
+        public DbSet<CompanyChamberOfCommerce> CompaniesChamberOfCommerce { get; set; }
         public DbSet<CompaniesContract> CompaniesContracts { get; set; }
         public DbSet<CompaniesEmail> CompaniesEmails { get; set; }
         public DbSet<CompaniesLeaseContractRegister> CompaniesLeaseContractRegisters { get; set; }
         public DbSet<CompaniesLeaseContract> CompaniesLeaseContracts { get; set; }
-        public DbSet<CompaniesLicense> CompaniesLicenses { get; set; }
+        public DbSet<CompanyLicense> CompaniesLicenses { get; set; }
         public DbSet<CompaniesOtherContract> CompaniesOtherContracts { get; set; }
         public DbSet<CompanyPersonInCharge> CompaniesPersonInCharges { get; set; }
         public DbSet<CompaniesPhone> CompaniesPhones { get; set; }

@@ -1,31 +1,41 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts;
-using Nexus.LAS.Application.UseCases.CompanyChamberOfCommerceUseCases;
+using Nexus.LAS.Application.UseCases.CompanyChamberOfCommerceUseCases.Commands.CreateCompanyChamberOfCommerce;
+using Nexus.LAS.Application.UseCases.CompanyChamberOfCommerceUseCases.Commands.UpdateCompanyChamberOfCommerce;
 using Nexus.LAS.Domain.Entities.CompanyEntities;
 using Nexus.LAS.WebApi.Controllers._GenericController;
 
 namespace Nexus.LAS.WebApi.Controllers.Companies;
 
-public class CompanyChamberOfCommerceController : GenericController<ICompanyChamberOfCommerceService, CompaniesChamberOfCommerce>
+public class CompanyChamberOfCommerceController : GenericController<ICompanyChamberOfCommerceService, CompanyChamberOfCommerce>
 {
     public CompanyChamberOfCommerceController(ICompanyChamberOfCommerceService service, IMediator mediator) : base(service, mediator)
     {
     }
 
+ 
+
     [NonAction]
-    public override Task<IActionResult> BulkUpsertAsync(List<CompaniesChamberOfCommerce> entities)
+    public override Task<IActionResult> CreateAsync(CompanyChamberOfCommerce entity)
     {
-        return base.BulkUpsertAsync(entities);
+        return base.CreateAsync(entity);
     }
-    [HttpPost(nameof(BulkUpsertAsync))]
-    public async Task<IActionResult> BulkUpsertAsync([FromBody] List<UpsertCompanyChamberOfCommerceCommand> commands)
+    [NonAction]
+    public override Task<IActionResult> UpdateAsync(CompanyChamberOfCommerce entity)
     {
-        BulkUpsertCompanyChamberOfCommerceCommand bulkUpsertCompanyChamberOfCommerceCommand = new BulkUpsertCompanyChamberOfCommerceCommand()
-        {
-            Commands = commands
-        };
-        return Ok(await _mediator.Send(bulkUpsertCompanyChamberOfCommerceCommand));
+        return base.UpdateAsync(entity);
+    }
+    [HttpPost]
+    public async Task<IActionResult> CreateCompanyChamperPfCommerce(CreateCompanyChamberOfCommerceCommand command)
+    {
+        return Ok(await _mediator.Send(command));
+    }
+
+    [HttpPut]
+    public async Task<IActionResult> UpdateCompanyChamperOfCommerce(UpdateCompanyChamberOfCommerceCommand command)
+    {
+        return Ok(await _mediator.Send(command));
     }
 
 }

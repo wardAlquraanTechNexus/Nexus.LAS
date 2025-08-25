@@ -1,22 +1,18 @@
-﻿using Nexus.LAS.Domain.Entities.Base;
-using System;
-using System.Collections.Generic;
+﻿using Nexus.LAS.Domain.Constants;
+using Nexus.LAS.Domain.Entities.Base;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Nexus.LAS.Domain.Entities.CompanyEntities
 {
     [Table("CompaniesLicenses")]
 
-    public class CompaniesLicense:BaseEntity
+    public class CompanyLicense:BaseEntity
     {
         [Required]
         [MaxLength(50)]
         [Column("CompaniesLicenseIDC")]
-        public string CompaniesLicenseIdc { get; set; }
+        public string CompanyLicenseIdc { get; set; } = EntityIDCs.CompaniesLicenseIDC;
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("CompaniesLicenseIDN")]
@@ -24,7 +20,7 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
 
         [Required]
         [Column("Companies_IDN")]
-        public int CompaniesIdn { get; set; }
+        public int CompanyIdn { get; set; }
 
         [Required]
         [Column("LicensePrimary")]
@@ -33,7 +29,7 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
         [Required]
         [MaxLength(50)]
         [Column("LicenseStatus")]
-        public string LicenseStatus { get; set; }
+        public int LicenseStatus { get; set; }
 
         [Required]
         [MaxLength(50)]
@@ -53,6 +49,6 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
         public DateTime? LicenseExpiryDate { get; set; }
 
         [Column("LicenseExpiryActiveReminder")]
-        public bool? LicenseExpiryActiveReminder { get; set; }
+        public bool LicenseExpiryActiveReminder { get; set; }
     }
 }

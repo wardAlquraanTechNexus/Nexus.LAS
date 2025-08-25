@@ -59,13 +59,16 @@ namespace Nexus.LAS.Persistence
 
 
             services.AddScoped<IPersonRepo, PersonRepo>();
-            services.AddScoped <ICompanyRepo, CompanyRepo>();
-            services.AddScoped <ICompanyPersonInChargeRepo, CompanyPersonInChargeRepo>();
+            services.AddScoped<ICompanyRepo, CompanyRepo>();
+            services.AddScoped<ICompanyPersonInChargeRepo, CompanyPersonInChargeRepo>();
+            services.AddScoped<ICompanyChamberOfCommerceRepo, CompanyChamberOfCommerceRepo>();
+            services.AddScoped<ICompanyLicenseRepo, CompanyLicenseRepo>();
 
 
 
             var connectionStr = configuration.GetConnectionString("NexusLASConnectionString");
-            services.AddDbContext<NexusLASDbContext>(options => {
+            services.AddDbContext<NexusLASDbContext>(options =>
+            {
                 options.UseSqlServer(connectionStr ?? throw new Exception("NexusLASConnectionString is not set"),
                         sqlOptions => sqlOptions.MigrationsAssembly("Nexus.LAS.Persistence"))
                        .LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information);

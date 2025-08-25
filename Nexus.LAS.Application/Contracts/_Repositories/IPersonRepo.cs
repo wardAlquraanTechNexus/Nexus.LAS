@@ -16,5 +16,6 @@ namespace Nexus.LAS.Application.Contracts._Repositories
         Task<PagingResult<Person>> GetPersons(GetPersonsQuery personQuery);
         Task<PagingResult<Person>> GetActivePersons(GetAllActivePersonQuery personQuery);
         Task<Person> UpdatePersonAsync(Person entity);
+        Task<List<Person>> GetAllPersons(GetAllPersonsQuery personQuery);
     }
 }

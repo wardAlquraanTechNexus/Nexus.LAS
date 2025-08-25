@@ -3,6 +3,6 @@ using Nexus.LAS.Domain.Entities.CompanyEntities;
 
 namespace Nexus.LAS.Application.Contracts;
 
-public interface ICompanyChamberOfCommerceService:IGenericService<CompaniesChamberOfCommerce>
+public interface ICompanyChamberOfCommerceService:IGenericService<CompanyChamberOfCommerce>
 {
 }

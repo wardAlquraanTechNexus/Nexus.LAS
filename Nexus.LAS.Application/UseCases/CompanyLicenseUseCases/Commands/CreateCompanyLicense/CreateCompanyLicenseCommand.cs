@@ -5,12 +5,12 @@ namespace Nexus.LAS.Application.UseCases.CompanyLicenseUseCases.Commands.CreateC
 
 public class CreateCompanyLicenseCommand : CreateBaseCommand
 {
-    public int CompaniesIdn { get; set; }
+    public int CompanyIdn { get; set; }
     public bool LicensePrimary { get; set; }
-    public string LicenseStatus { get; set; } = null!;
-    public string LicenseClassification { get; set; } = null!;
-    public string LicenseNumber { get; set; } = null!;
+    public int LicenseStatus { get; set; }
+    public string LicenseClassification { get; set; }
+    public string LicenseNumber { get; set; }
     public DateTime LicenseIssueDate { get; set; }
     public DateTime? LicenseExpiryDate { get; set; }
-    public bool? LicenseExpiryActiveReminder { get; set; }
+    public bool LicenseExpiryActiveReminder { get; set; }
 }

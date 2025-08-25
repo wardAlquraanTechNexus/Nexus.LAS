@@ -1,21 +1,21 @@
 ﻿using Nexus.LAS.Application.Contracts;
+using Nexus.LAS.Application.Contracts._Repositories;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Domain.Entities.CompanyEntities;
+using Nexus.LAS.Identity.Services;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Repositories;
 using Nexus.LAS.Persistence.Services.Base;
 
 namespace Nexus.LAS.Persistence.Services;
 
-public class CompanyChamberOfCommerceService : GenericService<CompaniesChamberOfCommerce> , ICompanyChamberOfCommerceService
+public class CompanyChamberOfCommerceService : GenericService<CompanyChamberOfCommerce> , ICompanyChamberOfCommerceService
 {
-    public CompanyChamberOfCommerceService(NexusLASDbContext context, IUserIdentityService userIdentityService) : base(context, userIdentityService)
+    private readonly ICompanyChamberOfCommerceRepo _repo;
+    public CompanyChamberOfCommerceService(NexusLASDbContext context, IUserIdentityService userIdentityService, ICompanyChamberOfCommerceRepo repo) : base(context,userIdentityService)
     {
+        _repo = repo;
     }
 
-    public override async Task DeleteAsync(int id)
-    {
-        var repo = new CompanyChamberOfCommerceRepo(_context);
-        await repo.DeleteAsync(id);
-    }
+    
 }

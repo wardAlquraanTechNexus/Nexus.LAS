@@ -7,6 +7,7 @@ namespace Nexus.LAS.Application.UseCases.PersonUseCases.Queries;
 
 public class GetPersonsQuery: BaseParams , IRequest<PagingResult<GetPersonsDto>>
 {
+    public int? Id { get; set; }
     public string? SearchBy { get; set; }
     public int? Nationality { get; set; }
     public string? Private 
