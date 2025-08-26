@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Nexus.LAS.Application.DTOs.Base;
+using Nexus.LAS.Application.UseCases.Base;
 using Nexus.LAS.Domain.Entities.Base;
 
 namespace Nexus.LAS.Application.Contracts.Presistence.Repositories.Base
@@ -14,6 +15,7 @@ namespace Nexus.LAS.Application.Contracts.Presistence.Repositories.Base
         Task<bool> UpdateAsync(T entity);
         Task DeleteAsync(int id);
         Task<List<T>> BulkUpsertAsync(List<T> entities);
+        Task<PagingResult<T>> SearhAsync<Params>(Params query) where Params : BaseParams;
 
     }
 }

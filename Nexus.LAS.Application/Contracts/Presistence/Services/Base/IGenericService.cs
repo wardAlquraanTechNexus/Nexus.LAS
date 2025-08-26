@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Nexus.LAS.Application.DTOs.Base;
+using Nexus.LAS.Application.UseCases.Base;
 using Nexus.LAS.Domain.Entities.Base;
 using System;
 using System.Collections.Generic;
@@ -22,5 +23,6 @@ namespace Nexus.LAS.Application.Contracts.Presistence.Services.Base
         Task<List<T>> BulkUpsertAsync(List<T> entities);
         Task<byte[]> ExportToExcel(IQueryCollection query);
         Task<byte[]> ExportToExcel(IQueryCollection query, PropertyInfo[] properties);
+        Task<PagingResult<T>> SearchAsync<Params>(Params query) where Params : BaseParams;
     }
 }

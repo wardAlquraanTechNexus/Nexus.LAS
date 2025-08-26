@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Nexus.LAS.Application.Contracts.Presistence.Repositories.Base;
 using Nexus.LAS.Application.DTOs.Base;
+using Nexus.LAS.Application.UseCases.Base;
 using Nexus.LAS.Domain.Entities.Base;
 using Nexus.LAS.Domain.Entities.Lookup;
 using Nexus.LAS.Domain.ExtensionMethods;
@@ -62,6 +63,43 @@ namespace Nexus.LAS.Persistence.Repositories.BaseRepo
             totalRecords = await queryable.CountAsync();
 
             queryable = queryable.Order<T>(query);
+
+            queryable = queryable.Paginate(query, out page, out pageSize);
+
+            totalPages = (int)Math.Ceiling((double)totalRecords / pageSize);
+            List<T> data = new();
+            try
+            {
+                data = await queryable.ToListAsync();
+            }
+            catch (SqlNullValueException ex)
+            {
+                //ignore
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
+            return new PagingResult<T>()
+            {
+                Collection = data,
+                Page = page,
+                PageSize = pageSize,
+                TotalPages = totalPages,
+                TotalRecords = totalRecords
+            };
+        }
+        public virtual async Task<PagingResult<T>> SearhAsync<Params>(Params query) where Params : BaseParams
+        {
+            IQueryable<T> queryable = _dbSet;
+            int page;
+            int pageSize;
+            int totalRecords;
+            int totalPages;
+            queryable = queryable.SearchByParams(query);
+            totalRecords = await queryable.CountAsync();
+
+            queryable = queryable.Order<T,Params>(query);
 
             queryable = queryable.Paginate(query, out page, out pageSize);
 

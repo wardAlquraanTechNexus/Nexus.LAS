@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts;
-using Nexus.LAS.Application.UseCases.CompanyLicenseUseCases;
 using Nexus.LAS.Application.UseCases.CompanyLicenseUseCases.Commands.CreateCompanyLicense;
 using Nexus.LAS.Application.UseCases.CompanyLicenseUseCases.Commands.UpdateCompanyLicense;
 using Nexus.LAS.Application.UseCases.CompanyLicenseUseCases.Queries.GetPaging;
@@ -39,15 +38,15 @@ public class CompanyLicenseController : GenericController<ICompanyLicenseService
         return base.UpdateAsync(entity);
     }
     [HttpPost]
-    public async Task<IActionResult> CreateCompany(CreateCompanyLicenseCommand command)
+    public async Task<IActionResult> CreateCompanyLicense(CreateCompanyLicenseCommand command)
     {
         return Ok(await _mediator.Send(command));
     }
 
     [HttpPut]
-    public async Task<IActionResult> UpdateCompany(UpdateCompanyLicenseCommand command)
+    public async Task<IActionResult> UpdateCompanyLicense(UpdateCompanyLicenseCommand command)
     {
         return Ok(await _mediator.Send(command));
     }
-
+    
 }

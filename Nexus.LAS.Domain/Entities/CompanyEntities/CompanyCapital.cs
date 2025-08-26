@@ -1,4 +1,5 @@
-﻿using Nexus.LAS.Domain.Entities.Base;
+﻿using Nexus.LAS.Domain.Constants;
+using Nexus.LAS.Domain.Entities.Base;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,7 +14,7 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
 
     public class CompanyCapital:BaseEntity
     {
-        public string CompaniesCapitalIdc { get; set; }
+        public string CompaniesCapitalIdc { get; set; } = EntityIDCs.CompaniesCapitalIDC;
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("CompaniesCapitalIDN")]
@@ -24,19 +25,19 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
         public int CompanyId { get; set; }
 
         [Column("CompaniesCapitalDate")]
-        public DateTime? CompaniesCapitalDate { get; set; }
+        public DateTime? CapitalDate { get; set; }
 
         [Column("CompaniesCapitalAmount")]
-        public double? CompaniesCapitalAmount { get; set; }
+        public double? CapitalAmount { get; set; }
 
         [Column("NominalValueOfShare")]
         public double? NominalValueOfShare { get; set; }
 
         [MaxLength(50)]
-        public string ClassOfSahres { get; set; }
+        public string ClassOfShares { get; set; }
 
         [Column("CompaniesCapitalNumberOfShares")]
-        public long? NumberOfShares { get; set; } //must great or equal the total of number of shareheloder linked to it
+        public long? NumberOfShares { get; set; }
 
         [Column("CompaniesCapitalAuthorized")]
         public double? CapitalAuthorized { get; set; }
@@ -47,12 +48,11 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
         [Column("CompaniesCapitalIssuedShares")]
         public long? IssuedShares { get; set; }
 
-        [MaxLength(50)]
         [Column("CompaniesCapitalCurrency")]
-        public string CompaniesCapitalCurrency { get; set; }
+        public int CapitalCurrency { get; set; }
 
         [Required]
         [Column("CompaniesCapitalActive")]
-        public bool CompaniesCapitalActive { get; set; }
+        public bool CapitalActive { get; set; }
     }
 }

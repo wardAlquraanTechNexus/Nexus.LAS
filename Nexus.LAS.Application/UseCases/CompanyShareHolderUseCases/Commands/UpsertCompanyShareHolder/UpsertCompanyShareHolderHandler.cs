@@ -17,7 +17,7 @@ public class UpsertCompanyShareHolderHandler: IRequestHandler<BulkUpsertCompanyS
     }
     public async Task<List<CompanyShareHolderDto>> Handle(BulkUpsertCompanyShareHolderCommand command , CancellationToken cancellationToken)
     {
-        var companiesShareHolder = command.Commands.Select(cmd => _mapper.Map<CompaniesShareHolder>(cmd)).ToList();
+        var companiesShareHolder = command.Commands.Select(cmd => _mapper.Map<CompanyShareHolder>(cmd)).ToList();
         var companyShareHoldersRes = await _companyShareHolderService.BulkUpsertAsync(companiesShareHolder);
         return companyShareHoldersRes.Select(e => _mapper.Map<CompanyShareHolderDto>(e)).ToList();
 

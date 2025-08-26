@@ -4,6 +4,6 @@ namespace Nexus.LAS.Application.UseCases.CompanyActivityUseCases.Commands.Create
 
 public class CreateCompanyActivityCommand : CreateBaseCommand
 {
-    public string Activity { get; set; }
-    public int CompaniesIdn { get; set; }
+    public int Activity { get; set; }
+    public int CompanyId { get; set; }
 }

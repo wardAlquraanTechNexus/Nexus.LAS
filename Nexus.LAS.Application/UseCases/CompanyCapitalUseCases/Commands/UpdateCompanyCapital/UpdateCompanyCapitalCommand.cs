@@ -6,15 +6,15 @@ namespace Nexus.LAS.Application.UseCases.CompanyCapitalUseCases.Commands.UpdateC
 public class UpdateCompanyCapitalCommand : UpdateBaseCommand
 {
     public int Id { get; set; }
-    public int CompaniesIdn { get; set; }
-    public DateTime? CompaniesCapitalDate { get; set; }
-    public double? CompaniesCapitalAmount { get; set; }
+    public int CompanyId { get; set; }
+    public DateTime? CapitalDate { get; set; }
+    public double? CapitalAmount { get; set; }
     public double? NominalValueOfShare { get; set; }
-    public string? ClassOfSahres { get; set; }
-    public long? CompaniesCapitalNumberOfShares { get; set; }
-    public double? CompaniesCapitalAuthorized { get; set; }
-    public double? CompaniesCapitalPaid { get; set; }
-    public long? CompaniesCapitalIssuedShares { get; set; }
-    public string? CompaniesCapitalCurrency { get; set; }
-    public bool CompaniesCapitalActive { get; set; }
+    public string ClassOfShares { get; set; }
+    public long? NumberOfShares { get; set; }
+    public double? CapitalAuthorized { get; set; }
+    public double? CapitalPaid { get; set; }
+    public long? IssuedShares { get; set; }
+    public int CapitalCurrency { get; set; }
+    public bool CapitalActive { get; set; }
 }

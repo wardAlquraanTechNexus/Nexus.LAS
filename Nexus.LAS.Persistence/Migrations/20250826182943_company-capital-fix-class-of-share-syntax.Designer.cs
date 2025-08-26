@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Nexus.LAS.Persistence.DatabaseContext;
 
@@ -11,9 +12,11 @@ using Nexus.LAS.Persistence.DatabaseContext;
 namespace Nexus.LAS.Persistence.Migrations
 {
     [DbContext(typeof(NexusLASDbContext))]
-    partial class NexusLASDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250826182943_company-capital-fix-class-of-share-syntax")]
+    partial class companycapitalfixclassofsharesyntax
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1137,8 +1140,10 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("float")
                         .HasColumnName("CompaniesCapitalAuthorized");
 
-                    b.Property<int>("CapitalCurrency")
-                        .HasColumnType("int")
+                    b.Property<string>("CapitalCurrency")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
                         .HasColumnName("CompaniesCapitalCurrency");
 
                     b.Property<DateTime?>("CapitalDate")

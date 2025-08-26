@@ -5,6 +5,6 @@ namespace Nexus.LAS.Application.UseCases.CompanyActivityUseCases.Commands.Update
 public class UpdateCompanyActivityCommand : UpdateBaseCommand
 {
     public int Id { get; set; }
-    public string Activity { get; set; }
-    public int CompaniesIdn { get; set; }
+    public int Activity { get; set; }
+    public int CompanyId { get; set; }
 }

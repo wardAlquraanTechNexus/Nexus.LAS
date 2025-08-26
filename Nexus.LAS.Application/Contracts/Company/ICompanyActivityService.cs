@@ -3,6 +3,6 @@ using Nexus.LAS.Domain.Entities.CompanyEntities;
 
 namespace Nexus.LAS.Application.Contracts;
 
-public interface ICompanyActivityService:IGenericService<CompaniesActivity>
+public interface ICompanyActivityService:IGenericService<CompanyActivity>
 {
 }

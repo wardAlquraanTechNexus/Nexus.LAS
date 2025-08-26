@@ -3,6 +3,6 @@ using Nexus.LAS.Domain.Entities.CompanyEntities;
 
 namespace Nexus.LAS.Application.Contracts;
 
-public interface ICompanyShareHolderService:IGenericService<CompaniesShareHolder>
+public interface ICompanyShareHolderService:IGenericService<CompanyShareHolder>
 {
 }

@@ -5,15 +5,15 @@ using Nexus.LAS.Persistence.Repositories.BaseRepo;
 
 namespace Nexus.LAS.Persistence.Repositories;
 
-public class CompanyShareHolderRepo : GenericRepo<CompaniesShareHolder>
+public class CompanyShareHolderRepo : GenericRepo<CompanyShareHolder>
 {
     public CompanyShareHolderRepo(NexusLASDbContext context) : base(context)
     {
     }
 
-    public async Task<List<CompaniesShareHolder>> GetListByCompanyId(int companyId)
+    public async Task<List<CompanyShareHolder>> GetListByCompanyId(int companyId)
     {
-        IQueryable<CompaniesShareHolder> queryable = _dbSet.Where(x => x.CompaniesIdn == companyId);
+        IQueryable<CompanyShareHolder> queryable = _dbSet.Where(x => x.CompanyId == companyId);
         return await queryable.ToListAsync();
     }
 }

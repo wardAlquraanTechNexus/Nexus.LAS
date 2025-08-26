@@ -17,7 +17,7 @@ public class UpsertCompanyActivityHandler: IRequestHandler<BulkUpsertCompanyActi
     }
     public async Task<List<CompanyActivityDto>> Handle(BulkUpsertCompanyActivityCommand command , CancellationToken cancellationToken)
     {
-        var companiesActivity = command.Commands.Select(cmd => _mapper.Map<CompaniesActivity>(cmd)).ToList();
+        var companiesActivity = command.Commands.Select(cmd => _mapper.Map<CompanyActivity>(cmd)).ToList();
         var companyActivitysRes = await _companyActivityService.BulkUpsertAsync(companiesActivity);
         return companyActivitysRes.Select(e => _mapper.Map<CompanyActivityDto>(e)).ToList();
 

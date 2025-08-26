@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.Contracts.Presistence.Services.Base;
 using Nexus.LAS.Application.DTOs.Base;
+using Nexus.LAS.Application.UseCases.Base;
 using Nexus.LAS.Domain.Entities.Base;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Repositories;
@@ -42,6 +43,11 @@ namespace Nexus.LAS.Persistence.Services.Base
         {
             GenericRepo<T> repo = new GenericRepo<T>(_context);
             return await repo.GetAsync(query);
+        }
+        public virtual async Task<PagingResult<T>> SearchAsync<Params>(Params query) where Params : BaseParams
+        {
+            GenericRepo<T> repo = new GenericRepo<T>(_context);
+            return await repo.SearhAsync(query);
         }
 
         public virtual async Task<int> CreateAsync(T entity)

@@ -3,11 +3,9 @@
 public class CompanyActivityDto
 {
     public int Id { get; set; }
-    public string Activity { get; set; }
-    public string? CreatedBy { get; set; }
-    public DateTime? CreatedAt { get; set; }
-    public string? ModifiedBy { get; set; }
+    public int Activity { get; set; }
+    public int CompanyId { get; set; }
+    public DateTime CreatedAt { get; set; }
     public DateTime? ModifiedAt { get; set; }
-    public int CompaniesIdn { get; set; }
 
 }

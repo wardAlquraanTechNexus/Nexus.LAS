@@ -3,16 +3,21 @@
 public class CompanyShareHolderDto
 {
     public int Id { get; set; }
-    public string RegistersIdc { get; set; } // Person or company
-    public int RegistersIdn { get; set; } //List of person or companies
-    public long? ShareHolderNumbersOfShares { get; set; }
+
+    public int? ShareHoldersGroupsId { get; set; }
+
+    public string RegistersIdc { get; set; } = string.Empty;
+
+    public int RegistersIdn { get; set; }
+
+    public long? NumbersOfShares { get; set; }
+
     public DateTime? ShareHolderDate { get; set; }
-    public DateTime? ShareHolderCessationDate { get; set; }
+
+    public DateTime? CessationDate { get; set; }
+
     public bool? ShareHolderActive { get; set; }
-    public string? CreatedBy { get; set; }
-    public DateTime? CreatedAt { get; set; }
-    public string? ModifiedBy { get; set; }
-    public DateTime? ModifiedAt { get; set; }
-    public int CompaniesIdn { get; set; }
+
+    public int CompanyId { get; set; }
 
 }

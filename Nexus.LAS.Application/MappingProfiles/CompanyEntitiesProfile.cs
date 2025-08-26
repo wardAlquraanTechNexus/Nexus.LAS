@@ -61,9 +61,9 @@ public class CompanyEntitiesProfile : Profile
 
 
         // CompanyActivity
-        CreateMap<CreateCompanyActivityCommand, CompaniesActivity>();
-        CreateMap<UpdateCompanyActivityCommand, CompaniesActivity>();
-        CreateMap<UpsertCompanyActivityCommand, CompaniesActivity>()
+        CreateMap<CreateCompanyActivityCommand, CompanyActivity>();
+        CreateMap<UpdateCompanyActivityCommand, CompanyActivity>();
+        CreateMap<UpsertCompanyActivityCommand, CompanyActivity>()
     .ForMember(dest => dest.Id, opt => opt.Condition(src => src.Id.HasValue));
 
         // CompanyAddress
@@ -133,9 +133,9 @@ public class CompanyEntitiesProfile : Profile
     .ForMember(dest => dest.Id, opt => opt.Condition(src => src.Id.HasValue));
 
         // CompanyShareHolder
-        CreateMap<CreateCompanyShareHolderCommand, CompaniesShareHolder>();
-        CreateMap<UpdateCompanyShareHolderCommand, CompaniesShareHolder>();
-        CreateMap<UpsertCompanyShareHolderCommand, CompaniesShareHolder>()
+        CreateMap<CreateCompanyShareHolderCommand, CompanyShareHolder>();
+        CreateMap<UpdateCompanyShareHolderCommand, CompanyShareHolder>();
+        CreateMap<UpsertCompanyShareHolderCommand, CompanyShareHolder>()
     .ForMember(dest => dest.Id, opt => opt.Condition(src => src.Id.HasValue));
 
 
