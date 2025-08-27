@@ -5,8 +5,8 @@ namespace Nexus.LAS.Application.UseCases.CompanyPhoneUseCases.Commands.CreateCom
 
 public class CreateCompanyPhoneCommand : CreateBaseCommand
 {
-    public int? CompaniesIdn { get; set; }
-    public bool? PhonePrimary { get; set; }
-    public string? PhoneType { get; set; }
-    public string? PhoneNumber { get; set; }
+    public int CompanyId { get; set; }
+    public bool PhonePrimary { get; set; }
+    public string PhoneType { get; set; }
+    public string PhoneNumber { get; set; }
 }

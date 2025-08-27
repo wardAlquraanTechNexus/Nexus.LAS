@@ -24,5 +24,6 @@ namespace Nexus.LAS.Application.Contracts.Presistence.Services.Base
         Task<byte[]> ExportToExcel(IQueryCollection query);
         Task<byte[]> ExportToExcel(IQueryCollection query, PropertyInfo[] properties);
         Task<PagingResult<T>> SearchAsync<Params>(Params query) where Params : BaseParams;
+        Task<List<T>> SearhAllAsync<Params>(Params query) where Params : class;
     }
 }

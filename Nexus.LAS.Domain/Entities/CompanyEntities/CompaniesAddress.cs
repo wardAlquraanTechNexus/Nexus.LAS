@@ -1,4 +1,5 @@
-﻿using Nexus.LAS.Domain.Entities.Base;
+﻿using Nexus.LAS.Domain.Constants;
+using Nexus.LAS.Domain.Entities.Base;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -11,12 +12,12 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
 {
     [Table("CompaniesAddresses")]
 
-    public class CompaniesAddress : BaseEntity
+    public class CompanyAddress : BaseEntity
     {
         [Required]
         [MaxLength(50)]
         [Column("CompaniesAddressIDC")]
-        public string CompaniesAddressIdc { get; set; }
+        public string CompaniesAddressIdc { get; set; } = EntityIDCs.CompaniesAddressIDC;
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("CompaniesAddressIDN")]
@@ -24,7 +25,7 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
 
         [Required]
         [Column("Companies_IDN")]
-        public int CompaniesIdn { get; set; }
+        public int CompanyId { get; set; }
 
         [Required]
         [Column("AddressPrimary")]

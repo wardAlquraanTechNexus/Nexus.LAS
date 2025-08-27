@@ -11,6 +11,6 @@ namespace Nexus.LAS.Application.UseCases.CompanyShareHolderUseCases.Queries
 {
     public class GetPagingCompanyShareHolderQuery : GetBasePagingQuery<CompanyShareHolderDto>
     {
-        public int CompanyId { get; set; }
+        public int? CompanyId { get; set; }
     }
 }

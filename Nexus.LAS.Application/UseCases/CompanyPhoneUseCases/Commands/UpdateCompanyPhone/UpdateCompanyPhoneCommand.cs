@@ -6,8 +6,8 @@ namespace Nexus.LAS.Application.UseCases.CompanyPhoneUseCases.Commands.UpdateCom
 public class UpdateCompanyPhoneCommand : UpdateBaseCommand
 {
     public int Id { get; set; }
-    public int? CompaniesIdn { get; set; }
-    public bool? PhonePrimary { get; set; }
-    public string? PhoneType { get; set; }
-    public string? PhoneNumber { get; set; }
+    public int CompanyId { get; set; }
+    public bool PhonePrimary { get; set; }
+    public string PhoneType { get; set; }
+    public string PhoneNumber { get; set; }
 }

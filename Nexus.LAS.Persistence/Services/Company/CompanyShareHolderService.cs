@@ -1,5 +1,9 @@
 ﻿using Nexus.LAS.Application.Contracts;
+using Nexus.LAS.Application.Contracts._Repositories;
 using Nexus.LAS.Application.Contracts.Identity;
+using Nexus.LAS.Application.DTOs.Base;
+using Nexus.LAS.Application.DTOs.CompanyShareHolderDTOs;
+using Nexus.LAS.Application.UseCases.CompanyShareHolderUseCases.Queries;
 using Nexus.LAS.Domain.Entities.CompanyEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Repositories;
@@ -9,13 +13,18 @@ namespace Nexus.LAS.Persistence.Services;
 
 public class CompanyShareHolderService : GenericService<CompanyShareHolder> , ICompanyShareHolderService
 {
-    public CompanyShareHolderService(NexusLASDbContext context, IUserIdentityService userIdentityService) : base(context, userIdentityService)
+    private readonly ICompanyShareHolderRepo _repo;
+    public CompanyShareHolderService(NexusLASDbContext context, IUserIdentityService userIdentityService, ICompanyShareHolderRepo repo) : base(context, userIdentityService)
     {
+        _repo = repo;
     }
 
-    public override async Task DeleteAsync(int id)
+
+
+    public async Task<PagingResult<CompanyShareHolderDto>> SearhDtoAsync(GetPagingCompanyShareHolderQuery query)
     {
-        var repo = new CompanyShareHolderRepo(_context);
-        await repo.DeleteAsync(id);
+        return await _repo.SearhDtoAsync(query);
     }
+
+
 }

@@ -177,30 +177,30 @@ public class CompanyService : GenericService<Company>, ICompanyService
 
                         column.CreateTable(companyPhones, new List<PdfDisplayColumn>()
                             {
-                                    new PdfDisplayColumn("Type", nameof(CompaniesPhone.PhoneType)),
-                                    new PdfDisplayColumn("Phone Number", nameof(CompaniesPhone.PhoneNumber)),
-                                    new PdfDisplayColumn("Phone Primary", nameof(CompaniesPhone.PhonePrimary)),
+                                    new PdfDisplayColumn("Type", nameof(CompanyPhone.PhoneType)),
+                                    new PdfDisplayColumn("Phone Number", nameof(CompanyPhone.PhoneNumber)),
+                                    new PdfDisplayColumn("Phone Primary", nameof(CompanyPhone.PhonePrimary)),
                             }, "Phones");
 
                         column.Item().Padding(10).Text(string.Empty);
 
                         column.CreateTable(companyEmails, new List<PdfDisplayColumn>()
                             {
-                                    new PdfDisplayColumn("Email Primary", nameof(CompaniesEmail.EmailPrimary)),
-                                    new PdfDisplayColumn("Email", nameof(CompaniesEmail.Email)),
+                                    new PdfDisplayColumn("Email Primary", nameof(CompanyEmail.EmailPrimary)),
+                                    new PdfDisplayColumn("Email", nameof(CompanyEmail.Email)),
                             }, "Emails");
 
                         column.Item().Padding(10).Text(string.Empty);
 
                         column.CreateTable(companyAddress, new List<PdfDisplayColumn>()
                             {
-                                    new PdfDisplayColumn("Address Primary", nameof(CompaniesAddress.AddressPrimary)),
-                                    new PdfDisplayColumn("Address 1", nameof(CompaniesAddress.AddressLine1)),
-                                    new PdfDisplayColumn("Address 2", nameof(CompaniesAddress.AddressLine2)),
-                                    new PdfDisplayColumn("Address 3", nameof(CompaniesAddress.AddressLine3)),
-                                    new PdfDisplayColumn("PO Box Numeber", nameof(CompaniesAddress.PoBoxNumber)),
-                                    new PdfDisplayColumn("PO Box City", nameof(CompaniesAddress.PoBoxCity)),
-                                    new PdfDisplayColumn("PO Box Country", nameof(CompaniesAddress.PoBoxCountry)),
+                                    new PdfDisplayColumn("Address Primary", nameof(CompanyAddress.AddressPrimary)),
+                                    new PdfDisplayColumn("Address 1", nameof(CompanyAddress.AddressLine1)),
+                                    new PdfDisplayColumn("Address 2", nameof(CompanyAddress.AddressLine2)),
+                                    new PdfDisplayColumn("Address 3", nameof(CompanyAddress.AddressLine3)),
+                                    new PdfDisplayColumn("PO Box Numeber", nameof(CompanyAddress.PoBoxNumber)),
+                                    new PdfDisplayColumn("PO Box City", nameof(CompanyAddress.PoBoxCity)),
+                                    new PdfDisplayColumn("PO Box Country", nameof(CompanyAddress.PoBoxCountry)),
                             }, "Addresses");
                     });
             });

@@ -16,6 +16,7 @@ namespace Nexus.LAS.Application.Contracts.Presistence.Repositories.Base
         Task DeleteAsync(int id);
         Task<List<T>> BulkUpsertAsync(List<T> entities);
         Task<PagingResult<T>> SearhAsync<Params>(Params query) where Params : BaseParams;
+        Task<List<T>> SearhAllAsync<Params>(Params query) where Params : class;
 
     }
 }

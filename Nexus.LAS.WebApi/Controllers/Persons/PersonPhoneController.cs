@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts;
 using Nexus.LAS.Application.UseCases.PersonPhoneUseCases;
+using Nexus.LAS.Application.UseCases.PersonPhoneUseCases.Commands.CreatePersonPhone;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 using Nexus.LAS.WebApi.Controllers._GenericController;
 
@@ -25,5 +26,15 @@ public class PersonPhoneController : GenericController<IPersonPhoneService, Pers
             Commands = commands
         };
         return Ok(await _mediator.Send(bulkUpsertPersonEmailCommand));
+    }
+    [NonAction]
+    public override Task<IActionResult> CreateAsync(PersonsPhone entity)
+    {
+        return base.CreateAsync(entity);
+    }
+    [HttpPost]
+    public async Task<IActionResult> CreatePhone(CreatePersonPhoneCommand command)
+    {
+        return Ok(await _mediator.Send(command));
     }
 }

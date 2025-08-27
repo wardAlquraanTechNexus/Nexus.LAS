@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Internal;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
 using Nexus.LAS.Application.Contracts.Presistence.Services.Base;
 using Nexus.LAS.Application.DTOs.Base;
@@ -32,7 +33,7 @@ namespace Nexus.LAS.Application.UseCases._GenericUseCases.Queries.GetBasePaging
 
         }
 
-        public async Task<PagingResult<DTO>> Handle(Request request, CancellationToken cancellationToken)
+        public virtual async Task<PagingResult<DTO>> Handle(Request request, CancellationToken cancellationToken)
         {
             
             var data = await _service.SearchAsync(request);
@@ -47,10 +48,6 @@ namespace Nexus.LAS.Application.UseCases._GenericUseCases.Queries.GetBasePaging
                 TotalRecords = data.TotalRecords
             };
         }
-
-
-
-       
 
     }
 }

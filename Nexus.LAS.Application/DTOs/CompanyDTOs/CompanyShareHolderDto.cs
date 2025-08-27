@@ -19,5 +19,6 @@ public class CompanyShareHolderDto
     public bool? ShareHolderActive { get; set; }
 
     public int CompanyId { get; set; }
+    public string? RegisterName { get; set; } = string.Empty;
 
 }

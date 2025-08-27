@@ -8,6 +8,6 @@ public class UpdatePersonPhoneCommand : UpdateBaseCommand
     public int Id { get; set; }
     public int? PersonsIdn { get; set; }
     public bool? PhonePrimary { get; set; }
-    public string? PhoneType { get; set; }
+    public int? PhoneType { get; set; }
     public string? PhoneNumber { get; set; }
 }

@@ -5,7 +5,7 @@ using Nexus.LAS.Persistence.Repositories.BaseRepo;
 
 namespace Nexus.LAS.Persistence.Repositories;
 
-public class CompanyAddressRepo : GenericRepo<CompaniesAddress>
+public class CompanyAddressRepo : GenericRepo<CompanyAddress>
 {
     public CompanyAddressRepo(NexusLASDbContext context) : base(context)
     {
@@ -16,7 +16,7 @@ public class CompanyAddressRepo : GenericRepo<CompaniesAddress>
         var item = await _dbSet.FindAsync(id);
         if (item.AddressPrimary is true)
         {
-            var firstItem = await _dbSet.FirstOrDefaultAsync(x => x.CompaniesIdn == item.CompaniesIdn);
+            var firstItem = await _dbSet.FirstOrDefaultAsync(x => x.CompanyId == item.CompanyId);
             if (firstItem != null)
             {
                 firstItem.AddressPrimary = true;
@@ -28,9 +28,9 @@ public class CompanyAddressRepo : GenericRepo<CompaniesAddress>
         await _context.SaveChangesAsync();
     }
 
-    public async Task<List<CompaniesAddress>> GetListByCompanyId(int companyId)
+    public async Task<List<CompanyAddress>> GetListByCompanyId(int companyId)
     {
-        IQueryable<CompaniesAddress> queryable = _dbSet.Where(x => x.CompaniesIdn == companyId);
+        IQueryable<CompanyAddress> queryable = _dbSet.Where(x => x.CompanyId == companyId);
         return await queryable.ToListAsync();
     }
 }

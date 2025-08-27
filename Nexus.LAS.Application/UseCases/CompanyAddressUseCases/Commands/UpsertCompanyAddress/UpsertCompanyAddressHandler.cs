@@ -19,7 +19,7 @@ public class UpsertCompanyAddressHandler: IRequestHandler<BulkUpsertCompanyAddre
 
     public async Task<List<CompanyAddressDto>> Handle(BulkUpsertCompanyAddressCommand command, CancellationToken cancellationToken)
     {
-        var companiesEmail = command.Commands.Select(cmd => _mapper.Map<CompaniesAddress>(cmd)).ToList();
+        var companiesEmail = command.Commands.Select(cmd => _mapper.Map<CompanyAddress>(cmd)).ToList();
         var companyEmailsRes = await _companyAddressService.BulkUpsertAsync(companiesEmail);
         return companyEmailsRes.Select(e => _mapper.Map<CompanyAddressDto>(e)).ToList();
     }

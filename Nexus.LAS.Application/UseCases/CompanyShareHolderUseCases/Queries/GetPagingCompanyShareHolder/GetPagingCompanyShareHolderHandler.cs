@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Nexus.LAS.Application.Contracts;
+using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.DTOs.CompanyShareHolderDTOs;
 using Nexus.LAS.Application.UseCases._GenericUseCases.Queries.GetBasePaging;
 using Nexus.LAS.Domain.Entities.CompanyEntities;
@@ -10,6 +11,11 @@ namespace Nexus.LAS.Application.UseCases.CompanyShareHolderUseCases.Queries
     {
         public GetPagingCompanyShareHolderHandler(ICompanyShareHolderService service, IMapper mapper) : base(service, mapper)
         {
+        }
+
+        public override async Task<PagingResult<CompanyShareHolderDto>> Handle(GetPagingCompanyShareHolderQuery request, CancellationToken cancellationToken)
+        {
+            return await _service.SearhDtoAsync(request);
         }
     }
 }

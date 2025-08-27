@@ -1,30 +1,58 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts;
-using Nexus.LAS.Application.UseCases.CompanyPhoneUseCases;
+using Nexus.LAS.Application.UseCases.CompanyEmailUseCases.Queries;
+using Nexus.LAS.Application.UseCases.CompanyPhoneUseCases.Commands.CreateCompanyPhone;
+using Nexus.LAS.Application.UseCases.CompanyPhoneUseCases.Commands.UpdateCompanyPhone;
+using Nexus.LAS.Application.UseCases.CompanyPhoneUseCases.Queries.GetPaging;
 using Nexus.LAS.Domain.Entities.CompanyEntities;
 using Nexus.LAS.WebApi.Controllers._GenericController;
 
 namespace Nexus.LAS.WebApi.Controllers.Companies;
 
-public class CompanyPhoneController : GenericController<ICompanyPhoneService, CompaniesPhone>
+public class CompanyPhoneController : GenericController<ICompanyPhoneService, CompanyPhone>
 {
     public CompanyPhoneController(ICompanyPhoneService service, IMediator mediator) : base(service, mediator)
     {
     }
 
+  
+
     [NonAction]
-    public override Task<IActionResult> BulkUpsertAsync(List<CompaniesPhone> entities)
+    public override Task<IActionResult> GetAllByQuery()
     {
-        return base.BulkUpsertAsync(entities);
+        return base.GetAllByQuery();
     }
-    [HttpPost(nameof(BulkUpsertAsync))]
-    public async Task<IActionResult> BulkUpsertAsync([FromBody] List<UpsertCompanyPhoneCommand> commands)
+
+    [HttpGet(nameof(GetAllByQuery))]
+
+    public async Task<IActionResult> GetAll([FromQuery] GetAllCompanyPhoneQuery query)
     {
-        BulkUpsertCompanyPhoneCommand bulkUpsertCompanyEmailCommand = new BulkUpsertCompanyPhoneCommand()
-        {
-            Commands = commands
-        };
-        return Ok(await _mediator.Send(bulkUpsertCompanyEmailCommand));
+        return Ok(await _mediator.Send(query));
+    }
+
+
+
+
+    [NonAction]
+    public override Task<IActionResult> CreateAsync(CompanyPhone entity)
+    {
+        return base.CreateAsync(entity);
+    }
+    [NonAction]
+    public override Task<IActionResult> UpdateAsync(CompanyPhone entity)
+    {
+        return base.UpdateAsync(entity);
+    }
+    [HttpPost]
+    public async Task<IActionResult> CreateCompanyPhone(CreateCompanyPhoneCommand command)
+    {
+        return Ok(await _mediator.Send(command));
+    }
+
+    [HttpPut]
+    public async Task<IActionResult> UpdateCompanyPhone(UpdateCompanyPhoneCommand command)
+    {
+        return Ok(await _mediator.Send(command));
     }
 }

@@ -7,7 +7,7 @@ using Nexus.LAS.Persistence.Services.Base;
 
 namespace Nexus.LAS.Persistence.Services;
 
-public class CompanyPhoneService : GenericService<CompaniesPhone> , ICompanyPhoneService
+public class CompanyPhoneService : GenericService<CompanyPhone> , ICompanyPhoneService
 {
     public CompanyPhoneService(NexusLASDbContext context, IUserIdentityService userIdentityService) : base(context, userIdentityService)
     {

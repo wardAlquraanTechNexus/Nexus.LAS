@@ -63,14 +63,11 @@ public class CompanyEntitiesProfile : Profile
         // CompanyActivity
         CreateMap<CreateCompanyActivityCommand, CompanyActivity>();
         CreateMap<UpdateCompanyActivityCommand, CompanyActivity>();
-        CreateMap<UpsertCompanyActivityCommand, CompanyActivity>()
-    .ForMember(dest => dest.Id, opt => opt.Condition(src => src.Id.HasValue));
+
 
         // CompanyAddress
-        CreateMap<CreateCompanyAddressCommand, CompaniesAddress>();
-        CreateMap<UpdateCompanyAddressCommand, CompaniesAddress>();
-        CreateMap<UpsertCompanyAddressCommand, CompaniesAddress>()
-    .ForMember(dest => dest.Id, opt => opt.Condition(src => src.Id.HasValue));
+        CreateMap<CreateCompanyAddressCommand, CompanyAddress>();
+        CreateMap<UpdateCompanyAddressCommand, CompanyAddress>();
 
         // CompanyBankAccount
         CreateMap<CreateCompanyBankAccountCommand, CompaniesBankAccount>();
@@ -103,9 +100,9 @@ public class CompanyEntitiesProfile : Profile
     .ForMember(dest => dest.Id, opt => opt.Condition(src => src.Id.HasValue));
 
         // CompanyEmail
-        CreateMap<CreateCompanyEmailCommand, CompaniesEmail>();
-        CreateMap<UpdateCompanyEmailCommand, CompaniesEmail>();
-        CreateMap<UpsertCompanyEmailCommand, CompaniesEmail>()
+        CreateMap<CreateCompanyEmailCommand, CompanyEmail>();
+        CreateMap<UpdateCompanyEmailCommand, CompanyEmail>();
+        CreateMap<UpsertCompanyEmailCommand, CompanyEmail>()
     .ForMember(dest => dest.Id, opt => opt.Condition(src => src.Id.HasValue));
 
         // CompanyLicense
@@ -127,9 +124,9 @@ public class CompanyEntitiesProfile : Profile
     .ForMember(dest => dest.Id, opt => opt.Condition(src => src.Id.HasValue));
 
         // CompanyPhone
-        CreateMap<CreateCompanyPhoneCommand, CompaniesPhone>();
-        CreateMap<UpdateCompanyPhoneCommand, CompaniesPhone>();
-        CreateMap<UpsertCompanyPhoneCommand, CompaniesPhone>()
+        CreateMap<CreateCompanyPhoneCommand, CompanyPhone>();
+        CreateMap<UpdateCompanyPhoneCommand, CompanyPhone>();
+        CreateMap<UpsertCompanyPhoneCommand, CompanyPhone>()
     .ForMember(dest => dest.Id, opt => opt.Condition(src => src.Id.HasValue));
 
         // CompanyShareHolder

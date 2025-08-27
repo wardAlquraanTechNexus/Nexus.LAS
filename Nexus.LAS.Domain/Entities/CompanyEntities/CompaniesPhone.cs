@@ -1,29 +1,25 @@
-﻿using Nexus.LAS.Domain.Entities.Base;
-using System;
-using System.Collections.Generic;
+﻿using Nexus.LAS.Domain.Constants;
+using Nexus.LAS.Domain.Entities.Base;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Nexus.LAS.Domain.Entities.CompanyEntities
 {
     [Table("CompaniesPhones")]
 
-    public class CompaniesPhone:BaseEntity
+    public class CompanyPhone:BaseEntity
     {
         [Required]
         [MaxLength(50)]
         [Column("CompaniesPhoneIDC")]
-        public string CompaniesPhoneIdc { get; set; }
+        public string CompaniesPhoneIdc { get; set; } = EntityIDCs.CompaniesPhoneIDC;
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("CompaniesPhoneIDN")]
         public override int Id { get; set; }
 
         [Column("Companies_IDN")]
-        public int? CompaniesIdn { get; set; }
+        public int? CompanyId { get; set; }
 
         [Column("PhonePrimary")]
         public bool? PhonePrimary { get; set; }

@@ -17,7 +17,7 @@ public class UpsertCompanyEmailHandler: IRequestHandler<BulkUpsertCompanyEmailCo
     }
     public async Task<List<CompanyEmailDto>> Handle(BulkUpsertCompanyEmailCommand command , CancellationToken cancellationToken)
     {
-        var companiesEmail = command.Commands.Select(cmd => _mapper.Map<CompaniesEmail>(cmd)).ToList();
+        var companiesEmail = command.Commands.Select(cmd => _mapper.Map<CompanyEmail>(cmd)).ToList();
         var companyEmailsRes = await _companyEmailService.BulkUpsertAsync(companiesEmail);
         return companyEmailsRes.Select(e => _mapper.Map<CompanyEmailDto>(e)).ToList();
 

@@ -5,7 +5,7 @@ namespace Nexus.LAS.Application.UseCases.CompanyEmailUseCases.Commands.CreateCom
 
 public class CreateCompanyEmailCommand : CreateBaseCommand
 {
-    public int CompaniesIdn { get; set; }
+    public string Email { get; set; }
     public bool EmailPrimary { get; set; }
-    public string Email { get; set; } = null!;
+    public int CompanyId { get; set; }
 }

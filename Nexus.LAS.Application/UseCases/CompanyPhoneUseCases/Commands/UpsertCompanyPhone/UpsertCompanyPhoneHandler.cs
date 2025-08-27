@@ -19,7 +19,7 @@ public class UpsertCompanyPhoneHandler: IRequestHandler<BulkUpsertCompanyPhoneCo
 
     public async Task<List<CompanyPhoneDto>> Handle(BulkUpsertCompanyPhoneCommand command, CancellationToken cancellationToken)
     {
-        var companiesEmail = command.Commands.Select(cmd => _mapper.Map<CompaniesPhone>(cmd)).ToList();
+        var companiesEmail = command.Commands.Select(cmd => _mapper.Map<CompanyPhone>(cmd)).ToList();
         var companyEmailsRes = await _companyPhoneService.BulkUpsertAsync(companiesEmail);
         return companyEmailsRes.Select(e => _mapper.Map<CompanyPhoneDto>(e)).ToList();
     }

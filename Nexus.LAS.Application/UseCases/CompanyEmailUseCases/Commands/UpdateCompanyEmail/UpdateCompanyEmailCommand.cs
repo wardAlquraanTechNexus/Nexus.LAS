@@ -6,7 +6,7 @@ namespace Nexus.LAS.Application.UseCases.CompanyEmailUseCases.Commands.UpdateCom
 public class UpdateCompanyEmailCommand : UpdateBaseCommand
 {
     public int Id { get; set; }
-    public int CompaniesIdn { get; set; }
+    public string Email { get; set; }
     public bool EmailPrimary { get; set; }
-    public string Email { get; set; } = null!;
+    public int CompanyId { get; set; }
 }

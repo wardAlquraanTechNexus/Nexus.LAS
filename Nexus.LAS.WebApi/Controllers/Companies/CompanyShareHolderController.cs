@@ -39,13 +39,13 @@ public class CompanyShareHolderController : GenericController<ICompanyShareHolde
         return base.UpdateAsync(entity);
     }
     [HttpPost]
-    public async Task<IActionResult> CreateCompanyActivity(CreateCompanyShareHolderCommand command)
+    public async Task<IActionResult> CreateCompanyShareholder(CreateCompanyShareHolderCommand command)
     {
         return Ok(await _mediator.Send(command));
     }
 
     [HttpPut]
-    public async Task<IActionResult> UpdateCompanyActivity(UpdateCompanyShareHolderCommand command)
+    public async Task<IActionResult> UpdateCompanyShareholder(UpdateCompanyShareHolderCommand command)
     {
         return Ok(await _mediator.Send(command));
     }

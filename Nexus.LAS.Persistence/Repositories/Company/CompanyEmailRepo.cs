@@ -5,7 +5,7 @@ using Nexus.LAS.Persistence.Repositories.BaseRepo;
 
 namespace Nexus.LAS.Persistence.Repositories;
 
-public class CompanyEmailRepo : GenericRepo<CompaniesEmail>
+public class CompanyEmailRepo : GenericRepo<CompanyEmail>
 {
     public CompanyEmailRepo(NexusLASDbContext context) : base(context)
     {
@@ -16,7 +16,7 @@ public class CompanyEmailRepo : GenericRepo<CompaniesEmail>
         var item = await _dbSet.FindAsync(id);
         if (item.EmailPrimary is true)
         {
-            var firstItem = await _dbSet.FirstOrDefaultAsync(x => x.CompaniesIdn == item.CompaniesIdn);
+            var firstItem = await _dbSet.FirstOrDefaultAsync(x => x.CompanyId == item.CompanyId);
             if (firstItem != null)
             {
                 firstItem.EmailPrimary = true;
@@ -28,9 +28,9 @@ public class CompanyEmailRepo : GenericRepo<CompaniesEmail>
         await _context.SaveChangesAsync();
     }
 
-    public async Task<List<CompaniesEmail>> GetListByCompanyId(int companyId)
+    public async Task<List<CompanyEmail>> GetListByCompanyId(int companyId)
     {
-        IQueryable<CompaniesEmail> queryable = _dbSet.Where(x => x.CompaniesIdn == companyId);
+        IQueryable<CompanyEmail> queryable = _dbSet.Where(x => x.CompanyId == companyId);
         return await queryable.ToListAsync();
     }
 }

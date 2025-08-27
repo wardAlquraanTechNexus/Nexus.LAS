@@ -6,7 +6,7 @@ using Nexus.LAS.Domain.Entities.CompanyEntities;
 
 namespace Nexus.LAS.Application.UseCases.CompanyPhoneUseCases.Commands.UpdateCompanyPhone;
 
-public class UpdateCompanyPhoneHandler : UpdateBaseCommandHandler<CompaniesPhone, UpdateCompanyPhoneCommand, ICompanyPhoneService>
+public class UpdateCompanyPhoneHandler : UpdateBaseCommandHandler<CompanyPhone, UpdateCompanyPhoneCommand, ICompanyPhoneService>
 {
     public UpdateCompanyPhoneHandler(ICompanyPhoneService service, IMapper mapper) : base(service, mapper)
     {

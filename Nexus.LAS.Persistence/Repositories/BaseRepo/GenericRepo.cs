@@ -42,11 +42,11 @@ namespace Nexus.LAS.Persistence.Repositories.BaseRepo
 
             queryable = queryable
                 .SearchByProperties<T>(query);
-            
+
             queryable = queryable
                 .Order<T>(query);
 
-            
+
 
             return await queryable.ToListAsync();
 
@@ -76,7 +76,7 @@ namespace Nexus.LAS.Persistence.Repositories.BaseRepo
             {
                 //ignore
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw;
             }
@@ -99,7 +99,7 @@ namespace Nexus.LAS.Persistence.Repositories.BaseRepo
             queryable = queryable.SearchByParams(query);
             totalRecords = await queryable.CountAsync();
 
-            queryable = queryable.Order<T,Params>(query);
+            queryable = queryable.Order<T, Params>(query);
 
             queryable = queryable.Paginate(query, out page, out pageSize);
 
@@ -113,7 +113,7 @@ namespace Nexus.LAS.Persistence.Repositories.BaseRepo
             {
                 //ignore
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw;
             }
@@ -126,6 +126,23 @@ namespace Nexus.LAS.Persistence.Repositories.BaseRepo
                 TotalRecords = totalRecords
             };
         }
+        public virtual async Task<List<T>> SearhAllAsync<Params>(Params query) where Params : class
+        {
+            IQueryable<T> queryable = _dbSet;
+            int page;
+            int pageSize;
+            int totalRecords;
+            int totalPages;
+            queryable = queryable.SearchByParams(query);
+
+            queryable = queryable.Order<T, Params>(query);
+
+            queryable = queryable.Paginate(query, out page, out pageSize);
+            List<T> data = await queryable.ToListAsync();
+
+            return data;
+
+        }
 
 
 
@@ -137,7 +154,7 @@ namespace Nexus.LAS.Persistence.Repositories.BaseRepo
             return entity.Id;
         }
 
-        
+
 
         public virtual async Task<bool> UpdateAsync(T entity)
         {
@@ -181,8 +198,8 @@ namespace Nexus.LAS.Persistence.Repositories.BaseRepo
 
         public virtual async Task DeleteAsync(int id)
         {
-            var entity = _dbSet.FirstOrDefault(x=>x.Id == id);
-            if(entity != null)
+            var entity = _dbSet.FirstOrDefault(x => x.Id == id);
+            if (entity != null)
             {
                 entity.IsDeleted = true;
                 await _context.SaveChangesAsync();

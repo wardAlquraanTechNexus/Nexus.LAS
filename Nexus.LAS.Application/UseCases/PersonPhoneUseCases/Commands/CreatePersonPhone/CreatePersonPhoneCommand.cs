@@ -7,6 +7,6 @@ public class CreatePersonPhoneCommand : CreateBaseCommand
 {
     public int? PersonsIdn { get; set; }
     public bool? PhonePrimary { get; set; }
-    public string? PhoneType { get; set; }
+    public int? PhoneType { get; set; }
     public string? PhoneNumber { get; set; }
 }
