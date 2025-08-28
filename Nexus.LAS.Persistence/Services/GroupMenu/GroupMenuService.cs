@@ -1,5 +1,6 @@
 ﻿using DocumentFormat.OpenXml.Math;
 using DocumentFormat.OpenXml.Spreadsheet;
+using Nexus.LAS.Application.Contracts._Repositories;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.DTOs.Base;
@@ -18,26 +19,25 @@ namespace Nexus.LAS.Persistence.Services;
 
 public class GroupMenuService : GenericService<GroupMenu>, IGroupMenuService
 {
-    public GroupMenuService(NexusLASDbContext context, IUserIdentityService userIdentityService) : base(context, userIdentityService)
+    private readonly IGroupMenuRepo _repo;
+    public GroupMenuService(NexusLASDbContext context, IUserIdentityService userIdentityService , IGroupMenuRepo repo) : base(context, userIdentityService, repo)
     {
+        _repo = repo;
     }
 
     public async Task<PagingResult<SearchGroupMenuDTO>> SearchGroupMenus(SearchGroupMenuQuery query)
     {
-        GroupMenuRepo repo = new(_context);
-        return await repo.SearchGroupMenus(query);
+        return await _repo.SearchGroupMenus(query);
     }
     public async Task<List<SearchGroupMenuDTO>> GetAllGroupMenus(GetAllGroupMenuQuery query)
     {
-        GroupMenuRepo repo = new(_context);
-        return await repo.GetAllGroupMenu(query);
+        return await _repo.GetAllGroupMenu(query);
     }
 
 
     public async Task<bool> IsGroupMenuExist(int groupId , int menuId , int? id = null)
     {
-        GroupMenuRepo repo = new(_context);
-        return await repo.IsGroupMenuExist(groupId , menuId , id);
+        return await _repo.IsGroupMenuExist(groupId , menuId , id);
     }
 
 
@@ -45,18 +45,17 @@ public class GroupMenuService : GenericService<GroupMenu>, IGroupMenuService
     {
         using (var transaction = await _context.Database.BeginTransactionAsync())
         {
-            GroupMenuRepo repo = new(_context);
 
             try
             {
                 foreach (var menu in command.Menus)
                 {
-                    var gorupMenu = await repo.GetByGroupIdAndMenuIdAsync(command.GroupId , menu.Id);
+                    var gorupMenu = await _repo.GetByGroupIdAndMenuIdAsync(command.GroupId , menu.Id);
 
                     if (gorupMenu is null && menu.IsChecked)
                     {
 
-                        await repo.CreateAsync(new GroupMenu()
+                        await _repo.CreateAsync(new GroupMenu()
                         {
                             MenuId = menu.Id,
                             GroupId = command.GroupId,
@@ -70,7 +69,7 @@ public class GroupMenuService : GenericService<GroupMenu>, IGroupMenuService
                     }
                     else if (gorupMenu != null && !menu.IsChecked)
                     {
-                        await repo.DeleteAsync(gorupMenu.Id);
+                        await _repo.DeleteAsync(gorupMenu.Id);
                     }
                     else if(gorupMenu is not null)
                     {
@@ -79,7 +78,7 @@ public class GroupMenuService : GenericService<GroupMenu>, IGroupMenuService
                         gorupMenu.CanUpdate = menu.CanUpdate;
                         gorupMenu.Admin = menu.Admin;
                         gorupMenu.Access = menu.Access;
-                        await repo.UpdateAsync(gorupMenu);
+                        await _repo.UpdateAsync(gorupMenu);
                     }
 
                 }

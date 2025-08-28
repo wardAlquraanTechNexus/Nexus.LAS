@@ -9,7 +9,7 @@ namespace Nexus.LAS.Persistence.Services;
 
 public class CompanyEmailService : GenericService<CompanyEmail> , ICompanyEmailService
 {
-    public CompanyEmailService(NexusLASDbContext context, IUserIdentityService userIdentityService) : base(context, userIdentityService)
+    public CompanyEmailService(NexusLASDbContext context, IUserIdentityService userIdentityService,ICompanyEmailRepo repo) : base(context, userIdentityService,repo)
     {
     }
 

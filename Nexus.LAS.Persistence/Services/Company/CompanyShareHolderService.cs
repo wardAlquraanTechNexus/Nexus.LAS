@@ -1,5 +1,5 @@
 ﻿using Nexus.LAS.Application.Contracts;
-using Nexus.LAS.Application.Contracts._Repositories;
+using Nexus.LAS.Application.Contracts._Repositories._CompanyRepos;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.DTOs.CompanyShareHolderDTOs;
@@ -14,7 +14,7 @@ namespace Nexus.LAS.Persistence.Services;
 public class CompanyShareHolderService : GenericService<CompanyShareHolder> , ICompanyShareHolderService
 {
     private readonly ICompanyShareHolderRepo _repo;
-    public CompanyShareHolderService(NexusLASDbContext context, IUserIdentityService userIdentityService, ICompanyShareHolderRepo repo) : base(context, userIdentityService)
+    public CompanyShareHolderService(NexusLASDbContext context, IUserIdentityService userIdentityService, ICompanyShareHolderRepo repo) : base(context, userIdentityService, repo)
     {
         _repo = repo;
     }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Nexus.LAS.Application.Contracts;
+using Nexus.LAS.Application.Contracts._Repositories;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.DTOs;
 using Nexus.LAS.Application.UseCases.PersonOtherDocumentUseCases.Commands.CreatePersonOtherDocument;
@@ -15,7 +16,7 @@ namespace Nexus.LAS.Persistence.Services
     public class PersonOtherDocumentService : GenericService<PersonsOtherDocument>, IPersonOtherDocumentService
     {
         private readonly IMapper _mapper;
-        public PersonOtherDocumentService(NexusLASDbContext context, IUserIdentityService userIdentityService, IMapper mapper) : base(context, userIdentityService)
+        public PersonOtherDocumentService(NexusLASDbContext context, IUserIdentityService userIdentityService, IMapper mapper,IPersonOtherDocumentRepo repo) : base(context, userIdentityService, repo)
         {
             _mapper = mapper;
         }

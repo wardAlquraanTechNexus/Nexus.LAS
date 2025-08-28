@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Nexus.LAS.Application.Contracts._Repositories;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.DTOs.GroupMenuDTOs;
 using Nexus.LAS.Application.UseCases.Queries;
@@ -10,7 +11,7 @@ using Nexus.LAS.Persistence.Repositories.BaseRepo;
 
 namespace Nexus.LAS.Persistence.Repositories;
 
-public class GroupMenuRepo : GenericRepo<GroupMenu>
+public class GroupMenuRepo : GenericRepo<GroupMenu> , IGroupMenuRepo
 {
     public GroupMenuRepo(NexusLASDbContext context) : base(context)
     {

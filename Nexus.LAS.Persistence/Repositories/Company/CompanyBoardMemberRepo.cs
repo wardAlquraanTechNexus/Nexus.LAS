@@ -5,7 +5,7 @@ using Nexus.LAS.Persistence.Repositories.BaseRepo;
 
 namespace Nexus.LAS.Persistence.Repositories;
 
-public class CompanyBoardMemberRepo : GenericRepo<CompaniesBoardMember>
+public class CompanyBoardMemberRepo : GenericRepo<CompaniesBoardMember>, ICompanyBoardMemberRepo
 {
     public CompanyBoardMemberRepo(NexusLASDbContext context) : base(context)
     {

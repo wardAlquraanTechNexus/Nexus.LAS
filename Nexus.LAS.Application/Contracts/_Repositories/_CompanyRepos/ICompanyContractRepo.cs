@@ -6,9 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nexus.LAS.Application.Contracts._Repositories
+namespace Nexus.LAS.Application.Contracts._Repositories._CompanyRepos
 {
-    public interface ICompanyChamberOfCommerceRepo:IGenericRepo<CompanyChamberOfCommerce>
+    public interface ICompanyContractRepo: IGenericRepo<CompaniesContract>
     {
+        Task<List<CompaniesContract>> GetListByCompanyId(int companyId);
     }
 }

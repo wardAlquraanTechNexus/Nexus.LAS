@@ -9,7 +9,7 @@ namespace Nexus.LAS.Persistence.Services;
 
 public class CompanyBoardMemberService : GenericService<CompaniesBoardMember> , ICompanyBoardMemberService
 {
-    public CompanyBoardMemberService(NexusLASDbContext context, IUserIdentityService userIdentityService) : base(context, userIdentityService)
+    public CompanyBoardMemberService(NexusLASDbContext context, IUserIdentityService userIdentityService, ICompanyBoardMemberRepo repo) : base(context, userIdentityService, repo)
     {
     }
 

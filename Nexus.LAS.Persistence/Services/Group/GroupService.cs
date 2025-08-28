@@ -1,4 +1,5 @@
-﻿using Nexus.LAS.Application.Contracts.Identity;
+﻿using Nexus.LAS.Application.Contracts._Repositories;
+using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.UseCases.GetGroupDTO;
@@ -12,7 +13,7 @@ namespace Nexus.LAS.Persistence.Services
 {
     public class GroupService : GenericService<Group>, IGroupService
     {
-        public GroupService(NexusLASDbContext context, IUserIdentityService userIdentityService) : base(context, userIdentityService)
+        public GroupService(NexusLASDbContext context, IUserIdentityService userIdentityService, IGroupRepo repo) : base(context, userIdentityService, repo)
         {
         }
 

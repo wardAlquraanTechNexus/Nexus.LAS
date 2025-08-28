@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Nexus.LAS.Application.Contracts;
-using Nexus.LAS.Application.Contracts._Repositories;
+using Nexus.LAS.Application.Contracts._Repositories._CompanyRepos;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.UseCases.CompanyLicenseUseCases.Queries.GetPaging;
@@ -14,7 +14,7 @@ namespace Nexus.LAS.Persistence.Services;
 public class CompanyLicenseService : GenericService<CompanyLicense>, ICompanyLicenseService
 {
     private readonly ICompanyLicenseRepo _repo;
-    public CompanyLicenseService(NexusLASDbContext context, IUserIdentityService userIdentityService , ICompanyLicenseRepo repo) : base(context, userIdentityService)
+    public CompanyLicenseService(NexusLASDbContext context, IUserIdentityService userIdentityService , ICompanyLicenseRepo repo) : base(context, userIdentityService,repo)
     {
         _repo = repo;
     }

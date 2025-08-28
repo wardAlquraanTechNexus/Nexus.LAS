@@ -1,5 +1,5 @@
 ﻿using Nexus.LAS.Application.Contracts;
-using Nexus.LAS.Application.Contracts._Repositories;
+using Nexus.LAS.Application.Contracts._Repositories._CompanyRepos;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.DTOs.CompanyPersonInChargeDTOs;
@@ -13,8 +13,8 @@ namespace Nexus.LAS.Persistence.Services;
 
 public class CompanyPersonInChargeService : GenericService<CompanyPersonInCharge> , ICompanyPersonInChargeService
 {
-    private readonly ICompanyPersonInChargeRepo _repo;
-    public CompanyPersonInChargeService(NexusLASDbContext context, IUserIdentityService userIdentityService , ICompanyPersonInChargeRepo repo) : base(context, userIdentityService)
+    ICompanyPersonInChargeRepo _repo;
+    public CompanyPersonInChargeService(NexusLASDbContext context, IUserIdentityService userIdentityService , ICompanyPersonInChargeRepo repo) : base(context, userIdentityService, repo)
     {
         _repo = repo;
     }

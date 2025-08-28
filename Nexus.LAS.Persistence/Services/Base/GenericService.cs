@@ -1,6 +1,7 @@
 ﻿using ClosedXML.Excel;
 using Microsoft.AspNetCore.Http;
 using Nexus.LAS.Application.Contracts.Identity;
+using Nexus.LAS.Application.Contracts.Presistence.Repositories.Base;
 using Nexus.LAS.Application.Contracts.Presistence.Services.Base;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.UseCases.Base;
@@ -15,60 +16,53 @@ namespace Nexus.LAS.Persistence.Services.Base
     {
         protected readonly NexusLASDbContext _context;
         protected readonly IUserIdentityService _userIdentityService;
-        public GenericService(NexusLASDbContext context, IUserIdentityService userIdentityService)
+        protected readonly IGenericRepo<T> _repo;
+        public GenericService(NexusLASDbContext context, IUserIdentityService userIdentityService, IGenericRepo<T> repo)
         {
             _userIdentityService = userIdentityService;
             _context = context;
+            _repo = repo;
         }
 
         public virtual async Task<IReadOnlyList<T>> GetAsync()
         {
-            GenericRepo<T> repo = new GenericRepo<T>(_context);
-            return await repo.GetAsync();
+            return await _repo.GetAsync();
         }
 
         public virtual async Task<T?> GetAsync(int id)
         {
-            GenericRepo<T> repo = new GenericRepo<T>(_context);
-            return await repo.GetAsync(id);
+            return await _repo.GetAsync(id);
         }
         public virtual async Task<IReadOnlyList<T>> GetAllAsync(IQueryCollection query)
         {
-            GenericRepo<T> repo = new GenericRepo<T>(_context);
-            return await repo.GetAllAsync(query);
+            return await _repo.GetAllAsync(query);
         }
 
         public virtual async Task<PagingResult<T>> GetAsync(IQueryCollection query)
         {
-            GenericRepo<T> repo = new GenericRepo<T>(_context);
-            return await repo.GetAsync(query);
+            return await _repo.GetAsync(query);
         }
         public virtual async Task<PagingResult<T>> SearchAsync<Params>(Params query) where Params : BaseParams
         {
-            GenericRepo<T> repo = new GenericRepo<T>(_context);
-            return await repo.SearhAsync(query);
+            return await _repo.SearhAsync(query);
         }
         public virtual async Task<List<T>> SearhAllAsync<Params>(Params query) where Params : class
         {
-            GenericRepo<T> repo = new GenericRepo<T>(_context);
-            return await repo.SearhAllAsync(query);
+            return await _repo.SearhAllAsync(query);
         }
 
         public virtual async Task<int> CreateAsync(T entity)
         {
-            GenericRepo<T> repo = new GenericRepo<T>(_context);
-            return await repo.CreateAsync(entity);
+            return await _repo.CreateAsync(entity);
         }
 
         public virtual async Task UpdateAsync(T entity)
         {
-            GenericRepo<T> repo = new GenericRepo<T>(_context);
-            await repo.UpdateAsync(entity);
+            await _repo.UpdateAsync(entity);
         }
         public virtual async Task DeleteAsync(int id)
         {
-            GenericRepo<T> repo = new GenericRepo<T>(_context);
-            await repo.DeleteAsync(id);
+            await _repo.DeleteAsync(id);
         }
         public virtual async Task<List<T>> BulkUpsertAsync(List<T> entities)
         {
@@ -87,9 +81,8 @@ namespace Nexus.LAS.Persistence.Services.Base
 
             }
 
-            GenericRepo<T> repo = new GenericRepo<T>(_context);
 
-            return await repo.BulkUpsertAsync(entities);
+            return await _repo.BulkUpsertAsync(entities);
         }
 
         public async Task<byte[]> ExportToExcel(IQueryCollection query)
@@ -99,8 +92,7 @@ namespace Nexus.LAS.Persistence.Services.Base
         }
         public async Task<byte[]> ExportToExcel(IQueryCollection query , PropertyInfo[] properties)
         {
-            var repo = new GenericRepo<T>(_context);
-            var data = await repo.GetAllAsync(query);
+            var data = await _repo.GetAllAsync(query);
             using (var workbook = new XLWorkbook())
             {
                 var worksheet = workbook.Worksheets.Add(nameof(T));

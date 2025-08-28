@@ -1,4 +1,5 @@
 ﻿using Nexus.LAS.Application.Contracts;
+using Nexus.LAS.Application.Contracts._Repositories;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.DTOs;
 using Nexus.LAS.Application.DTOs.Base;
@@ -18,7 +19,7 @@ namespace Nexus.LAS.Persistence.Services
 {
     public class UserGroupService : GenericService<UserGroup>, IUserGroupService
     {
-        public UserGroupService(NexusLASDbContext context, IUserIdentityService userIdentityService) : base(context, userIdentityService)
+        public UserGroupService(NexusLASDbContext context, IUserIdentityService userIdentityService,IUserGroupRepo repo) : base(context, userIdentityService, repo)
         {
         }
 

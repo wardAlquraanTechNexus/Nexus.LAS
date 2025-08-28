@@ -5,7 +5,7 @@ using Nexus.LAS.Persistence.Repositories.BaseRepo;
 
 namespace Nexus.LAS.Persistence.Repositories;
 
-public class CompanyEmailRepo : GenericRepo<CompanyEmail>
+public class CompanyEmailRepo : GenericRepo<CompanyEmail>, ICompanyEmailRepo
 {
     public CompanyEmailRepo(NexusLASDbContext context) : base(context)
     {

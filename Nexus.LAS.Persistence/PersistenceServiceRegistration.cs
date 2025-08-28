@@ -3,6 +3,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nexus.LAS.Application.Contracts;
 using Nexus.LAS.Application.Contracts._Repositories;
+using Nexus.LAS.Application.Contracts._Repositories._CompanyRepos;
+using Nexus.LAS.Application.Contracts._Repositories._PersonRepos;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.Contracts.Presistence.Repositories;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
@@ -18,7 +20,6 @@ namespace Nexus.LAS.Persistence
         public static IServiceCollection AddPersistenceServicesDI(this IServiceCollection services,
         IConfiguration configuration)
         {
-            services.AddScoped<ICountryRepo, CountryRepo>();
             services.AddScoped<ICountryService, CountryService>();
 
             services.AddScoped<IUserIdentityService, UserIdentityService>();
@@ -57,13 +58,42 @@ namespace Nexus.LAS.Persistence
             services.AddScoped<ICompanyPhoneService, CompanyPhoneService>();
             services.AddScoped<ICompanyShareHolderService, CompanyShareHolderService>();
 
+            services.AddScoped<ICountryRepo, CountryRepo>();
+            services.AddScoped<IDynamicListRepo, DynamicListRepo>();
+            services.AddScoped<IGroupRepo, GroupRepo>();
+            services.AddScoped<IMenuRepo, MenuRepo>();
+            services.AddScoped<IGroupMenuRepo, GroupMenuRepo>();
+            services.AddScoped<IUserGroupRepo, UserGroupRepo>();
+            services.AddScoped<IUserRepo, UserRepo>();
+            services.AddScoped<IRegisterFileRepo, RegisterFileRepo>();
+            services.AddScoped<IRegisterNoteRepo, RegisterNoteRepo>();
+
 
             services.AddScoped<IPersonRepo, PersonRepo>();
+            services.AddScoped<IPersonAddressRepo, PersonAddressRepo>();
+            services.AddScoped<IPersonEmailRepo, PersonEmailRepo>();
+            services.AddScoped<IPersonIdDetailRepo, PersonIdDetailRepo>();
+            services.AddScoped<IPersonOtherDocumentRepo, PersonOtherDocumentRepo>();
+            services.AddScoped<IPersonPhoneRepo, PersonPhoneRepo>();
+  
+            
+            
+            
             services.AddScoped<ICompanyRepo, CompanyRepo>();
             services.AddScoped<ICompanyPersonInChargeRepo, CompanyPersonInChargeRepo>();
             services.AddScoped<ICompanyChamberOfCommerceRepo, CompanyChamberOfCommerceRepo>();
             services.AddScoped<ICompanyLicenseRepo, CompanyLicenseRepo>();
             services.AddScoped<ICompanyShareHolderRepo, CompanyShareHolderRepo>();
+            services.AddScoped<ICompanyActivityRepo, CompanyActivityRepo>();
+            services.AddScoped<ICompanyAddressRepo, CompanyAddressRepo>();
+            services.AddScoped<ICompanyBankAccountRepo, CompanyBankAccountRepo>();
+            services.AddScoped<ICompanyBoardMemberRepo, CompanyBoardMemberRepo>();
+            services.AddScoped<ICompanyCapitalRepo, CompanyCapitalRepo>();
+            services.AddScoped<ICompanyContractRepo, CompanyContractRepo>();
+            services.AddScoped<ICompanyEmailRepo, CompanyEmailRepo>();
+            services.AddScoped<ICompanyLicenseRepo, CompanyLicenseRepo>();
+            services.AddScoped<ICompanyOtherContractRepo, CompanyOtherContractRepo>();
+            services.AddScoped<ICompanyPhoneRepo, CompanyPhoneRepo>();
 
 
 

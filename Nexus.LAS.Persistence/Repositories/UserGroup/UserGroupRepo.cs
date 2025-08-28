@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Nexus.LAS.Application.Contracts._Repositories;
 using Nexus.LAS.Application.DTOs;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.UseCases.UserGroupUseCases.Queries;
@@ -14,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Nexus.LAS.Persistence.Repositories
 {
-    public class UserGroupRepo : GenericRepo<UserGroup>
+    public class UserGroupRepo : GenericRepo<UserGroup>, IUserGroupRepo
     {
         public UserGroupRepo(NexusLASDbContext context) : base(context)
         {

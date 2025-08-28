@@ -1,4 +1,5 @@
 ﻿using Nexus.LAS.Application.Contracts;
+using Nexus.LAS.Application.Contracts._Repositories._CompanyRepos;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Domain.Entities.CompanyEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
@@ -9,13 +10,8 @@ namespace Nexus.LAS.Persistence.Services;
 
 public class CompanyContractService : GenericService<CompaniesContract> , ICompanyContractService
 {
-    public CompanyContractService(NexusLASDbContext context, IUserIdentityService userIdentityService) : base(context, userIdentityService)
+    public CompanyContractService(NexusLASDbContext context, IUserIdentityService userIdentityService, ICompanyContractRepo repo) : base(context, userIdentityService , repo)
     {
     }
 
-    public override async Task DeleteAsync(int id)
-    {
-        var repo = new CompanyContractRepo(_context);
-        await repo.DeleteAsync(id);
-    }
 }

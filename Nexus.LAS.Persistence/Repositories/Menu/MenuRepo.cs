@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Nexus.LAS.Application.Contracts._Repositories;
 using Nexus.LAS.Application.DTOs;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.UseCases.MenuUseCases.Queries;
@@ -10,7 +11,7 @@ using Nexus.LAS.Persistence.Repositories.BaseRepo;
 
 namespace Nexus.LAS.Persistence.Repositories
 {
-    public class MenuRepo : GenericRepo<Menu>
+    public class MenuRepo : GenericRepo<Menu> , IMenuRepo
     {
         public MenuRepo(NexusLASDbContext context) : base(context)
         {

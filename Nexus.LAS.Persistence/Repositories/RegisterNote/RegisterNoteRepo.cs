@@ -1,4 +1,5 @@
-﻿using Nexus.LAS.Domain.Entities.RegisterEntities;
+﻿using Nexus.LAS.Application.Contracts._Repositories;
+using Nexus.LAS.Domain.Entities.RegisterEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Repositories.BaseRepo;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Nexus.LAS.Persistence.Repositories
 {
-    public class RegisterNoteRepo : GenericRepo<RegistersNote>
+    public class RegisterNoteRepo : GenericRepo<RegistersNote>, IRegisterNoteRepo
     {
         public RegisterNoteRepo(NexusLASDbContext context) : base(context)
         {

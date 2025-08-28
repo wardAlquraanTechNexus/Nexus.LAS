@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Nexus.LAS.Application.Contracts._Repositories;
+using Nexus.LAS.Application.Contracts._Repositories._CompanyRepos;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.UseCases.CompanyUseCases.Queries;
 using Nexus.LAS.Domain.Constants;
@@ -90,3 +90,4 @@ public class CompanyRepo : GenericRepo<Company>, ICompanyRepo
         return entity;
     }
 }
+

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Nexus.LAS.Application.Contracts._Repositories;
 using Nexus.LAS.Application.DTOs;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.UseCases.UserUseCases.Queries;
@@ -15,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace Nexus.LAS.Persistence.Repositories
 {
-    public class UserRepo : GenericRepo<User>
+    public class UserRepo : GenericRepo<User>, IUserRepo
     {
         private readonly NexusLASIdentityDbContext _identityDbContext;
         public UserRepo(NexusLASDbContext context, NexusLASIdentityDbContext identityDbContext) : base(context)

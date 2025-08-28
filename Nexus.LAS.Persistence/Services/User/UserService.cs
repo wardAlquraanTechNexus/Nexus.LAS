@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Nexus.LAS.Application.Contracts._Repositories;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.DTOs;
@@ -19,7 +20,7 @@ namespace Nexus.LAS.Persistence.Services
         private readonly IAuthService _authService;
         private readonly NexusLASIdentityDbContext _identityDbContext;
 
-        public UserService(NexusLASDbContext context , IAuthService authService, IUserIdentityService userIdentityService, NexusLASIdentityDbContext identityDbContext) : base(context, userIdentityService)
+        public UserService(NexusLASDbContext context , IAuthService authService, IUserIdentityService userIdentityService, NexusLASIdentityDbContext identityDbContext,IUserRepo repo) : base(context, userIdentityService, repo)
         {
             _authService = authService;
             _identityDbContext = identityDbContext;

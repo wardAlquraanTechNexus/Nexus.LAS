@@ -2,7 +2,7 @@
 using EFCore.BulkExtensions;
 using Microsoft.EntityFrameworkCore;
 using Nexus.LAS.Application.Contracts;
-using Nexus.LAS.Application.Contracts._Repositories;
+using Nexus.LAS.Application.Contracts._Repositories._CompanyRepos;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.DTOs.CompanyDTOs;
@@ -22,11 +22,11 @@ public class CompanyService : GenericService<Company>, ICompanyService
 {
     private readonly IMapper _mapper;
     private readonly ICompanyRepo _repo;
-    public CompanyService(NexusLASDbContext context, ICompanyRepo companyRepo, IMapper mapper, IUserIdentityService userIdentityService)
-        : base(context, userIdentityService)
+    public CompanyService(NexusLASDbContext context,  IMapper mapper, IUserIdentityService userIdentityService, ICompanyRepo repo)
+        : base(context, userIdentityService,repo)
     {
         _mapper = mapper;
-        _repo = companyRepo;
+        _repo = repo;
     }
     public async Task<GetCompanyDto> GetCompanyDto(int id)
     {

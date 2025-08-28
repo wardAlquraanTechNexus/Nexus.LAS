@@ -2,7 +2,7 @@
 using EFCore.BulkExtensions;
 using Microsoft.EntityFrameworkCore;
 using Nexus.LAS.Application.Contracts;
-using Nexus.LAS.Application.Contracts._Repositories;
+using Nexus.LAS.Application.Contracts._Repositories._PersonRepos;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.DTOs;
 using Nexus.LAS.Application.DTOs.Base;
@@ -25,7 +25,7 @@ namespace Nexus.LAS.Persistence.Services
     {
         private readonly IMapper _mapper;
         private readonly IPersonRepo _personRepo;
-        public PersonService(NexusLASDbContext context, IPersonRepo personRepo, IUserIdentityService userIdentityService, IMapper mapper) : base(context, userIdentityService)
+        public PersonService(NexusLASDbContext context, IPersonRepo personRepo, IUserIdentityService userIdentityService, IMapper mapper) : base(context, userIdentityService,personRepo)
         {
             _mapper = mapper;
             _personRepo = personRepo;

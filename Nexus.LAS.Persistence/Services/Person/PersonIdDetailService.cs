@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Nexus.LAS.Application.Contracts;
+using Nexus.LAS.Application.Contracts._Repositories;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.DTOs;
 using Nexus.LAS.Application.UseCases.PersonIdDetail.Commands.CreatePersonIdDetail;
@@ -16,7 +17,7 @@ namespace Nexus.LAS.Persistence.Services
     {
         private readonly IMapper _mapper;
         public PersonIdDetailService(NexusLASDbContext context, IUserIdentityService userIdentityService,
-            IMapper mapper) : base(context, userIdentityService)
+            IMapper mapper,IPersonIdDetailRepo repo) : base(context, userIdentityService, repo)
         {
             _mapper = mapper;
         }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Nexus.LAS.Application.Contracts._Repositories;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.UseCases.GetGroupDTO;
 using Nexus.LAS.Application.UseCases.Queries;
@@ -9,7 +10,7 @@ using Nexus.LAS.Persistence.Repositories.BaseRepo;
 
 namespace Nexus.LAS.Persistence.Repositories;
 
-public class GroupRepo : GenericRepo<Group>
+public class GroupRepo : GenericRepo<Group>  , IGroupRepo
 {
     public GroupRepo(NexusLASDbContext context) : base(context)
     {

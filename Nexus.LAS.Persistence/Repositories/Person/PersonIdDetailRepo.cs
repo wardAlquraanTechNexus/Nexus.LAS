@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Nexus.LAS.Application.Contracts._Repositories;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Repositories.BaseRepo;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Nexus.LAS.Persistence.Repositories
 {
-    public class PersonIdDetailRepo : GenericRepo<PersonsIDDetail>
+    public class PersonIdDetailRepo : GenericRepo<PersonsIDDetail>, IPersonIdDetailRepo
     {
         public PersonIdDetailRepo(NexusLASDbContext context) : base(context)
         {

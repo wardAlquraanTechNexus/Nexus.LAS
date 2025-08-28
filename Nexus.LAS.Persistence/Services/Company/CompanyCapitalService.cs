@@ -1,4 +1,5 @@
 ﻿using Nexus.LAS.Application.Contracts;
+using Nexus.LAS.Application.Contracts._Repositories._CompanyRepos;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Domain.Entities.CompanyEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
@@ -9,7 +10,7 @@ namespace Nexus.LAS.Persistence.Services;
 
 public class CompanyCapitalService : GenericService<CompanyCapital> , ICompanyCapitalService
 {
-    public CompanyCapitalService(NexusLASDbContext context, IUserIdentityService userIdentityService) : base(context, userIdentityService)
+    public CompanyCapitalService(NexusLASDbContext context, IUserIdentityService userIdentityService,ICompanyCapitalRepo repo) : base(context, userIdentityService,repo)
     {
     }
 

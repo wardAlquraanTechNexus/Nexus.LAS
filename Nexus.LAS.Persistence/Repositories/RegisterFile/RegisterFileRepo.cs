@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Nexus.LAS.Application.Contracts._Repositories;
 using Nexus.LAS.Domain.Entities.RegisterEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Repositories.BaseRepo;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Nexus.LAS.Persistence.Repositories
 {
-    public class RegisterFileRepo : GenericRepo<RegisterFile>
+    public class RegisterFileRepo : GenericRepo<RegisterFile> , IRegisterFileRepo
     {
         public RegisterFileRepo(NexusLASDbContext context) : base(context)
         {

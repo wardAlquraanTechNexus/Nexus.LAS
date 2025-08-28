@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Nexus.LAS.Application.Contracts._Repositories._CompanyRepos;
 using Nexus.LAS.Domain.Entities.CompanyEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Repositories.BaseRepo;
 
 namespace Nexus.LAS.Persistence.Repositories;
 
-public class CompanyAddressRepo : GenericRepo<CompanyAddress>
+public class CompanyAddressRepo : GenericRepo<CompanyAddress>, ICompanyAddressRepo
 {
     public CompanyAddressRepo(NexusLASDbContext context) : base(context)
     {

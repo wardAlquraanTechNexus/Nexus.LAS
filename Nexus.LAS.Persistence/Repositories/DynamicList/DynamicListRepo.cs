@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Nexus.LAS.Application.Contracts._Repositories;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.UseCases.Queries.GetDynamicListDto;
 using Nexus.LAS.Domain.Entities.Lookup;
@@ -8,7 +9,7 @@ using Nexus.LAS.Persistence.Repositories.BaseRepo;
 
 namespace Nexus.LAS.Persistence.Repositories;
 
-public class DynamicListRepo : GenericRepo<DynamicList>
+public class DynamicListRepo : GenericRepo<DynamicList>, IDynamicListRepo
 {
     public DynamicListRepo(NexusLASDbContext context) : base(context)
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using Nexus.LAS.Application.Contracts._Repositories;
+using Nexus.LAS.Application.Contracts._Repositories._PersonRepos;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.Models;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Queries;

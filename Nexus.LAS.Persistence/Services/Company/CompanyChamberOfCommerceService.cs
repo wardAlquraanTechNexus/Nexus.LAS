@@ -1,5 +1,5 @@
 ﻿using Nexus.LAS.Application.Contracts;
-using Nexus.LAS.Application.Contracts._Repositories;
+using Nexus.LAS.Application.Contracts._Repositories._CompanyRepos;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Domain.Entities.CompanyEntities;
 using Nexus.LAS.Identity.Services;
@@ -11,10 +11,8 @@ namespace Nexus.LAS.Persistence.Services;
 
 public class CompanyChamberOfCommerceService : GenericService<CompanyChamberOfCommerce> , ICompanyChamberOfCommerceService
 {
-    private readonly ICompanyChamberOfCommerceRepo _repo;
-    public CompanyChamberOfCommerceService(NexusLASDbContext context, IUserIdentityService userIdentityService, ICompanyChamberOfCommerceRepo repo) : base(context,userIdentityService)
+    public CompanyChamberOfCommerceService(NexusLASDbContext context, IUserIdentityService userIdentityService, ICompanyChamberOfCommerceRepo repo) : base(context,userIdentityService, repo)
     {
-        _repo = repo;
     }
 
     
