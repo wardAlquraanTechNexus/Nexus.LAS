@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace Nexus.LAS.Application.Contracts._Repositories._CompanyRepos
 {
-    public interface ICompanyContractRepo: IGenericRepo<CompaniesContract>
+    public interface ICompanyContractRepo: IGenericRepo<CompanyContract>
     {
-        Task<List<CompaniesContract>> GetListByCompanyId(int companyId);
+        Task<List<CompanyContract>> GetListByCompanyId(int companyId);
     }
 }

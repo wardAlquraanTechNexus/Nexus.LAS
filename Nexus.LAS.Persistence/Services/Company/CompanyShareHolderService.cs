@@ -26,5 +26,8 @@ public class CompanyShareHolderService : GenericService<CompanyShareHolder> , IC
         return await _repo.SearhDtoAsync(query);
     }
 
-
+    public async Task<long> SumActiveSharesAsync(int company, int? excludeShareHolderId = null)
+    {
+        return await _repo.SumActiveSharesAsync(company , excludeShareHolderId);
+    }
 }

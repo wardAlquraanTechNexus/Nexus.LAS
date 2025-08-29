@@ -17,4 +17,34 @@ public class CompanyCapitalRepo : GenericRepo<CompanyCapital>, ICompanyCapitalRe
         IQueryable<CompanyCapital> queryable = _dbSet.Where(x => x.CompanyId == companyId);
         return await queryable.ToListAsync();
     }
+
+
+    public async Task ValidateSingleActiveCapital(CompanyCapital capital)
+    {
+        if (!capital.CapitalActive)
+            return;
+
+        bool exists = await _dbSet
+            .AnyAsync(c =>
+                c.CompanyId == capital.CompanyId &&
+                c.CapitalActive &&
+                c != capital);
+
+        if (exists)
+            throw new InvalidOperationException("Only one active capital record is allowed per company.");
+    }
+
+
+    public async Task<bool> HasActiveCapitalAsync(int companyId)
+    {
+        return await _dbSet.AnyAsync(c => c.CompanyId == companyId && c.CapitalActive);
+    }
+
+    public async Task<CompanyCapital?> GetActiveCapitalByCompanyIdAsync(int companyId)
+    {
+        var capital = await _dbSet
+            .Where(c => c.CompanyId == companyId && c.CapitalActive)
+            .FirstOrDefaultAsync();
+        return capital;
+    }
 }

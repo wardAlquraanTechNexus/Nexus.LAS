@@ -18,9 +18,6 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
         [Column("CompaniesShareHolderIDN")]
         public override int Id { get; set; }
 
-        [Column("CompaniesShareHoldersGroups_IDN")]
-        public int? ShareHoldersGroupsId { get; set; }
-
         [Required]
         [MaxLength(50)]
         [Column("Registers_IDC")]
@@ -31,7 +28,7 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
         public int RegistersIdn { get; set; } //List of person or companies
 
         [Column("ShareHolderNumbersOfShares")]
-        public long? NumbersOfShares { get; set; }
+        public long NumbersOfShares { get; set; }
 
         [Column("ShareHolderDate")]
         public DateTime? ShareHolderDate { get; set; }
@@ -39,7 +36,7 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
         public DateTime? CessationDate { get; set; }
 
         [Column("ShareHolderActive")]
-        public bool? ShareHolderActive { get; set; }
+        public bool ShareHolderActive { get; set; }
 
         [Required]
         [Column("Companies_IDN")]

@@ -21,36 +21,49 @@ public class CompanyShareHolderRepo : GenericRepo<CompanyShareHolder>, ICompanyS
     public async Task<PagingResult<CompanyShareHolderDto>> SearhDtoAsync(GetPagingCompanyShareHolderQuery query)
     {
 
+        long numberOfShare = 0;
+        if (query.CompanyId.HasValue)
+        {
+            numberOfShare = _context.CompaniesCapitals
+                    .Where(c => c.CompanyId == query.CompanyId && c.CapitalActive)
+                    .Select(c => c.NumberOfShares)
+                    .FirstOrDefault() ?? 0;
 
+
+        }
 
         var queryable =
                         (from sh in _dbSet
-                        where !query.CompanyId.HasValue || sh.CompanyId == query.CompanyId
-                        select new CompanyShareHolderDto
-                        {
-                            Id = sh.Id,
-                            RegistersIdc = sh.RegistersIdc,
-                            RegistersIdn = sh.RegistersIdn,
-                            NumbersOfShares = sh.NumbersOfShares,
-                            CompanyId = sh.CompanyId,
-                            CessationDate = sh.CessationDate,
-                            ShareHolderActive = sh.ShareHolderActive,
-                            ShareHolderDate = sh.ShareHolderDate,
-                            ShareHoldersGroupsId = sh.ShareHoldersGroupsId,
-                            RegisterName = sh.RegistersIdc == EntityIDCs.Person
-                                ? _context.People
-                                    .Where(p => p.Id == sh.RegistersIdn)
-                                    .Select(p => p.PersonEnglishName)
-                                    .FirstOrDefault()
-                                : _context.Companies
-                                    .Where(c => c.Id == sh.RegistersIdn)
-                                    .Select(c => c.CompanyEnglishName)
-                                    .FirstOrDefault()
-                            }).AsQueryable();
+                         where !query.CompanyId.HasValue || sh.CompanyId == query.CompanyId
+                         select new CompanyShareHolderDto
+                         {
+                             Id = sh.Id,
+                             RegistersIdc = sh.RegistersIdc,
+                             RegistersIdn = sh.RegistersIdn,
+                             NumbersOfShares = sh.NumbersOfShares,
+                             CompanyId = sh.CompanyId,
+                             CessationDate = sh.CessationDate,
+                             ShareHolderActive = sh.ShareHolderActive,
+                             ShareHolderDate = sh.ShareHolderDate,
+                             RegisterName = sh.RegistersIdc == EntityIDCs.Person
+                                 ? _context.People
+                                     .Where(p => p.Id == sh.RegistersIdn)
+                                     .Select(p => p.PersonEnglishName)
+                                     .FirstOrDefault()
+                                 : _context.Companies
+                                     .Where(c => c.Id == sh.RegistersIdn)
+                                     .Select(c => c.CompanyEnglishName)
+                                     .FirstOrDefault(),
+                             SharePercent = (numberOfShare > 0 && sh.ShareHolderActive)
+                                 ? Math.Round(((double)sh.NumbersOfShares / numberOfShare) * 100, 1)
+                                 : 0
+                         }).AsQueryable();
+
+
 
         int totalRecords = await queryable.CountAsync();
 
-        queryable = queryable.Order(query);
+        queryable = queryable.OrderByDescending(x => x.ShareHolderActive);
 
         queryable = queryable.Paginate(query, out int page, out int pageSize);
 
@@ -77,5 +90,18 @@ public class CompanyShareHolderRepo : GenericRepo<CompanyShareHolder>, ICompanyS
             TotalPages = totalPages,
             TotalRecords = totalRecords
         };
+    }
+
+
+
+
+    public async Task<List<CompanyShareHolder>> GetListByCompanyId(int company)
+    {
+        return await _dbSet.Where(x => x.CompanyId == company).ToListAsync();
+    }
+
+    public async Task<long> SumActiveSharesAsync(int company, int? excludeShareHolderId = null)
+    {
+        return await _dbSet.Where(x => x.CompanyId == company && x.ShareHolderActive && (!excludeShareHolderId.HasValue || x.Id != excludeShareHolderId)).Select(x => x.NumbersOfShares).SumAsync();
     }
 }

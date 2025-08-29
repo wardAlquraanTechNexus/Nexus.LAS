@@ -14,5 +14,7 @@ namespace Nexus.LAS.Application.Contracts._Repositories._CompanyRepos
     public interface ICompanyShareHolderRepo:IGenericRepo<CompanyShareHolder>
     {
         Task<PagingResult<CompanyShareHolderDto>> SearhDtoAsync(GetPagingCompanyShareHolderQuery query);
+        Task<List<CompanyShareHolder>> GetListByCompanyId(int company);
+        Task<long> SumActiveSharesAsync(int company, int? excludeShareHolderId = null);
     }
 }

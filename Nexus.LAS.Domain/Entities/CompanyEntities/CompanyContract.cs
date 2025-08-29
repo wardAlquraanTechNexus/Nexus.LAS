@@ -1,4 +1,5 @@
-﻿using Nexus.LAS.Domain.Entities.Base;
+﻿using Nexus.LAS.Domain.Constants;
+using Nexus.LAS.Domain.Entities.Base;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -11,12 +12,12 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
 {
     [Table("CompaniesContracts")]
 
-    public class CompaniesContract:BaseEntity
+    public class CompanyContract:BaseEntity
     {
         [Required]
         [MaxLength(50)]
         [Column("CompaniesContractIDC")]
-        public string CompaniesContractIdc { get; set; }
+        public string CompaniesContractIdc { get; set; } = EntityIDCs.CompaniesContracts;
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("CompaniesContractIDN")]
@@ -24,11 +25,10 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
 
         [Required]
         [Column("Companies_IDN")]
-        public int CompaniesIdn { get; set; }
+        public int CompanyId { get; set; }
 
-        [MaxLength(50)]
         [Column("ContractType")]
-        public string ContractType { get; set; }
+        public int ContractType { get; set; }
 
         [Column("DocumentDate")]
         public DateTime? DocumentDate { get; set; }
@@ -45,8 +45,7 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
         [Column("ContractDescription")]
         public string ContractDescription { get; set; }
 
-        [MaxLength(50)]
         [Column("ContractStatus")]
-        public string ContractStatus { get; set; }
+        public int ContractStatus { get; set; }
     }
 }

@@ -5,5 +5,6 @@ namespace Nexus.LAS.Application.Contracts._Repositories
 {
     public interface IRegisterFileRepo : IGenericRepo<RegisterFile>
     {
+        Task<List<RegisterFile>> GetByIds(string idc, int idn);
     }
 }

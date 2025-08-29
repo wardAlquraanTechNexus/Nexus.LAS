@@ -8,15 +8,77 @@ using Nexus.LAS.Persistence.Services.Base;
 
 namespace Nexus.LAS.Persistence.Services;
 
-public class CompanyCapitalService : GenericService<CompanyCapital> , ICompanyCapitalService
+public class CompanyCapitalService : GenericService<CompanyCapital>, ICompanyCapitalService
 {
-    public CompanyCapitalService(NexusLASDbContext context, IUserIdentityService userIdentityService,ICompanyCapitalRepo repo) : base(context, userIdentityService,repo)
+    private readonly ICompanyCapitalRepo _repo;
+    private readonly ICompanyShareHolderRepo _companyShareHolderRepo;
+    public CompanyCapitalService(NexusLASDbContext context, IUserIdentityService userIdentityService, ICompanyCapitalRepo repo, ICompanyShareHolderRepo companyShareHolderRepo) : base(context, userIdentityService, repo)
     {
+        _repo = repo;
+        _companyShareHolderRepo = companyShareHolderRepo;
     }
 
-    public override async Task DeleteAsync(int id)
+    public async Task ValidateSingleActiveCapital(CompanyCapital capital)
     {
-        var repo = new CompanyCapitalRepo(_context);
-        await repo.DeleteAsync(id);
+        if (capital.Id != 0 && capital.CapitalActive)
+        {
+            var oldCapital = await _repo.GetAsync(capital.Id);
+            if(oldCapital is null)
+            {
+                throw new Exception("The capital not found");
+            }
+
+            if (!oldCapital.CapitalActive)
+            {
+                await _repo.ValidateSingleActiveCapital(capital);
+            }
+        }
+        else if (capital.Id == 0 && capital.CapitalActive)
+        {
+            await _repo.ValidateSingleActiveCapital(capital);
+        }
     }
+
+    public async Task<bool> HasActiveCapitalAsync(int companyId)
+    {
+        return await _repo.HasActiveCapitalAsync(companyId);
+    }
+
+    public async Task<CompanyCapital?> GetActiveCapitalByCompanyIdAsync(int companyId)
+    {
+        return await _repo.GetActiveCapitalByCompanyIdAsync(companyId);
+    }
+
+
+    public override async Task UpdateAsync(CompanyCapital capital)
+    {
+        using var transaction = await _context.Database.BeginTransactionAsync();
+
+        try
+        {
+            if (!capital.CapitalActive)
+            {
+                var oldCapital = await _repo.GetAsync(capital.Id);
+                if (oldCapital.CapitalActive)
+                {
+                    var shareHolders = await _companyShareHolderRepo.GetListByCompanyId(capital.CompanyId);
+                    foreach (var shareHolder in shareHolders)
+                    {
+                        shareHolder.ShareHolderActive = false;
+                        await _companyShareHolderRepo.UpdateAsync(shareHolder);
+                    }
+                }
+            }
+
+            await base.UpdateAsync(capital);
+
+            await transaction.CommitAsync();
+        }
+        catch
+        {
+            await transaction.RollbackAsync();
+            throw; 
+        }
+    }
+
 }

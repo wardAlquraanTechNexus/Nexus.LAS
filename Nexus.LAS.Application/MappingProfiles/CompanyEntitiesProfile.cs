@@ -1,5 +1,6 @@
 using AutoMapper;
 using Nexus.LAS.Application.DTOs.Base;
+using Nexus.LAS.Application.DTOs.CompanyContractDTOs;
 using Nexus.LAS.Application.DTOs.CompanyDTOs;
 using Nexus.LAS.Application.UseCases.CompanyActivityUseCases;
 using Nexus.LAS.Application.UseCases.CompanyActivityUseCases.Commands.CreateCompanyActivity;
@@ -94,9 +95,10 @@ public class CompanyEntitiesProfile : Profile
     .ForMember(dest => dest.Id, opt => opt.Condition(src => src.Id.HasValue));
 
         // CompanyContract
-        CreateMap<CreateCompanyContractCommand, CompaniesContract>();
-        CreateMap<UpdateCompanyContractCommand, CompaniesContract>();
-        CreateMap<UpsertCompanyContractCommand, CompaniesContract>()
+        CreateMap<CreateCompanyContractCommand, CompanyContract>();
+        CreateMap<UpdateCompanyContractCommand, CompanyContract>();
+        CreateMap<CompanyContract, CompanyContractDto>();
+        CreateMap<UpsertCompanyContractCommand, CompanyContract>()
     .ForMember(dest => dest.Id, opt => opt.Condition(src => src.Id.HasValue));
 
         // CompanyEmail

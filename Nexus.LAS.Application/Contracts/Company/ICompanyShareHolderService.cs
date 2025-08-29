@@ -9,4 +9,5 @@ namespace Nexus.LAS.Application.Contracts;
 public interface ICompanyShareHolderService:IGenericService<CompanyShareHolder>
 {
     Task<PagingResult<CompanyShareHolderDto>> SearhDtoAsync(GetPagingCompanyShareHolderQuery query);
+    Task<long> SumActiveSharesAsync(int company, int? excludeShareHolderId = null);
 }
