@@ -22,7 +22,6 @@ public class CompanyActivity:BaseEntity
     [Column("Companies_IDN")]
     public int CompanyId { get; set; }
 
-    [Required]
     [Column("Activity")]
-    public string Activity { get; set; }
+    public int Activity { get; set; }
 }

@@ -1,4 +1,5 @@
 // CreateCompanyContractCommand.cs
+using Microsoft.AspNetCore.Http;
 using Nexus.LAS.Application.UseCases._GenericUseCases.Commands;
 
 namespace Nexus.LAS.Application.UseCases.CompanyContractUseCases.Commands.CreateCompanyContract;
@@ -13,4 +14,5 @@ public class CreateCompanyContractCommand : CreateBaseCommand
     public bool? ContractExpiryActiveReminder { get; set; }
     public string ContractDescription { get; set; } = string.Empty;
     public int ContractStatus { get; set; }
+    public IFormFile File { get; set; }
 }

@@ -11,4 +11,9 @@ public class CreateCompanyContractHandler : CreateBaseCommandHandler<CompanyCont
     public CreateCompanyContractHandler(ICompanyContractService service, IMapper mapper) : base(service, mapper)
     {
     }
+
+    public override async Task<int> Handle(CreateCompanyContractCommand command, CancellationToken cancellationToken)
+    {
+        return await _service.CreateCompanyContract(command);
+    }
 }

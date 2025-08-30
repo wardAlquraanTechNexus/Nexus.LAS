@@ -6,7 +6,7 @@ public class CompanyPersonInChargeDto
     public int CompanyIdn { get; set; }
     public int PersonIdn { get; set; }
     public string? Designation { get; set; }
-    public string AuthorityRule { get; set; } = null!;
+    public int AuthorityRule { get; set; }
     public string? Notes { get; set; }
     public DateTime? PersonInChargeDate { get; set; }
     public DateTime? CessationDate { get; set; }

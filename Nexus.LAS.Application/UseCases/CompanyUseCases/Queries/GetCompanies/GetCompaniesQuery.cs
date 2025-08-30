@@ -51,6 +51,8 @@ public class GetCompaniesQuery: BaseParams , IRequest<PagingResult<GetCompanyDto
     public int? CompanyTypeIdn { get; set; }
     public int? CompanyClassIdn { get; set; }
     public int? LegalTypeIdn { get; set; }
+    public int? CompanyActivityIdn { get; set; }
+    public int? CompanyContractTypeIdn { get; set; }
     public int? PlaceOfRegistrationMainIdn { get; set; }
     public int? PlaceOfRegistrationSubIdn { get; set; }
     public string? OrderBy { get; set; }

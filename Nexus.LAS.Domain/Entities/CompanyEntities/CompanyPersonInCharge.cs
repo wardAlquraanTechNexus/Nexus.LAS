@@ -32,9 +32,8 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
         public string Designation { get; set; }
 
         [Required]
-        [MaxLength(50)]
         [Column("AuthorityRule")]
-        public string AuthorityRule { get; set; }//Jointly, Single
+        public int AuthorityRule { get; set; }
 
         [MaxLength(4000)]
         [Column("Notes")]

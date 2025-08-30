@@ -11,4 +11,9 @@ public class UpdateCompanyContractHandler : UpdateBaseCommandHandler<CompanyCont
     public UpdateCompanyContractHandler(ICompanyContractService service, IMapper mapper) : base(service, mapper)
     {
     }
+
+    public override async Task<bool> Handle(UpdateCompanyContractCommand command, CancellationToken cancellationToken)
+    {
+        return (await _service.EditCompanyContract(command)) > 0 ;
+    }
 }

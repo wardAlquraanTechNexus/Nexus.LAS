@@ -55,13 +55,19 @@ public class CompanyContractController : GenericController<ICompanyContractServi
         return base.UpdateAsync(entity);
     }
     [HttpPost]
-    public async Task<IActionResult> CreateCompanyContract(CreateCompanyContractCommand command)
+    public async Task<IActionResult> CreateCompanyContract([FromForm]CreateCompanyContractCommand command)
+    {
+        return Ok(await _mediator.Send(command));
+    }
+
+    [HttpPut(nameof(UpdateByForm))]
+    public async Task<IActionResult> UpdateByForm([FromForm]UpdateCompanyContractCommand command)
     {
         return Ok(await _mediator.Send(command));
     }
 
     [HttpPut]
-    public async Task<IActionResult> UpdateCompanyContract(UpdateCompanyContractCommand command)
+    public async Task<IActionResult> UpdateByBody([FromBody]UpdateCompanyContractCommand command)
     {
         return Ok(await _mediator.Send(command));
     }

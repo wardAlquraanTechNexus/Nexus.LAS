@@ -16,7 +16,7 @@ namespace Nexus.LAS.Application.UseCases._GenericUseCases.Commands
             _mapper = mapper;
         }
 
-        public async Task<bool> Handle(Command command, CancellationToken cancellationToken)
+        public virtual async Task<bool> Handle(Command command, CancellationToken cancellationToken)
         {
             var entity = _mapper.Map<Entity>(command);
             await _service.UpdateAsync(entity);

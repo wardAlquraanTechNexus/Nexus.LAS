@@ -42,6 +42,16 @@ public class CompanyRepo : GenericRepo<Company>, ICompanyRepo
                 
             ).AsQueryable();
 
+        if (companyQuery.CompanyActivityIdn.HasValue)
+        {
+            companysQueryable = companysQueryable.Where(c => _context.CompaniesActivities.Any(ca => ca.CompanyId == c.Id && ca.Activity== companyQuery.CompanyActivityIdn));
+        }
+
+        if (companyQuery.CompanyContractTypeIdn.HasValue)
+        {
+            companysQueryable = companysQueryable.Where(c => _context.CompaniesContracts.Any(ca => ca.CompanyId == c.Id && ca.ContractType == companyQuery.CompanyContractTypeIdn));
+        }
+
         int totalRecords = await companysQueryable.CountAsync();
 
         companysQueryable = companysQueryable.Paginate(companyQuery.Page, companyQuery.PageSize);
