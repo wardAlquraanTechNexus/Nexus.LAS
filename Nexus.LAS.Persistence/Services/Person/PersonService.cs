@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using EFCore.BulkExtensions;
 using Microsoft.EntityFrameworkCore;
-using Nexus.LAS.Application.Contracts;
-using Nexus.LAS.Application.Contracts._Repositories._PersonRepos;
 using Nexus.LAS.Application.Contracts.Identity;
+using Nexus.LAS.Application.Contracts.Presistence;
+using Nexus.LAS.Application.Contracts.Presistence._Repositories._PersonRepos;
 using Nexus.LAS.Application.DTOs;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.DTOs.PersonDTOs;

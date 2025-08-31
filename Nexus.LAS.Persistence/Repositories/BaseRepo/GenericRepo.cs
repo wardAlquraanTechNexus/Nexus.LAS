@@ -1,7 +1,7 @@
 ﻿using EFCore.BulkExtensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using Nexus.LAS.Application.Contracts.Presistence.Repositories.Base;
+using Nexus.LAS.Application.Contracts.Presistence._Repositories.Base;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.UseCases.Base;
 using Nexus.LAS.Domain.Entities.Base;

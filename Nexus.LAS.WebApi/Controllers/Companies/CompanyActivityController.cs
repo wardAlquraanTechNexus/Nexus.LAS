@@ -1,15 +1,10 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Nexus.LAS.Application.Contracts;
-using Nexus.LAS.Application.UseCases.CompanyActivityUseCases;
+using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.UseCases.CompanyActivityUseCases.Commands.CreateCompanyActivity;
 using Nexus.LAS.Application.UseCases.CompanyActivityUseCases.Commands.UpdateCompanyActivity;
 using Nexus.LAS.Application.UseCases.CompanyActivityUseCases.Queries;
-using Nexus.LAS.Application.UseCases.CompanyLicenseUseCases.Commands.CreateCompanyLicense;
-using Nexus.LAS.Application.UseCases.CompanyLicenseUseCases.Commands.UpdateCompanyLicense;
-using Nexus.LAS.Application.UseCases.CompanyLicenseUseCases.Queries.GetPaging;
 using Nexus.LAS.Domain.Entities.CompanyEntities;
-using Nexus.LAS.WebApi.Attributes;
 using Nexus.LAS.WebApi.Controllers._GenericController;
 
 namespace Nexus.LAS.WebApi.Controllers;

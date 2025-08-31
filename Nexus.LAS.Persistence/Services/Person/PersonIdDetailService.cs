@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Nexus.LAS.Application.Contracts;
-using Nexus.LAS.Application.Contracts._Repositories;
 using Nexus.LAS.Application.Contracts.Identity;
+using Nexus.LAS.Application.Contracts.Presistence._Repositories._PersonRepos;
+using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.DTOs;
 using Nexus.LAS.Application.UseCases.PersonIdDetail.Commands.CreatePersonIdDetail;
 using Nexus.LAS.Application.UseCases.PersonIdDetail.Commands.EditPersonIdDetail;

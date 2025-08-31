@@ -22,7 +22,7 @@ public class CompaniesBoardMember:BaseEntity
 
     [Required]
     [Column("Person_IDN")]
-    public int PersonIdn { get; set; }
+    public int PersonId { get; set; }
 
     [Required]
     [MaxLength(50)]
@@ -41,5 +41,5 @@ public class CompaniesBoardMember:BaseEntity
 
     [Required]
     [Column("Companies_IDN")]
-    public int CompaniesIdn { get; set; }
+    public int CompanyId { get; set; }
 }

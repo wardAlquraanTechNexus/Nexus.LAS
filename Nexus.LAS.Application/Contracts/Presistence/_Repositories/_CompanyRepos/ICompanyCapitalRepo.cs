@@ -1,0 +1,17 @@
+﻿using Nexus.LAS.Application.Contracts.Presistence._Repositories.Base;
+using Nexus.LAS.Domain.Entities.CompanyEntities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Nexus.LAS.Application.Contracts.Presistence._Repositories._CompanyRepos
+{
+    public interface ICompanyCapitalRepo:IGenericRepo<CompanyCapital>
+    {
+        Task ValidateSingleActiveCapital(CompanyCapital capital);
+        Task<bool> HasActiveCapitalAsync(int companyId);
+        Task<CompanyCapital?> GetActiveCapitalByCompanyIdAsync(int companyId);
+    }
+}

@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Nexus.LAS.Application.Contracts;
+using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.DTOs;
 using Nexus.LAS.Application.UseCases._GenericUseCases.Queries;
 using Nexus.LAS.Application.UseCases.CompanyUseCases.Commands;

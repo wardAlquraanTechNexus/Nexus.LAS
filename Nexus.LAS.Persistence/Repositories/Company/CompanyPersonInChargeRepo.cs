@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using Nexus.LAS.Application.Contracts._Repositories._CompanyRepos;
+using Nexus.LAS.Application.Contracts.Presistence._Repositories._CompanyRepos;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.DTOs.CompanyPersonInChargeDTOs;
 using Nexus.LAS.Application.UseCases.CompanyPersonInChargeUseCases.Queries;

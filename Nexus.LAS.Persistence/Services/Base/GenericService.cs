@@ -1,7 +1,7 @@
 ﻿using ClosedXML.Excel;
 using Microsoft.AspNetCore.Http;
 using Nexus.LAS.Application.Contracts.Identity;
-using Nexus.LAS.Application.Contracts.Presistence.Repositories.Base;
+using Nexus.LAS.Application.Contracts.Presistence._Repositories.Base;
 using Nexus.LAS.Application.Contracts.Presistence.Services.Base;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.UseCases.Base;

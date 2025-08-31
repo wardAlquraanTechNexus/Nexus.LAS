@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Nexus.LAS.Application.Contracts;
-using Nexus.LAS.Application.Contracts._Repositories._CompanyRepos;
 using Nexus.LAS.Application.Contracts.Identity;
+using Nexus.LAS.Application.Contracts.Presistence._Repositories._CompanyRepos;
+using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.UseCases.CompanyLicenseUseCases.Queries.GetPaging;
 using Nexus.LAS.Domain.Entities.CompanyEntities;

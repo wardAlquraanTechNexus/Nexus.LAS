@@ -1,6 +1,6 @@
-﻿using Nexus.LAS.Application.Contracts;
-using Nexus.LAS.Application.Contracts._Repositories._CompanyRepos;
-using Nexus.LAS.Application.Contracts.Identity;
+﻿using Nexus.LAS.Application.Contracts.Identity;
+using Nexus.LAS.Application.Contracts.Presistence._Repositories._CompanyRepos;
+using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Domain.Entities.CompanyEntities;
 using Nexus.LAS.Identity.Services;
 using Nexus.LAS.Persistence.DatabaseContext;

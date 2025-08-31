@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Nexus.LAS.Application.Contracts._Repositories._CompanyRepos;
+using Nexus.LAS.Application.Contracts.Presistence._Repositories._CompanyRepos;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.DTOs.CompanyShareHolderDTOs;
 using Nexus.LAS.Application.UseCases.CompanyShareHolderUseCases.Queries;

@@ -1,11 +1,12 @@
 using AutoMapper;
 using Nexus.LAS.Application.DTOs.Base;
+using Nexus.LAS.Application.DTOs.CompanyBankAccountDTOs;
 using Nexus.LAS.Application.DTOs.CompanyContractDTOs;
 using Nexus.LAS.Application.DTOs.CompanyDTOs;
-using Nexus.LAS.Application.UseCases.CompanyActivityUseCases;
+using Nexus.LAS.Application.UseCases.CompanyAccountSignatoryUseCases.Commands.Create;
+using Nexus.LAS.Application.UseCases.CompanyAccountSignatoryUseCases.Commands.Update;
 using Nexus.LAS.Application.UseCases.CompanyActivityUseCases.Commands.CreateCompanyActivity;
 using Nexus.LAS.Application.UseCases.CompanyActivityUseCases.Commands.UpdateCompanyActivity;
-using Nexus.LAS.Application.UseCases.CompanyAddressUseCases;
 using Nexus.LAS.Application.UseCases.CompanyAddressUseCases.Commands.CreateCompanyAddress;
 using Nexus.LAS.Application.UseCases.CompanyAddressUseCases.Commands.UpdateCompanyAddress;
 using Nexus.LAS.Application.UseCases.CompanyBankAccountUseCases;
@@ -71,9 +72,10 @@ public class CompanyEntitiesProfile : Profile
         CreateMap<UpdateCompanyAddressCommand, CompanyAddress>();
 
         // CompanyBankAccount
-        CreateMap<CreateCompanyBankAccountCommand, CompaniesBankAccount>();
-        CreateMap<UpdateCompanyBankAccountCommand, CompaniesBankAccount>();
-        CreateMap<UpsertCompanyBankAccountCommand, CompaniesBankAccount>()
+        CreateMap<CreateCompanyBankAccountCommand, CompanyBankAccount>();
+        CreateMap<UpdateCompanyBankAccountCommand, CompanyBankAccount>();
+        CreateMap<CompanyBankAccount ,CompanyBankAccountDto>();
+        CreateMap<UpsertCompanyBankAccountCommand, CompanyBankAccount>()
     .ForMember(dest => dest.Id, opt => opt.Condition(src => src.Id.HasValue));
 
         // CompanyBoardMember
@@ -100,6 +102,15 @@ public class CompanyEntitiesProfile : Profile
         CreateMap<CompanyContract, CompanyContractDto>();
         CreateMap<UpsertCompanyContractCommand, CompanyContract>()
     .ForMember(dest => dest.Id, opt => opt.Condition(src => src.Id.HasValue));
+
+        CreateMap<CreateCompanyAccountSignatoryCommand, CompanyAccountSignatory>();
+        CreateMap<UpdateCompanyAccountSignatoryCommand, CompanyAccountSignatory>();
+        CreateMap<CompanyAccountSignatory, CompanyAccountSignatoryDTO>();
+
+
+
+
+
 
         // CompanyEmail
         CreateMap<CreateCompanyEmailCommand, CompanyEmail>();

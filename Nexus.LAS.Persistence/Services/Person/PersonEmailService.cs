@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Nexus.LAS.Application.Contracts;
-using Nexus.LAS.Application.Contracts._Repositories;
 using Nexus.LAS.Application.Contracts.Identity;
+using Nexus.LAS.Application.Contracts.Presistence._Repositories._PersonRepos;
+using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Repositories;

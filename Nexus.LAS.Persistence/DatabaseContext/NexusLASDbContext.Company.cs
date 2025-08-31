@@ -11,11 +11,11 @@ namespace Nexus.LAS.Persistence.DatabaseContext
 {
     public partial class NexusLASDbContext
     {
-        public DbSet<CompaniesAccountSignatory> CompaniesAccountSignatories { get; set; }
+        public DbSet<CompanyAccountSignatory> CompaniesAccountSignatories { get; set; }
         public DbSet<CompanyActivity> CompaniesActivities { get; set; }
         public DbSet<CompanyAddress> CompaniesAddresses { get; set; }
         public DbSet<CompaniesAuthorizedSignatory> CompaniesAuthorizedSignatories { get; set; }
-        public DbSet<CompaniesBankAccount> CompaniesBankAccounts { get; set; }
+        public DbSet<CompanyBankAccount> CompaniesBankAccounts { get; set; }
         public DbSet<CompaniesBoard> CompaniesBoards { get; set; }
         public DbSet<CompaniesBoardMember> CompaniesBoardMembers { get; set; }
         public DbSet<CompanyCapital> CompaniesCapitals { get; set; }

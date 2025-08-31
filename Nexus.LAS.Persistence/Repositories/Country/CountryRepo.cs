@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Nexus.LAS.Application.Contracts.Presistence.Repositories;
+using Nexus.LAS.Application.Contracts.Presistence._Repositories;
 using Nexus.LAS.Domain.Entities.Lookup;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Repositories.BaseRepo;

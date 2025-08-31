@@ -1,5 +1,5 @@
-﻿using Nexus.LAS.Application.Contracts._Repositories;
-using Nexus.LAS.Application.Contracts.Identity;
+﻿using Nexus.LAS.Application.Contracts.Identity;
+using Nexus.LAS.Application.Contracts.Presistence._Repositories;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.UseCases.Queries.GetDynamicListDto;

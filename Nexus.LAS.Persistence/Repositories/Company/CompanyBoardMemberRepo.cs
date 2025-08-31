@@ -13,7 +13,7 @@ public class CompanyBoardMemberRepo : GenericRepo<CompaniesBoardMember>, ICompan
 
     public async Task<List<CompaniesBoardMember>> GetListByCompanyId(int companyId)
     {
-        IQueryable<CompaniesBoardMember> queryable = _dbSet.Where(x => x.CompaniesIdn == companyId);
+        IQueryable<CompaniesBoardMember> queryable = _dbSet.Where(x => x.CompanyId == companyId);
         return await queryable.ToListAsync();
     }
 }
