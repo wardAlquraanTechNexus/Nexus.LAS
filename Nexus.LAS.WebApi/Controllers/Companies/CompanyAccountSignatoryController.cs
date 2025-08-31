@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.UseCases.CompanyAccountSignatoryUseCases.Commands.Create;
 using Nexus.LAS.Application.UseCases.CompanyAccountSignatoryUseCases.Commands.Update;
+using Nexus.LAS.Application.UseCases.CompanyAccountSignatoryUseCases.Queries.GetPaging;
 using Nexus.LAS.Application.UseCases.CompanyBankAccountUseCases;
 using Nexus.LAS.Domain.Entities.CompanyEntities;
 using Nexus.LAS.WebApi.Controllers._GenericController;
@@ -23,7 +24,7 @@ namespace Nexus.LAS.WebApi.Controllers.Companies
 
 
         [HttpGet]
-        public async Task<IActionResult> GetPaging([FromQuery] GetPaginCompanyAccountSignatory query)
+        public async Task<IActionResult> GetPaging([FromQuery] GetPagingAcccountSignatoryQuery query)
         {
             return Ok(await _mediator.Send(query));
         }
