@@ -1,8 +1,18 @@
 using AutoMapper;
 using Nexus.LAS.Application.DTOs.Base;
+using Nexus.LAS.Application.DTOs.CompanyActivityDTOs;
+using Nexus.LAS.Application.DTOs.CompanyAddressDTOs;
 using Nexus.LAS.Application.DTOs.CompanyBankAccountDTOs;
+using Nexus.LAS.Application.DTOs.CompanyBoardMemberDTOs;
+using Nexus.LAS.Application.DTOs.CompanyCapitalDTOs;
+using Nexus.LAS.Application.DTOs.CompanyChamberOfCommerceDTOs;
 using Nexus.LAS.Application.DTOs.CompanyContractDTOs;
 using Nexus.LAS.Application.DTOs.CompanyDTOs;
+using Nexus.LAS.Application.DTOs.CompanyEmailDTOs;
+using Nexus.LAS.Application.DTOs.CompanyLicenseDTOs;
+using Nexus.LAS.Application.DTOs.CompanyPersonInChargeDTOs;
+using Nexus.LAS.Application.DTOs.CompanyPhoneDTOs;
+using Nexus.LAS.Application.DTOs.CompanyShareHolderDTOs;
 using Nexus.LAS.Application.UseCases.CompanyAccountSignatoryUseCases.Commands.Create;
 using Nexus.LAS.Application.UseCases.CompanyAccountSignatoryUseCases.Commands.Update;
 using Nexus.LAS.Application.UseCases.CompanyActivityUseCases.Commands.CreateCompanyActivity;
@@ -15,6 +25,7 @@ using Nexus.LAS.Application.UseCases.CompanyBankAccountUseCases.Commands.UpdateC
 using Nexus.LAS.Application.UseCases.CompanyBoardMemberUseCases;
 using Nexus.LAS.Application.UseCases.CompanyBoardMemberUseCases.Commands.CreateCompanyBoardMember;
 using Nexus.LAS.Application.UseCases.CompanyBoardMemberUseCases.Commands.UpdateCompanyBoardMember;
+using Nexus.LAS.Application.UseCases.CompanyBoardUseCases.Commands.Create;
 using Nexus.LAS.Application.UseCases.CompanyCapitalUseCases;
 using Nexus.LAS.Application.UseCases.CompanyCapitalUseCases.Commands.CreateCompanyCapital;
 using Nexus.LAS.Application.UseCases.CompanyCapitalUseCases.Commands.UpdateCompanyCapital;
@@ -62,12 +73,13 @@ public class CompanyEntitiesProfile : Profile
         CreateMap<UpdateCompanyCommand, Company>();
 
 
-        // CompanyActivity
-        CreateMap<CreateCompanyActivityCommand, CompanyActivity>();
+
+        CreateMap<CompanyActivity, CompanyActivityDto>();
+        CreateMap<UpdateCompanyActivityCommand, CompanyActivity>();
         CreateMap<UpdateCompanyActivityCommand, CompanyActivity>();
 
 
-        // CompanyAddress
+        CreateMap<CompanyAddress, CompanyAddressDto>();
         CreateMap<CreateCompanyAddressCommand, CompanyAddress>();
         CreateMap<UpdateCompanyAddressCommand, CompanyAddress>();
 
@@ -78,23 +90,26 @@ public class CompanyEntitiesProfile : Profile
         CreateMap<UpsertCompanyBankAccountCommand, CompanyBankAccount>()
     .ForMember(dest => dest.Id, opt => opt.Condition(src => src.Id.HasValue));
 
-        // CompanyBoardMember
-        CreateMap<CreateCompanyBoardMemberCommand, CompaniesBoardMember>();
-        CreateMap<UpdateCompanyBoardMemberCommand, CompaniesBoardMember>();
-        CreateMap<UpsertCompanyBoardMemberCommand, CompaniesBoardMember>()
-    .ForMember(dest => dest.Id, opt => opt.Condition(src => src.Id.HasValue));
 
-        // CompanyCapital
+        CreateMap<CreateCompanyBoardCommand, CompanyBoard>();
+        CreateMap<UpdateCompanyBoardCommand, CompanyBoard>();
+        CreateMap<CompanyBoard, CompanyBoardDto>();
+
+
+        // CompanyBoardMember
+        CreateMap<CreateCompanyBoardMemberCommand, CompanyBoardMember>();
+        CreateMap<UpdateCompanyBoardMemberCommand, CompanyBoardMember>();
+        CreateMap<CompanyBoardMember, CompanyBoardMemberDto>();
+
+
+        CreateMap<CompanyCapital, CompanyCapitalDto>();
         CreateMap<CreateCompanyCapitalCommand, CompanyCapital>();
         CreateMap<UpdateCompanyCapitalCommand, CompanyCapital>();
-        CreateMap<UpsertCompanyCapitalCommand, CompanyCapital>()
-    .ForMember(dest => dest.Id, opt => opt.Condition(src => src.Id.HasValue));
 
-        // CompanyChamberOfCommerce
+        CreateMap<CompanyChamberOfCommerce, CompanyChamberOfCommerceDto>();
         CreateMap<CreateCompanyChamberOfCommerceCommand, CompanyChamberOfCommerce>();
         CreateMap<UpdateCompanyChamberOfCommerceCommand, CompanyChamberOfCommerce>();
-        CreateMap<UpsertCompanyChamberOfCommerceCommand, CompanyChamberOfCommerce>()
-    .ForMember(dest => dest.Id, opt => opt.Condition(src => src.Id.HasValue));
+
 
         // CompanyContract
         CreateMap<CreateCompanyContractCommand, CompanyContract>();
@@ -108,21 +123,21 @@ public class CompanyEntitiesProfile : Profile
         CreateMap<CompanyAccountSignatory, CompanyAccountSignatoryDTO>();
 
 
+        CreateMap<CompanyPersonInChargeDto, CompanyPersonInCharge>();
+        CreateMap<CompanyPersonInCharge, CompanyPersonInChargeDto>();
+        CreateMap<CreateCompanyPersonInChargeCommand, CompanyPersonInCharge>();
+        CreateMap<UpdateCompanyPersonInChargeCommand, CompanyPersonInCharge>();
 
 
 
-
-        // CompanyEmail
+        CreateMap<CompanyEmail, CompanyEmailDto>();
         CreateMap<CreateCompanyEmailCommand, CompanyEmail>();
         CreateMap<UpdateCompanyEmailCommand, CompanyEmail>();
-        CreateMap<UpsertCompanyEmailCommand, CompanyEmail>()
-    .ForMember(dest => dest.Id, opt => opt.Condition(src => src.Id.HasValue));
 
-        // CompanyLicense
+        CreateMap<CompanyLicense, CompanyLicenseDto>();
         CreateMap<CreateCompanyLicenseCommand, CompanyLicense>();
         CreateMap<UpdateCompanyLicenseCommand, CompanyLicense>();
-        CreateMap<UpsertCompanyLicenseCommand, CompanyLicense>()
-    .ForMember(dest => dest.Id, opt => opt.Condition(src => src.Id.HasValue));
+
 
         // CompanyOtherContract
         CreateMap<CreateCompanyOtherContractCommand, CompaniesOtherContract>();
@@ -136,17 +151,13 @@ public class CompanyEntitiesProfile : Profile
         CreateMap<UpsertCompanyPersonInChargeCommand, CompanyPersonInCharge>()
     .ForMember(dest => dest.Id, opt => opt.Condition(src => src.Id.HasValue));
 
-        // CompanyPhone
+        CreateMap<CompanyPhone, CompanyPhoneDto>();
         CreateMap<CreateCompanyPhoneCommand, CompanyPhone>();
         CreateMap<UpdateCompanyPhoneCommand, CompanyPhone>();
-        CreateMap<UpsertCompanyPhoneCommand, CompanyPhone>()
-    .ForMember(dest => dest.Id, opt => opt.Condition(src => src.Id.HasValue));
 
-        // CompanyShareHolder
+        CreateMap<CompanyShareHolder, CompanyShareHolderDto>();
         CreateMap<CreateCompanyShareHolderCommand, CompanyShareHolder>();
         CreateMap<UpdateCompanyShareHolderCommand, CompanyShareHolder>();
-        CreateMap<UpsertCompanyShareHolderCommand, CompanyShareHolder>()
-    .ForMember(dest => dest.Id, opt => opt.Condition(src => src.Id.HasValue));
 
 
     }

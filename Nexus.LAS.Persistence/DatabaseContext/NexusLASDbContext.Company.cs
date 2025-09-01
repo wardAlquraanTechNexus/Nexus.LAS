@@ -16,8 +16,8 @@ namespace Nexus.LAS.Persistence.DatabaseContext
         public DbSet<CompanyAddress> CompaniesAddresses { get; set; }
         public DbSet<CompaniesAuthorizedSignatory> CompaniesAuthorizedSignatories { get; set; }
         public DbSet<CompanyBankAccount> CompaniesBankAccounts { get; set; }
-        public DbSet<CompaniesBoard> CompaniesBoards { get; set; }
-        public DbSet<CompaniesBoardMember> CompaniesBoardMembers { get; set; }
+        public DbSet<CompanyBoard> CompaniesBoards { get; set; }
+        public DbSet<CompanyBoardMember> CompaniesBoardMembers { get; set; }
         public DbSet<CompanyCapital> CompaniesCapitals { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<CompanyChamberOfCommerce> CompaniesChamberOfCommerce { get; set; }

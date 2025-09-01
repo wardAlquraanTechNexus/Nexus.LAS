@@ -15,9 +15,7 @@ namespace Nexus.LAS.Application.MappingProfiles
     {
         public CompanyShareholderProfile()
         {
-            CreateMap<CompanyShareHolder, CompanyShareHolderDto>();
-            CreateMap<CreateCompanyShareHolderCommand, CompanyShareHolder>();
-            CreateMap<UpdateCompanyShareHolderCommand, CompanyShareHolder>();
+
         }
 
     }

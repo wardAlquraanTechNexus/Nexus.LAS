@@ -2,8 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.UseCases.CompanyBoardMemberUseCases;
-using Nexus.LAS.Application.UseCases.CompanyBoardMemberUseCases.Commands.CreateCompanyBoardMember;
-using Nexus.LAS.Application.UseCases.CompanyBoardMemberUseCases.Commands.UpdateCompanyBoardMember;
 using Nexus.LAS.Application.UseCases.CompanyBoardMemberUseCases.Queries.GetPaging;
 using Nexus.LAS.Application.UseCases.CompanyBoardUseCases.Commands.Create;
 using Nexus.LAS.Application.UseCases.CompanyBoardUseCases.Queries.GetPaging;
@@ -15,9 +13,9 @@ using Nexus.LAS.WebApi.Controllers._GenericController;
 
 namespace Nexus.LAS.WebApi.Controllers.Companies;
 
-public class CompanyBoardMemberController : GenericController<ICompanyBoardMemberService, CompanyBoardMember>
+public class CompanyBoardController : GenericController<ICompanyBoardService, CompanyBoard>
 {
-    public CompanyBoardMemberController(ICompanyBoardMemberService service, IMediator mediator) : base(service, mediator)
+    public CompanyBoardController(ICompanyBoardService service, IMediator mediator) : base(service, mediator)
     {
     }
 
@@ -30,29 +28,29 @@ public class CompanyBoardMemberController : GenericController<ICompanyBoardMembe
 
 
     [HttpGet]
-    public async Task<IActionResult> GetPaging([FromQuery] GetPagingCompanyBoardMemberQuery query)
+    public async Task<IActionResult> GetPaging([FromQuery] GetPagingCompanyBoardQuery query)
     {
         return Ok(await _mediator.Send(query));
     }
 
     [NonAction]
-    public override Task<IActionResult> CreateAsync(CompanyBoardMember entity)
+    public override Task<IActionResult> CreateAsync(CompanyBoard entity)
     {
         return base.CreateAsync(entity);
     }
     [NonAction]
-    public override Task<IActionResult> UpdateAsync(CompanyBoardMember entity)
+    public override Task<IActionResult> UpdateAsync(CompanyBoard entity)
     {
         return base.UpdateAsync(entity);
     }
     [HttpPost]
-    public async Task<IActionResult> CreateCompanyBoard(CreateCompanyBoardMemberCommand command)
+    public async Task<IActionResult> CreateCompanyBoard(CreateCompanyBoardCommand command)
     {
         return Ok(await _mediator.Send(command));
     }
 
     [HttpPut]
-    public async Task<IActionResult> UpdateCompanyBoard(UpdateCompanyBoardMemberCommand command)
+    public async Task<IActionResult> UpdateCompanyBoard(UpdateCompanyBoardCommand command)
     {
         return Ok(await _mediator.Send(command));
     }

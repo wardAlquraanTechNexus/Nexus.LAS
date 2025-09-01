@@ -7,15 +7,16 @@ using Nexus.LAS.Persistence.Services.Base;
 
 namespace Nexus.LAS.Persistence.Services;
 
-public class CompanyBoardMemberService : GenericService<CompaniesBoardMember> , ICompanyBoardMemberService
+public class CompanyBoardMemberService : GenericService<CompanyBoardMember> , ICompanyBoardMemberService
 {
+    private readonly ICompanyBoardMemberRepo _repo;
     public CompanyBoardMemberService(NexusLASDbContext context, IUserIdentityService userIdentityService, ICompanyBoardMemberRepo repo) : base(context, userIdentityService, repo)
     {
+        _repo = repo;
     }
 
-    public override async Task DeleteAsync(int id)
+    public async Task<bool> IsPersonActiveExist(int boardId, int personId, int? excludedId = null)
     {
-        var repo = new CompanyBoardMemberRepo(_context);
-        await repo.DeleteAsync(id);
+        return await _repo.IsPersonActiveExist(boardId, personId, excludedId);
     }
 }

@@ -54,6 +54,7 @@ namespace Nexus.LAS.Persistence
             services.AddScoped<ICompanyPhoneService, CompanyPhoneService>();
             services.AddScoped<ICompanyShareHolderService, CompanyShareHolderService>();
             services.AddScoped<ICompanyAccountSignatoryService, CompanyAccountSignatoryService>();
+            services.AddScoped<ICompanyBoardService, CompanyBoardService>();
         }
 
         public static void RegisterRepositories(this IServiceCollection services)
@@ -95,6 +96,7 @@ namespace Nexus.LAS.Persistence
             services.AddScoped<ICompanyOtherContractRepo, CompanyOtherContractRepo>();
             services.AddScoped<ICompanyPhoneRepo, CompanyPhoneRepo>();
             services.AddScoped<ICompanyAccountSignatoryRepo, CompanyAccountSignatoryRepo>();
+            services.AddScoped<ICompanyBoardRepo, CompanyBoardRepo>();
 
         }
     }

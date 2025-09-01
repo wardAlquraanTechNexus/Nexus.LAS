@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Nexus.LAS.Persistence.DatabaseContext;
 
@@ -11,9 +12,11 @@ using Nexus.LAS.Persistence.DatabaseContext;
 namespace Nexus.LAS.Persistence.Migrations
 {
     [DbContext(typeof(NexusLASDbContext))]
-    partial class NexusLASDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250901083247_company-board-member-change-dt")]
+    partial class companyboardmemberchangedt
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -791,9 +794,13 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("CompaniesBoardMemberIDC");
 
-                    b.Property<int>("CompanyBoardId")
+                    b.Property<int?>("CompanyBoardId")
                         .HasColumnType("int")
                         .HasColumnName("CompaniesBoards_IDN");
+
+                    b.Property<int>("CompanyId")
+                        .HasColumnType("int")
+                        .HasColumnName("Companies_IDN");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");

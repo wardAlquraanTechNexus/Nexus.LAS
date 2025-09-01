@@ -5,15 +5,14 @@ using Nexus.LAS.Persistence.Repositories.BaseRepo;
 
 namespace Nexus.LAS.Persistence.Repositories;
 
-public class CompanyBoardMemberRepo : GenericRepo<CompaniesBoardMember>, ICompanyBoardMemberRepo
+public class CompanyBoardMemberRepo : GenericRepo<CompanyBoardMember>, ICompanyBoardMemberRepo
 {
     public CompanyBoardMemberRepo(NexusLASDbContext context) : base(context)
     {
     }
 
-    public async Task<List<CompaniesBoardMember>> GetListByCompanyId(int companyId)
+    public async Task<bool> IsPersonActiveExist(int boardId, int personId, int? excludedId = null)
     {
-        IQueryable<CompaniesBoardMember> queryable = _dbSet.Where(x => x.CompanyId == companyId);
-        return await queryable.ToListAsync();
+        return await _dbSet.AnyAsync(x => x.CompanyBoardId == boardId && x.PersonId == personId && x.IsActive && (excludedId == null || x.Id != excludedId));
     }
 }
