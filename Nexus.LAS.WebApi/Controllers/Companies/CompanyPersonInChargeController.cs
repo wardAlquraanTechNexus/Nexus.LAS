@@ -6,6 +6,7 @@ using Nexus.LAS.Application.UseCases.CompanyPersonInChargeUseCases.Commands.Crea
 using Nexus.LAS.Application.UseCases.CompanyPersonInChargeUseCases.Commands.UpdateCompanyPersonInCharge;
 using Nexus.LAS.Application.UseCases.CompanyPersonInChargeUseCases.Queries;
 using Nexus.LAS.Domain.Entities.CompanyEntities;
+using Nexus.LAS.WebApi.Attributes;
 using Nexus.LAS.WebApi.Controllers._GenericController;
 
 namespace Nexus.LAS.WebApi.Controllers.Companies;
@@ -22,6 +23,7 @@ public class CompanyPersonInChargeController : GenericController<ICompanyPersonI
         return base.BulkUpsertAsync(entities);
     }
     [HttpPost(nameof(BulkUpsertAsync))]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Update)]
     public async Task<IActionResult> BulkUpsertAsync([FromBody] List<UpsertCompanyPersonInChargeCommand> commands)
     {
         BulkUpsertCompanyPersonInChargeCommand bulkUpsertCompanyPersonInChargeCommand = new BulkUpsertCompanyPersonInChargeCommand()
@@ -37,6 +39,7 @@ public class CompanyPersonInChargeController : GenericController<ICompanyPersonI
     }
 
     [HttpPost]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Insert)]
     public async Task<IActionResult> CreateAsync([FromBody] CreateCompanyPersonInChargeCommand command)
     {
         return Ok(await _mediator.Send(command));
@@ -48,11 +51,13 @@ public class CompanyPersonInChargeController : GenericController<ICompanyPersonI
         return base.UpdateAsync(entity);
     }
     [HttpPut]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Update)]
     public async Task<IActionResult> UpdateAsync([FromBody] UpdateCompanyPersonInChargeCommand command)
     {
         return Ok(await _mediator.Send(command));
     }
     [HttpGet(nameof(GetPaging))]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Get)]
     public async Task<IActionResult> GetPaging([FromQuery] GetPagingCompanyPersonInChargeQuery command)
     {
         return Ok(await _mediator.Send(command));

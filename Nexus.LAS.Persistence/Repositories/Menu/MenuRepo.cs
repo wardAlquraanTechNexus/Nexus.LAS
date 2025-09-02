@@ -106,7 +106,11 @@ namespace Nexus.LAS.Persistence.Repositories
                      Name = dl.Name,
                      ParentId = dl.ParentId,
                      ParentName = dl.Parent != null ? dl.Parent.Name : null,
-                     Rank = dl.Rank
+                     Rank = dl.Rank,
+                     Path = dl.Path,
+                     IconClass = dl.IconClass,
+                     Description = dl.Description,
+                     InDashboard = dl.InDashboard
                  })
                 .AsQueryable();
 

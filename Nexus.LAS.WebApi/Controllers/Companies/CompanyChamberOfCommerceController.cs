@@ -4,6 +4,7 @@ using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.UseCases.CompanyChamberOfCommerceUseCases.Commands.CreateCompanyChamberOfCommerce;
 using Nexus.LAS.Application.UseCases.CompanyChamberOfCommerceUseCases.Commands.UpdateCompanyChamberOfCommerce;
 using Nexus.LAS.Domain.Entities.CompanyEntities;
+using Nexus.LAS.WebApi.Attributes;
 using Nexus.LAS.WebApi.Controllers._GenericController;
 
 namespace Nexus.LAS.WebApi.Controllers.Companies;
@@ -27,12 +28,14 @@ public class CompanyChamberOfCommerceController : GenericController<ICompanyCham
         return base.UpdateAsync(entity);
     }
     [HttpPost]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Insert)]
     public async Task<IActionResult> CreateCompanyChamperPfCommerce(CreateCompanyChamberOfCommerceCommand command)
     {
         return Ok(await _mediator.Send(command));
     }
 
     [HttpPut]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Update)]
     public async Task<IActionResult> UpdateCompanyChamperOfCommerce(UpdateCompanyChamberOfCommerceCommand command)
     {
         return Ok(await _mediator.Send(command));

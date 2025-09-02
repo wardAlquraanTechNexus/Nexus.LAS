@@ -5,6 +5,7 @@ using Nexus.LAS.Application.UseCases.CompanyShareHolderUseCases.Commands.CreateC
 using Nexus.LAS.Application.UseCases.CompanyShareHolderUseCases.Commands.UpdateCompanyShareHolder;
 using Nexus.LAS.Application.UseCases.CompanyShareHolderUseCases.Queries;
 using Nexus.LAS.Domain.Entities.CompanyEntities;
+using Nexus.LAS.WebApi.Attributes;
 using Nexus.LAS.WebApi.Controllers._GenericController;
 
 namespace Nexus.LAS.WebApi.Controllers.Companies;
@@ -23,6 +24,7 @@ public class CompanyShareHolderController : GenericController<ICompanyShareHolde
 
 
     [HttpGet]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Get)]
     public async Task<IActionResult> GetPaging([FromQuery] GetPagingCompanyShareHolderQuery query)
     {
         return Ok(await _mediator.Send(query));
@@ -39,12 +41,14 @@ public class CompanyShareHolderController : GenericController<ICompanyShareHolde
         return base.UpdateAsync(entity);
     }
     [HttpPost]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Insert)]
     public async Task<IActionResult> CreateCompanyShareholder(CreateCompanyShareHolderCommand command)
     {
         return Ok(await _mediator.Send(command));
     }
 
     [HttpPut]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Update)]
     public async Task<IActionResult> UpdateCompanyShareholder(UpdateCompanyShareHolderCommand command)
     {
         return Ok(await _mediator.Send(command));

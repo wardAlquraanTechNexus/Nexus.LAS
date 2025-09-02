@@ -29,6 +29,7 @@ public class CompanyController : GenericController<ICompanyService, Company>
     }
 
     [HttpGet("{id}")]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Get)]
     public async Task<IActionResult> GetCompanyDto(int id)
     {
         GetCompanyDtoQuery companyQuery = new GetCompanyDtoQuery()

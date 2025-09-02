@@ -5,6 +5,7 @@ using Nexus.LAS.Application.UseCases.CompanyLicenseUseCases.Commands.CreateCompa
 using Nexus.LAS.Application.UseCases.CompanyLicenseUseCases.Commands.UpdateCompanyLicense;
 using Nexus.LAS.Application.UseCases.CompanyLicenseUseCases.Queries.GetPaging;
 using Nexus.LAS.Domain.Entities.CompanyEntities;
+using Nexus.LAS.WebApi.Attributes;
 using Nexus.LAS.WebApi.Controllers._GenericController;
 
 namespace Nexus.LAS.WebApi.Controllers.Companies;
@@ -18,11 +19,13 @@ public class CompanyLicenseController : GenericController<ICompanyLicenseService
     public override Task<IActionResult> GetByQuery()
     {
         return base.GetByQuery();
-    }  
+    }
 
 
     [HttpGet]
-    public async Task<IActionResult> GetPaging([FromQuery]GetCompanyLicensePagingQuery query)
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Get)]
+
+    public async Task<IActionResult> GetPaging([FromQuery] GetCompanyLicensePagingQuery query)
     {
         return Ok(await _mediator.Send(query));
     }
@@ -38,15 +41,17 @@ public class CompanyLicenseController : GenericController<ICompanyLicenseService
         return base.UpdateAsync(entity);
     }
     [HttpPost]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Insert)]
     public async Task<IActionResult> CreateCompanyLicense(CreateCompanyLicenseCommand command)
     {
         return Ok(await _mediator.Send(command));
     }
 
     [HttpPut]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Update)]
     public async Task<IActionResult> UpdateCompanyLicense(UpdateCompanyLicenseCommand command)
     {
         return Ok(await _mediator.Send(command));
     }
-    
+
 }

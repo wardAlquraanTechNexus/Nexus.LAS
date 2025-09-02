@@ -5,6 +5,7 @@ using Nexus.LAS.Application.UseCases.CompanyEmailUseCases.Commands.CreateCompany
 using Nexus.LAS.Application.UseCases.CompanyEmailUseCases.Commands.UpdateCompanyEmail;
 using Nexus.LAS.Application.UseCases.CompanyEmailUseCases.Queries;
 using Nexus.LAS.Domain.Entities.CompanyEntities;
+using Nexus.LAS.WebApi.Attributes;
 using Nexus.LAS.WebApi.Controllers._GenericController;
 
 namespace Nexus.LAS.WebApi.Controllers.Companies;
@@ -22,7 +23,7 @@ public class CompanyEmailController : GenericController<ICompanyEmailService, Co
     }
 
     [HttpGet(nameof(GetAllByQuery))]
-
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Get)]
     public async Task<IActionResult> GetAll([FromQuery] GetAllCompanyEmailQuery query)
     {
         return Ok(await _mediator.Send(query));
@@ -39,12 +40,14 @@ public class CompanyEmailController : GenericController<ICompanyEmailService, Co
         return base.UpdateAsync(entity);
     }
     [HttpPost]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Insert)]
     public async Task<IActionResult> CreateCompanyEmail(CreateCompanyEmailCommand command)
     {
         return Ok(await _mediator.Send(command));
     }
 
     [HttpPut]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Update)]
     public async Task<IActionResult> UpdateCompanyEmail(UpdateCompanyEmailCommand command)
     {
         return Ok(await _mediator.Send(command));

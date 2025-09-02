@@ -60,12 +60,14 @@ public class CompanyBankAccountController : GenericController<ICompanyBankAccoun
         return base.UpdateAsync(entity);
     }
     [HttpPost]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Insert)]
     public async Task<IActionResult> CreateCompanyBankAccount(CreateCompanyBankAccountCommand command)
     {
         return Ok(await _mediator.Send(command));
     }
 
     [HttpPut]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Update)]
     public async Task<IActionResult> UpdateCompanyAddress(UpdateCompanyBankAccountCommand command)
     {
         return Ok(await _mediator.Send(command));

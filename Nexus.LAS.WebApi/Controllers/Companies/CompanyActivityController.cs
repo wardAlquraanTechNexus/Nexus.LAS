@@ -5,6 +5,7 @@ using Nexus.LAS.Application.UseCases.CompanyActivityUseCases.Commands.CreateComp
 using Nexus.LAS.Application.UseCases.CompanyActivityUseCases.Commands.UpdateCompanyActivity;
 using Nexus.LAS.Application.UseCases.CompanyActivityUseCases.Queries;
 using Nexus.LAS.Domain.Entities.CompanyEntities;
+using Nexus.LAS.WebApi.Attributes;
 using Nexus.LAS.WebApi.Controllers._GenericController;
 
 namespace Nexus.LAS.WebApi.Controllers;
@@ -23,6 +24,7 @@ public class CompanyActivityController : GenericController<ICompanyActivityServi
 
 
     [HttpGet]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Get)]
     public async Task<IActionResult> GetPaging([FromQuery] GetPagingCompanyActivityQuery query)
     {
         return Ok(await _mediator.Send(query));
@@ -39,12 +41,14 @@ public class CompanyActivityController : GenericController<ICompanyActivityServi
         return base.UpdateAsync(entity);
     }
     [HttpPost]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Insert)]
     public async Task<IActionResult> CreateCompanyActivity(CreateCompanyActivityCommand command)
     {
         return Ok(await _mediator.Send(command));
     }
 
     [HttpPut]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Update)]
     public async Task<IActionResult> UpdateCompanyActivity(UpdateCompanyActivityCommand command)
     {
         return Ok(await _mediator.Send(command));

@@ -9,6 +9,7 @@ using Nexus.LAS.Application.UseCases.CompanyCapitalUseCases.Commands.CreateCompa
 using Nexus.LAS.Application.UseCases.CompanyCapitalUseCases.Commands.UpdateCompanyCapital;
 using Nexus.LAS.Application.UseCases.CompanyCapitalUseCases.Queries.GetPagingCompanyCapital;
 using Nexus.LAS.Domain.Entities.CompanyEntities;
+using Nexus.LAS.WebApi.Attributes;
 using Nexus.LAS.WebApi.Controllers._GenericController;
 
 namespace Nexus.LAS.WebApi.Controllers.Companies;
@@ -28,6 +29,8 @@ public class CompanyBoardController : GenericController<ICompanyBoardService, Co
 
 
     [HttpGet]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Get)]
+
     public async Task<IActionResult> GetPaging([FromQuery] GetPagingCompanyBoardQuery query)
     {
         return Ok(await _mediator.Send(query));
@@ -44,12 +47,14 @@ public class CompanyBoardController : GenericController<ICompanyBoardService, Co
         return base.UpdateAsync(entity);
     }
     [HttpPost]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Insert)]
     public async Task<IActionResult> CreateCompanyBoard(CreateCompanyBoardCommand command)
     {
         return Ok(await _mediator.Send(command));
     }
 
     [HttpPut]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Update)]
     public async Task<IActionResult> UpdateCompanyBoard(UpdateCompanyBoardCommand command)
     {
         return Ok(await _mediator.Send(command));

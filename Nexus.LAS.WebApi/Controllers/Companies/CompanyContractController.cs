@@ -7,6 +7,7 @@ using Nexus.LAS.Application.UseCases.CompanyContractUseCases.Queries.GetCompanyC
 using Nexus.LAS.Application.UseCases.CompanyContractUseCases.Queries.GetPaging;
 using Nexus.LAS.Application.UseCases.CompanyEmailUseCases.Queries;
 using Nexus.LAS.Domain.Entities.CompanyEntities;
+using Nexus.LAS.WebApi.Attributes;
 using Nexus.LAS.WebApi.Controllers._GenericController;
 
 namespace Nexus.LAS.WebApi.Controllers.Companies;
@@ -28,6 +29,7 @@ public class CompanyContractController : GenericController<ICompanyContractServi
         return base.GetById(id);
     }
     [HttpGet("{id}")]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Get)]
     public async Task<IActionResult> GetDtoById(int id)
     {
         GetCompanyContractByIdQuery query = new GetCompanyContractByIdQuery()
@@ -38,7 +40,7 @@ public class CompanyContractController : GenericController<ICompanyContractServi
     }
 
     [HttpGet]
-
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Get)]
     public async Task<IActionResult> GetPaging([FromQuery] GetPagingCompanyContractQuery query)
     {
         return Ok(await _mediator.Send(query));
@@ -55,18 +57,21 @@ public class CompanyContractController : GenericController<ICompanyContractServi
         return base.UpdateAsync(entity);
     }
     [HttpPost]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Insert)]
     public async Task<IActionResult> CreateCompanyContract([FromForm]CreateCompanyContractCommand command)
     {
         return Ok(await _mediator.Send(command));
     }
 
     [HttpPut(nameof(UpdateByForm))]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Update)]
     public async Task<IActionResult> UpdateByForm([FromForm]UpdateCompanyContractCommand command)
     {
         return Ok(await _mediator.Send(command));
     }
 
     [HttpPut]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Update)]
     public async Task<IActionResult> UpdateByBody([FromBody]UpdateCompanyContractCommand command)
     {
         return Ok(await _mediator.Send(command));
