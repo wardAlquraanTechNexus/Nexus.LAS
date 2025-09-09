@@ -29,6 +29,8 @@ namespace Nexus.LAS.Domain.Entities.PersonEntities
         public int? PhoneType { get; set; }
 
         [Column("PhoneNumber")]
+        [MinLength(6)]
+        [MaxLength(14)]
         public string? PhoneNumber { get; set; }
     }
 }

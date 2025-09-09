@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DocumentFormat.OpenXml.Vml.Office;
 using EFCore.BulkExtensions;
 using Microsoft.EntityFrameworkCore;
 using Nexus.LAS.Application.Contracts.Identity;
@@ -8,6 +9,7 @@ using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.DTOs.CompanyDTOs;
 using Nexus.LAS.Application.UseCases.CompanyUseCases.Queries;
 using Nexus.LAS.Domain.Constants;
+using Nexus.LAS.Domain.Constants.Enums;
 using Nexus.LAS.Domain.Entities.CompanyEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Repositories;
@@ -125,14 +127,23 @@ public class CompanyService : GenericService<Company>, ICompanyService
 
     private async Task<List<Company>> BulkEditProperty<V>(List<int> companyIds, string propertyName, V value)
     {
-        var people = await _context.Companies.Where(x => companyIds.Contains(x.Id)).ToListAsync();
+        var companies = await _context.Companies.Where(x => companyIds.Contains(x.Id)).ToListAsync();
         var property = typeof(Company).GetProperty(propertyName);
-        foreach (var company in people)
+        foreach (var company in companies)
         {
             property.SetValue(company, value);
+            SetCodeIfActive(company);
         }
-        await _context.BulkInsertOrUpdateAsync(people);
-        return people;
+        await _context.BulkInsertOrUpdateAsync(companies);
+        return companies;
+    }
+
+    private void SetCodeIfActive(Company company)
+    {
+        if(company.CompanyStatus == (int)CompanyStatus.Active)
+        {
+            company.CompanyCode = "CC" + company.Id.ToString().PadLeft(6, '0');
+        }
     }
 
 

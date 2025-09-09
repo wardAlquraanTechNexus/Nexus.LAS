@@ -32,4 +32,8 @@ public class GetCompanyDto
     public int? PersonsIdn { get; set; }
     public string FPCCode { get; set; }
     public bool Private { get; set; }
+    public string CreatedBy { get; set; }
+    public DateTime CreatedAt { get; set; }
+    public string? ModifiedBy { get; set; }
+    public DateTime? ModifiedAt { get; set; }
 }

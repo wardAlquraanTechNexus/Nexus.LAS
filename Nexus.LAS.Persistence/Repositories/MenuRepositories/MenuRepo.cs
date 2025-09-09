@@ -42,7 +42,7 @@ namespace Nexus.LAS.Persistence.Repositories
                                    MenuId = gData.Key.Id,
                                    IconClass = gData.Key.IconClass,
                                    Name = gData.Key.Name,
-                                   Path = gData.Key.Path,
+                                   Path = gData.Key.Path.Substring(0,1).ToUpper() + gData.Key.Path.Substring(1).ToLower(),
                                    MenuParentId = gData.Key.ParentId,
                                    InDashboard = gData.Key.InDashboard,
                                    Rank = gData.Key.Rank,

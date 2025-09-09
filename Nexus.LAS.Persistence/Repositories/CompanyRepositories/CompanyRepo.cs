@@ -92,7 +92,7 @@ public class CompanyRepo : GenericRepo<Company>, ICompanyRepo
         // Optionally, handle CompanyCode generation if status changed to Active
         if (entity.CompanyStatus == (int)CompanyStatus.Active && string.IsNullOrEmpty(entity.CompanyCode))
         {
-            entity.CompanyCode = "PP" + entity.Id.ToString().PadLeft(6, '0');
+            entity.CompanyCode = "CC" + entity.Id.ToString().PadLeft(6, '0');
         }
         entity.CompanyIdc = EntityIDCs.Company;
 

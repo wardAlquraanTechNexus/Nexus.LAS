@@ -8,6 +8,17 @@ public class CreateCompanyPersonInChargeCommand : CreateBaseCommand
     public int CompanyIdn { get; set; }
     public int PersonIdn { get; set; }
     public string? Designation { get; set; }
+    public List<int> Designations 
+    {
+        get => _designations; 
+        set
+        {
+            _designations = value;
+            Designation = string.Join(',', value);
+        }
+    }
+    public List<int> _designations;
+
     public int AuthorityRule { get; set; }
     public string? Notes { get; set; }
     public DateTime? PersonInChargeDate { get; set; }
