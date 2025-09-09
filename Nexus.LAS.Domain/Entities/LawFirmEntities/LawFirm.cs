@@ -1,4 +1,5 @@
-﻿using Nexus.LAS.Domain.Entities.Base;
+﻿using Nexus.LAS.Domain.Constants;
+using Nexus.LAS.Domain.Entities.Base;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -15,7 +16,7 @@ namespace Nexus.LAS.Domain.Entities.LawFirmEntities
     {
         [Column("LawFirmIDC")]
         [StringLength(50)]
-        public string LawFirmIdc { get; set; } = null!;
+        public string LawFirmIdc { get; set; } = EntityIDCs.LawFirmIDC;
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -30,32 +31,32 @@ namespace Nexus.LAS.Domain.Entities.LawFirmEntities
         [Required]
         [Column("LawFirmEnglishName")]
         [StringLength(100)]
-        public string LawFirmEnglishName { get; set; } = null!;
+        public string EnglishName { get; set; } = null!;
 
         [Required]
         [Column("LawFirmArabicName")]
         [StringLength(100)]
-        public string LawFirmArabicName { get; set; } = null!;
+        public string ArabicName { get; set; } = null!;
 
         [Required]
         [Column("LawFirmShortName")]
         [StringLength(50)]
-        public string LawFirmShortName { get; set; } = null!;
+        public string ShortName { get; set; } = null!;
 
         [Required]
         [Column("LawFirmStatus")]
         [StringLength(50)]
-        public string LawFirmStatus { get; set; } = null!;
+        public string Status { get; set; } = null!;
 
         [Column("LawFirmLASDate")]
-        public DateTime? LawFirmLasDate { get; set; }
+        public DateTime? LasDate { get; set; }
 
         [Column("LawFirmEstYear")]
-        public int? LawFirmEstYear { get; set; }
+        public int? EstYear { get; set; }
 
         [Column("LawFirmWebsite")]
         [StringLength(50)]
-        public string? LawFirmWebsite { get; set; }
+        public string? Website { get; set; }
 
         [Required]
         [Column("Private")]

@@ -140,10 +140,8 @@ public class CompanyEntitiesProfile : Profile
 
 
         // CompanyOtherContract
-        CreateMap<CreateCompanyOtherContractCommand, CompaniesOtherContract>();
-        CreateMap<UpdateCompanyOtherContractCommand, CompaniesOtherContract>();
-        CreateMap<UpsertCompanyOtherContractCommand, CompaniesOtherContract>()
-    .ForMember(dest => dest.Id, opt => opt.Condition(src => src.Id.HasValue));
+        CreateMap<CreateCompanyOtherContractCommand, CompanyOtherContract>();
+        CreateMap<UpdateCompanyOtherContractCommand, CompanyOtherContract>();
 
         // CompanyPersonInCharge
         CreateMap<CreateCompanyPersonInChargeCommand, CompanyPersonInCharge>();

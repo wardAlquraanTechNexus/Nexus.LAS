@@ -5,10 +5,18 @@ using Nexus.LAS.Application.Contracts.Presistence;
 using Nexus.LAS.Application.Contracts.Presistence._Repositories;
 using Nexus.LAS.Application.Contracts.Presistence._Repositories._CompanyRepos;
 using Nexus.LAS.Application.Contracts.Presistence._Repositories._PersonRepos;
+using Nexus.LAS.Application.Contracts.Presistence._Repositories._TransactionRepos;
+using Nexus.LAS.Application.Contracts.Presistence._Repositories._LawFirmRepos;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
+using Nexus.LAS.Application.Contracts.Presistence.Services._Transaction;
+using Nexus.LAS.Application.Contracts.Presistence.Services._LawFirm;
 using Nexus.LAS.Identity.Services;
 using Nexus.LAS.Persistence.Repositories;
+using Nexus.LAS.Persistence.Repositories.TransactionRepositories;
+using Nexus.LAS.Persistence.Repositories.LawFirmRepositories;
 using Nexus.LAS.Persistence.Services;
+using Nexus.LAS.Persistence.Services.TransactionServices;
+using Nexus.LAS.Persistence.Services.LawFirmServices;
 
 namespace Nexus.LAS.Persistence
 {
@@ -21,6 +29,7 @@ namespace Nexus.LAS.Persistence
             services.AddScoped<IUserIdentityService, UserIdentityService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUserGroupService, UserGroupService>();
+
 
 
 
@@ -55,6 +64,20 @@ namespace Nexus.LAS.Persistence
             services.AddScoped<ICompanyShareHolderService, CompanyShareHolderService>();
             services.AddScoped<ICompanyAccountSignatoryService, CompanyAccountSignatoryService>();
             services.AddScoped<ICompanyBoardService, CompanyBoardService>();
+
+            // Transaction services
+            services.AddScoped<ITransactionService, TransactionService>();
+            services.AddScoped<ITransactionRegisterService, TransactionRegisterService>();
+            services.AddScoped<ITransactionOtfService, TransactionOtfService>();
+            services.AddScoped<ITransactionInvoiceService, TransactionInvoiceService>();
+            services.AddScoped<ITransactionActionService, TransactionActionService>();
+
+            // LawFirm services
+            services.AddScoped<ILawFirmService, LawFirmService>();
+            services.AddScoped<ILawFirmPersonService, LawFirmPersonService>();
+            services.AddScoped<ILawFirmAffiliateService, LawFirmAffiliateService>();
+            services.AddScoped<ILawFirmBranchService, LawFirmBranchService>();
+            services.AddScoped<ILawFirmExpertiseService, LawFirmExpertiseService>();
         }
 
         public static void RegisterRepositories(this IServiceCollection services)
@@ -98,6 +121,19 @@ namespace Nexus.LAS.Persistence
             services.AddScoped<ICompanyAccountSignatoryRepo, CompanyAccountSignatoryRepo>();
             services.AddScoped<ICompanyBoardRepo, CompanyBoardRepo>();
 
+            // Transaction repositories
+            services.AddScoped<ITransactionRepo, TransactionRepo>();
+            services.AddScoped<ITransactionRegisterRepo, TransactionRegisterRepo>();
+            services.AddScoped<ITransactionOtfRepo, TransactionOtfRepo>();
+            services.AddScoped<ITransactionInvoiceRepo, TransactionInvoiceRepo>();
+            services.AddScoped<ITransactionActionRepo, TransactionActionRepo>();
+
+            // LawFirm repositories
+            services.AddScoped<ILawFirmRepo, LawFirmRepo>();
+            services.AddScoped<ILawFirmPersonRepo, LawFirmPersonRepo>();
+            services.AddScoped<ILawFirmAffiliateRepo, LawFirmAffiliateRepo>();
+            services.AddScoped<ILawFirmBranchRepo, LawFirmBranchRepo>();
+            services.AddScoped<ILawFirmExpertiseRepo, LawFirmExpertiseRepo>();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Nexus.LAS.Domain.Entities.Base;
+﻿using Nexus.LAS.Domain.Constants;
+using Nexus.LAS.Domain.Entities.Base;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,7 +14,7 @@ namespace Nexus.LAS.Domain.Entities.TransactionEntities
     public class Transaction : BaseEntity
     {
         [Column("TransactionIDC")]
-        public string TransactionIdc { get; set; } = null!;
+        public string TransactionIdc { get; set; } = EntityIDCs.Transactions;
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -27,13 +28,13 @@ namespace Nexus.LAS.Domain.Entities.TransactionEntities
         public string TransactionCode { get; set; } = null!;
 
         [Column("TransactionSubjectType")]
-        public string TransactionSubjectType { get; set; } = null!;
+        public string SubjectType { get; set; } = null!;
 
         [Column("TransactionSubjectDescription")]
-        public string? TransactionSubjectDescription { get; set; }
+        public string? SubjectDescription { get; set; }
 
         [Column("TransactionStatus")]
-        public string? TransactionStatus { get; set; }
+        public string? Status { get; set; }
 
         [Column("Private")]
         public bool Private { get; set; }

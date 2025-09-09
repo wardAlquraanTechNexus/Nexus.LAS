@@ -1,4 +1,5 @@
-﻿using Nexus.LAS.Domain.Entities.Base;
+﻿using Nexus.LAS.Domain.Constants;
+using Nexus.LAS.Domain.Entities.Base;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,7 +14,7 @@ namespace Nexus.LAS.Domain.Entities.TransactionEntities
     public class TransactionAction : BaseEntity
     {
         [Column("TransactionsActionIDC")]
-        public string TransactionsActionIdc { get; set; } = null!;
+        public string TransactionsActionIdc { get; set; } = EntityIDCs.TransactionsActions;
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -21,10 +22,10 @@ namespace Nexus.LAS.Domain.Entities.TransactionEntities
         public override int Id { get; set; }
 
         [Column("Transactions_IDN")]
-        public int TransactionsIdn { get; set; }
+        public int TransactionId { get; set; }
 
         [Column("Persons_IDN")]
-        public int PersonsIdn { get; set; }
+        public int PersonId { get; set; }
 
         [Column("Time")]
         public int? Time { get; set; }

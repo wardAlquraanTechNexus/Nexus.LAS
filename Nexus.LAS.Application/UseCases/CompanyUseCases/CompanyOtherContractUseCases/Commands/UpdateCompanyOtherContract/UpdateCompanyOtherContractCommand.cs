@@ -6,7 +6,7 @@ namespace Nexus.LAS.Application.UseCases.CompanyOtherContractUseCases.Commands.U
 public class UpdateCompanyOtherContractCommand : UpdateBaseCommand
 {
     public int Id { get; set; }
-    public int CompaniesIdn { get; set; }
+    public int CompanyId { get; set; }
     public DateTime? ContractDate { get; set; }
     public string? ContractDescription { get; set; }
 }

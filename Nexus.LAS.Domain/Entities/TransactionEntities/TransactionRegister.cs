@@ -1,4 +1,5 @@
-﻿using Nexus.LAS.Domain.Entities.Base;
+﻿using Nexus.LAS.Domain.Constants;
+using Nexus.LAS.Domain.Entities.Base;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,7 +14,7 @@ namespace Nexus.LAS.Domain.Entities.TransactionEntities
     public class TransactionRegister : BaseEntity
     {
         [Column("TransactionsRegisterIDC")]
-        public string TransactionsRegisterIdc { get; set; } = null!;
+        public string TransactionsRegisterIdc { get; set; } = EntityIDCs.TransactionsRegisters;
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -21,13 +22,13 @@ namespace Nexus.LAS.Domain.Entities.TransactionEntities
         public override int Id { get; set; }
 
         [Column("Transactions_IDN")]
-        public int TransactionsIdn { get; set; }
+        public int TransactionId { get; set; }
 
         [Column("Registers_IDC")]
-        public string RegistersIdc { get; set; } = null!;
+        public string RegisterIdc { get; set; } = null!;
 
         [Column("Registers_IDN")]
-        public int RegistersIdn { get; set; }
+        public int RegisterId { get; set; }
 
         [Column("PrimaryRegister")]
         public bool? PrimaryRegister { get; set; }

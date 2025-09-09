@@ -3,8 +3,8 @@ using Nexus.LAS.Domain.Entities.CompanyEntities;
 
 namespace Nexus.LAS.Application.Contracts.Presistence._Repositories._CompanyRepos
 {
-    public interface ICompanyOtherContractRepo : IGenericRepo<CompaniesOtherContract>
+    public interface ICompanyOtherContractRepo : IGenericRepo<CompanyOtherContract>
     {
-        Task<List<CompaniesOtherContract>> GetListByCompanyId(int companyId);
+        Task<List<CompanyOtherContract>> GetListByCompanyId(int companyId);
     }
 }

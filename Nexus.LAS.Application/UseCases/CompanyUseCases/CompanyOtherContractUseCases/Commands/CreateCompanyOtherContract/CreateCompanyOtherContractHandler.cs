@@ -6,7 +6,7 @@ using Nexus.LAS.Domain.Entities.CompanyEntities;
 
 namespace Nexus.LAS.Application.UseCases.CompanyOtherContractUseCases.Commands.CreateCompanyOtherContract;
 
-public class CreateCompanyOtherContractHandler : CreateBaseCommandHandler<CompaniesOtherContract, CreateCompanyOtherContractCommand, ICompanyOtherContractService>
+public class CreateCompanyOtherContractHandler : CreateBaseCommandHandler<CompanyOtherContract, CreateCompanyOtherContractCommand, ICompanyOtherContractService>
 {
     public CreateCompanyOtherContractHandler(ICompanyOtherContractService service, IMapper mapper) : base(service, mapper)
     {

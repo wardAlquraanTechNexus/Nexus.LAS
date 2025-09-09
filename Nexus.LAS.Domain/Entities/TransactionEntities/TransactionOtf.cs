@@ -21,13 +21,13 @@ namespace Nexus.LAS.Domain.Entities.TransactionEntities
         public override int Id { get; set; }
 
         [Column("Transactions_IDN")]
-        public int TransactionsIdn { get; set; }
+        public int TransactionId { get; set; }
 
         [Column("OTFRegisters_IDC")]
-        public string OtfRegistersIdc { get; set; } = null!;
+        public string OtfRegisterIdc { get; set; } = null!;
 
         [Column("OTFRegisters_IDN")]
-        public int OtfRegistersIdn { get; set; }
+        public int OtfRegisterId { get; set; }
 
         [Column("id")]
         public string? CustomId { get; set; }

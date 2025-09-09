@@ -5,7 +5,7 @@ namespace Nexus.LAS.Application.UseCases.CompanyOtherContractUseCases.Commands.C
 
 public class CreateCompanyOtherContractCommand : CreateBaseCommand
 {
-    public int CompaniesIdn { get; set; }
+    public int CompanyId { get; set; }
     public DateTime? ContractDate { get; set; }
     public string? ContractDescription { get; set; }
 }
