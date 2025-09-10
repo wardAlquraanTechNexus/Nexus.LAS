@@ -183,7 +183,9 @@ BEGIN
     (43, 1, N'Users', N'Users', 3, N'Manage users', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
     (44, 1, N'User Groups', N'User-Groups', 4, N'Manage user groups', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
     (45, 1, N'Groups', N'Groups', 4, N'Manage groups', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (46, 1, N'Group Menu', N'Group-Menus', 4, N'Manage group menus', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL);
+    (46, 1, N'Group Menu', N'Group-Menus', 4, N'Manage group menus', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (47, 1, N'Setting', N'', 1, N'setting', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL);
+
 
 
     
