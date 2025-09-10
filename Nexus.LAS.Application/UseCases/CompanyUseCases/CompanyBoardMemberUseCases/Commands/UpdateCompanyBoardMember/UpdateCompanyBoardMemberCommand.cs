@@ -6,7 +6,7 @@ namespace Nexus.LAS.Application.UseCases.CompanyBoardMemberUseCases.Commands.Upd
 public class UpdateCompanyBoardMemberCommand : UpdateBaseCommand
 {
     public int Id { get; set; }
-    public int CompanyBoardId { get; set; }
+    public int CompanyId { get; set; }
     public int PersonId { get; set; }
     public int Position { get; set; }
     public DateTime? AppointmentDate { get; set; }

@@ -8,13 +8,15 @@ namespace Nexus.LAS.Persistence.Services
 {
     public class PdfDisplayColumn
     {
-        public PdfDisplayColumn(string label, string key)
+        public PdfDisplayColumn(string label, string key, Dictionary<int , string>? dynamicLists = null)
         {
             Label = label;
             Key = key;
+            DynamicLists = dynamicLists != null ? dynamicLists : new Dictionary<int, string>();
         }
 
         public string Label { get; set; }
         public string Key { get; set; }
+        public Dictionary<int, string> DynamicLists { get; set; }
     }
 }

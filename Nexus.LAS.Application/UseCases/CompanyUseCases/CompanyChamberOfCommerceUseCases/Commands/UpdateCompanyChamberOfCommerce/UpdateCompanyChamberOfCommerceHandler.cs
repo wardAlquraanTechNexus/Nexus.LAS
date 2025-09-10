@@ -11,4 +11,8 @@ public class UpdateCompanyChamberOfCommerceHandler : UpdateBaseCommandHandler<Co
     public UpdateCompanyChamberOfCommerceHandler(ICompanyChamberOfCommerceService service, IMapper mapper) : base(service, mapper)
     {
     }
+    public override async Task<bool> Handle(UpdateCompanyChamberOfCommerceCommand command, CancellationToken cancellationToken)
+    {
+        return await _service.UpdateCompanyChamberOfCommerce(command);
+    }
 }

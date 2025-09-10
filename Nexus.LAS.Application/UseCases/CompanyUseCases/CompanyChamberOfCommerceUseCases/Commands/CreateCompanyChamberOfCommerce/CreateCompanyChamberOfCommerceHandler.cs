@@ -11,4 +11,9 @@ public class CreateCompanyChamberOfCommerceHandler : CreateBaseCommandHandler<Co
     public CreateCompanyChamberOfCommerceHandler(ICompanyChamberOfCommerceService service, IMapper mapper) : base(service, mapper)
     {
     }
+
+    public override async Task<int> Handle(CreateCompanyChamberOfCommerceCommand command, CancellationToken cancellationToken)
+    {
+        return await _service.CreateCompanyChamberOfCommerce(command);
+    }
 }

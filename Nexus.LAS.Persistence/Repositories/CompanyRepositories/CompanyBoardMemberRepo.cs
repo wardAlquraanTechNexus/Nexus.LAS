@@ -11,8 +11,8 @@ public class CompanyBoardMemberRepo : GenericRepo<CompanyBoardMember>, ICompanyB
     {
     }
 
-    public async Task<bool> IsPersonActiveExist(int boardId, int personId, int? excludedId = null)
+    public async Task<bool> IsPersonActiveExist(int companyId, int personId, int? excludedId = null)
     {
-        return await _dbSet.AnyAsync(x => x.CompanyBoardId == boardId && x.PersonId == personId && x.IsActive && (excludedId == null || x.Id != excludedId));
+        return await _dbSet.AnyAsync(x => x.CompanyId == companyId && x.PersonId == personId && x.IsActive && (excludedId == null || x.Id != excludedId));
     }
 }

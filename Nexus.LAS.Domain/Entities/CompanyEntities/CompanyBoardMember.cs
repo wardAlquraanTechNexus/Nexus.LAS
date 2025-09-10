@@ -18,8 +18,8 @@ public class CompanyBoardMember:BaseEntity
     [Column("CompaniesBoardMemberIDN")]
     public override int Id { get; set; }
 
-    [Column("CompaniesBoards_IDN")]
-    public int CompanyBoardId { get; set; }
+    [Column("Companies_IDN")]
+    public int CompanyId { get; set; }
 
     [Required]
     [Column("Person_IDN")]

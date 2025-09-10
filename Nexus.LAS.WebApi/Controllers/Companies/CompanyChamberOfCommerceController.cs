@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.UseCases.CompanyChamberOfCommerceUseCases.Commands.CreateCompanyChamberOfCommerce;
 using Nexus.LAS.Application.UseCases.CompanyChamberOfCommerceUseCases.Commands.UpdateCompanyChamberOfCommerce;
+using Nexus.LAS.Application.UseCases.CompanyUseCases.CompanyChamberOfCommerceUseCases.Queries.GetPaging;
 using Nexus.LAS.Domain.Entities.CompanyEntities;
 using Nexus.LAS.WebApi.Attributes;
 using Nexus.LAS.WebApi.Controllers._GenericController;
@@ -27,6 +28,19 @@ public class CompanyChamberOfCommerceController : GenericController<ICompanyCham
     {
         return base.UpdateAsync(entity);
     }
+    [HttpPost(nameof(CreateByForm))]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Insert)]
+    public async Task<IActionResult> CreateByForm([FromForm]CreateCompanyChamberOfCommerceCommand command)
+    {
+        return Ok(await _mediator.Send(command));
+    }
+
+    [HttpPut(nameof(UpdateByForm))]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Update)]
+    public async Task<IActionResult> UpdateByForm([FromForm]UpdateCompanyChamberOfCommerceCommand command)
+    {
+        return Ok(await _mediator.Send(command));
+    }
     [HttpPost]
     [ApiMethodType(Domain.Constants.Enums.MethodType.Insert)]
     public async Task<IActionResult> CreateCompanyChamperPfCommerce(CreateCompanyChamberOfCommerceCommand command)
@@ -39,6 +53,18 @@ public class CompanyChamberOfCommerceController : GenericController<ICompanyCham
     public async Task<IActionResult> UpdateCompanyChamperOfCommerce(UpdateCompanyChamberOfCommerceCommand command)
     {
         return Ok(await _mediator.Send(command));
+    }
+    [NonAction]
+    public override Task<IActionResult> GetByQuery()
+    {
+        return base.GetByQuery();
+    }
+
+    [HttpGet]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Get)]
+    public async Task<IActionResult> GetPaging([FromQuery]GetPagingCompanyChamberOfCommerceQuery query)
+    {
+        return Ok(await _mediator.Send(query));
     }
 
 }

@@ -11,4 +11,9 @@ public class UpdateCompanyLicenseHandler : UpdateBaseCommandHandler<CompanyLicen
     public UpdateCompanyLicenseHandler(ICompanyLicenseService service, IMapper mapper) : base(service, mapper)
     {
     }
+
+    public override async Task<bool> Handle(UpdateCompanyLicenseCommand request, CancellationToken cancellationToken)
+    {
+        return await _service.UpdateCompanyLicense(request);
+    }
 }

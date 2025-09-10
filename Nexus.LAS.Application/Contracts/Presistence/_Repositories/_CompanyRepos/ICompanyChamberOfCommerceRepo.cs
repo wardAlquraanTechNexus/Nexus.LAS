@@ -1,4 +1,7 @@
 ﻿using Nexus.LAS.Application.Contracts.Presistence._Repositories.Base;
+using Nexus.LAS.Application.DTOs.Base;
+using Nexus.LAS.Application.DTOs.CompanyChamberOfCommerceDTOs;
+using Nexus.LAS.Application.UseCases.CompanyUseCases.CompanyChamberOfCommerceUseCases.Queries.GetPaging;
 using Nexus.LAS.Domain.Entities.CompanyEntities;
 using System;
 using System.Collections.Generic;
@@ -10,5 +13,6 @@ namespace Nexus.LAS.Application.Contracts.Presistence._Repositories._CompanyRepo
 {
     public interface ICompanyChamberOfCommerceRepo:IGenericRepo<CompanyChamberOfCommerce>
     {
+        Task<PagingResult<CompanyChamberOfCommerceDto>> SearhDtoAsync(GetPagingCompanyChamberOfCommerceQuery query);
     }
 }

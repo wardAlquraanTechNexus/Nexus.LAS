@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.Contracts.Presistence._Repositories._PersonRepos;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
@@ -9,6 +10,7 @@ using Nexus.LAS.Domain.Entities.PersonEntities;
 using Nexus.LAS.Domain.Entities.RegisterEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Repositories;
+using Nexus.LAS.Persistence.Repositories.RegisterFileRepositories;
 using Nexus.LAS.Persistence.Services.Base;
 
 namespace Nexus.LAS.Persistence.Services
@@ -22,7 +24,7 @@ namespace Nexus.LAS.Persistence.Services
             _mapper = mapper;
         }
 
-        public async Task<int> CreatePersonIdDetail(CreatePersonIdDetailCommand command)
+        public async Task<int> CreatePersonIdDetail([FromForm] CreatePersonIdDetailCommand command)
         {
             using (var transaction = await _context.Database.BeginTransactionAsync())
             {
@@ -69,7 +71,7 @@ namespace Nexus.LAS.Persistence.Services
             }
 
         }
-        public async Task<int> EditPersonIdDetail(EditPersonIdDetailCommand command)
+        public async Task<int> EditPersonIdDetail([FromForm] EditPersonIdDetailCommand command)
         {
             using (var transaction = await _context.Database.BeginTransactionAsync())
             {

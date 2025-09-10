@@ -108,11 +108,8 @@ public class CompanyContractService : GenericService<CompanyContract> , ICompany
                 if (command.File is not null)
                 {
 
-                    var existingFiles = await _registerFileRepo.GetByIds(EntityIDCs.CompaniesContracts, command.Id);
-                    foreach (var existingFile in existingFiles)
-                    {
-                        await _registerFileRepo.DeleteAsync(existingFile.Id);
-                    }
+                    await _registerFileRepo.DeleteAsync(EntityIDCs.CompaniesContracts, command.Id);
+                    
 
                     // Add new file
                     byte[] bytes;

@@ -19,7 +19,7 @@ public class CreateCompanyBoardMemberCommandValidator : AbstractValidator<Create
 
     private async Task<bool> NotExistActiveInBoard(CreateCompanyBoardMemberCommand command, int personId, CancellationToken cancellationToken)
     {
-        var exists = await _service.IsPersonActiveExist(command.CompanyBoardId , command.PersonId);
+        var exists = await _service.IsPersonActiveExist(command.CompanyId , command.PersonId);
 
         return !exists;
     }

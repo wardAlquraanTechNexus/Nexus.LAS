@@ -25,7 +25,7 @@ namespace Nexus.LAS.Application.UseCases.CompanyBoardMemberUseCases.Commands
 
         private async Task<bool> NotExistActiveInBoard(UpdateCompanyBoardMemberCommand command, int personId, CancellationToken cancellationToken)
         {
-            var exists = await _service.IsPersonActiveExist(command.CompanyBoardId, command.PersonId , command.Id);
+            var exists = await _service.IsPersonActiveExist(command.CompanyId, command.PersonId , command.Id);
 
             return !exists;
         }

@@ -10,6 +10,6 @@ namespace Nexus.LAS.Application.UseCases.CompanyBoardMemberUseCases.Queries.GetP
 {
     public class GetPagingCompanyBoardMemberQuery : GetBasePagingQuery<CompanyBoardMemberDto>
     {
-        public int CompanyBoardId { get; set; }
+        public int CompanyId { get; set; }
     }
 }

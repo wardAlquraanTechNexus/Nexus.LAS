@@ -10,4 +10,7 @@ public class CompanyChamberOfCommerceDto
     public bool CciExpiryActiveReminder { get; set; }
     public string CciUsername { get; set; }
     public string CciPassword { get; set; }
+    public string FileName { get; set; } = string.Empty;
+    public string ContentType { get; set; } = string.Empty;
+    public byte[]? DataFile { get; set; }
 }

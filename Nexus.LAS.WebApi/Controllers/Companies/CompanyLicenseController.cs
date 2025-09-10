@@ -53,5 +53,18 @@ public class CompanyLicenseController : GenericController<ICompanyLicenseService
     {
         return Ok(await _mediator.Send(command));
     }
+    [HttpPost(nameof(CreateByForm))]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Insert)]
+    public async Task<IActionResult> CreateByForm(CreateCompanyLicenseCommand command)
+    {
+        return Ok(await _mediator.Send(command));
+    }
+
+    [HttpPut(nameof(UpdateByForm))]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Update)]
+    public async Task<IActionResult> UpdateByForm(UpdateCompanyLicenseCommand command)
+    {
+        return Ok(await _mediator.Send(command));
+    }
 
 }

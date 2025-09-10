@@ -5,7 +5,7 @@ namespace Nexus.LAS.Application.UseCases.CompanyBoardMemberUseCases.Commands.Cre
 
 public class CreateCompanyBoardMemberCommand : CreateBaseCommand
 {
-    public int CompanyBoardId { get; set; }
+    public int CompanyId { get; set; }
     public int PersonId { get; set; }
     public int Position { get; set; }
     public DateTime? AppointmentDate { get; set; }

@@ -102,4 +102,22 @@ public class DynamicListRepo : GenericRepo<DynamicList>, IDynamicListRepo
             x.Name.ToLower() == normalizedMenuValue &&
             x.ParentId == mainListId);
     }
+
+    public async Task<string> GetNameById(int id)
+    {
+        return (await _dbSet.FirstOrDefaultAsync(x => x.Id == id))?.Name ?? string.Empty;
+    }
+
+    public async Task<Dictionary<int , string>> GetDictionaryByParentId(int parentId)
+    {
+
+        var list = _dbSet.Where(x => x.ParentId == parentId).AsQueryable();
+        return await list.ToDictionaryAsync(x => x.Id , x => x.Name ?? string.Empty);
+    }
+    public async Task<Dictionary<int , string>> GetDictionaryByIds(List<int> ids)
+    {
+
+        var list = _dbSet.Where(x => ids.Contains(x.Id)).AsQueryable();
+        return await list.ToDictionaryAsync(x => x.Id , x => x.Name ?? string.Empty);
+    }
 }

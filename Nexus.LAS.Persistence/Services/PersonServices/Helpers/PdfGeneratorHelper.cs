@@ -60,6 +60,13 @@ namespace Nexus.LAS.Persistence.Services
 
                         if (!string.IsNullOrEmpty(value.ToString()))
                         {
+                            if(column.DynamicLists != null && column.DynamicLists.Count > 0)
+                            {
+                                if(value is int intValue && column.DynamicLists.ContainsKey(intValue))
+                                {
+                                    value = column.DynamicLists[intValue];
+                                }
+                            }
                             if (property.PropertyType is Type type)
                             {
                                 if(type == typeof(DateTime) || type == typeof(DateTime?))
@@ -86,6 +93,7 @@ namespace Nexus.LAS.Persistence.Services
                             cell.BorderRight(1)
                                 .BorderColor(Colors.Black)
                                 .Padding(5)
+                                .AlignCenter()
                                 .Text(value)
                         );
                     }

@@ -1,5 +1,6 @@
 ﻿using Nexus.LAS.Application.Contracts.Presistence._Repositories.Base;
 using Nexus.LAS.Application.DTOs.Base;
+using Nexus.LAS.Application.DTOs.CompanyLicenseDTOs;
 using Nexus.LAS.Application.UseCases.CompanyLicenseUseCases.Queries.GetPaging;
 using Nexus.LAS.Domain.Entities.CompanyEntities;
 using System;
@@ -12,6 +13,6 @@ namespace Nexus.LAS.Application.Contracts.Presistence._Repositories._CompanyRepo
 {
     public interface ICompanyLicenseRepo: IGenericRepo<CompanyLicense>
     {
-        Task<PagingResult<CompanyLicense>> GetPaging(GetCompanyLicensePagingQuery param);
+        Task<PagingResult<CompanyLicenseDto>> GetPaging(GetCompanyLicensePagingQuery param);
     }
 }

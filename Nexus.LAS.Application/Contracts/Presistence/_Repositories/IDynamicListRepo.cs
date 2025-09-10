@@ -10,5 +10,8 @@ namespace Nexus.LAS.Application.Contracts.Presistence._Repositories
         Task<PagingResult<DynamicList>> GetListAsync(GetDynamicListDTOQuery param);
         Task<List<DynamicList>> GetParents(int id);
         Task<bool> CheckMenuValueExist(string menuValue, int? mainListId, int? currentId = null);
+        Task<string> GetNameById(int id);
+        Task<Dictionary<int, string>> GetDictionaryByParentId(int parentId);
+        Task<Dictionary<int, string>> GetDictionaryByIds(List<int> ids);
     }
 }

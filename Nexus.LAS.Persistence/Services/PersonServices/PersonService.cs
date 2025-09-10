@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using EFCore.BulkExtensions;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.Contracts.Presistence;
@@ -15,6 +16,7 @@ using Nexus.LAS.Domain.Entities.PersonEntities;
 using Nexus.LAS.Domain.Entities.RegisterEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Repositories;
+using Nexus.LAS.Persistence.Repositories.RegisterFileRepositories;
 using Nexus.LAS.Persistence.Services.Base;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
@@ -251,7 +253,7 @@ namespace Nexus.LAS.Persistence.Services
         }
 
 
-        public async Task<UploadImageDto> UploadUserImage(UploadPersonImageCommand command)
+        public async Task<UploadImageDto> UploadUserImage([FromForm] UploadPersonImageCommand command)
         {
             RegisterFileRepo registerFileRepo = new RegisterFileRepo(_context);
 

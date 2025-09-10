@@ -79,12 +79,12 @@ public class PersonRepo : GenericRepo<Person>, IPersonRepo
 
         int totalRecords = await personsQueryable.CountAsync();
 
-        personsQueryable = personsQueryable.Paginate(personQuery.Page, personQuery.PageSize);
-
         if (!string.IsNullOrEmpty(personQuery.OrderBy))
         {
             personsQueryable = personsQueryable.Order(personQuery.OrderBy, personQuery.OrderDir ?? "asc");
         }
+        personsQueryable = personsQueryable.Paginate(personQuery.Page, personQuery.PageSize);
+
 
         int totalPages = (int)Math.Ceiling((double)totalRecords / personQuery.PageSize);
 

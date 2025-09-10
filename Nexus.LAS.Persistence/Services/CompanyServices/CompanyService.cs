@@ -1,12 +1,16 @@
 ﻿using AutoMapper;
+using DocumentFormat.OpenXml.Office.CoverPageProps;
 using DocumentFormat.OpenXml.Vml.Office;
 using EFCore.BulkExtensions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Nexus.LAS.Application.Contracts.Identity;
+using Nexus.LAS.Application.Contracts.Presistence._Repositories;
 using Nexus.LAS.Application.Contracts.Presistence._Repositories._CompanyRepos;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.DTOs.CompanyDTOs;
+using Nexus.LAS.Application.Models;
 using Nexus.LAS.Application.UseCases.CompanyUseCases.Queries;
 using Nexus.LAS.Domain.Constants;
 using Nexus.LAS.Domain.Constants.Enums;
@@ -24,11 +28,24 @@ public class CompanyService : GenericService<Company>, ICompanyService
 {
     private readonly IMapper _mapper;
     private readonly ICompanyRepo _repo;
-    public CompanyService(NexusLASDbContext context,  IMapper mapper, IUserIdentityService userIdentityService, ICompanyRepo repo)
+    private readonly IDynamicListRepo _dynamicListRepo;
+    private readonly ICompanyActivityRepo _companyActivityRepo;
+    IOptions<AppSettings> _appSettings;
+    public CompanyService(
+        NexusLASDbContext context,  
+        IMapper mapper, 
+        IUserIdentityService userIdentityService, 
+        ICompanyRepo repo , 
+        IDynamicListRepo dynamicListRepo , 
+        ICompanyActivityRepo companyActivityRepo, 
+        IOptions<AppSettings> appSettings)
         : base(context, userIdentityService,repo)
     {
         _mapper = mapper;
         _repo = repo;
+        _dynamicListRepo = dynamicListRepo;
+        _companyActivityRepo = companyActivityRepo;
+        _appSettings = appSettings;
     }
     public async Task<GetCompanyDto> GetCompanyDto(int id)
     {
@@ -150,16 +167,47 @@ public class CompanyService : GenericService<Company>, ICompanyService
     public async Task<byte[]> ExportToPdf(int id)
     {
 
-        CompanyEmailRepo companyEmailRepo = new(_context);
-        CompanyPhoneRepo companyPhoneRepo = new(_context);
-        CompanyAddressRepo companyAddressRepo = new(_context);
+
 
         var company = await _repo.GetAsync(id);
+        if(company == null)
+            throw new Exception("Company not found");
+        
+        string companyTypeName = string.Empty;
+        string companyClassName = string.Empty;
+        string companyLegalForm = string.Empty;
+        string placeOfRegistration = string.Empty;
+        string city = string.Empty;
+        
+        if(company.CompanyTypeIdn.HasValue)
+        {
+            companyTypeName = await _dynamicListRepo.GetNameById(company.CompanyTypeIdn.Value);
+        }
+        if(company.CompanyClassIdn.HasValue)
+        {
+            companyClassName = await _dynamicListRepo.GetNameById(company.CompanyClassIdn.Value);
+        }
+        if(company.LegalTypeIdn.HasValue)
+        {
+            companyLegalForm = await _dynamicListRepo.GetNameById(company.LegalTypeIdn.Value);
+        }
+        if(company.PlaceOfRegistrationMainIdn.HasValue)
+        {
+            placeOfRegistration = await _dynamicListRepo.GetNameById(company.PlaceOfRegistrationMainIdn.Value);
+        }
+        if(company.PlaceOfRegistrationSubIdn.HasValue)
+        {
+            city = await _dynamicListRepo.GetNameById(company.PlaceOfRegistrationSubIdn.Value);
+        }
 
-        var companyEmails = await companyEmailRepo.GetListByCompanyId(id);
-        var companyPhones = await companyPhoneRepo.GetListByCompanyId(id);
-        var companyAddress = await companyAddressRepo.GetListByCompanyId(id);
+        var companyActivies = await _companyActivityRepo.GetListByCompanyId(company.Id);
+        Dictionary<int, string> companyActivitiesDynamicList = new Dictionary<int, string>();
+        
+        if(companyActivies != null && companyActivies.Count > 0)
+        {
+            companyActivitiesDynamicList = await _dynamicListRepo.GetDictionaryByIds(companyActivies.Select(x=>x.Activity).ToList());
 
+        }
         var document = Document.Create(container =>
         {
             container.Page(page =>
@@ -174,45 +222,30 @@ public class CompanyService : GenericService<Company>, ICompanyService
                                         .FontColor(Colors.White)
                                         .Bold();
 
+                        column.Item().Text($"Incorporation Date: {company.IncorporationDate}");
                         column.Item().Text($"Name En: {company.CompanyEnglishName}");
                         column.Item().Text($"Name Ar: {company.CompanyArabicName}");
                         column.Item().Text($"Short Name: {company.CompanyShortName}");
+                        column.Item().Text($"Company Type: {companyTypeName}");
+                        column.Item().Text($"Company Class: {companyClassName}");
+                        column.Item().Text($"Legal Form: {companyLegalForm}");
+                        column.Item().Text($"Place Of Registration: {placeOfRegistration}");
+                        column.Item().Text($"City: {city}");
+                        column.Item().Text($"Total Shared: {company.TotalShares}");
+                        column.Item().Text($"Amount: {company.CapitalAmount}");
+                        column.Item().Text($"Number Of Partners: {company.NumberOfPartners}");
 
                         column.Item().Padding(10).Text(string.Empty);
 
-
-                        column.Item().Padding(10).Text(string.Empty);
-
-
-                        column.Item().Padding(10).Text(string.Empty);
-
-                        column.CreateTable(companyPhones, new List<PdfDisplayColumn>()
+                        column.CreateTable(companyActivies, new List<PdfDisplayColumn>()
                             {
-                                    new PdfDisplayColumn("Type", nameof(CompanyPhone.PhoneType)),
-                                    new PdfDisplayColumn("Phone Number", nameof(CompanyPhone.PhoneNumber)),
-                                    new PdfDisplayColumn("Phone Primary", nameof(CompanyPhone.PhonePrimary)),
-                            }, "Phones");
+                                    new PdfDisplayColumn("Activity", nameof(CompanyActivity.Activity) , companyActivitiesDynamicList),
+                            }, "Activities" );
 
                         column.Item().Padding(10).Text(string.Empty);
 
-                        column.CreateTable(companyEmails, new List<PdfDisplayColumn>()
-                            {
-                                    new PdfDisplayColumn("Email Primary", nameof(CompanyEmail.EmailPrimary)),
-                                    new PdfDisplayColumn("Email", nameof(CompanyEmail.Email)),
-                            }, "Emails");
 
-                        column.Item().Padding(10).Text(string.Empty);
 
-                        column.CreateTable(companyAddress, new List<PdfDisplayColumn>()
-                            {
-                                    new PdfDisplayColumn("Address Primary", nameof(CompanyAddress.AddressPrimary)),
-                                    new PdfDisplayColumn("Address 1", nameof(CompanyAddress.AddressLine1)),
-                                    new PdfDisplayColumn("Address 2", nameof(CompanyAddress.AddressLine2)),
-                                    new PdfDisplayColumn("Address 3", nameof(CompanyAddress.AddressLine3)),
-                                    new PdfDisplayColumn("PO Box Numeber", nameof(CompanyAddress.PoBoxNumber)),
-                                    new PdfDisplayColumn("PO Box City", nameof(CompanyAddress.PoBoxCity)),
-                                    new PdfDisplayColumn("PO Box Country", nameof(CompanyAddress.PoBoxCountry)),
-                            }, "Addresses");
                     });
             });
         });

@@ -11,4 +11,9 @@ public class CreateCompanyLicenseHandler : CreateBaseCommandHandler<CompanyLicen
     public CreateCompanyLicenseHandler(ICompanyLicenseService service, IMapper mapper) : base(service, mapper)
     {
     }
+
+    public override async Task<int> Handle(CreateCompanyLicenseCommand command, CancellationToken cancellationToken)
+    {
+        return await _service.CreateCompanyLicense(command);
+    }
 }

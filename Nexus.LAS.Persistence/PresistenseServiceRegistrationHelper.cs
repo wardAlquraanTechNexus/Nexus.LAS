@@ -17,6 +17,7 @@ using Nexus.LAS.Persistence.Repositories.LawFirmRepositories;
 using Nexus.LAS.Persistence.Services;
 using Nexus.LAS.Persistence.Services.TransactionServices;
 using Nexus.LAS.Persistence.Services.LawFirmServices;
+using Nexus.LAS.Persistence.Repositories.RegisterFileRepositories;
 
 namespace Nexus.LAS.Persistence
 {

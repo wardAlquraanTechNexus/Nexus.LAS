@@ -8,5 +8,6 @@ namespace Nexus.LAS.Application.Contracts.Presistence._Repositories
     {
         Task<List<RegisterFile>> GetByIds(string idc, int idn);
         Task<int> CreateAsync(RegisterFile entity, IFormFile file);
+        Task DeleteAsync(string registersIdc, int registersIdn);
     }
 }
