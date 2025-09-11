@@ -207,7 +207,7 @@ BEGIN
            @systemUser as [CreatedBy], @currentDatetime as [CreatedAt], 
            NULL as [ModifiedBy], NULL as [ModifiedAt], 0 as [IsDeleted], NULL as [DeletedBy], NULL as [DeletedAt]
     FROM [dbo].[Menus] m
-    WHERE m.[id] BETWEEN 1 AND 46;
+    WHERE m.[id] BETWEEN 1 AND 47;
     
     SET IDENTITY_INSERT [dbo].[GroupsMenus] OFF
     PRINT 'Group menu permissions seeded successfully.'

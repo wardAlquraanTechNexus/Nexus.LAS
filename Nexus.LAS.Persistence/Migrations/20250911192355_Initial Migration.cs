@@ -23,26 +23,22 @@ namespace Nexus.LAS.Persistence.Migrations
                     CompanyEnglishName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     CompanyArabicName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     CompanyShortName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    CompanyTypeIdn = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    CompanyType = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    CompanyClassIdn = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    CompanyClass = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    GroupCompany = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    RelevantCompany = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    LegalType = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    CciNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    CompanyTypeIdn = table.Column<int>(type: "int", nullable: true),
+                    CompanyClassIdn = table.Column<int>(type: "int", nullable: true),
+                    GroupCompanyIdn = table.Column<int>(type: "int", nullable: true),
+                    RelevantCompanyIdn = table.Column<int>(type: "int", nullable: true),
+                    LegalTypeIdn = table.Column<int>(type: "int", nullable: true),
+                    CciNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CciIssueDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CciExpiryDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CciExpiryActiveReminder = table.Column<bool>(type: "bit", nullable: true),
-                    PlaceOfRegistrationMainIdn = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    PlaceOfRegistrationMain = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    PlaceOfRegistrationSubIdn = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    PlaceOfRegistrationSub = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    PlaceOfRegistrationMainIdn = table.Column<int>(type: "int", nullable: true),
+                    PlaceOfRegistrationSubIdn = table.Column<int>(type: "int", nullable: true),
                     CapitalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     TotalShares = table.Column<long>(type: "bigint", nullable: true),
                     NumberOfPartners = table.Column<int>(type: "int", nullable: true),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdateDescription = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    UpdateDescription = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Persons_IDN = table.Column<int>(type: "int", nullable: true),
                     CompanyStatus = table.Column<int>(type: "int", nullable: false),
                     Private = table.Column<bool>(type: "bit", nullable: false),
@@ -68,11 +64,12 @@ namespace Nexus.LAS.Persistence.Migrations
                     CompaniesAccountSignatoryIDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CompaniesBankAccount_IDN = table.Column<int>(type: "int", nullable: false),
                     AccountSignatoryPerson_IDN = table.Column<int>(type: "int", nullable: false),
-                    AccountSignatoryRule = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    AccountSignatoryRule = table.Column<int>(type: "int", nullable: false),
                     FromAmount = table.Column<long>(type: "bigint", nullable: false),
                     ToAmount = table.Column<long>(type: "bigint", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AccountSignatoryDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CessationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     AccountSignatoryActive = table.Column<bool>(type: "bit", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -91,11 +88,11 @@ namespace Nexus.LAS.Persistence.Migrations
                 name: "CompaniesActivities",
                 columns: table => new
                 {
-                    CompaniesActivityIDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CompaniesActivityIDN = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CompaniesActivityIDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Companies_IDN = table.Column<int>(type: "int", nullable: false),
-                    Activity = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Activity = table.Column<int>(type: "int", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -106,16 +103,16 @@ namespace Nexus.LAS.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CompaniesActivities", x => new { x.CompaniesActivityIDC, x.CompaniesActivityIDN });
+                    table.PrimaryKey("PK_CompaniesActivities", x => x.CompaniesActivityIDN);
                 });
 
             migrationBuilder.CreateTable(
                 name: "CompaniesAddresses",
                 columns: table => new
                 {
-                    CompaniesAddressIDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CompaniesAddressIDN = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CompaniesAddressIDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Companies_IDN = table.Column<int>(type: "int", nullable: false),
                     AddressPrimary = table.Column<bool>(type: "bit", nullable: false),
                     AddressLine1 = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
@@ -134,16 +131,16 @@ namespace Nexus.LAS.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CompaniesAddresses", x => new { x.CompaniesAddressIDC, x.CompaniesAddressIDN });
+                    table.PrimaryKey("PK_CompaniesAddresses", x => x.CompaniesAddressIDN);
                 });
 
             migrationBuilder.CreateTable(
                 name: "CompaniesAuthorizedSignatories",
                 columns: table => new
                 {
-                    CompaniesAuthorizedSignatoryIDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CompaniesAuthorizedSignatoryIDN = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CompaniesAuthorizedSignatoryIDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Companies_IDN = table.Column<int>(type: "int", nullable: false),
                     Persons_IDN = table.Column<int>(type: "int", nullable: true),
                     POAType = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
@@ -158,16 +155,16 @@ namespace Nexus.LAS.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CompaniesAuthorizedSignatories", x => new { x.CompaniesAuthorizedSignatoryIDC, x.CompaniesAuthorizedSignatoryIDN });
+                    table.PrimaryKey("PK_CompaniesAuthorizedSignatories", x => x.CompaniesAuthorizedSignatoryIDN);
                 });
 
             migrationBuilder.CreateTable(
                 name: "CompaniesBankAccount",
                 columns: table => new
                 {
-                    CompaniesBankAccountIDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CompaniesBankAccountIDN = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CompaniesBankAccountIDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Companies_IDN = table.Column<int>(type: "int", nullable: false),
                     BankName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     AccountNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
@@ -184,23 +181,22 @@ namespace Nexus.LAS.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CompaniesBankAccount", x => new { x.CompaniesBankAccountIDC, x.CompaniesBankAccountIDN });
+                    table.PrimaryKey("PK_CompaniesBankAccount", x => x.CompaniesBankAccountIDN);
                 });
 
             migrationBuilder.CreateTable(
                 name: "CompaniesBoardMembers",
                 columns: table => new
                 {
-                    CompaniesBoardMemberIDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CompaniesBoardMemberIDN = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CompaniesBoards_IDN = table.Column<int>(type: "int", nullable: true),
-                    Person_IDN = table.Column<int>(type: "int", nullable: false),
-                    BoardMemberPosition = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    MemberAppointmentDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    MemberCessationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    BoardMemberActive = table.Column<bool>(type: "bit", nullable: true),
+                    CompaniesBoardMemberIDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Companies_IDN = table.Column<int>(type: "int", nullable: false),
+                    Person_IDN = table.Column<int>(type: "int", nullable: false),
+                    BoardMemberPosition = table.Column<int>(type: "int", nullable: false),
+                    MemberAppointmentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    MemberCessationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    BoardMemberActive = table.Column<bool>(type: "bit", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -211,16 +207,16 @@ namespace Nexus.LAS.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CompaniesBoardMembers", x => new { x.CompaniesBoardMemberIDC, x.CompaniesBoardMemberIDN });
+                    table.PrimaryKey("PK_CompaniesBoardMembers", x => x.CompaniesBoardMemberIDN);
                 });
 
             migrationBuilder.CreateTable(
                 name: "CompaniesBoards",
                 columns: table => new
                 {
-                    CompaniesBoardIDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CompaniesBoardIDN = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CompaniesBoardIDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Companies_IDN = table.Column<int>(type: "int", nullable: false),
                     BoardDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     BoardActive = table.Column<bool>(type: "bit", nullable: false),
@@ -234,26 +230,26 @@ namespace Nexus.LAS.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CompaniesBoards", x => new { x.CompaniesBoardIDC, x.CompaniesBoardIDN });
+                    table.PrimaryKey("PK_CompaniesBoards", x => x.CompaniesBoardIDN);
                 });
 
             migrationBuilder.CreateTable(
                 name: "CompaniesCapitals",
                 columns: table => new
                 {
-                    CompaniesCapitalIDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CompaniesCapitalIDN = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CompaniesCapitalIdc = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Companies_IDN = table.Column<int>(type: "int", nullable: false),
                     CompaniesCapitalDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CompaniesCapitalAmount = table.Column<double>(type: "float", nullable: true),
                     NominalValueOfShare = table.Column<double>(type: "float", nullable: true),
-                    ClassOfSahres = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    ClassOfShares = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CompaniesCapitalNumberOfShares = table.Column<long>(type: "bigint", nullable: true),
                     CompaniesCapitalAuthorized = table.Column<double>(type: "float", nullable: true),
                     CompaniesCapitalPaid = table.Column<double>(type: "float", nullable: true),
                     CompaniesCapitalIssuedShares = table.Column<long>(type: "bigint", nullable: true),
-                    CompaniesCapitalCurrency = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    CompaniesCapitalCurrency = table.Column<int>(type: "int", nullable: false),
                     CompaniesCapitalActive = table.Column<bool>(type: "bit", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -265,23 +261,23 @@ namespace Nexus.LAS.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CompaniesCapitals", x => new { x.CompaniesCapitalIDC, x.CompaniesCapitalIDN });
+                    table.PrimaryKey("PK_CompaniesCapitals", x => x.CompaniesCapitalIDN);
                 });
 
             migrationBuilder.CreateTable(
                 name: "CompaniesChamberOfCommerces",
                 columns: table => new
                 {
-                    CompaniesChamberOfCommerceIDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CompaniesChamberOfCommerceIDN = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CompaniesChamberOfCommerceIDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Companies_IDN = table.Column<int>(type: "int", nullable: false),
                     CCINumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CCIIssueDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CCIExpiryDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CCIExpiryActiveReminder = table.Column<bool>(type: "bit", nullable: true),
-                    CCIUsername = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    CCIPassword = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    CCIExpiryActiveReminder = table.Column<bool>(type: "bit", nullable: false),
+                    CCIUsername = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    CCIPassword = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -292,24 +288,24 @@ namespace Nexus.LAS.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CompaniesChamberOfCommerces", x => new { x.CompaniesChamberOfCommerceIDC, x.CompaniesChamberOfCommerceIDN });
+                    table.PrimaryKey("PK_CompaniesChamberOfCommerces", x => x.CompaniesChamberOfCommerceIDN);
                 });
 
             migrationBuilder.CreateTable(
                 name: "CompaniesContracts",
                 columns: table => new
                 {
-                    CompaniesContractIDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CompaniesContractIDN = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CompaniesContractIDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Companies_IDN = table.Column<int>(type: "int", nullable: false),
-                    ContractType = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    ContractType = table.Column<int>(type: "int", nullable: true),
                     DocumentDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CommencementDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CommencementDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ContractExpiryDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ContractExpiryActiveReminder = table.Column<bool>(type: "bit", nullable: true),
-                    ContractDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ContractStatus = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    ContractDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ContractStatus = table.Column<int>(type: "int", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -320,16 +316,16 @@ namespace Nexus.LAS.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CompaniesContracts", x => new { x.CompaniesContractIDC, x.CompaniesContractIDN });
+                    table.PrimaryKey("PK_CompaniesContracts", x => x.CompaniesContractIDN);
                 });
 
             migrationBuilder.CreateTable(
                 name: "CompaniesEmails",
                 columns: table => new
                 {
-                    CompaniesEmailIDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CompaniesEmailIDN = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CompaniesEmailIDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Companies_IDN = table.Column<int>(type: "int", nullable: false),
                     EmailPrimary = table.Column<bool>(type: "bit", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
@@ -343,7 +339,7 @@ namespace Nexus.LAS.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CompaniesEmails", x => new { x.CompaniesEmailIDC, x.CompaniesEmailIDN });
+                    table.PrimaryKey("PK_CompaniesEmails", x => x.CompaniesEmailIDN);
                 });
 
             migrationBuilder.CreateTable(
@@ -364,16 +360,16 @@ namespace Nexus.LAS.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CompaniesLeaseContractRegisters", x => new { x.CompaniesLeaseContracts_IDN, x.LeaseRegisters_IDC });
+                    table.PrimaryKey("PK_CompaniesLeaseContractRegisters", x => x.CompaniesLeaseContracts_IDN);
                 });
 
             migrationBuilder.CreateTable(
                 name: "CompaniesLeaseContracts",
                 columns: table => new
                 {
-                    CompaniesLeaseContractIDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CompaniesLeaseContractIDN = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CompaniesLeaseContractIDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Companies_IDN = table.Column<int>(type: "int", nullable: false),
                     CommencementDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LeaseContractExpiryDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -388,24 +384,24 @@ namespace Nexus.LAS.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CompaniesLeaseContracts", x => new { x.CompaniesLeaseContractIDC, x.CompaniesLeaseContractIDN });
+                    table.PrimaryKey("PK_CompaniesLeaseContracts", x => x.CompaniesLeaseContractIDN);
                 });
 
             migrationBuilder.CreateTable(
                 name: "CompaniesLicenses",
                 columns: table => new
                 {
-                    CompaniesLicenseIDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CompaniesLicenseIDN = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CompaniesLicenseIDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Companies_IDN = table.Column<int>(type: "int", nullable: false),
                     LicensePrimary = table.Column<bool>(type: "bit", nullable: false),
-                    LicenseStatus = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    LicenseStatus = table.Column<int>(type: "int", maxLength: 50, nullable: false),
                     LicenseClassification = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     LicenseNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     LicenseIssueDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LicenseExpiryDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LicenseExpiryActiveReminder = table.Column<bool>(type: "bit", nullable: true),
+                    LicenseExpiryActiveReminder = table.Column<bool>(type: "bit", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -416,16 +412,16 @@ namespace Nexus.LAS.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CompaniesLicenses", x => new { x.CompaniesLicenseIDC, x.CompaniesLicenseIDN });
+                    table.PrimaryKey("PK_CompaniesLicenses", x => x.CompaniesLicenseIDN);
                 });
 
             migrationBuilder.CreateTable(
                 name: "CompaniesOtherContracts",
                 columns: table => new
                 {
-                    CompaniesOtherContractIDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CompaniesOtherContractIDN = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CompaniesOtherContractIDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Companies_IDN = table.Column<int>(type: "int", nullable: false),
                     ContractDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ContractDescription = table.Column<string>(type: "nvarchar(4000)", maxLength: 4000, nullable: false),
@@ -439,48 +435,20 @@ namespace Nexus.LAS.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CompaniesOtherContracts", x => new { x.CompaniesOtherContractIDC, x.CompaniesOtherContractIDN });
-                });
-
-            migrationBuilder.CreateTable(
-                name: "CompaniesPersonInCharges",
-                columns: table => new
-                {
-                    CompaniesPersonInChargeIDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    CompaniesPersonInChargeIDN = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Companies_IDN = table.Column<int>(type: "int", nullable: false),
-                    Persons_IDN = table.Column<int>(type: "int", nullable: false),
-                    Designation = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    AuthorityRule = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Notes = table.Column<string>(type: "nvarchar(4000)", maxLength: 4000, nullable: false),
-                    PersonInChargeDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CessationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    PersonInChargeActive = table.Column<bool>(type: "bit", nullable: true),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    DeletedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CompaniesPersonInCharges", x => new { x.CompaniesPersonInChargeIDC, x.CompaniesPersonInChargeIDN });
+                    table.PrimaryKey("PK_CompaniesOtherContracts", x => x.CompaniesOtherContractIDN);
                 });
 
             migrationBuilder.CreateTable(
                 name: "CompaniesPhones",
                 columns: table => new
                 {
-                    CompaniesPhoneIDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CompaniesPhoneIDN = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CompaniesPhoneIDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Companies_IDN = table.Column<int>(type: "int", nullable: true),
                     PhonePrimary = table.Column<bool>(type: "bit", nullable: true),
                     PhoneType = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(14)", maxLength: 14, nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -491,23 +459,22 @@ namespace Nexus.LAS.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CompaniesPhones", x => new { x.CompaniesPhoneIDC, x.CompaniesPhoneIDN });
+                    table.PrimaryKey("PK_CompaniesPhones", x => x.CompaniesPhoneIDN);
                 });
 
             migrationBuilder.CreateTable(
                 name: "CompaniesShareHolders",
                 columns: table => new
                 {
-                    CompaniesShareHolderIDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CompaniesShareHolderIDN = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CompaniesShareHoldersGroups_IDN = table.Column<int>(type: "int", nullable: true),
+                    CompaniesShareHolderIDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Registers_IDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Registers_IDN = table.Column<int>(type: "int", nullable: false),
-                    ShareHolderNumbersOfShares = table.Column<long>(type: "bigint", nullable: true),
+                    ShareHolderNumbersOfShares = table.Column<long>(type: "bigint", nullable: false),
                     ShareHolderDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ShareHolderCessationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ShareHolderActive = table.Column<bool>(type: "bit", nullable: true),
+                    ShareHolderActive = table.Column<bool>(type: "bit", nullable: false),
                     Companies_IDN = table.Column<int>(type: "int", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -519,16 +486,16 @@ namespace Nexus.LAS.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CompaniesShareHolders", x => new { x.CompaniesShareHolderIDC, x.CompaniesShareHolderIDN });
+                    table.PrimaryKey("PK_CompaniesShareHolders", x => x.CompaniesShareHolderIDN);
                 });
 
             migrationBuilder.CreateTable(
                 name: "CompaniesShareHoldersGroups",
                 columns: table => new
                 {
-                    CompaniesShareHoldersGroupIDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CompaniesShareHoldersGroupIDN = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CompaniesShareHoldersGroupIDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Companies_IDN = table.Column<int>(type: "int", nullable: false),
                     ShareHolderGroupDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ShareHolderGroupActive = table.Column<bool>(type: "bit", nullable: false),
@@ -542,7 +509,7 @@ namespace Nexus.LAS.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CompaniesShareHoldersGroups", x => new { x.CompaniesShareHoldersGroupIDC, x.CompaniesShareHoldersGroupIDN });
+                    table.PrimaryKey("PK_CompaniesShareHoldersGroups", x => x.CompaniesShareHoldersGroupIDN);
                 });
 
             migrationBuilder.CreateTable(
@@ -891,7 +858,7 @@ namespace Nexus.LAS.Persistence.Migrations
                     Fax = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Email1 = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Email2 = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    BranchPrimary = table.Column<bool>(type: "bit", nullable: true),
+                    BranchPrimary = table.Column<bool>(type: "bit", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -977,6 +944,11 @@ namespace Nexus.LAS.Persistence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Menus", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_Menus_Menus_ParentID",
+                        column: x => x.ParentID,
+                        principalTable: "Menus",
+                        principalColumn: "id");
                 });
 
             migrationBuilder.CreateTable(
@@ -1161,7 +1133,7 @@ namespace Nexus.LAS.Persistence.Migrations
                     Persons_IDN = table.Column<int>(type: "int", nullable: true),
                     PhonePrimary = table.Column<bool>(type: "bit", nullable: true),
                     PhoneType = table.Column<int>(type: "int", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(14)", maxLength: 14, nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -1599,6 +1571,40 @@ namespace Nexus.LAS.Persistence.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "CompaniesPersonInCharges",
+                columns: table => new
+                {
+                    CompaniesPersonInChargeIDN = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CompaniesPersonInChargeIDC = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Companies_IDN = table.Column<int>(type: "int", nullable: false),
+                    Persons_IDN = table.Column<int>(type: "int", nullable: false),
+                    Designation = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    AuthorityRule = table.Column<int>(type: "int", nullable: true),
+                    Notes = table.Column<string>(type: "nvarchar(4000)", maxLength: 4000, nullable: true),
+                    PersonInChargeDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CessationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    PersonInChargeActive = table.Column<bool>(type: "bit", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    DeletedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CompaniesPersonInCharges", x => x.CompaniesPersonInChargeIDN);
+                    table.ForeignKey(
+                        name: "FK_CompaniesPersonInCharges_Persons_Persons_IDN",
+                        column: x => x.Persons_IDN,
+                        principalTable: "Persons",
+                        principalColumn: "PersonIDN",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Companies_CompanyArabicName_Unique",
                 table: "Companies",
@@ -1618,6 +1624,11 @@ namespace Nexus.LAS.Persistence.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_CompaniesPersonInCharges_Persons_IDN",
+                table: "CompaniesPersonInCharges",
+                column: "Persons_IDN");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_GroupsMenus_GroupID",
                 table: "GroupsMenus",
                 column: "GroupID");
@@ -1626,6 +1637,11 @@ namespace Nexus.LAS.Persistence.Migrations
                 name: "IX_GroupsMenus_MenuID",
                 table: "GroupsMenus",
                 column: "MenuID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Menus_ParentID",
+                table: "Menus",
+                column: "ParentID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Persons_PersonArabicName_Unique",
@@ -1770,9 +1786,6 @@ namespace Nexus.LAS.Persistence.Migrations
                 name: "Numbers");
 
             migrationBuilder.DropTable(
-                name: "Persons");
-
-            migrationBuilder.DropTable(
                 name: "PersonsAddresses");
 
             migrationBuilder.DropTable(
@@ -1834,6 +1847,9 @@ namespace Nexus.LAS.Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "Persons");
 
             migrationBuilder.DropTable(
                 name: "Groups");
