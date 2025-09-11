@@ -54,4 +54,11 @@ public class CompanyShareHolderController : GenericController<ICompanyShareHolde
         return Ok(await _mediator.Send(command));
     }
 
+    [HttpGet(nameof(GetShareholderAssets))]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Get)]
+    public async Task<IActionResult> GetShareholderAssets([FromQuery] GetShareholderAssetsQuery query)
+    {
+        var result = await _mediator.Send(query);
+        return Ok(result);
+    }
 }

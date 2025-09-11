@@ -7,7 +7,7 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
 {
     [Table("CompaniesShareHolders")]
 
-    public class CompanyShareHolder:BaseEntity
+    public class CompanyShareHolder : BaseEntity
     {
         [Required]
         [MaxLength(50)]
@@ -41,5 +41,7 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
         [Required]
         [Column("Companies_IDN")]
         public int CompanyId { get; set; }
+        
+        public Company Company { get; set; }
     }
 }

@@ -156,7 +156,6 @@ public class PersonRepo : GenericRepo<Person>, IPersonRepo
 
     public override async Task<int> CreateAsync(Person entity)
     {
-        entity.PersonIdc = "PP000000";
         entity.PersonCode = "PP000000";
         entity.PersonStatus = (int)PersonStatus.New;
         await _dbSet.AddAsync(entity);

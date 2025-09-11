@@ -2,6 +2,7 @@
 using Nexus.LAS.Application.Contracts.Presistence._Repositories._CompanyRepos;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.DTOs.Base;
+using Nexus.LAS.Application.DTOs.CompanyDTOs;
 using Nexus.LAS.Application.DTOs.CompanyShareHolderDTOs;
 using Nexus.LAS.Application.UseCases.CompanyShareHolderUseCases.Queries;
 using Nexus.LAS.Domain.Entities.CompanyEntities;
@@ -23,6 +24,10 @@ public class CompanyShareHolderService : GenericService<CompanyShareHolder> , IC
     public async Task<PagingResult<CompanyShareHolderDto>> SearhDtoAsync(GetPagingCompanyShareHolderQuery query)
     {
         return await _repo.SearhDtoAsync(query);
+    }
+    public async Task<PagingResult<AssetsShareholderDto>> GetShareholderAssets(GetShareholderAssetsQuery query)
+    {
+        return await _repo.GetShareholderAssets(query);
     }
 
     public async Task<long> SumActiveSharesAsync(int company, int? excludeShareHolderId = null)
