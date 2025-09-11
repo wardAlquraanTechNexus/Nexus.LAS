@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Nexus.LAS.Identity.IdentityDbContext;
 
@@ -11,9 +12,11 @@ using Nexus.LAS.Identity.IdentityDbContext;
 namespace Nexus.LAS.Identity.Migrations
 {
     [DbContext(typeof(NexusLASIdentityDbContext))]
-    partial class NexusLASIdentityDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250911092018_RefreshToken table")]
+    partial class RefreshTokentable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

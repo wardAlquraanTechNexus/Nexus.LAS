@@ -11,6 +11,24 @@ namespace Nexus.LAS.Application.UseCases.CompanyAccountSignatoryUseCases.Command
         public long ToAmount { get; set; }
         public string? Description { get; set; }
         public DateTime? AccountSignatoryDate { get; set; }
-        public bool? AccountSignatoryActive { get; set; }
+        public DateTime? CessationDate
+        {
+            get => _cessationDate;
+            set
+            {
+                _cessationDate = value;
+                if (_cessationDate == null)
+                {
+                    AccountSignatoryActive = true;
+                }
+                else
+                {
+                    AccountSignatoryActive = false;
+                }
+            }
+        }
+        public DateTime? _cessationDate;
+
+        public bool? AccountSignatoryActive;
     }
 }

@@ -39,11 +39,11 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
 
         [MaxLength(50)]
         [Column("CCIUsername")]
-        public string CciUsername { get; set; }
+        public string? CciUsername { get; set; }
 
         [MaxLength(50)]
         [Column("CCIPassword")]
-        public string CciPassword { get; set; }
+        public string? CciPassword { get; set; }
 
     }
 }

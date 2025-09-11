@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.Identity;
-using Nexus.LAS.Domain.Entities;
+using Nexus.LAS.Domain.Entities.EntityFrameworkModels;
 using Nexus.LAS.Identity.IdentityDbContext;
 using Nexus.LAS.Identity.Services;
 using System.Text;

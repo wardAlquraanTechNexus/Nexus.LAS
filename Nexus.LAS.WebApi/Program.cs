@@ -55,9 +55,11 @@ builder.Services.AddHealthChecks()
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("all", policy => policy
-        .AllowAnyOrigin()
+        .WithOrigins("http://localhost:4200")
         .AllowAnyHeader()
-        .AllowAnyMethod());
+        .AllowAnyMethod()
+        .AllowCredentials()
+    );
 });
 
 // Add Response Caching

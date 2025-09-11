@@ -18,24 +18,24 @@ public class CreateCompanyShareHolderCommand : CreateBaseCommand
 
     public DateTime? ShareHolderDate { get; set; }
 
-    public DateTime? CessationDate { get; set; }
-
-    public bool ShareHolderActive {
-        get => _shareHolderActive;
+    public DateTime? CessationDate {
+        get => _cessationDate;
         set
         {
-            _shareHolderActive = value;
-            if (value)
+            _cessationDate = value;
+            if (value != null )
             {
-                CessationDate = null;
+                ShareHolderActive = false;
             }
             else
             {
-                CessationDate = DateTime.Now;
+                ShareHolderActive = true;
             }
         }
     }
-    private bool _shareHolderActive;
+    public DateTime? _cessationDate;
+
+    public bool ShareHolderActive { get; set; }
 
     public int CompanyId { get; set; }
 }

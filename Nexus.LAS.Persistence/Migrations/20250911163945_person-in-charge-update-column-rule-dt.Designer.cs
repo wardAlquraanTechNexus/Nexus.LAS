@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Nexus.LAS.Persistence.DatabaseContext;
 
@@ -11,9 +12,11 @@ using Nexus.LAS.Persistence.DatabaseContext;
 namespace Nexus.LAS.Persistence.Migrations
 {
     [DbContext(typeof(NexusLASDbContext))]
-    partial class NexusLASDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250911163945_person-in-charge-update-column-rule-dt")]
+    partial class personinchargeupdatecolumnruledt
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -395,9 +398,6 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("AccountSignatoryDate");
 
-                    b.Property<DateTime?>("CessationDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("CompaniesAccountSignatoryIdc")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -724,7 +724,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("AppointmentDate")
+                    b.Property<DateTime?>("AppointmentDate")
                         .HasColumnType("datetime2")
                         .HasColumnName("MemberAppointmentDate");
 
@@ -894,11 +894,13 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnName("CCINumber");
 
                     b.Property<string>("CciPassword")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("CCIPassword");
 
                     b.Property<string>("CciUsername")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("CCIUsername");
@@ -949,7 +951,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CommencementDate")
+                    b.Property<DateTime?>("CommencementDate")
                         .HasColumnType("datetime2")
                         .HasColumnName("CommencementDate");
 
@@ -964,6 +966,7 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnName("Companies_IDN");
 
                     b.Property<string>("ContractDescription")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("ContractDescription");
 
@@ -975,11 +978,11 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("ContractExpiryDate");
 
-                    b.Property<int?>("ContractStatus")
+                    b.Property<int>("ContractStatus")
                         .HasColumnType("int")
                         .HasColumnName("ContractStatus");
 
-                    b.Property<int?>("ContractType")
+                    b.Property<int>("ContractType")
                         .HasColumnType("int")
                         .HasColumnName("ContractType");
 

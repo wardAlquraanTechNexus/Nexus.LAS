@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Nexus.LAS.Application.Contracts.Identity;
@@ -6,15 +7,16 @@ using Nexus.LAS.Application.Contracts.Logging;
 using Nexus.LAS.Application.Exceptions;
 using Nexus.LAS.Application.Identity;
 using Nexus.LAS.Domain.Constants;
-using Nexus.LAS.Domain.Entities;
+using Nexus.LAS.Domain.Entities.EntityFrameworkModels;
 using Nexus.LAS.Identity.IdentityDbContext;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace Nexus.LAS.Identity.Services
 {
-    public class AuthService:IAuthService
+    public class AuthService : IAuthService
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
@@ -43,19 +45,24 @@ namespace Nexus.LAS.Identity.Services
             if (user == null)
             {
                 user = await _userManager.FindByEmailAsync(request.Email);
-                if(user is null)
+                if (user is null)
                     throw new BadRequestException($"Name with {request.Email} not found.");
             }
-            //if (!user.EmailConfirmed)
-            //{
-            //    throw new BadRequestException("Email address is not confirmed. Please confirm your email before logging in.");
-            //}
+
             var result = await _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
             if (result.Succeeded == false)
             {
                 throw new BadRequestException($"Credentials for User Name '{request.Email} aren't valid'.");
             }
 
+            AuthResponse response = await GetToken(user);
+
+            return response;
+
+        }
+
+        private async Task<AuthResponse> GetToken(ApplicationUser user)
+        {
             JwtSecurityToken jwtSecurityToken = await GenerateToken(user);
 
             var response = new AuthResponse
@@ -63,11 +70,22 @@ namespace Nexus.LAS.Identity.Services
                 Id = user.Id,
                 Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken),
                 Email = user.Email ?? string.Empty,
-                UserName = user.UserName ?? string.Empty
+                UserName = user.UserName ?? string.Empty,
             };
-
+            RefreshToken refreshToken;
+            if (user.RefreshTokens.Any(t => t.IsActive))
+            {
+                refreshToken = user.RefreshTokens.FirstOrDefault(t => t.IsActive)!;
+            }
+            else
+            {
+                refreshToken = GenerateRefreshToken();
+                user.RefreshTokens.Add(refreshToken);
+                await _userManager.UpdateAsync(user);
+            }
+            response.RefreshToken = refreshToken.Token;
+            response.RefreshTokenExpiration = refreshToken.ExpiresOn;
             return response;
-
         }
 
         public async Task<RegistrationResponse> Register(RegistrationRequest request)
@@ -142,5 +160,56 @@ namespace Nexus.LAS.Identity.Services
             return jwtSecurityToken;
         }
 
+
+        private RefreshToken GenerateRefreshToken()
+        {
+            var randomNumber = new byte[32];
+            using RNGCryptoServiceProvider generator = new RNGCryptoServiceProvider();
+            generator.GetBytes(randomNumber);
+            return new RefreshToken
+            {
+                Token = Convert.ToBase64String(randomNumber),
+                ExpiresOn = DateTime.UtcNow.AddMinutes(_jwtSettings.DurationInMinutes*2),
+                CreatedOn = DateTime.UtcNow
+            };
+
+        }
+
+        public async Task<AuthResponse> RefreshToken(string token)
+        {
+            var user = _userManager.Users.SingleOrDefault(u => u.RefreshTokens.Any(t => t.Token == token));
+            if (user == null)
+            {
+                throw new NotAuthorizedException("Invalid token");
+            }
+            var refreshToken = user.RefreshTokens.Single(x => x.Token == token);
+            if (!refreshToken.IsActive)
+            {
+                throw new NotAuthorizedException("Inactive token");
+            }
+            refreshToken.RevokedOn = DateTime.UtcNow;
+
+            var newRefreshToken = GenerateRefreshToken();
+            user.RefreshTokens.Add(newRefreshToken);
+            await _userManager.UpdateAsync(user);
+            return await GetToken(user);
+        }
+
+        public async Task<bool> RevokeTokenAsync(string token)
+        {
+            var user = await _userManager.Users.SingleOrDefaultAsync(u => u.RefreshTokens.Any(t => t.Token == token));
+            if(user is null)
+            {
+                return false;
+            }
+            var refreshToken = user.RefreshTokens.Single(x => x.Token == token);
+            if (!refreshToken.IsActive)
+            {
+                return false;
+            }
+            refreshToken.RevokedOn = DateTime.UtcNow;
+            await _userManager.UpdateAsync(user);
+            return true;
+        }
     }
 }

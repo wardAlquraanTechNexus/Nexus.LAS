@@ -6,12 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nexus.LAS.Domain.Entities
+namespace Nexus.LAS.Domain.Entities.EntityFrameworkModels
 {
     public class ApplicationUser: IdentityUser
     {
         public string FirstName { get; set; } = string.Empty;
         public string? LastName { get; set; }
         public string? ProfilePicture { get; set; }
+        public List<RefreshToken>? RefreshTokens { get; set; }
     }
 }

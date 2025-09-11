@@ -44,17 +44,22 @@ public class CompanyContractService : GenericService<CompanyContract> , ICompany
                 var companyContractId = await _repo.CreateAsync(companyContract);
 
 
-                RegisterFile registerFile = new RegisterFile
+                if(command.File is not null)
                 {
-                    RegistersIdc = EntityIDCs.CompaniesContracts,
-                    RegistersIdn = companyContractId,
-                    ContentType = command.File.ContentType,
-                    Name = command.File.FileName,
-                };
+
+                    RegisterFile registerFile = new RegisterFile
+                    {
+                        RegistersIdc = EntityIDCs.CompaniesContracts,
+                        RegistersIdn = companyContractId,
+                        ContentType = command.File.ContentType,
+                        Name = command.File.FileName,
+                    };
 
 
-                await _registerFileRepo.CreateAsync(registerFile, command.File);
+                    await _registerFileRepo.CreateAsync(registerFile, command.File);
 
+                }
+                    
                 await transaction.CommitAsync();
                 return companyContractId;
 

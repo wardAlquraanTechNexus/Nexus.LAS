@@ -16,7 +16,7 @@ public class CompanyPersonInChargeDto
     }
     public List<int> Designations { get; set; } = new();
     private string? _designation;
-    public int AuthorityRule { get; set; }
+    public int? AuthorityRule { get; set; }
     public string? Notes { get; set; }
     public DateTime? PersonInChargeDate { get; set; }
     public DateTime? CessationDate { get; set; }

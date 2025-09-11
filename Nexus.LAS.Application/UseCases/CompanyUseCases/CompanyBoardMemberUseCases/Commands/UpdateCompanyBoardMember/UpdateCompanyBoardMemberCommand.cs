@@ -10,21 +10,22 @@ public class UpdateCompanyBoardMemberCommand : UpdateBaseCommand
     public int PersonId { get; set; }
     public int Position { get; set; }
     public DateTime? AppointmentDate { get; set; }
-    public DateTime? CessationDate { get; set; }
-    public bool IsActive { 
-        get => _isActive;
+    public DateTime? CessationDate
+    {
+        get => _cessationDate;
         set
         {
-            _isActive = value;
-            if (value)
+            _cessationDate = value;
+            if (_cessationDate == null)
             {
-                CessationDate = null;
+                IsActive = true;
             }
             else
             {
-                CessationDate = DateTime.UtcNow;
+                IsActive = false;
             }
         }
     }
-    public bool _isActive;
+    public DateTime? _cessationDate;
+    public bool IsActive { get; set; }
 }

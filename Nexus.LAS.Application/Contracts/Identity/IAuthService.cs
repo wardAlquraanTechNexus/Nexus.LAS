@@ -11,5 +11,7 @@ namespace Nexus.LAS.Application.Contracts.Identity
     {
         Task<AuthResponse> Login(AuthRequest request);
         Task<RegistrationResponse> Register(RegistrationRequest request);
+        Task<AuthResponse> RefreshToken(string token);
+        Task<bool> RevokeTokenAsync(string token);
     }
 }

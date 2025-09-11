@@ -30,7 +30,7 @@ public class CompanyBoardMember:BaseEntity
     public int Position { get; set; }
 
     [Column("MemberAppointmentDate")]
-    public DateTime? AppointmentDate { get; set; }
+    public DateTime AppointmentDate { get; set; }
 
     [Column("MemberCessationDate")]
     public DateTime? CessationDate { get; set; }

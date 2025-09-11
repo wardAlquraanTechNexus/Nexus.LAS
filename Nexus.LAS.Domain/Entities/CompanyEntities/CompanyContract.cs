@@ -28,13 +28,13 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
         public int CompanyId { get; set; }
 
         [Column("ContractType")]
-        public int ContractType { get; set; }
+        public int? ContractType { get; set; }
 
         [Column("DocumentDate")]
         public DateTime? DocumentDate { get; set; }
 
         [Column("CommencementDate")]
-        public DateTime? CommencementDate { get; set; }
+        public DateTime CommencementDate { get; set; }
 
         [Column("ContractExpiryDate")]
         public DateTime? ContractExpiryDate { get; set; }
@@ -43,9 +43,9 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
         public bool? ContractExpiryActiveReminder { get; set; }
 
         [Column("ContractDescription")]
-        public string ContractDescription { get; set; }
+        public string? ContractDescription { get; set; }
 
         [Column("ContractStatus")]
-        public int ContractStatus { get; set; }
+        public int? ContractStatus { get; set; }
     }
 }

@@ -11,7 +11,7 @@ public class CreateCompanyChamberOfCommerceCommand : CreateBaseCommand
     public DateTime CciIssueDate { get; set; }
     public DateTime? CciExpiryDate { get; set; }
     public bool CciExpiryActiveReminder { get; set; }
-    public string CciUsername { get; set; }
-    public string CciPassword { get; set; }
-    public IFormFile File { get; set; }
+    public string? CciUsername { get; set; }
+    public string? CciPassword { get; set; }
+    public IFormFile? File { get; set; }
 }

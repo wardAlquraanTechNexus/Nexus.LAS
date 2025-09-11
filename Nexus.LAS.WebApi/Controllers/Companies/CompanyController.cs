@@ -36,9 +36,11 @@ public class CompanyController : GenericController<ICompanyService, Company>
         {
             Id = id
         };
+
         return Ok(await _mediator.Send(companyQuery));
     }
 
+  
 
     [HttpGet(nameof(GetCompanies))]
     [ApiMethodType(Domain.Constants.Enums.MethodType.Get)]

@@ -1,7 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Nexus.LAS.Domain.Entities;
+using Nexus.LAS.Domain.Entities.EntityFrameworkModels;
 
 
 namespace Nexus.LAS.Identity.IdentityDbContext

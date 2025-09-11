@@ -49,6 +49,7 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
 
         [Column("AccountSignatoryDate")]
         public DateTime? AccountSignatoryDate { get; set; }
+        public DateTime? CessationDate { get; set; }
 
         [Column("AccountSignatoryActive")]
         public bool? AccountSignatoryActive { get; set; }

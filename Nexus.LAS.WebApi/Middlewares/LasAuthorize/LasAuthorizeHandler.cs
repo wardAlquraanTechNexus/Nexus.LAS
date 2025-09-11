@@ -4,6 +4,7 @@ using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.Exceptions;
 using Nexus.LAS.WebApi.Attributes;
+using SendGrid.Helpers.Errors.Model;
 using System.Security.Claims;
 
 namespace Nexus.LAS.WebApi.Middlewares
@@ -30,6 +31,10 @@ namespace Nexus.LAS.WebApi.Middlewares
             }
 
             var userId = context.User.FindFirstValue("Username");
+            if (userId.IsNullOrEmpty())
+            {
+                throw new NotAuthorizedException();
+            }
             var pathname = httpContext.Request.Headers["pathname"].ToString();
             var endpoint = httpContext.GetEndpoint();
 
@@ -45,6 +50,9 @@ namespace Nexus.LAS.WebApi.Middlewares
 
             context.Succeed(requirement);
         }
+
+
+       
 
     }
 }

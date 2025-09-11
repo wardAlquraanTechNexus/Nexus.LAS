@@ -75,7 +75,7 @@ public class CompanyEntitiesProfile : Profile
 
 
         CreateMap<CompanyActivity, CompanyActivityDto>();
-        CreateMap<UpdateCompanyActivityCommand, CompanyActivity>();
+        CreateMap<CreateCompanyActivityCommand, CompanyActivity>();
         CreateMap<UpdateCompanyActivityCommand, CompanyActivity>();
 
 

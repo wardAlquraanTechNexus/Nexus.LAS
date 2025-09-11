@@ -5,7 +5,7 @@ public class UpsertCompanyPersonInChargeCommand
     public int? Id { get; set; }
     public int PersonsIdn { get; set; }
     public string Designation { get; set; }
-    public int AuthorityRule { get; set; }//Jointly, Single
+    public int? AuthorityRule { get; set; }//Jointly, Single
     public string Notes { get; set; }
     public DateTime? PersonInChargeDate { get; set; }
     public DateTime? CessationDate { get; set; }

@@ -19,7 +19,7 @@ public class CreateCompanyPersonInChargeCommand : CreateBaseCommand
     }
     public List<int> _designations;
 
-    public int AuthorityRule { get; set; }
+    public int? AuthorityRule { get; set; }
     public string? Notes { get; set; }
     public DateTime? PersonInChargeDate { get; set; }
     public DateTime? CessationDate { get; set; }
