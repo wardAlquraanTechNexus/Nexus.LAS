@@ -1,4 +1,6 @@
-﻿namespace Nexus.LAS.Application.DTOs.PersonDTOs;
+﻿using Nexus.LAS.Domain.CommonAttributes;
+
+namespace Nexus.LAS.Application.DTOs.PersonDTOs;
 
 public class GetPersonsDto
 {
@@ -11,10 +13,14 @@ public class GetPersonsDto
     public int PersonStatus { get; set; }
     public string FPCCode { get; set; }
     public bool Private { get; set; }
-    
+
     // Auditing fields
+    [IgnoreOnExport]
     public string? CreatedBy { get; set; }
+    [IgnoreOnExport]
     public DateTime CreatedAt { get; set; }
+    [IgnoreOnExport]
     public string? ModifiedBy { get; set; }
+    [IgnoreOnExport]
     public DateTime? ModifiedAt { get; set; }
 }

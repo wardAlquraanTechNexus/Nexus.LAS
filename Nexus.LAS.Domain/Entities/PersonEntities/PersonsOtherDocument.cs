@@ -25,7 +25,7 @@ namespace Nexus.LAS.Domain.Entities.PersonEntities
         public int PersonsIdn { get; set; }
 
         [Column("DocumentType")]
-        public string DocumentType { get; set; } = null!;
+        public int? DocumentType { get; set; }
 
         [Column("DocumentDescription")]
         public string? DocumentDescription { get; set; }

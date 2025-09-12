@@ -29,7 +29,7 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
 
         [MaxLength(50)]
         [Column("Designation")]
-        public string Designation { get; set; }
+        public int Designation { get; set; }
 
         [Column("AuthorityRule")]
         public int? AuthorityRule { get; set; }

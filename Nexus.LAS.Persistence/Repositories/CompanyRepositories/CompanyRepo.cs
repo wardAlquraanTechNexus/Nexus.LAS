@@ -82,6 +82,8 @@ public class CompanyRepo : GenericRepo<Company>, ICompanyRepo
         entity.CompanyStatus = (int)CompanyStatus.New;
         await _dbSet.AddAsync(entity);
         await _context.SaveChangesAsync();
+        entity.CompanyCode = "CC" + entity.Id.ToString().PadLeft(6, '0');
+        await _context.SaveChangesAsync();
         return entity.Id;
     }
     public async Task<Company> UpdateCompanyAsync(Company entity)

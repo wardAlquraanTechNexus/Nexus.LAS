@@ -46,7 +46,6 @@ public class GetPersonsQuery: BaseParams , IRequest<PagingResult<GetPersonsDto>>
     }
     private string? _status;
 
-    public bool? IsLdStaff { get; set; }
     public List<int> Statuses { get; set; } = new();
     public string? OrderBy { get; set; }
     public string? OrderDir { get; set; }

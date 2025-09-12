@@ -59,12 +59,22 @@ namespace Nexus.LAS.WebApi.Controllers
         {
             return Ok(await _mediator.Send(personQuery));
         }
-        [HttpPost(nameof(CreatePerson))]
+        [NonAction]
+        public override Task<IActionResult> UpdateAsync(Person entity)
+        {
+            return base.UpdateAsync(entity);
+        }
+        [HttpPost]
         public async Task<IActionResult> CreatePerson([FromBody]CreatePersonCommand command)
         {
             return Ok(await _mediator.Send(command));
         }
-        [HttpPut(nameof(UpdatePerson))]
+        [NonAction]
+        public override Task<IActionResult> CreateAsync(Person entity)
+        {
+            return base.CreateAsync(entity);
+        }
+        [HttpPut]
         public async Task<IActionResult> UpdatePerson([FromBody]UpdatePersonCommand command)
         {
             return Ok(await _mediator.Send(command));

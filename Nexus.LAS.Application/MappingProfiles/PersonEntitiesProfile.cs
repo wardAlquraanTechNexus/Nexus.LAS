@@ -11,8 +11,8 @@ using Nexus.LAS.Application.UseCases.PersonAddressUseCases.Commands.UpdatePerson
 using Nexus.LAS.Application.UseCases.PersonEmailUseCases;
 using Nexus.LAS.Application.UseCases.PersonEmailUseCases.Commands.CreatePersonEmail;
 using Nexus.LAS.Application.UseCases.PersonEmailUseCases.Commands.UpdatePersonEmail;
-using Nexus.LAS.Application.UseCases.PersonIdDetail.Commands.CreatePersonIdDetail;
-using Nexus.LAS.Application.UseCases.PersonIdDetail.Commands.EditPersonIdDetail;
+using Nexus.LAS.Application.UseCases.PersonIdDetailUseCases.Commands.CreatePersonIdDetail;
+using Nexus.LAS.Application.UseCases.PersonIdDetailUseCases.Commands.EditPersonIdDetail;
 using Nexus.LAS.Application.UseCases.PersonOtherDocumentUseCases.Commands.CreatePersonOtherDocument;
 using Nexus.LAS.Application.UseCases.PersonOtherDocumentUseCases.Commands.EditPersonOtherDocument;
 using Nexus.LAS.Application.UseCases.PersonPhoneUseCases;

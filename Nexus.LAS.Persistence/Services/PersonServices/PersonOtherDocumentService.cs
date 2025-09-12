@@ -4,8 +4,11 @@ using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.Contracts.Presistence._Repositories._PersonRepos;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.DTOs;
+using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.UseCases.PersonOtherDocumentUseCases.Commands.CreatePersonOtherDocument;
 using Nexus.LAS.Application.UseCases.PersonOtherDocumentUseCases.Commands.EditPersonOtherDocument;
+using Nexus.LAS.Application.UseCases.PersonOtherDocumentUseCases.Queries.GetPaging;
+using Nexus.LAS.Application.UseCases.Queries.GetPaging;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 using Nexus.LAS.Domain.Entities.RegisterEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
@@ -18,9 +21,11 @@ namespace Nexus.LAS.Persistence.Services
     public class PersonOtherDocumentService : GenericService<PersonsOtherDocument>, IPersonOtherDocumentService
     {
         private readonly IMapper _mapper;
+        private readonly IPersonOtherDocumentRepo _repo;
         public PersonOtherDocumentService(NexusLASDbContext context, IUserIdentityService userIdentityService, IMapper mapper,IPersonOtherDocumentRepo repo) : base(context, userIdentityService, repo)
         {
             _mapper = mapper;
+            _repo = repo;
         }
 
         public async Task<int> CreatePersonOtherDocument([FromForm] CreatePersonOtherDocumentCommand command)
@@ -139,6 +144,12 @@ namespace Nexus.LAS.Persistence.Services
 
             }
 
+        }
+
+
+        public async Task<PagingResult<PersonOtherDocumentDTO>> GetPaging(GetPagingPersonOtherDocumentQuery param)
+        {
+            return await _repo.GetPaging(param);
         }
 
 

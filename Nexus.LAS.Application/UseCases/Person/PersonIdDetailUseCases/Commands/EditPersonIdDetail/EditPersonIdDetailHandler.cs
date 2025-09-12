@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
+using Nexus.LAS.Application.UseCases.PersonIdDetailUseCases.Commands.EditPersonIdDetail;
 
-namespace Nexus.LAS.Application.UseCases.PersonIdDetail.Commands.EditPersonIdDetail
+namespace Nexus.LAS.Application.UseCases.Commands.EditPersonIdDetail
 {
     public class EditPersonIdDetailHandler: IRequestHandler<EditPersonIdDetailCommand , int>
     {

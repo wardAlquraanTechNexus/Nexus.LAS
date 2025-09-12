@@ -4,26 +4,36 @@ using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.Contracts.Presistence._Repositories._PersonRepos;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.DTOs;
-using Nexus.LAS.Application.UseCases.PersonIdDetail.Commands.CreatePersonIdDetail;
-using Nexus.LAS.Application.UseCases.PersonIdDetail.Commands.EditPersonIdDetail;
+using Nexus.LAS.Application.DTOs.Base;
+using Nexus.LAS.Application.UseCases.PersonIdDetailUseCases.Commands.CreatePersonIdDetail;
+using Nexus.LAS.Application.UseCases.PersonIdDetailUseCases.Commands.EditPersonIdDetail;
+using Nexus.LAS.Application.UseCases.Queries.GetPaging;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 using Nexus.LAS.Domain.Entities.RegisterEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Repositories;
 using Nexus.LAS.Persistence.Repositories.RegisterFileRepositories;
 using Nexus.LAS.Persistence.Services.Base;
+using System.ComponentModel;
 
 namespace Nexus.LAS.Persistence.Services
 {
     public class PersonIdDetailService : GenericService<PersonsIDDetail>, IPersonIdDetailService
     {
+        private readonly IPersonIdDetailRepo _repo;
         private readonly IMapper _mapper;
         public PersonIdDetailService(NexusLASDbContext context, IUserIdentityService userIdentityService,
             IMapper mapper,IPersonIdDetailRepo repo) : base(context, userIdentityService, repo)
         {
             _mapper = mapper;
+            _repo = repo;
         }
 
+
+        public async Task<PagingResult<PersonIdDetailDto>> GetPaging(GetPersonIdDetailPagingQuery param)
+        {
+            return await _repo.GetPaging(param);
+        }
         public async Task<int> CreatePersonIdDetail([FromForm] CreatePersonIdDetailCommand command)
         {
             using (var transaction = await _context.Database.BeginTransactionAsync())
@@ -71,16 +81,20 @@ namespace Nexus.LAS.Persistence.Services
             }
 
         }
-        public async Task<int> EditPersonIdDetail([FromForm] EditPersonIdDetailCommand command)
+        public async Task<int> EditPersonIdDetail(EditPersonIdDetailCommand command)
         {
             using (var transaction = await _context.Database.BeginTransactionAsync())
             {
                 try
                 {
-                    PersonIdDetailRepo repo = new PersonIdDetailRepo(_context);
-
-                    var personIdDetail = _mapper.Map<PersonsIDDetail>(command);
-                    var personIdDetailId = await repo.UpdateAsync(personIdDetail);
+                    var personIdDetail = await _repo.GetAsync(command.Id);
+                    if(personIdDetail is null)
+                    {
+                        throw new Exception("The Id Detail not exist");
+                    }
+                    _mapper.Map(command, personIdDetail);
+                    
+                    var personIdDetailId = await _repo.UpdateAsync(personIdDetail);
 
                     if (command.File is not null)
                     {

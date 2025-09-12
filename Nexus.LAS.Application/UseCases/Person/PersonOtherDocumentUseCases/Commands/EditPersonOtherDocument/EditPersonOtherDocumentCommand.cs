@@ -12,7 +12,7 @@ namespace Nexus.LAS.Application.UseCases.PersonOtherDocumentUseCases.Commands.Ed
     {
         public int Id { get; set; }
         public int PersonsIdn { get; set; }
-        public string DocumentType { get; set; } = null!;
+        public int? DocumentType { get; set; }
         public string? DocumentDescription { get; set; }
         public IFormFile? File { get; set; }
     }

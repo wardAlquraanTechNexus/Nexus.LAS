@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Nexus.LAS.Persistence.DatabaseContext;
 
@@ -11,9 +12,11 @@ using Nexus.LAS.Persistence.DatabaseContext;
 namespace Nexus.LAS.Persistence.Migrations
 {
     [DbContext(typeof(NexusLASDbContext))]
-    partial class NexusLASDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250912161013_person-id-detail-change-dt")]
+    partial class personiddetailchangedt
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1245,9 +1248,10 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<string>("DeletedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Designation")
+                    b.Property<string>("Designation")
+                        .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("int")
+                        .HasColumnType("nvarchar(50)")
                         .HasColumnName("Designation");
 
                     b.Property<bool>("IsDeleted")
@@ -3074,8 +3078,9 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("DocumentDescription");
 
-                    b.Property<int?>("DocumentType")
-                        .HasColumnType("int")
+                    b.Property<string>("DocumentType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
                         .HasColumnName("DocumentType");
 
                     b.Property<bool>("IsDeleted")

@@ -2,9 +2,11 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
-using Nexus.LAS.Application.UseCases.PersonIdDetail.Commands.CreatePersonIdDetail;
-using Nexus.LAS.Application.UseCases.PersonIdDetail.Commands.EditPersonIdDetail;
+using Nexus.LAS.Application.UseCases.PersonIdDetailUseCases.Commands.CreatePersonIdDetail;
+using Nexus.LAS.Application.UseCases.PersonIdDetailUseCases.Commands.EditPersonIdDetail;
+using Nexus.LAS.Application.UseCases.Queries.GetPaging;
 using Nexus.LAS.Domain.Entities.PersonEntities;
+using Nexus.LAS.WebApi.Attributes;
 using Nexus.LAS.WebApi.Controllers._GenericController;
 
 namespace Nexus.LAS.WebApi.Controllers
@@ -26,10 +28,15 @@ namespace Nexus.LAS.WebApi.Controllers
         {
             return StatusCode(201, await _mediator.Send(command));
         }
-        [HttpPut("UpdateByBody")]
+        [NonAction]
         public override Task<IActionResult> UpdateAsync(PersonsIDDetail entity)
         {
             return base.UpdateAsync(entity);
+        }
+        [HttpPut("UpdateByBody")]
+        public async Task<IActionResult> UpdateAsyncByBody([FromBody]EditPersonIdDetailCommand command)
+        {
+            return StatusCode(200, await _mediator.Send(command));
         }
 
         [HttpPut]
@@ -44,6 +51,13 @@ namespace Nexus.LAS.WebApi.Controllers
             var res = await _service.GetDTOAsync(id);
             return Ok(res);
 
+        }
+        [HttpGet("GetPaging")]
+        [ApiMethodType(Domain.Constants.Enums.MethodType.Get)]
+        public async Task<IActionResult> GetPaging([FromQuery] GetPersonIdDetailPagingQuery param)
+        {
+            var res = await _service.GetPaging(param);
+            return Ok(res);
         }
     }
 }

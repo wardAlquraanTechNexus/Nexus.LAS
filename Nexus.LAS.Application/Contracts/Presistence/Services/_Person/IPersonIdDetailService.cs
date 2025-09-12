@@ -1,7 +1,9 @@
 ﻿using Nexus.LAS.Application.Contracts.Presistence.Services.Base;
 using Nexus.LAS.Application.DTOs;
-using Nexus.LAS.Application.UseCases.PersonIdDetail.Commands.CreatePersonIdDetail;
-using Nexus.LAS.Application.UseCases.PersonIdDetail.Commands.EditPersonIdDetail;
+using Nexus.LAS.Application.DTOs.Base;
+using Nexus.LAS.Application.UseCases.PersonIdDetailUseCases.Commands.CreatePersonIdDetail;
+using Nexus.LAS.Application.UseCases.PersonIdDetailUseCases.Commands.EditPersonIdDetail;
+using Nexus.LAS.Application.UseCases.Queries.GetPaging;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 using System;
 using System.Collections.Generic;
@@ -16,5 +18,6 @@ namespace Nexus.LAS.Application.Contracts.Presistence.Services
         Task<int> CreatePersonIdDetail(CreatePersonIdDetailCommand command);
         Task<PersonIdDetailDto?> GetDTOAsync(int id);
         Task<int> EditPersonIdDetail(EditPersonIdDetailCommand command);
+        Task<PagingResult<PersonIdDetailDto>> GetPaging(GetPersonIdDetailPagingQuery param);
     }
 }

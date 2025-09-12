@@ -47,33 +47,8 @@ public class PersonRepo : GenericRepo<Person>, IPersonRepo
                                                          address.POBoxCountry == personQuery.Nationality));
         }
 
-        if (personQuery.IsLdStaff.HasValue)
-        {
-            IQueryable<Person> filteredPersons;
-            if (personQuery.IsLdStaff.Value)
-            {
-                filteredPersons = from person in personsQueryable
-                                  join user in _context.Users
-                                      on person.Id equals user.PersonsIdN
-                                  join userGroup in _context.UserGroups
-                                      on user.Id equals userGroup.UserId
-                                  where userGroup.GroupId == _appSettings.Value.LdStaffId
-                                  select person;
-            }
-            else
-            {
-                filteredPersons = from person in personsQueryable
-                                      join user in _context.Users
-                                          on person.Id equals user.PersonsIdN into userGroupJoin
-                                      from user in userGroupJoin.DefaultIfEmpty()
-                                      join userGroup in _context.UserGroups
-                                          on user != null ? user.Id : 0 equals userGroup.UserId into userGroupJoin2
-                                      from userGroup in userGroupJoin2.DefaultIfEmpty()
-                                      where userGroup == null || userGroup.GroupId != _appSettings.Value.LdStaffId
-                                      select person;
-            }
-            personsQueryable = filteredPersons.Distinct().AsQueryable();
-        }
+        
+        
 
 
 
@@ -156,10 +131,14 @@ public class PersonRepo : GenericRepo<Person>, IPersonRepo
 
     public override async Task<int> CreateAsync(Person entity)
     {
-        entity.PersonCode = "PP000000";
         entity.PersonStatus = (int)PersonStatus.New;
+        entity.PersonCode = "PP" + entity.Id.ToString().PadLeft(6, '0');
         await _dbSet.AddAsync(entity);
         await _context.SaveChangesAsync();
+        entity.PersonCode = "PP" + entity.Id.ToString().PadLeft(6, '0');
+
+        await _context.SaveChangesAsync();
+
         return entity.Id;
     }
     public async Task<Person> UpdatePersonAsync(Person entity)

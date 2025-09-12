@@ -1,10 +1,12 @@
-﻿using ClosedXML.Excel;
+﻿using ClosedXML;
+using ClosedXML.Excel;
 using Microsoft.AspNetCore.Http;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.Contracts.Presistence._Repositories.Base;
 using Nexus.LAS.Application.Contracts.Presistence.Services.Base;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.UseCases.Base;
+using Nexus.LAS.Domain.CommonAttributes;
 using Nexus.LAS.Domain.Entities.Base;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Repositories.BaseRepo;
@@ -96,7 +98,7 @@ namespace Nexus.LAS.Persistence.Services.Base
             using (var workbook = new XLWorkbook())
             {
                 var worksheet = workbook.Worksheets.Add(nameof(T));
-                var propertyNames = properties.Select(x => x.Name).ToArray();
+                var propertyNames = properties.Where(p=>!p.HasAttribute<IgnoreOnExportAttribute>()).Select(x => x.Name).ToArray();
                 var entityProps = typeof(T).GetProperties().Where(x => propertyNames.Contains(x.Name)).ToArray();
 
                 // Set header cells

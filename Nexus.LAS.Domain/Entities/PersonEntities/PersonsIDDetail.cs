@@ -27,13 +27,13 @@ namespace Nexus.LAS.Domain.Entities.PersonEntities
         public bool? IsPrimary { get; set; }
 
         [Column("IDType")]
-        public string? Type { get; set; }
+        public int? Type { get; set; }
 
         [Column("IDNationality")]
-        public string? Nationality { get; set; }
+        public int? Nationality { get; set; }
 
         [Column("IDPlaceOfIssue")]
-        public string? PlaceOfIssue { get; set; }
+        public int? PlaceOfIssue { get; set; }
 
         [Column("IDNumber")]
         public string? IDNumber { get; set; }

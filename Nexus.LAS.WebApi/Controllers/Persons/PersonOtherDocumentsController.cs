@@ -1,10 +1,11 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
-using Nexus.LAS.Application.UseCases.PersonIdDetail.Commands.EditPersonIdDetail;
 using Nexus.LAS.Application.UseCases.PersonOtherDocumentUseCases.Commands.CreatePersonOtherDocument;
 using Nexus.LAS.Application.UseCases.PersonOtherDocumentUseCases.Commands.EditPersonOtherDocument;
+using Nexus.LAS.Application.UseCases.PersonOtherDocumentUseCases.Queries.GetPaging;
 using Nexus.LAS.Domain.Entities.PersonEntities;
+using Nexus.LAS.WebApi.Attributes;
 using Nexus.LAS.WebApi.Controllers._GenericController;
 
 namespace Nexus.LAS.WebApi.Controllers
@@ -13,6 +14,19 @@ namespace Nexus.LAS.WebApi.Controllers
     {
         public PersonOtherDocumentsController(IPersonOtherDocumentService service, IMediator mediator) : base(service, mediator)
         {
+        }
+
+        [NonAction]
+        public override Task<IActionResult> GetByQuery()
+        {
+            return base.GetByQuery();
+        }
+
+        [ApiMethodType(Domain.Constants.Enums.MethodType.Get)]
+        [HttpGet]
+        public async Task<IActionResult> GetPagingDTOs([FromQuery]GetPagingPersonOtherDocumentQuery param)
+        {
+            return Ok(await _mediator.Send(param));
         }
 
         [NonAction]
