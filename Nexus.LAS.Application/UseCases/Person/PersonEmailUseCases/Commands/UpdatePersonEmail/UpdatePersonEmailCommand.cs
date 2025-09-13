@@ -6,8 +6,7 @@ namespace Nexus.LAS.Application.UseCases.PersonEmailUseCases.Commands.UpdatePers
 public class UpdatePersonEmailCommand : UpdateBaseCommand
 {
     public int Id { get; set; }
-    public int? PersonsIdn { get; set; }
-    public bool? EmailPrimary { get; set; }
-    public string? EmailType { get; set; }
-    public string? EmailNumber { get; set; }
+    public int PersonsIdn { get; set; }
+    public bool EmailPrimary { get; set; }
+    public string Email { get; set; }
 }

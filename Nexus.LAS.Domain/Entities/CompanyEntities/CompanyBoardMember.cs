@@ -1,5 +1,6 @@
 ﻿using Nexus.LAS.Domain.Constants;
 using Nexus.LAS.Domain.Entities.Base;
+using Nexus.LAS.Domain.Entities.PersonEntities;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -37,5 +38,9 @@ public class CompanyBoardMember:BaseEntity
 
     [Column("BoardMemberActive")]
     public bool IsActive { get; set; }
+    [ForeignKey(nameof(PersonId))]
+    public Person Person { get; set; }
+    [ForeignKey(nameof(CompanyId))]
+    public Company Company { get; set; }
 
 }

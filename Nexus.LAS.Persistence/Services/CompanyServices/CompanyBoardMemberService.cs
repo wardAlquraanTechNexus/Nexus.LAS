@@ -1,5 +1,8 @@
 ﻿using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
+using Nexus.LAS.Application.DTOs.Base;
+using Nexus.LAS.Application.DTOs.CompanyBoardMemberDTOs;
+using Nexus.LAS.Application.UseCases.CompanyBoardMemberUseCases.Queries.GetPaging;
 using Nexus.LAS.Domain.Entities.CompanyEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Repositories;
@@ -18,5 +21,9 @@ public class CompanyBoardMemberService : GenericService<CompanyBoardMember> , IC
     public async Task<bool> IsPersonActiveExist(int boardId, int personId, int? excludedId = null)
     {
         return await _repo.IsPersonActiveExist(boardId, personId, excludedId);
+    }
+    public async Task<PagingResult<CompanyBoardMemberDto>> SearchDtoAsync(GetPagingCompanyBoardMemberQuery query)
+    {
+        return await _repo.SearchDtoAsync(query);
     }
 }

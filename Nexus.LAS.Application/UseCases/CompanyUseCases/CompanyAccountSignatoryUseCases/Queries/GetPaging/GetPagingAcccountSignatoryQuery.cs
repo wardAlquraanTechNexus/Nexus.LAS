@@ -5,6 +5,8 @@ namespace Nexus.LAS.Application.UseCases.CompanyAccountSignatoryUseCases.Queries
 {
     public class GetPagingAcccountSignatoryQuery: GetBasePagingQuery<CompanyAccountSignatoryDTO>
     {
-        public int CompanyBankAccountId { get; set; }
+        public int? CompanyBankAccountId { get; set; }
+        public int? CompanyId { get; set; }
+        public int? PersonId { get; set; }
     }
 }

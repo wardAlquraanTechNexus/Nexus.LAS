@@ -40,7 +40,6 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
 
         [Column("PersonInChargeDate")]
         public DateTime? PersonInChargeDate { get; set; }
-
         [Column("CessationDate")]
         public DateTime? CessationDate { get; set; }
 
@@ -48,5 +47,7 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
         public bool? PersonInChargeActive { get; set; }
         [ForeignKey(nameof(PersonIdn))]
         public Person Person { get; set; }
+        [ForeignKey(nameof(CompanyIdn))]
+        public Company Company { get; set; }
     }
 }

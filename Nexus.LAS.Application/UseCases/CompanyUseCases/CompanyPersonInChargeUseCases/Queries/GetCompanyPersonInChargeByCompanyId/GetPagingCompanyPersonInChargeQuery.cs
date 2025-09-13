@@ -7,6 +7,7 @@ namespace Nexus.LAS.Application.UseCases.CompanyPersonInChargeUseCases.Queries
 {
     public class GetPagingCompanyPersonInChargeQuery:BaseParams , IRequest<PagingResult<CompanyPersonInChargeDto>>
     {
-        public int CompanyId { get; set; }
+        public int? CompanyId { get; set; }
+        public int? PersonId { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Nexus.LAS.Application.Contracts.Presistence.Services;
+using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.DTOs.CompanyDTOs;
 using Nexus.LAS.Application.UseCases._GenericUseCases.Queries.GetBasePaging;
 using Nexus.LAS.Application.UseCases.CompanyAccountSignatoryUseCases.Queries.GetPaging;
@@ -10,6 +11,11 @@ namespace Nexus.LAS.Application.UseCases.CompanyAccountSignatoryUseCases.Queries
     {
         public GetPagingAcccountSignatoryHandler(ICompanyAccountSignatoryService service, AutoMapper.IMapper mapper) : base(service, mapper)
         {
+        }
+
+        public override async Task<PagingResult<CompanyAccountSignatoryDTO>> Handle(GetPagingAcccountSignatoryQuery request, CancellationToken cancellationToken)
+        {
+            return await _service.SearchDtoAsync(request);
         }
     }
     

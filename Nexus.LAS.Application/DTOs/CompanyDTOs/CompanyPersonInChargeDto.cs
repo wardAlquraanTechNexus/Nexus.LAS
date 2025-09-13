@@ -13,5 +13,7 @@ public class CompanyPersonInChargeDto
     public bool? PersonInChargeActive { get; set; }
     public string PersonNameEn { get; set; }
     public string PersonNameAr { get; set; }
+    public string CompanyNameEn { get; set; }
+    public string CompanyNameAr { get; set; }
 
 }

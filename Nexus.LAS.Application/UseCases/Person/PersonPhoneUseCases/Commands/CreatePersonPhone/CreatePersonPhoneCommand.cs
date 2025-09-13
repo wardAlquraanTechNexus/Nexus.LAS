@@ -5,8 +5,8 @@ namespace Nexus.LAS.Application.UseCases.PersonPhoneUseCases.Commands.CreatePers
 
 public class CreatePersonPhoneCommand : CreateBaseCommand
 {
-    public int? PersonsIdn { get; set; }
-    public bool? PhonePrimary { get; set; }
+    public int PersonsIdn { get; set; }
+    public bool PhonePrimary { get; set; }
     public int? PhoneType { get; set; }
-    public string? PhoneNumber { get; set; }
+    public string PhoneNumber { get; set; }
 }

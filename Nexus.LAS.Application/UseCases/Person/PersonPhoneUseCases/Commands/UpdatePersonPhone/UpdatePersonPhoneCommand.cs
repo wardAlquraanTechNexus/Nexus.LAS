@@ -6,8 +6,8 @@ namespace Nexus.LAS.Application.UseCases.PersonPhoneUseCases.Commands.UpdatePers
 public class UpdatePersonPhoneCommand : UpdateBaseCommand
 {
     public int Id { get; set; }
-    public int? PersonsIdn { get; set; }
-    public bool? PhonePrimary { get; set; }
+    public int PersonsIdn { get; set; }
+    public bool PhonePrimary { get; set; }
     public int? PhoneType { get; set; }
-    public string? PhoneNumber { get; set; }
+    public string PhoneNumber { get; set; }
 }

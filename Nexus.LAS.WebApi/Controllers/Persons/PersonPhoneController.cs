@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.UseCases.PersonPhoneUseCases;
 using Nexus.LAS.Application.UseCases.PersonPhoneUseCases.Commands.CreatePersonPhone;
+using Nexus.LAS.Application.UseCases.PersonPhoneUseCases.Commands.UpdatePersonPhone;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 using Nexus.LAS.WebApi.Controllers._GenericController;
 
@@ -34,6 +35,16 @@ public class PersonPhoneController : GenericController<IPersonPhoneService, Pers
     }
     [HttpPost]
     public async Task<IActionResult> CreatePhone(CreatePersonPhoneCommand command)
+    {
+        return Ok(await _mediator.Send(command));
+    }
+    [NonAction]
+    public async override Task<IActionResult> UpdateAsync(PersonsPhone entity)
+    {
+        return await base.UpdateAsync(entity);
+    }
+    [HttpPut]
+    public async Task<IActionResult> UpdatePhone(UpdatePersonPhoneCommand command)
     {
         return Ok(await _mediator.Send(command));
     }

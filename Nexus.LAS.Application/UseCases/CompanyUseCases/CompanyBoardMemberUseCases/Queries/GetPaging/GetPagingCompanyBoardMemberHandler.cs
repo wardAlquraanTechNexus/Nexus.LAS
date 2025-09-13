@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
+using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.DTOs.CompanyBoardMemberDTOs;
 using Nexus.LAS.Application.DTOs.CompanyDTOs;
 using Nexus.LAS.Application.UseCases._GenericUseCases.Queries.GetBasePaging;
@@ -16,6 +17,11 @@ namespace Nexus.LAS.Application.UseCases.CompanyBoardMemberUseCases.Queries.GetP
     {
         public GetPagingCompanyBoardMemberHandler(ICompanyBoardMemberService service, IMapper mapper) : base(service, mapper)
         {
+        }
+
+        public override async Task<PagingResult<CompanyBoardMemberDto>> Handle(GetPagingCompanyBoardMemberQuery request, CancellationToken cancellationToken)
+        {
+            return await _service.SearchDtoAsync(request);
         }
     }
 }

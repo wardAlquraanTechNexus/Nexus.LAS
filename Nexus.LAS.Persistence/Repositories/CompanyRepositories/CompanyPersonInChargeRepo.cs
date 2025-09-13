@@ -22,7 +22,11 @@ public class CompanyPersonInChargeRepo : GenericRepo<CompanyPersonInCharge> , IC
         IQueryable<CompanyPersonInChargeDto> queryable = 
             _dbSet
             .Include(cpic=>cpic.Person)
-            .Where(cpic => cpic.CompanyIdn == query.CompanyId)
+            .Include(cpic=>cpic.Company)
+            .Where(cpic => 
+            (!query.CompanyId.HasValue || cpic.CompanyIdn == query.CompanyId)
+            && (!query.PersonId.HasValue || cpic.PersonIdn == query.PersonId)
+            )
             .Select(cpic=>
             new CompanyPersonInChargeDto
             {
@@ -36,7 +40,9 @@ public class CompanyPersonInChargeRepo : GenericRepo<CompanyPersonInCharge> , IC
                 Designation = cpic.Designation,
                 Notes = cpic.Notes,
                 PersonInChargeActive = cpic.PersonInChargeActive,
-                PersonInChargeDate = cpic.PersonInChargeDate
+                PersonInChargeDate = cpic.PersonInChargeDate,
+                CompanyNameEn = cpic.Company.CompanyEnglishName,
+                CompanyNameAr = cpic.Company.CompanyArabicName
             }
 
             )
