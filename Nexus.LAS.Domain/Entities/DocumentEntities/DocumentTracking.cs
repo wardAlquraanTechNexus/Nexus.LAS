@@ -33,16 +33,16 @@ namespace Nexus.LAS.Domain.Entities.DocumentEntities
 
         [Required]
         [Column("Persons_IDN")]
-        public int PersonsIdn { get; set; }
+        public int PersonId { get; set; }
 
         [Required]
         [Column("Registers_IDC")]
         [MaxLength(50)]
-        public string RegistersIdc { get; set; }
+        public string RegisterIdc { get; set; }
 
         [Required]
         [Column("Registers_IDN")]
-        public int RegistersIdn { get; set; }
+        public int RegisterIdn { get; set; }
 
         [Column("Description")]
         [MaxLength(4000)]

@@ -21,13 +21,13 @@ namespace Nexus.LAS.Domain.Entities.PropertyEntities
         public override int Id { get; set; }
 
         [Column("Properties_IDN")]
-        public int PropertiesIdn { get; set; }
+        public int PropertyId { get; set; }
 
         [Column("Registers_IDC")]
-        public string RegistersIdc { get; set; } = null!;
+        public string RegisterIdc { get; set; }
 
         [Column("Registers_IDN")]
-        public int RegistersIdn { get; set; }
+        public int RegisterIdn { get; set; }
 
         public string? Relation { get; set; }
         public DateTime? OwnStartDate { get; set; }

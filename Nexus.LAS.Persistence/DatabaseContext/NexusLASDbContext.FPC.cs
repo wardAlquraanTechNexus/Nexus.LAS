@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Nexus.LAS.Domain.Entities.FPC;
+using Nexus.LAS.Domain.Entities;
 using Nexus.LAS.Domain.Entities.Lookup;
 using System;
 using System.Collections.Generic;
@@ -13,17 +13,17 @@ namespace Nexus.LAS.Persistence.DatabaseContext
     {
 
         public DbSet<FPC> FPCs { get; set; }
-        public DbSet<FPCsOD> FPCsODs { get; set; }
-        public DbSet<FPCsODsAction> FPCsODsActions { get; set; }
+        public DbSet<FPCOD> FPCsODs { get; set; }
+        public DbSet<FPCODAction> FPCsODsActions { get; set; }
 
         protected void OnFPCModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<FPC>()
                           .HasKey(f => new { f.FpcIdc, f.Id });
 
-            modelBuilder.Entity<FPCsOD>()
-                .HasKey(e => new { e.FPCsOdIdc, e.Id });
-            modelBuilder.Entity<FPCsODsAction>()
+            modelBuilder.Entity<FPCOD>()
+                .HasKey(e => new { e.FPCOdIdc, e.Id });
+            modelBuilder.Entity<FPCODAction>()
                 .HasKey(e => new { e.FPCsOdsActionIdc, e.Id });
 
         }

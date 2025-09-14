@@ -23,10 +23,10 @@ namespace Nexus.LAS.Domain.Entities.DocumentEntities
 
         [Column("Registers_IDC")]
         [MaxLength(50)]
-        public string RegistersIdc { get; set; }
+        public string RegisterIdc { get; set; }
 
         [Column("Registers_IDN")]
-        public int RegistersIdn { get; set; }
+        public int RegisterIdn { get; set; }
 
         [Column("Owner")]
         public bool Owner { get; set; }

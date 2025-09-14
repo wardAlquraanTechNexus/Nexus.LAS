@@ -1,8 +1,8 @@
-﻿using MediatR;
+﻿using Nexus.LAS.Application.UseCases._GenericUseCases.Commands;
 
 namespace Nexus.LAS.Application.UseCases.PersonUseCases.Commands.CreatePerson;
 
-public class CreatePersonCommand: IRequest<int>
+public class CreatePersonCommand : CreateBaseCommand
 {
     public string PersonEnglishName { get; set; } = null!;
     public string PersonArabicName { get; set; } = null!;

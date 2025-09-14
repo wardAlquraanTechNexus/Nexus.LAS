@@ -1,0 +1,12 @@
+using Nexus.LAS.Application.UseCases._GenericUseCases.Commands;
+
+namespace Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyLinkUseCases.Commands.UpdatePropertyLink;
+
+public class UpdatePropertyLinkCommand : UpdateBaseCommand
+{
+    public int Id { get; set; }
+    public string RegistersIdc { get; set; } = null!;
+    public int RegistersIdn { get; set; }
+    public string PropertyLinksValue { get; set; }
+    public string? PropertyLinksRemarks { get; set; }
+}

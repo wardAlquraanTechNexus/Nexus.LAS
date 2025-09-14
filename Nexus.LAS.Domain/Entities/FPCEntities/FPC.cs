@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nexus.LAS.Domain.Entities.FPC
+namespace Nexus.LAS.Domain.Entities
 {
     [Table("FPCs")]
     public class FPC:BaseEntity
@@ -29,11 +29,11 @@ namespace Nexus.LAS.Domain.Entities.FPC
         [Required]
         [Column("Registers_IDC")]
         [MaxLength(50)]
-        public string RegistersIdc { get; set; } = null!;
+        public string RegisterIdc { get; set; } = null!;
 
         [Required]
         [Column("Registers_IDN")]
-        public int RegistersIdn { get; set; }
+        public int RegisterIdn { get; set; }
 
         [Required]
         [Column("FPCStatus")]

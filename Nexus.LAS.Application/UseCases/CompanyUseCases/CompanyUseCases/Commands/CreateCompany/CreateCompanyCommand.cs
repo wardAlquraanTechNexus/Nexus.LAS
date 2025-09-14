@@ -1,8 +1,9 @@
 ﻿using MediatR;
+using Nexus.LAS.Application.UseCases._GenericUseCases.Commands;
 
 namespace Nexus.LAS.Application.UseCases.CompanyUseCases.Commands;
 
-public class CreateCompanyCommand : IRequest<int>
+public class CreateCompanyCommand : CreateBaseCommand
 {
     public DateTime? IncorporationDate { get; set; }
     public string CompanyEnglishName { get; set; }

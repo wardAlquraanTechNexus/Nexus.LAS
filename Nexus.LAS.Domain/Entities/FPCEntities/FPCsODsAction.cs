@@ -7,10 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nexus.LAS.Domain.Entities.FPC
+namespace Nexus.LAS.Domain.Entities
 {
     [Table("FPCsODsActions")]
-    public class FPCsODsAction:BaseEntity
+    public class FPCODAction:BaseEntity
     {
         [Column("FPCsODsActionIDC")]
         [MaxLength(50)]
@@ -23,7 +23,7 @@ namespace Nexus.LAS.Domain.Entities.FPC
 
         [Required]
         [Column("FPCsODs_IDN")]
-        public int FPCsOdsIdn { get; set; }
+        public int FPCOdIdn { get; set; }
 
         [Required]
         [Column("ActionType")]

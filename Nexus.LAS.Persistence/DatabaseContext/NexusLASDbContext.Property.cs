@@ -13,7 +13,7 @@ namespace Nexus.LAS.Persistence.DatabaseContext
     {
         public DbSet<Property> Properties { get; set; }
         public DbSet<PropertyOwner> PropertyOwners { get; set; }
-        public DbSet<PropertiesStatus> PropertiesStatuses { get; set; }
+        public DbSet<PropertyStatus> PropertiesStatuses { get; set; }
         public DbSet<PropertyDocument> PropertyDocuments { get; set; }
         public DbSet<PropertyLink> PropertyLinks { get; set; }
 

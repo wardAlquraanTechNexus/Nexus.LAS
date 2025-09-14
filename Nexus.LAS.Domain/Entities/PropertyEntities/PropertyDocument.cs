@@ -22,7 +22,7 @@ namespace Nexus.LAS.Domain.Entities.PropertyEntities
 
 
         [Column("Property_IDN")]
-        public int? PropertyIdn { get; set; }
+        public int? PropertyId { get; set; }
 
         public string? DocumentType { get; set; }
 

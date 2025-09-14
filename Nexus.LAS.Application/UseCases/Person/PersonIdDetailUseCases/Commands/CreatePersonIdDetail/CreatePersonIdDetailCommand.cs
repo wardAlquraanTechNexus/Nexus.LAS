@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
+using Nexus.LAS.Application.UseCases._GenericUseCases.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Nexus.LAS.Application.UseCases.PersonIdDetailUseCases.Commands.CreatePersonIdDetail
 {
-    public class CreatePersonIdDetailCommand:IRequest<int>
+    public class CreatePersonIdDetailCommand:CreateBaseCommand
     {
         public string PersonsIDDetailIdc { get; set; } = "PID";
         public int Id { get; set; }

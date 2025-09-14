@@ -4,20 +4,34 @@ using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.Contracts.Presistence;
 using Nexus.LAS.Application.Contracts.Presistence._Repositories;
 using Nexus.LAS.Application.Contracts.Presistence._Repositories._CompanyRepos;
+using Nexus.LAS.Application.Contracts.Presistence._Repositories._LawFirmRepos;
 using Nexus.LAS.Application.Contracts.Presistence._Repositories._PersonRepos;
 using Nexus.LAS.Application.Contracts.Presistence._Repositories._TransactionRepos;
-using Nexus.LAS.Application.Contracts.Presistence._Repositories._LawFirmRepos;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
-using Nexus.LAS.Application.Contracts.Presistence.Services._Transaction;
+using Nexus.LAS.Application.Contracts.Presistence.Services._Company;
 using Nexus.LAS.Application.Contracts.Presistence.Services._LawFirm;
+using Nexus.LAS.Application.Contracts.Presistence.Services._Transaction;
+using Nexus.LAS.Application.Contracts.Presistence.Services.RegisterNote;
 using Nexus.LAS.Identity.Services;
 using Nexus.LAS.Persistence.Repositories;
-using Nexus.LAS.Persistence.Repositories.TransactionRepositories;
+using Nexus.LAS.Persistence.Repositories.CompanyRepositories;
+using Nexus.LAS.Persistence.Repositories.DocumentRepositories;
+using Nexus.LAS.Persistence.Repositories.FPCRepositories;
 using Nexus.LAS.Persistence.Repositories.LawFirmRepositories;
-using Nexus.LAS.Persistence.Services;
-using Nexus.LAS.Persistence.Services.TransactionServices;
-using Nexus.LAS.Persistence.Services.LawFirmServices;
+using Nexus.LAS.Persistence.Repositories.NumberRepositories;
+using Nexus.LAS.Persistence.Repositories.PropertyRepositories;
 using Nexus.LAS.Persistence.Repositories.RegisterFileRepositories;
+using Nexus.LAS.Persistence.Repositories.RegisterNoteRepositories;
+using Nexus.LAS.Persistence.Repositories.TransactionRepositories;
+using Nexus.LAS.Persistence.Services;
+using Nexus.LAS.Persistence.Services.CompanyServices;
+using Nexus.LAS.Persistence.Services.DocumentServices;
+using Nexus.LAS.Persistence.Services.FPCServices;
+using Nexus.LAS.Persistence.Services.LawFirmServices;
+using Nexus.LAS.Persistence.Services.NumberServices;
+using Nexus.LAS.Persistence.Services.PropertyServices;
+using Nexus.LAS.Persistence.Services.RegisterNoteServices;
+using Nexus.LAS.Persistence.Services.TransactionServices;
 
 namespace Nexus.LAS.Persistence
 {
@@ -65,7 +79,8 @@ namespace Nexus.LAS.Persistence
             services.AddScoped<ICompanyShareHolderService, CompanyShareHolderService>();
             services.AddScoped<ICompanyAccountSignatoryService, CompanyAccountSignatoryService>();
             services.AddScoped<ICompanyBoardService, CompanyBoardService>();
-
+            services.AddScoped<ICompanyShareHoldersGroupService, CompanyShareHoldersGroupService>();
+            services.AddScoped<ICompanyLeaseContractRegisterService, CompanyLeaseContractRegisterService>();
             // Transaction services
             services.AddScoped<ITransactionService, TransactionService>();
             services.AddScoped<ITransactionRegisterService, TransactionRegisterService>();
@@ -79,6 +94,27 @@ namespace Nexus.LAS.Persistence
             services.AddScoped<ILawFirmAffiliateService, LawFirmAffiliateService>();
             services.AddScoped<ILawFirmBranchService, LawFirmBranchService>();
             services.AddScoped<ILawFirmExpertiseService, LawFirmExpertiseService>();
+
+
+            services.AddScoped<IRegistersCodeService, RegistersCodeService>();
+
+            services.AddScoped<IPropertyService, PropertyService>();
+            services.AddScoped<IPropertyOwnerService, PropertyOwnerService>();
+            services.AddScoped<IPropertyLinkService, PropertyLinkService>();
+            services.AddScoped<IPropertyDocumentService, PropertyDocumentService>();
+            services.AddScoped<IPropertyStatusService, PropertyStatusService>();
+
+
+            services.AddScoped<IDocumentService, DocumentService>();
+            services.AddScoped<IDocumentReletedRegisterService, DocumentReletedRegisterService>();
+            services.AddScoped<IDocumentTrackingService, DocumentTrackingService>();
+            services.AddScoped<IDocumentTrackingsActionService, DocumentTrackingsActionService>();
+
+
+            services.AddScoped<IFPCService, FPCService>();
+            services.AddScoped<IFPCODService, FPCODService>();
+            services.AddScoped<IFPCODActionService, FPCODActionService>();
+            services.AddScoped<INumberService, NumberService>();
         }
 
         public static void RegisterRepositories(this IServiceCollection services)
@@ -121,6 +157,7 @@ namespace Nexus.LAS.Persistence
             services.AddScoped<ICompanyPhoneRepo, CompanyPhoneRepo>();
             services.AddScoped<ICompanyAccountSignatoryRepo, CompanyAccountSignatoryRepo>();
             services.AddScoped<ICompanyBoardRepo, CompanyBoardRepo>();
+            services.AddScoped<ICompanyShareHoldersGroupRepo, CompanyShareHoldersGroupRepo>();
 
             // Transaction repositories
             services.AddScoped<ITransactionRepo, TransactionRepo>();
@@ -135,6 +172,23 @@ namespace Nexus.LAS.Persistence
             services.AddScoped<ILawFirmAffiliateRepo, LawFirmAffiliateRepo>();
             services.AddScoped<ILawFirmBranchRepo, LawFirmBranchRepo>();
             services.AddScoped<ILawFirmExpertiseRepo, LawFirmExpertiseRepo>();
+
+
+            services.AddScoped<ICompanyLeaseContractRegisterRepo, CompanyLeaseContractRegisterRepo>();
+            services.AddScoped<IRegistersCodeRepo, RegistersCodeRepo>();
+            services.AddScoped<IPropertyRepo, PropertyRepo>();
+            services.AddScoped<IPropertyOwnerRepo, PropertyOwnerRepo>();
+            services.AddScoped<IPropertyLinkRepo, PropertyLinkRepo>();
+            services.AddScoped<IPropertyDocumentRepo, PropertyDocumentRepo>();
+            services.AddScoped<IPropertyStatusRepo, PropertyStatusRepo>();
+            services.AddScoped<IDocumentRepo, DocumentRepo>();
+            services.AddScoped<IDocumentReletedRegisterRepo, DocumentReletedRegisterRepo>();
+            services.AddScoped<IDocumentTrackingRepo, DocumentTrackingRepo>();
+            services.AddScoped<IDocumentTrackingsActionRepo, DocumentTrackingsActionRepo>();
+            services.AddScoped<IFPCRepo, FPCRepo>();
+            services.AddScoped<IFPCsODRepo, FPCsODRepo>();
+            services.AddScoped<IFPCODActionRepo, FPCODActionRepo>();
+            services.AddScoped<INumberRepo, NumberRepo>();
         }
     }
 }

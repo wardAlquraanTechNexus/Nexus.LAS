@@ -14,7 +14,7 @@ namespace Nexus.LAS.Persistence.DatabaseContext
         public DbSet<CompanyAccountSignatory> CompaniesAccountSignatories { get; set; }
         public DbSet<CompanyActivity> CompaniesActivities { get; set; }
         public DbSet<CompanyAddress> CompaniesAddresses { get; set; }
-        public DbSet<CompaniesAuthorizedSignatory> CompaniesAuthorizedSignatories { get; set; }
+        public DbSet<CompanyAuthorizedSignatory> CompaniesAuthorizedSignatories { get; set; }
         public DbSet<CompanyBankAccount> CompaniesBankAccounts { get; set; }
         public DbSet<CompanyBoard> CompaniesBoards { get; set; }
         public DbSet<CompanyBoardMember> CompaniesBoardMembers { get; set; }
@@ -23,14 +23,14 @@ namespace Nexus.LAS.Persistence.DatabaseContext
         public DbSet<CompanyChamberOfCommerce> CompaniesChamberOfCommerce { get; set; }
         public DbSet<CompanyContract> CompaniesContracts { get; set; }
         public DbSet<CompanyEmail> CompaniesEmails { get; set; }
-        public DbSet<CompaniesLeaseContractRegister> CompaniesLeaseContractRegisters { get; set; }
-        public DbSet<CompaniesLeaseContract> CompaniesLeaseContracts { get; set; }
+        public DbSet<CompanyLeaseContractRegister> CompaniesLeaseContractRegisters { get; set; }
+        public DbSet<CompanyLeaseContract> CompaniesLeaseContracts { get; set; }
         public DbSet<CompanyLicense> CompaniesLicenses { get; set; }
         public DbSet<CompanyOtherContract> CompaniesOtherContracts { get; set; }
         public DbSet<CompanyPersonInCharge> CompaniesPersonInCharges { get; set; }
         public DbSet<CompanyPhone> CompaniesPhones { get; set; }
         public DbSet<CompanyShareHolder> CompaniesShareHolders { get; set; }
-        public DbSet<CompaniesShareHoldersGroup> CompaniesShareHoldersGroups { get; set; }
+        public DbSet<CompanyShareHoldersGroup> CompaniesShareHoldersGroups { get; set; }
 
         protected void OnCompanyModelCreating(ModelBuilder modelBuilder)
         {
