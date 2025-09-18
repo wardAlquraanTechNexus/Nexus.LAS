@@ -35,3 +35,4 @@ logs/
 
 # Production log paths
 **/var/log/nexus-las/
+/.claude/settings.local.json
