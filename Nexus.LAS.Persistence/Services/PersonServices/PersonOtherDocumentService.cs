@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts.Identity;
+using Nexus.LAS.Application.Contracts.Presistence._Repositories;
 using Nexus.LAS.Application.Contracts.Presistence._Repositories._PersonRepos;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.DTOs;
@@ -9,6 +10,7 @@ using Nexus.LAS.Application.UseCases.PersonOtherDocumentUseCases.Commands.Create
 using Nexus.LAS.Application.UseCases.PersonOtherDocumentUseCases.Commands.EditPersonOtherDocument;
 using Nexus.LAS.Application.UseCases.PersonOtherDocumentUseCases.Queries.GetPaging;
 using Nexus.LAS.Application.UseCases.Queries.GetPaging;
+using Nexus.LAS.Domain.Constants;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 using Nexus.LAS.Domain.Entities.RegisterEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
@@ -22,10 +24,12 @@ namespace Nexus.LAS.Persistence.Services
     {
         private readonly IMapper _mapper;
         private readonly IPersonOtherDocumentRepo _repo;
-        public PersonOtherDocumentService(NexusLASDbContext context, IUserIdentityService userIdentityService, IMapper mapper,IPersonOtherDocumentRepo repo) : base(context, userIdentityService, repo)
+        private readonly IRegisterFileRepo _registerFileRepo;
+        public PersonOtherDocumentService(NexusLASDbContext context, IUserIdentityService userIdentityService, IMapper mapper,IPersonOtherDocumentRepo repo, IRegisterFileRepo registerFileRepo) : base(context, userIdentityService, repo)
         {
             _mapper = mapper;
             _repo = repo;
+            _registerFileRepo = registerFileRepo;
         }
 
         public async Task<int> CreatePersonOtherDocument([FromForm] CreatePersonOtherDocumentCommand command)
@@ -102,14 +106,8 @@ namespace Nexus.LAS.Persistence.Services
 
                     if (command.File is not null)
                     {
-                        RegisterFileRepo registerFileRepo = new RegisterFileRepo(_context);
                         
-                        // Delete existing files for this document
-                        var existingFiles = await registerFileRepo.GetByIds(personsOtherDocument.PersonsOtherDocumentIdc, command.Id);
-                        foreach (var existingFile in existingFiles)
-                        {
-                            await registerFileRepo.DeleteAsync(existingFile.Id);
-                        }
+                        await _registerFileRepo.DeleteAsync(EntityIDCs.PersonOtherDocument, command.Id);
 
                         // Add new file
                         byte[] bytes;
@@ -128,11 +126,14 @@ namespace Nexus.LAS.Persistence.Services
                             Name = command.File.FileName,
                         };
 
-                        await registerFileRepo.CreateAsync(registerFile);
+                        await _registerFileRepo.CreateAsync(registerFile);
+                    }else if(command.RemoveFile && command.File is null)
+                    {
+                        await _registerFileRepo.DeleteAsync(EntityIDCs.PersonOtherDocument, command.Id);
                     }
 
 
-                    await transaction.CommitAsync();
+                        await transaction.CommitAsync();
                     return command.Id;
 
                 }

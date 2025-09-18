@@ -21,6 +21,6 @@ namespace Nexus.LAS.Application.UseCases.PersonIdDetailUseCases.Commands.EditPer
         public DateTime? ExpiryDate { get; set; }
         public bool? ActiveReminder { get; set; }
         public IFormFile? File { get; set; }
-
+        public bool RemoveFile { get; set; } = false;
     }
 }

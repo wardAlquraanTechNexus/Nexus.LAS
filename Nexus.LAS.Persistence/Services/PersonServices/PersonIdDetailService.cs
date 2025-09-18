@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts.Identity;
+using Nexus.LAS.Application.Contracts.Presistence._Repositories;
 using Nexus.LAS.Application.Contracts.Presistence._Repositories._PersonRepos;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.DTOs;
@@ -8,6 +9,7 @@ using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.UseCases.PersonIdDetailUseCases.Commands.CreatePersonIdDetail;
 using Nexus.LAS.Application.UseCases.PersonIdDetailUseCases.Commands.EditPersonIdDetail;
 using Nexus.LAS.Application.UseCases.Queries.GetPaging;
+using Nexus.LAS.Domain.Constants;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 using Nexus.LAS.Domain.Entities.RegisterEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
@@ -21,12 +23,14 @@ namespace Nexus.LAS.Persistence.Services
     public class PersonIdDetailService : GenericService<PersonsIDDetail>, IPersonIdDetailService
     {
         private readonly IPersonIdDetailRepo _repo;
+        private readonly IRegisterFileRepo _registerFileRepo;
         private readonly IMapper _mapper;
         public PersonIdDetailService(NexusLASDbContext context, IUserIdentityService userIdentityService,
-            IMapper mapper,IPersonIdDetailRepo repo) : base(context, userIdentityService, repo)
+            IMapper mapper,IPersonIdDetailRepo repo , IRegisterFileRepo registerFileRepo) : base(context, userIdentityService, repo)
         {
             _mapper = mapper;
             _repo = repo;
+            _registerFileRepo = registerFileRepo;
         }
 
 
@@ -96,16 +100,12 @@ namespace Nexus.LAS.Persistence.Services
                     
                     var personIdDetailId = await _repo.UpdateAsync(personIdDetail);
 
+
                     if (command.File is not null)
                     {
-                        RegisterFileRepo registerFileRepo = new RegisterFileRepo(_context);
                         
-                        // Delete existing files for this ID detail
-                        var existingFiles = await registerFileRepo.GetByIds(personIdDetail.PersonsIDDetailIdc, command.Id);
-                        foreach (var existingFile in existingFiles)
-                        {
-                            await registerFileRepo.DeleteAsync(existingFile.Id);
-                        }
+
+                        await _registerFileRepo.DeleteAsync(EntityIDCs.PersonIdDetail, command.Id);
 
                         // Add new file
                         byte[] bytes;
@@ -124,7 +124,11 @@ namespace Nexus.LAS.Persistence.Services
                             Name = command.File.FileName,
                         };
 
-                        await registerFileRepo.CreateAsync(registerFile);
+                        await _registerFileRepo.CreateAsync(registerFile);
+                    }else if(command.RemoveFile && command.File is null)
+                    {
+                        await _registerFileRepo.DeleteAsync(EntityIDCs.PersonIdDetail, command.Id);
+
                     }
 
                     await transaction.CommitAsync();

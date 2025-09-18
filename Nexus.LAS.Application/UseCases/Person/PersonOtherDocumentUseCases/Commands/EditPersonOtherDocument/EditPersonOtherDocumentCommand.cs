@@ -15,5 +15,6 @@ namespace Nexus.LAS.Application.UseCases.PersonOtherDocumentUseCases.Commands.Ed
         public int? DocumentType { get; set; }
         public string? DocumentDescription { get; set; }
         public IFormFile? File { get; set; }
+        public bool RemoveFile { get; set; } = false;
     }
 }
