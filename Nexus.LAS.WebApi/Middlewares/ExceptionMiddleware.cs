@@ -198,7 +198,7 @@ namespace Nexus.LAS.WebApi.Middlewares
                         Title = _environment.IsDevelopment() ? ex.Message : "An internal server error occurred",
                         Status = (int)statusCode,
                         Type = nameof(HttpStatusCode.InternalServerError),
-                        Detail = _environment.IsDevelopment() 
+                        Detail = _environment.IsDevelopment()
                             ? ex.InnerException?.Message ?? ex.StackTrace 
                             : "An unexpected error occurred. Please contact support if the problem persists.",
                     };

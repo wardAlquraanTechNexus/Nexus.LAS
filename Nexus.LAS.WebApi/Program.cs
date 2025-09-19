@@ -100,7 +100,7 @@ app.UseGlobalExceptionHandling();
 app.UseHttpsRedirection();
 
 // 3. Development tools
-if (app.Environment.IsDevelopment() || true )
+if (app.Environment.IsDevelopment() )
 {
     app.UseSwagger();
     app.UseSwaggerUI(c =>
