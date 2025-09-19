@@ -19,7 +19,17 @@ public class PropertyService : GenericService<Property>, IPropertyService
     }
 
     public async Task<PagingResult<Property>> GetPagingProperties(GetPagingPropertyQuery propertyQuery)
-    {
+    {   
         return await _repo.GetPagingProperties(propertyQuery);
+    }
+
+    public async Task<int> BulkChangeStatus(List<int> propertyIds, int status)
+    {
+        return await _repo.BulkChangeStatus(propertyIds, status);
+    }
+
+    public async Task<int> BulkChangePrivate(List<int> propertyIds, bool privateValue)
+    {
+        return await _repo.BulkChangePrivate(propertyIds, privateValue);
     }
 }

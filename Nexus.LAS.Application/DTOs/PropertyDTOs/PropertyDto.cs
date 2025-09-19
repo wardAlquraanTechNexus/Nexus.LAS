@@ -1,3 +1,4 @@
+using Nexus.LAS.Domain.CommonAttributes;
 using Nexus.LAS.Domain.Constants;
 using Nexus.LAS.Domain.Constants.Enums;
 using System.ComponentModel.DataAnnotations;
@@ -69,4 +70,18 @@ public class PropertyDto
     public long? PlotMArea { get; set; }
     public long? PropertyFArea { get; set; }
     public long? PropertyMArea { get; set; }
+    [IgnoreOnExport]
+    public string CreatedBy { get; set; }
+    [IgnoreOnExport]
+    public DateTime CreatedAt { get; set; }
+    [IgnoreOnExport]
+    public string? ModifiedBy { get; set; }
+    [IgnoreOnExport]
+    public DateTime? ModifiedAt { get; set; }
+    [IgnoreOnExport]
+    public bool IsDeleted { get; set; } = false;
+    [IgnoreOnExport]
+    public string? DeletedBy { get; set; }
+    [IgnoreOnExport]
+    public DateTime? DeletedAt { get; set; }
 }

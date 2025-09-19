@@ -8,4 +8,6 @@ namespace Nexus.LAS.Application.Contracts.Presistence.Services;
 public interface IPropertyService : IGenericService<Property>
 {
     Task<PagingResult<Property>> GetPagingProperties(GetPagingPropertyQuery propertyQuery);
-}
+    Task<int> BulkChangeStatus(List<int> propertyIds, int status);
+    Task<int> BulkChangePrivate(List<int> propertyIds, bool privateValue);
+}   

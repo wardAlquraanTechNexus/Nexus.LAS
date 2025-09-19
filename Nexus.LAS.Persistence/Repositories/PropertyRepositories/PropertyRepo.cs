@@ -7,6 +7,7 @@ using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Queries.GetPaging;
 using Microsoft.EntityFrameworkCore;
 using Nexus.LAS.Domain.ExtensionMethods;
+using Nexus.LAS.Domain.Constants.Enums;
 
 namespace Nexus.LAS.Persistence.Repositories.PropertyRepositories;
 
@@ -67,5 +68,27 @@ public class PropertyRepo : GenericRepo<Property>, IPropertyRepo
             TotalPages = totalPages,
             TotalRecords = totalRecords
         };
+    }
+
+    public async Task<int> BulkChangeStatus(List<int> propertyIds, int status)
+    {
+        var properties = await _dbSet.Where(p => propertyIds.Contains(p.Id)).ToListAsync();
+        foreach (var property in properties)
+        {
+            property.Status = (CommonStatus)status;
+        }
+        await _context.SaveChangesAsync();
+        return properties.Count;
+    }
+
+    public async Task<int> BulkChangePrivate(List<int> propertyIds, bool privateValue)
+    {
+        var properties = await _dbSet.Where(p => propertyIds.Contains(p.Id)).ToListAsync();
+        foreach (var property in properties)
+        {
+            property.Private = privateValue;
+        }
+        await _context.SaveChangesAsync();
+        return properties.Count;
     }
 }

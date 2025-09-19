@@ -8,6 +8,8 @@ using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Commands.UpdateProperty;
 using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Commands.CreateProperty;
 using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Queries.GetPaging;
+using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Commands.BulkChangeStatus;
+using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Commands.BulkChangePrivate;
 
 namespace Nexus.LAS.WebApi.Controllers.Properties
 {
@@ -54,6 +56,22 @@ namespace Nexus.LAS.WebApi.Controllers.Properties
         public async Task<IActionResult> UpdateProperty(UpdatePropertyCommand command)
         {
             return Ok(await _mediator.Send(command));
+        }
+
+        [HttpPut(nameof(BulkChangeStatus))]
+        [ApiMethodType(MethodType.Admin)]
+        public async Task<IActionResult> BulkChangeStatus([FromBody] BulkChangePropertyStatusCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+        [HttpPut(nameof(BulkChangePrivate))]
+        [ApiMethodType(MethodType.Admin)]
+        public async Task<IActionResult> BulkChangePrivate([FromBody] BulkChangePropertyPrivateCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
         }
     }
 }
