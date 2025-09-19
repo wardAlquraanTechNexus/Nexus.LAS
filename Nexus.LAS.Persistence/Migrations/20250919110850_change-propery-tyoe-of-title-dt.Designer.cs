@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Nexus.LAS.Persistence.DatabaseContext;
 
@@ -11,9 +12,11 @@ using Nexus.LAS.Persistence.DatabaseContext;
 namespace Nexus.LAS.Persistence.Migrations
 {
     [DbContext(typeof(NexusLASDbContext))]
-    partial class NexusLASDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250919110850_change-propery-tyoe-of-title-dt")]
+    partial class changeproperytyoeoftitledt
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -3223,10 +3226,6 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("LegalStatuses")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("PropertiesStatus");
-
                     b.Property<int?>("LocationAreaId")
                         .HasColumnType("int")
                         .HasColumnName("PropertiesLocationAreaIdn");
@@ -3253,20 +3252,20 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("PropertiesPlot");
 
-                    b.Property<long?>("PlotFArea")
-                        .HasColumnType("bigint")
+                    b.Property<string>("PlotFArea")
+                        .HasColumnType("nvarchar(max)")
                         .HasColumnName("FArea");
 
-                    b.Property<long?>("PlotMArea")
-                        .HasColumnType("bigint")
+                    b.Property<string>("PlotMArea")
+                        .HasColumnType("nvarchar(max)")
                         .HasColumnName("MArea");
 
                     b.Property<bool>("Private")
                         .HasColumnType("bit")
                         .HasColumnName("Private");
 
-                    b.Property<long?>("PropertyFArea")
-                        .HasColumnType("bigint")
+                    b.Property<string>("PropertyFArea")
+                        .HasColumnType("nvarchar(max)")
                         .HasColumnName("PropertyFArea");
 
                     b.Property<string>("PropertyIdc")
@@ -3275,16 +3274,17 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnName("PropertyIDC")
                         .HasColumnOrder(0);
 
-                    b.Property<long?>("PropertyMArea")
-                        .HasColumnType("bigint")
+                    b.Property<string>("PropertyMArea")
+                        .HasColumnType("nvarchar(max)")
                         .HasColumnName("PropertyMArea");
 
                     b.Property<int?>("Purpose")
                         .HasColumnType("int")
                         .HasColumnName("PropertiesPurpose");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
+                    b.Property<string>("Statuses")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("PropertiesStatus");
 
                     b.Property<int?>("Type")
                         .HasColumnType("int")

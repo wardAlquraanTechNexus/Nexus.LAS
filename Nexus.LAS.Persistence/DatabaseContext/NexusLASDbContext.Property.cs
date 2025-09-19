@@ -21,18 +21,7 @@ namespace Nexus.LAS.Persistence.DatabaseContext
         protected void OnPropertyModelCreating(ModelBuilder modelBuilder)
         {
 
-            modelBuilder.Entity<Property>()
-                .HasKey(p => new { p.PropertyIdc, p.Id });
-
-
-            modelBuilder.Entity<PropertyOwner>()
-                .HasKey(po => new { po.PropertiesOwnerIdc, po.Id });
-
-            modelBuilder.Entity<PropertyDocument>()
-                .HasKey(pd => new { pd.PropertyDocumentsIdc, pd.Id });
-
-            modelBuilder.Entity<PropertyLink>()
-                .HasKey(pl => new { pl.PropertyLinksIdc, pl.Id });
+          
 
         }
     }

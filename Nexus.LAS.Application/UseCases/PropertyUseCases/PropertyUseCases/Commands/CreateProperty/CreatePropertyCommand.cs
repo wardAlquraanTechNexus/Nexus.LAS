@@ -1,33 +1,47 @@
 using Nexus.LAS.Application.UseCases._GenericUseCases.Commands;
+using Nexus.LAS.Domain.Constants.Enums;
 using System;
 
 namespace Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Commands.CreateProperty;
 
 public class CreatePropertyCommand : CreateBaseCommand
 {
-    public string PropertyCode { get; set; } = null!;
-    public string? PropertiesTypeOfTitle { get; set; }
-    public bool? PropertiesGrantor { get; set; }
-    public string? PropertiesGrantorAddress { get; set; }
-    public DateTime? PropertiesGrantorTitleCommencementDate { get; set; }
-    public DateTime? PropertiesGrantorTitleExpiryDate { get; set; }
-    public bool? PropertiesGrantorTitleExpiryActiveReminder { get; set; }
-    public string? PropertiesGrantorDescription { get; set; }
-    public string? PropertiesLocationCountryIdn { get; set; }
-    public string? PropertiesLocationCountry { get; set; }
-    public string? PropertiesLocationCityIdn { get; set; }
-    public string? PropertiesLocationCity { get; set; }
-    public string? PropertiesLocationAreaIdn { get; set; }
-    public string? PropertiesLocationArea { get; set; }
-    public string? PropertiesLocationDetails { get; set; }
-    public string? PropertiesType { get; set; }
-    public string? PropertiesPurpose { get; set; }
-    public string? PropertiesStatus { get; set; }
-    public string PropertyStatus { get; set; } = null!;
+    public string Code { get; set; } = null!;
+
+    public int? TypeOfTitle { get; set; }
+
+    public bool? Grantor { get; set; }
+
+    public string? GrantorAddress { get; set; }
+
+    public DateTime? GrantorTitleCommencementDate { get; set; }
+
+    public DateTime? GrantorTitleExpiryDate { get; set; }
+
+    public bool? GrantorTitleExpiryActiveReminder { get; set; }
+
+    public string? GrantorDescription { get; set; }
+
+    public int? LocationCountryId { get; set; }
+
+    public int? LocationCityId { get; set; }
+
+    public int? LocationAreaId { get; set; }
+
+    public string? LocationDetails { get; set; }
+
+    public int? Type { get; set; }
+
+    public int? Purpose { get; set; }
+
+    public string? LegalStatuses { get; set; } // seperator by comma
+    public CommonStatus Status { get; set; } = CommonStatus.New;
     public bool Private { get; set; }
-    public string? PropertiesPlot { get; set; }
-    public string? FArea { get; set; }
-    public string? MArea { get; set; }
-    public string? PropertyFArea { get; set; }
-    public string? PropertyMArea { get; set; }
+
+    public string? Plot { get; set; }
+
+    public long? PlotFArea { get; set; }
+    public long? PlotMArea { get; set; }
+    public long? PropertyFArea { get; set; }
+    public long? PropertyMArea { get; set; }
 }

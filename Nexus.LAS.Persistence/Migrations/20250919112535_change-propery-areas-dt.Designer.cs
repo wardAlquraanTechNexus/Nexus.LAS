@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Nexus.LAS.Persistence.DatabaseContext;
 
@@ -11,9 +12,11 @@ using Nexus.LAS.Persistence.DatabaseContext;
 namespace Nexus.LAS.Persistence.Migrations
 {
     [DbContext(typeof(NexusLASDbContext))]
-    partial class NexusLASDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250919112535_change-propery-areas-dt")]
+    partial class changeproperyareasdt
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -3223,10 +3226,6 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("LegalStatuses")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("PropertiesStatus");
-
                     b.Property<int?>("LocationAreaId")
                         .HasColumnType("int")
                         .HasColumnName("PropertiesLocationAreaIdn");
@@ -3283,8 +3282,9 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("int")
                         .HasColumnName("PropertiesPurpose");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
+                    b.Property<string>("Statuses")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("PropertiesStatus");
 
                     b.Property<int?>("Type")
                         .HasColumnType("int")

@@ -1,4 +1,6 @@
-﻿using Nexus.LAS.Domain.Entities.Base;
+﻿using Nexus.LAS.Domain.Constants;
+using Nexus.LAS.Domain.Constants.Enums;
+using Nexus.LAS.Domain.Entities.Base;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,7 +15,7 @@ namespace Nexus.LAS.Domain.Entities.PropertyEntities
     public class Property : BaseEntity
     {
         [Column("PropertyIDC", Order = 0)]
-        public string PropertyIdc { get; set; } = null!;
+        public string PropertyIdc { get; set; } = EntityIDCs.Properties;
 
         [Key, Column("PropertyIDN", Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -21,76 +23,69 @@ namespace Nexus.LAS.Domain.Entities.PropertyEntities
         public override int Id { get; set; }
 
         [Column("PropertyCode")]
-        public string PropertyCode { get; set; } = null!;
+        public string Code { get; set; } = null!;
 
         [Column("PropertiesTypeOfTitle")]
-        public string? PropertyTypeOfTitle { get; set; }
+        public int TypeOfTitle { get; set; }
 
         [Column("PropertiesGrantor")]
-        public bool? PropertyGrantor { get; set; }
+        public bool? Grantor { get; set; }
 
         [Column("PropertiesGrantorAddress")]
-        public string? PropertyGrantorAddress { get; set; }
+        public string? GrantorAddress { get; set; }
 
         [Column("PropertiesGrantorTitleCommencementDate")]
-        public DateTime? PropertyGrantorTitleCommencementDate { get; set; }
+        public DateTime? GrantorTitleCommencementDate { get; set; }
 
         [Column("PropertiesGrantorTitleExpiryDate")]
-        public DateTime? PropertyGrantorTitleExpiryDate { get; set; }
+        public DateTime? GrantorTitleExpiryDate { get; set; }
 
         [Column("PropertiesGrantorTitleExpiryActiveReminder")]
-        public bool? PropertyGrantorTitleExpiryActiveReminder { get; set; }
+        public bool? GrantorTitleExpiryActiveReminder { get; set; }
 
         [Column("PropertiesGrantorDescription")]
-        public string? PropertyGrantorDescription { get; set; }
+        public string? GrantorDescription { get; set; }
 
         [Column("PropertiesLocationCountryIdn")]
-        public string? PropertyLocationCountryIdn { get; set; }
+        public int? LocationCountryId { get; set; }
 
-        [Column("PropertiesLocationCountry")]
-        public string? PropertyLocationCountry { get; set; }
-
+        
         [Column("PropertiesLocationCityIdn")]
-        public string? PropertyLocationCityIdn { get; set; }
-
-        [Column("PropertiesLocationCity")]
-        public string? PropertyLocationCity { get; set; }
+        public int? LocationCityId { get; set; }
 
         [Column("PropertiesLocationAreaIdn")]
-        public string? PropertyLocationAreaIdn { get; set; }
-
-        [Column("PropertiesLocationArea")]
-        public string? PropertyLocationArea { get; set; }
+        public int? LocationAreaId { get; set; }
 
         [Column("PropertiesLocationDetails")]
-        public string? PropertyLocationDetails { get; set; }
+        public string? LocationDetails { get; set; }
 
         [Column("PropertiesType")]
-        public string? PropertyType { get; set; }
+        public int? Type { get; set; }
 
         [Column("PropertiesPurpose")]
-        public string? PropertyPurpose { get; set; }
+        public int? Purpose { get; set; }
 
         [Column("PropertiesStatus")]
-        public string? PropertyStatus { get; set; }
+        public string? LegalStatuses { get; set; } // seperator by comma
+        public CommonStatus Status { get; set; }
 
         [Column("Private")]
         public bool Private { get; set; }
 
         [Column("PropertiesPlot")]
-        public string? PropertyPlot { get; set; }
+        public string? Plot { get; set; }
 
         [Column("FArea")]
-        public string? FArea { get; set; }
+        public long? PlotFArea { get; set; }
 
         [Column("MArea")]
-        public string? MArea { get; set; }
+        public long? PlotMArea { get; set; }
 
         [Column("PropertyFArea")]
-        public string? PropertyFArea { get; set; }
+        public long? PropertyFArea { get; set; }
 
         [Column("PropertyMArea")]
-        public string? PropertyMArea { get; set; }
+        public long? PropertyMArea { get; set; }
     }
 
 }
