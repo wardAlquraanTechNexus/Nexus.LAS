@@ -5,6 +5,6 @@ namespace Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyLinkUseCases.Q
 {
     public class GetPagingPropertyLinkQuery : GetBasePagingQuery<PropertyLinkDto>
     {
-        public int? PropertyId { get; set; }
+        public int? PropertyLinksValue { get; set; }
     }
 }

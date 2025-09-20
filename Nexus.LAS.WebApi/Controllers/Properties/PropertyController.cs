@@ -10,6 +10,7 @@ using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Commands.
 using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Queries.GetPaging;
 using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Commands.BulkChangeStatus;
 using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Commands.BulkChangePrivate;
+using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Queries.GetPropertyDto;
 
 namespace Nexus.LAS.WebApi.Controllers.Properties
 {
@@ -72,6 +73,15 @@ namespace Nexus.LAS.WebApi.Controllers.Properties
         {
             var result = await _mediator.Send(command);
             return Ok(result);
+        }
+        [HttpGet("{id}")]
+        [ApiMethodType(MethodType.Get)]
+        public override async Task<IActionResult> GetById(int id)
+        {
+            var dto = await _mediator.Send(new GetPropertyDtoQuery(id));
+            if (dto == null)
+                return NotFound();
+            return Ok(dto);
         }
     }
 }

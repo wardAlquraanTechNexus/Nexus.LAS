@@ -1,4 +1,5 @@
-﻿using Nexus.LAS.Domain.Entities.Base;
+﻿using Nexus.LAS.Domain.Constants;
+using Nexus.LAS.Domain.Entities.Base;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,7 +14,7 @@ namespace Nexus.LAS.Domain.Entities.PropertyEntities
     public class PropertyLink : BaseEntity
     {
         [Column(Order = 0)]
-        public string PropertyLinksIdc { get; set; } = null!;
+        public string PropertyLinksIdc { get; set; } = EntityIDCs.PropertyLinks;
 
         [Key]
         [Column("PropertyLinksIdn" , Order = 1)]
@@ -23,12 +24,12 @@ namespace Nexus.LAS.Domain.Entities.PropertyEntities
 
 
         [Column("Registers_IDC")]
-        public string RegistersIdc { get; set; } = null!;
+        public string RegisterIdc { get; set; } = null!;
 
         [Column("Registers_IDN")]
-        public int RegistersIdn { get; set; }
+        public int RegisterIdn { get; set; }
 
-        public string PropertyLinksValue { get; set; } = null!; // renamed to avoid conflict with class name
+        public int PropertyLinksValue { get; set; } // renamed to avoid conflict with class name
 
         public string? PropertyLinksRemarks { get; set; }
     }

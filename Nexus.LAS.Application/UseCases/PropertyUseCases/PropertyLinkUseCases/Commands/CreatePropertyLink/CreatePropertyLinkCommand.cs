@@ -4,8 +4,8 @@ namespace Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyLinkUseCases.C
 
 public class CreatePropertyLinkCommand : CreateBaseCommand
 {
-    public string RegistersIdc { get; set; } = null!;
-    public int RegistersIdn { get; set; }
-    public string PropertyLinksValue { get; set; }
+    public string RegisterIdc { get; set; }
+    public int RegisterIdn { get; set; }
+    public int PropertyLinksValue { get; set; }
     public string? PropertyLinksRemarks { get; set; }
 }
