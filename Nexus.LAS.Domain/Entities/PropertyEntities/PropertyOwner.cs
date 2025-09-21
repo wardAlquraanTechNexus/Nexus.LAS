@@ -1,4 +1,5 @@
-﻿using Nexus.LAS.Domain.Entities.Base;
+﻿using Nexus.LAS.Domain.Constants;
+using Nexus.LAS.Domain.Entities.Base;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,7 +14,7 @@ namespace Nexus.LAS.Domain.Entities.PropertyEntities
     public class PropertyOwner : BaseEntity
     {
         [Column("PropertiesOwnerIDC", Order = 0)]
-        public string PropertiesOwnerIdc { get; set; } = null!;
+        public string PropertiesOwnerIdc { get; set; } = EntityIDCs.PropertiesOwners;
 
         [Key, Column("PropertiesOwnerIDN", Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -29,7 +30,7 @@ namespace Nexus.LAS.Domain.Entities.PropertyEntities
         [Column("Registers_IDN")]
         public int RegisterIdn { get; set; }
 
-        public string? Relation { get; set; }
+        public int? Relation { get; set; }
         public DateTime? OwnStartDate { get; set; }
         public DateTime? OwnFinishDate { get; set; }
         public bool? OwnActive { get; set; }
