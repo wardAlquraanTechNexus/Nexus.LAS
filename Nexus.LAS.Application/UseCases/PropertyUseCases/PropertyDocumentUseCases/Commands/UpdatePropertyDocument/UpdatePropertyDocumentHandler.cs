@@ -14,4 +14,10 @@ public class UpdatePropertyDocumentHandler
     ) : base(service, mapper)
     {
     }
+
+    public override async Task<bool> Handle(UpdatePropertyDocumentCommand request, CancellationToken cancellationToken)
+    {
+        await _service.UpdatPropertyDocument(request);
+        return true;
+    }
 }

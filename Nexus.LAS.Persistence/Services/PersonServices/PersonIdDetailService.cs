@@ -59,7 +59,6 @@ namespace Nexus.LAS.Persistence.Services
                         bytes = memoryStream.ToArray();
                     }
 
-                    RegisterFileRepo registerFileRepo = new RegisterFileRepo(_context);
                     RegisterFile registerFile = new RegisterFile
                     {
                         RegistersIdc = command.PersonsIDDetailIdc,
@@ -70,7 +69,7 @@ namespace Nexus.LAS.Persistence.Services
                     };
 
 
-                    await registerFileRepo.CreateAsync(registerFile);
+                    await _registerFileRepo.CreateAsync(registerFile);
 
                     await transaction.CommitAsync();
                     return personIdDetailId;

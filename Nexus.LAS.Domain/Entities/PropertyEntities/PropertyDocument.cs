@@ -1,4 +1,5 @@
-﻿using Nexus.LAS.Domain.Entities.Base;
+﻿using Nexus.LAS.Domain.Constants;
+using Nexus.LAS.Domain.Entities.Base;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,7 +14,7 @@ namespace Nexus.LAS.Domain.Entities.PropertyEntities
     public class PropertyDocument : BaseEntity
     {
         [Column(Order = 0)]
-        public string PropertyDocumentsIdc { get; set; } = null!;
+        public string PropertyDocumentsIdc { get; set; } = EntityIDCs.PropertyDocuments;
 
         [Key]
         [Column("PropertyDocumentsIdn" , Order = 1)]
@@ -23,16 +24,18 @@ namespace Nexus.LAS.Domain.Entities.PropertyEntities
 
         [Column("Property_IDN")]
         public int? PropertyId { get; set; }
+        [Column("DocumentType")]
 
-        public string? DocumentType { get; set; }
-
-        public string? DocumentPlaceOfIssue { get; set; }
-
-        public DateTime? DocumentIssueDate { get; set; }
+        public int? Type { get; set; }
+        [Column("DocumentPlaceOfIssue")]
+        public string? PlaceOfIssue { get; set; }
+        [Column("DocumentIssueDate")]
+        public DateTime? IssueDate { get; set; }
+        [Column("DocumentExpiryDate")]
 
         public DateTime? DocumentExpiryDate { get; set; }
-
-        public bool? DocumentExpiryActiveReminder { get; set; }
+        [Column("DocumentExpiryActiveReminder")]
+        public bool? ActiveReminder { get; set; }
 
         public string? Description { get; set; }
     }

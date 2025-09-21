@@ -14,4 +14,9 @@ public class CreatePropertyDocumentHandler
     ) : base(service, mapper)
     {
     }
+
+    public override async Task<int> Handle(CreatePropertyDocumentCommand command, CancellationToken cancellationToken)
+    {
+        return await _service.CreatePropertyDocument(command);
+    }
 }

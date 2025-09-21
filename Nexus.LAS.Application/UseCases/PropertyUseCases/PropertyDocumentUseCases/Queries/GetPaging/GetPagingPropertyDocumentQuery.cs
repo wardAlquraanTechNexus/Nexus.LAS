@@ -5,6 +5,7 @@ namespace Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyDocumentUseCas
 {
     public class GetPagingPropertyDocumentQuery : GetBasePagingQuery<PropertyDocumentDto>
     {
+        public int Id { get; set; }
         public int? PropertyId { get; set; }
     }
 }

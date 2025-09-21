@@ -42,16 +42,28 @@ namespace Nexus.LAS.WebApi.Controllers.Properties
             return base.UpdateAsync(entity);
         }
 
+        [HttpPost("CreateByForm")]
+        [ApiMethodType(MethodType.Insert)]
+        public async Task<IActionResult> CreateByForm([FromForm]CreatePropertyDocumentCommand command)
+        {
+            return Ok(await _mediator.Send(command));
+        }
         [HttpPost]
         [ApiMethodType(MethodType.Insert)]
-        public async Task<IActionResult> CreatePropertyDocument(CreatePropertyDocumentCommand command)
+        public async Task<IActionResult> CreatePropertyDocument([FromBody] CreatePropertyDocumentCommand command)
         {
             return Ok(await _mediator.Send(command));
         }
 
         [HttpPut]
         [ApiMethodType(MethodType.Update)]
-        public async Task<IActionResult> UpdatePropertyDocument(UpdatePropertyDocumentCommand command)
+        public async Task<IActionResult> UpdatePropertyDocument([FromBody]UpdatePropertyDocumentCommand command)
+        {
+            return Ok(await _mediator.Send(command));
+        }
+        [HttpPut("UpdateByForm")]
+        [ApiMethodType(MethodType.Update)]
+        public async Task<IActionResult> UpdateByForm([FromForm]UpdatePropertyDocumentCommand command)
         {
             return Ok(await _mediator.Send(command));
         }

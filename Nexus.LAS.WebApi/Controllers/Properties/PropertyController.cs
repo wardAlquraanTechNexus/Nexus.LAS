@@ -1,16 +1,20 @@
-using Microsoft.AspNetCore.Mvc;
 using MediatR;
-using Nexus.LAS.WebApi.Attributes;
-using Nexus.LAS.WebApi.Controllers._GenericController;
+using Microsoft.AspNetCore.Mvc;
+using Nexus.LAS.Application.Contracts.Presistence.Services;
+using Nexus.LAS.Application.DTOs;
+using Nexus.LAS.Application.DTOs.PropertyDTOs;
+using Nexus.LAS.Application.UseCases._GenericUseCases.Queries;
+using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Commands.BulkChangePrivate;
+using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Commands.BulkChangeStatus;
+using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Commands.CreateProperty;
+using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Commands.UpdateProperty;
+using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Queries.ExportToExcel;
+using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Queries.GetPaging;
+using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Queries.GetPropertyDto;
 using Nexus.LAS.Domain.Constants.Enums;
 using Nexus.LAS.Domain.Entities.PropertyEntities;
-using Nexus.LAS.Application.Contracts.Presistence.Services;
-using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Commands.UpdateProperty;
-using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Commands.CreateProperty;
-using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Queries.GetPaging;
-using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Commands.BulkChangeStatus;
-using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Commands.BulkChangePrivate;
-using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Queries.GetPropertyDto;
+using Nexus.LAS.WebApi.Attributes;
+using Nexus.LAS.WebApi.Controllers._GenericController;
 
 namespace Nexus.LAS.WebApi.Controllers.Properties
 {
@@ -82,6 +86,13 @@ namespace Nexus.LAS.WebApi.Controllers.Properties
             if (dto == null)
                 return NotFound();
             return Ok(dto);
+        }
+
+        [HttpGet(nameof(ExportToExcel))]
+        public async Task<IActionResult> ExportToExcel()
+        {
+            var query = new ExportPropertyToExcelQuery() { Query = Request.Query };
+            return Ok(await _mediator.Send(query));
         }
     }
 }
