@@ -11,6 +11,7 @@ using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Commands.
 using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Queries.ExportToExcel;
 using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Queries.GetPaging;
 using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Queries.GetPropertyDto;
+using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Queries.GetShared;
 using Nexus.LAS.Domain.Constants.Enums;
 using Nexus.LAS.Domain.Entities.PropertyEntities;
 using Nexus.LAS.WebApi.Attributes;
@@ -33,6 +34,12 @@ namespace Nexus.LAS.WebApi.Controllers.Properties
         [HttpGet]
         [ApiMethodType(MethodType.Get)]
         public async Task<IActionResult> GetPaging([FromQuery] GetPagingPropertyQuery query)
+        {
+            return Ok(await _mediator.Send(query));
+        }
+        [HttpGet(nameof(GetSharedProperties))]
+        [ApiMethodType(MethodType.Get)]
+        public async Task<IActionResult> GetSharedProperties([FromQuery] GetSharedPropertyQuery query)
         {
             return Ok(await _mediator.Send(query));
         }

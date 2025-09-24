@@ -2,7 +2,9 @@ using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.Contracts.Presistence._Repositories;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.DTOs.Base;
+using Nexus.LAS.Application.DTOs.PropertyDTOs;
 using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Queries.GetPaging;
+using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Queries.GetShared;
 using Nexus.LAS.Domain.Entities.PropertyEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Services.Base;
@@ -31,5 +33,10 @@ public class PropertyService : GenericService<Property>, IPropertyService
     public async Task<int> BulkChangePrivate(List<int> propertyIds, bool privateValue)
     {
         return await _repo.BulkChangePrivate(propertyIds, privateValue);
+    }
+
+    public async Task<PagingResult<SharedPropertyDTO>> GetSharedProperties(GetSharedPropertyQuery query)
+    {
+        return await _repo.GetSharedProperties(query);
     }
 }

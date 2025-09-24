@@ -8,6 +8,8 @@ using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Queries.G
 using Microsoft.EntityFrameworkCore;
 using Nexus.LAS.Domain.ExtensionMethods;
 using Nexus.LAS.Domain.Constants.Enums;
+using Nexus.LAS.Application.DTOs.PropertyDTOs;
+using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Queries.GetShared;
 
 namespace Nexus.LAS.Persistence.Repositories.PropertyRepositories;
 
@@ -90,5 +92,29 @@ public class PropertyRepo : GenericRepo<Property>, IPropertyRepo
         }
         await _context.SaveChangesAsync();
         return properties.Count;
+    }
+
+    public async Task<PagingResult<SharedPropertyDTO>> GetSharedProperties(GetSharedPropertyQuery query)
+    {
+        var propertiesQueryable = (from prop in _dbSet
+                                   join propOwner in _context.PropertyOwners on prop.Id equals propOwner.PropertyId
+                                   where query.Idc == propOwner.RegisterIdc && query.Idn == propOwner.RegisterIdn
+                                   select new SharedPropertyDTO
+                                   {
+                                       Code = prop.Code,
+                                       TypeOfTitle = prop.TypeOfTitle,
+                                       Type = prop.Type,
+                                       LocationCountryId = prop.LocationCountryId,
+                                       LocationCityId = prop.LocationCityId,
+                                       LocationAreaId = prop.LocationAreaId,
+                                       OwnActive = propOwner.OwnActive,
+                                       OwnStartDate = propOwner.OwnStartDate,
+                                       Relation = propOwner.Relation
+                                   }
+                        ).AsQueryable();
+        int totalRecords = await propertiesQueryable.CountAsync();
+        propertiesQueryable = propertiesQueryable.Paginate(query.Page, query.PageSize);
+        var data = await propertiesQueryable.ToListAsync();
+        return new PagingResult<SharedPropertyDTO>(data , query.Page, query.PageSize, totalRecords);
     }
 }
