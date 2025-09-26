@@ -31,7 +31,7 @@ namespace Nexus.LAS.Domain.Entities.LawFirmEntities
 
         [Column("Country")]
         [StringLength(50)]
-        public string? Country { get; set; }
+        public int? CountryId { get; set; }
 
         [Column("City")]
         [StringLength(50)]

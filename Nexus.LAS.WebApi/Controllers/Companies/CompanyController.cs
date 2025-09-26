@@ -2,10 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.DTOs;
+using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.UseCases._GenericUseCases.Queries;
+using Nexus.LAS.Application.UseCases._GenericUseCases.Queries.ExportToExcelBase;
 using Nexus.LAS.Application.UseCases.CompanyUseCases.Commands;
 using Nexus.LAS.Application.UseCases.CompanyUseCases.Commands.BulkChangePrivate;
 using Nexus.LAS.Application.UseCases.CompanyUseCases.Commands.BulkChangeStatus;
+using Nexus.LAS.Application.UseCases.CompanyUseCases.CompanyUseCases.Queries.ExportToExcel;
 using Nexus.LAS.Application.UseCases.CompanyUseCases.Queries;
 using Nexus.LAS.Domain.Entities.CompanyEntities;
 using Nexus.LAS.WebApi.Attributes;
@@ -76,7 +79,7 @@ public class CompanyController : GenericController<ICompanyService, Company>
     [HttpGet(nameof(ExportToExcel))]
     public async Task<IActionResult> ExportToExcel()
     {
-        var query = new GetBaseQuery<ExportCompanyToExcelDto>() { Query = Request.Query };
+        var query = new ExportCompanyToExcelQuery() { Query = Request.Query };
         return Ok(await _mediator.Send(query));
     }
     [HttpGet(nameof(ExportToPdf))]

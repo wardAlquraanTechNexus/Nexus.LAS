@@ -1,4 +1,5 @@
 ﻿using Nexus.LAS.Domain.Constants;
+using Nexus.LAS.Domain.Constants.Enums;
 using Nexus.LAS.Domain.Entities.Base;
 using System;
 using System.Collections.Generic;
@@ -46,7 +47,7 @@ namespace Nexus.LAS.Domain.Entities.LawFirmEntities
         [Required]
         [Column("LawFirmStatus")]
         [StringLength(50)]
-        public string Status { get; set; } = null!;
+        public CommonStatus Status { get; set; } = CommonStatus.New;
 
         [Column("LawFirmLASDate")]
         public DateTime? LasDate { get; set; }
@@ -60,6 +61,6 @@ namespace Nexus.LAS.Domain.Entities.LawFirmEntities
 
         [Required]
         [Column("Private")]
-        public bool Private { get; set; }
+        public bool Private { get; set; } = true;
     }
 }

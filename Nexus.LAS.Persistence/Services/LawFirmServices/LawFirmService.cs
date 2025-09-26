@@ -1,21 +1,38 @@
+using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.Contracts.Presistence._Repositories._LawFirmRepos;
+using Nexus.LAS.Application.Contracts.Presistence.Services._LawFirm;
+using Nexus.LAS.Application.DTOs.Base;
+using Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmUseCases.Queries.GetPaging;
+using Nexus.LAS.Domain.Constants.Enums;
 using Nexus.LAS.Domain.Entities.LawFirmEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Services.Base;
-using Nexus.LAS.Application.Contracts.Identity;
-using Nexus.LAS.Application.Contracts.Presistence.Services._LawFirm;
 
 namespace Nexus.LAS.Persistence.Services.LawFirmServices
 {
     public class LawFirmService : GenericService<LawFirm>, ILawFirmService
     {
+        private readonly ILawFirmRepo _repo;
         public LawFirmService(
             NexusLASDbContext context,
             IUserIdentityService userIdentityService,
             ILawFirmRepo repo
         ) : base(context, userIdentityService, repo)
         {
+            _repo = repo;
         }
-        // Add custom methods for LawFirm if needed
+        public async Task<PagingResult<LawFirm>> GetPagingLawFirms(GetPagingLawFirmQuery query)
+        {
+            return await _repo.GetPagingLawFirms(query);
+        }
+        public async Task<int> BulkChangeStatus(List<int> ids, CommonStatus status)
+        {
+            return await _repo.BulkChangeStatus(ids, status);
+        }
+
+        public async Task<int> BulkChangePrivate(List<int> ids, bool privateValue)
+        {
+            return await _repo.BulkChangePrivate(ids, privateValue);
+        }
     }
 }

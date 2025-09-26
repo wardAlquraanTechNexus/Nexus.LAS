@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts.Presistence;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.DTOs;
+using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.UseCases._GenericUseCases.Queries;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Commands;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Commands.BulkChangePrivate;
@@ -93,7 +94,7 @@ namespace Nexus.LAS.WebApi.Controllers
         [HttpGet(nameof(ExportToExcel))]
         public async Task<IActionResult> ExportToExcel()
         {
-            var query = new GetBaseQuery<ExportPersonToExcelDto>() { Query = Request.Query };
+            var query = new ExportPersonToExcelQuery { Query = Request.Query };
             return Ok(await _mediator.Send(query));
         }
         [HttpGet(nameof(ExportToPdf))]

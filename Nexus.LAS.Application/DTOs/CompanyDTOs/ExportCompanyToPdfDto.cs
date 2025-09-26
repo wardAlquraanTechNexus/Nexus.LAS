@@ -1,5 +1,7 @@
-﻿namespace Nexus.LAS.Application.DTOs;
+﻿using Nexus.LAS.Application.DTOs.Base;
 
-public class ExportCompanyToPdfDto: ExportCompanyToExcelDto
+namespace Nexus.LAS.Application.DTOs;
+
+public class ExportCompanyToPdfDto: ExcelDto
 {
 }
