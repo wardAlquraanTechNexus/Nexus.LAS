@@ -21,8 +21,7 @@ namespace Nexus.LAS.Domain.Entities.LawFirmEntities
         [Column("LawFirms_IDN")]
         public int LawFirmId { get; set; }
 
-        [StringLength(100)]
-        public string? StaffLevel { get; set; }
+        public int? StaffLevel { get; set; }
 
         [StringLength(100)]
         public string? Name { get; set; }

@@ -94,6 +94,7 @@ namespace Nexus.LAS.Persistence
             services.AddScoped<ILawFirmAffiliateService, LawFirmAffiliateService>();
             services.AddScoped<ILawFirmBranchService, LawFirmBranchService>();
             services.AddScoped<ILawFirmExpertiseService, LawFirmExpertiseService>();
+            services.AddScoped<ILawFirmCounselService, LawFirmCounselService>();
 
 
             services.AddScoped<IRegistersCodeService, RegistersCodeService>();
@@ -172,6 +173,7 @@ namespace Nexus.LAS.Persistence
             services.AddScoped<ILawFirmAffiliateRepo, LawFirmAffiliateRepo>();
             services.AddScoped<ILawFirmBranchRepo, LawFirmBranchRepo>();
             services.AddScoped<ILawFirmExpertiseRepo, LawFirmExpertiseRepo>();
+            services.AddScoped<ILawFirmCounselRepo, LawFirmCounselRepo>();
 
 
             services.AddScoped<ICompanyLeaseContractRegisterRepo, CompanyLeaseContractRegisterRepo>();

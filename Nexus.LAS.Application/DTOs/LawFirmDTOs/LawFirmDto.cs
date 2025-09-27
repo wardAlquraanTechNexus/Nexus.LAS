@@ -18,6 +18,7 @@ namespace Nexus.LAS.Application.DTOs.LawFirmDTOs
         public int? EstYear { get; set; }
         public string? Website { get; set; }
         public bool Private { get; set; }
+        public int? CountryId { get; set; }
         [IgnoreOnExport]
         public string CreatedBy { get; set; }
         [IgnoreOnExport]
@@ -26,11 +27,5 @@ namespace Nexus.LAS.Application.DTOs.LawFirmDTOs
         public string? ModifiedBy { get; set; }
         [IgnoreOnExport]
         public DateTime? ModifiedAt { get; set; }
-        [IgnoreOnExport]
-        public bool IsDeleted { get; set; } = false;
-        [IgnoreOnExport]
-        public string? DeletedBy { get; set; }
-        [IgnoreOnExport]
-        public DateTime? DeletedAt { get; set; }
     }
 }

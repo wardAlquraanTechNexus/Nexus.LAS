@@ -51,7 +51,7 @@ namespace Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmUseCases.Queries
         public string? ArabicName { get; set; } = null!;
         public string? ShortName { get; set; } = null!;
         public int? ExpertiseId { get; set; }
-        public int CountryId { get; set; }
+        public int? CountryId { get; set; }
         public string OrderBy { get; set; } = "Id";
         public string OrderDir { get; set; } = "desc";
 

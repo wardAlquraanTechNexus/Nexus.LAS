@@ -8,6 +8,7 @@ using Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmUseCases.Commands.Bu
 using Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmUseCases.Commands.CreateLawFirm;
 using Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmUseCases.Commands.UpdateLawFirm;
 using Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmUseCases.Queries.ExportToExcel;
+using Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmUseCases.Queries.GetLawFirmDto;
 using Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmUseCases.Queries.GetPaging;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Queries;
 using Nexus.LAS.Domain.Constants.Enums;
@@ -21,6 +22,13 @@ namespace Nexus.LAS.WebApi.Controllers
     {
         public LawFirmController(ILawFirmService service, IMediator mediator) : base(service, mediator)
         {
+        }
+
+
+        public override async Task<IActionResult> GetById(int id)
+        {
+            GetLawFirmDtoQuery query = new(id);
+            return Ok(await _mediator.Send(query));
         }
 
         [NonAction]

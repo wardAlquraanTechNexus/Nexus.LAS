@@ -17,7 +17,7 @@ namespace Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmUseCases.Queries
         public override async Task<PagingResult<LawFirmDto>> Handle(GetPagingLawFirmQuery request, CancellationToken cancellationToken)
         {
             var data = await _service.GetPagingLawFirms(request);
-            return new PagingResult<LawFirmDto>(data.Collection.Select(item => _mapper.Map<LawFirmDto>(item)).ToList(), data.Page, data.PageSize, data.TotalRecords);
+            return data;
         }
     }
 }

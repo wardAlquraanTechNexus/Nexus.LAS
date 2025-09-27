@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Nexus.LAS.Application.DTOs.LawFirmDTOs
 {
@@ -6,8 +7,11 @@ namespace Nexus.LAS.Application.DTOs.LawFirmDTOs
     {
         public int Id { get; set; }
         public int LawFirmId { get; set; }
-        public int PersonId { get; set; }
-        public string? Position { get; set; }
-        // Add any other properties from LawFirmPerson entity except those in BaseEntity
+        public int? StaffLevel { get; set; }
+        public string? Name { get; set; }
+        public string? Practice { get; set; }
+        public string? Email { get; set; }
+        public string? Phone { get; set; }
+        public bool? StaffStatus { get; set; }
     }
 }

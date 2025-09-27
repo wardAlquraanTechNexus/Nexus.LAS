@@ -6,8 +6,11 @@ namespace Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmPersonUseCases.C
     {
         public int Id { get; set; }
         public int LawFirmId { get; set; }
-        public int PersonId { get; set; }
-        public string? Position { get; set; }
-        // Add other properties except those in BaseEntity
+        public int? StaffLevel { get; set; }
+        public string? Name { get; set; }
+        public string? Practice { get; set; }
+        public string? Email { get; set; }
+        public string? Phone { get; set; }
+        public bool? StaffStatus { get; set; }
     }
 }

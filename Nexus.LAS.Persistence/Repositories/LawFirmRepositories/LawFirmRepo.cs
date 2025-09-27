@@ -18,24 +18,80 @@ namespace Nexus.LAS.Persistence.Repositories.LawFirmRepositories
         public LawFirmRepo(NexusLASDbContext context) : base(context)
         {
         }
-        public async Task<PagingResult<LawFirm>> GetPagingLawFirms(GetPagingLawFirmQuery query)
+        public async Task<LawFirmDto?> GetDTOById(int id)
         {
-            var queryable = _dbSet.Where(
-                lf =>
-                    (!query.Privates.Any() || query.Privates.Contains(lf.Private))
-                    && (!query.Statuses.Any() || query.Statuses.Contains(lf.Status))
-                    && (
-                        query.SearchBy == null
-                        || (lf.LawFirmCode.ToLower().Contains(query.SearchBy.ToLower()))
-                        || (!string.IsNullOrEmpty(lf.EnglishName) && lf.EnglishName.ToLower().Contains(query.SearchBy.ToLower()))
-                        || (!string.IsNullOrEmpty(lf.ArabicName) && lf.ArabicName.ToLower().Contains(query.SearchBy.ToLower()))
-                        || (!string.IsNullOrEmpty(lf.ShortName) && lf.ShortName.ToLower().Contains(query.SearchBy.ToLower()))
-                    )
-                    && (string.IsNullOrEmpty(query.Fid) || query.Fid == lf.LawFirmCode)
-                    && (string.IsNullOrEmpty(query.EnglishName) || query.EnglishName == lf.EnglishName)
-                    && (string.IsNullOrEmpty(query.ArabicName) || query.ArabicName == lf.ArabicName)
-                    && (string.IsNullOrEmpty(query.ShortName) || query.ShortName == lf.ShortName)
-            ).AsQueryable();
+            var queryable =
+                    from lf in _dbSet
+                    where
+                       lf.Id == id
+                    join lfb in _context.LawFirmsBranchs
+                        on lf.Id equals lfb.LawFirmId into lfBranchGroup
+                    from lfb in lfBranchGroup.DefaultIfEmpty()
+                    where
+                     lfb == null || lfb.BranchPrimary == true
+                    select new LawFirmDto
+                    {
+                        Id = lf.Id,
+                        LawFirmCode = lf.LawFirmCode,
+                        ShortName = lf.ShortName,
+                        EnglishName = lf.EnglishName,
+                        ArabicName = lf.ArabicName,
+                        Status = lf.Status,
+                        LasDate = lf.LasDate,
+                        EstYear = lf.EstYear,
+                        Website = lf.Website,
+                        Private = lf.Private,
+                        CountryId = lfb.CountryId,
+                        CreatedAt = lf.CreatedAt,
+                        CreatedBy = lf.CreatedBy,
+                        ModifiedAt = lf.ModifiedAt,
+                        ModifiedBy = lf.ModifiedBy,
+                    };
+
+            return await queryable.FirstOrDefaultAsync();
+        }
+        public async Task<PagingResult<LawFirmDto>> GetPagingLawFirms(GetPagingLawFirmQuery query)
+        {
+            var queryable =
+                    from lf in _dbSet
+                    where
+                        (!query.Privates.Any() || query.Privates.Contains(lf.Private))
+                        && (!query.Statuses.Any() || query.Statuses.Contains(lf.Status))
+                        && (
+                            query.SearchBy == null
+                            || (lf.LawFirmCode.ToLower().Contains(query.SearchBy.ToLower()))
+                            || (!string.IsNullOrEmpty(lf.EnglishName) && lf.EnglishName.ToLower().Contains(query.SearchBy.ToLower()))
+                            || (!string.IsNullOrEmpty(lf.ArabicName) && lf.ArabicName.ToLower().Contains(query.SearchBy.ToLower()))
+                            || (!string.IsNullOrEmpty(lf.ShortName) && lf.ShortName.ToLower().Contains(query.SearchBy.ToLower()))
+                        )
+                        && (string.IsNullOrEmpty(query.Fid) || query.Fid == lf.LawFirmCode)
+                        && (string.IsNullOrEmpty(query.EnglishName) || query.EnglishName == lf.EnglishName)
+                        && (string.IsNullOrEmpty(query.ArabicName) || query.ArabicName == lf.ArabicName)
+                        && (string.IsNullOrEmpty(query.ShortName) || query.ShortName == lf.ShortName)
+                    join lfb in _context.LawFirmsBranchs
+                        on lf.Id equals lfb.LawFirmId into lfBranchGroup
+                    from lfb in lfBranchGroup.DefaultIfEmpty()
+                    where ((lfb == null || lfb.BranchPrimary == true) && !query.CountryId.HasValue) 
+                             || (lfb.CountryId == query.CountryId)
+                    select new LawFirmDto
+                    {
+                        Id = lf.Id,
+                        LawFirmCode = lf.LawFirmCode,
+                        ShortName = lf.ShortName,
+                        EnglishName = lf.EnglishName,
+                        ArabicName = lf.ArabicName,
+                        Status = lf.Status,
+                        LasDate = lf.LasDate,
+                        EstYear = lf.EstYear,
+                        Website = lf.Website,
+                        Private = lf.Private,
+                        CountryId = lfb.CountryId,
+                        CreatedAt = lf.CreatedAt,
+                        CreatedBy = lf.CreatedBy,
+                        ModifiedAt = lf.ModifiedAt,
+                        ModifiedBy = lf.ModifiedBy,
+                    };
+
 
 
             if (query.ExpertiseId.HasValue)
@@ -44,24 +100,13 @@ namespace Nexus.LAS.Persistence.Repositories.LawFirmRepositories
                              join lfb in _context.LawFirmsBranchs on lf.Id equals lfb.LawFirmId
                              where lfb.Id == query.ExpertiseId.Value
                              select lf
-                             ).AsQueryable();
+                             )
+                             .Distinct()
+                             .AsQueryable()
+                             ;
 
 
             }
-
-
-            if (query.CountryId > 0)
-            {
-                queryable = (
-                    from lf in queryable
-                    join lfb in _context.LawFirmsBranchs on lf.Id equals lfb.LawFirmId
-                    where lfb.CountryId == query.CountryId
-                    select lf
-                )
-                .Distinct()
-                .AsQueryable();
-            }
-
 
 
 
@@ -76,7 +121,7 @@ namespace Nexus.LAS.Persistence.Repositories.LawFirmRepositories
 
             var data = await queryable.ToListAsync();
 
-            return new PagingResult<LawFirm>(data , query.Page, query.PageSize ,totalRecords);
+            return new PagingResult<LawFirmDto>(data , query.Page, query.PageSize ,totalRecords);
         }
 
         public override async Task<int> CreateAsync(LawFirm entity)

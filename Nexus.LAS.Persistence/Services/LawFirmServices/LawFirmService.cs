@@ -2,6 +2,7 @@ using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.Contracts.Presistence._Repositories._LawFirmRepos;
 using Nexus.LAS.Application.Contracts.Presistence.Services._LawFirm;
 using Nexus.LAS.Application.DTOs.Base;
+using Nexus.LAS.Application.DTOs.LawFirmDTOs;
 using Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmUseCases.Queries.GetPaging;
 using Nexus.LAS.Domain.Constants.Enums;
 using Nexus.LAS.Domain.Entities.LawFirmEntities;
@@ -21,7 +22,7 @@ namespace Nexus.LAS.Persistence.Services.LawFirmServices
         {
             _repo = repo;
         }
-        public async Task<PagingResult<LawFirm>> GetPagingLawFirms(GetPagingLawFirmQuery query)
+        public async Task<PagingResult<LawFirmDto>> GetPagingLawFirms(GetPagingLawFirmQuery query)
         {
             return await _repo.GetPagingLawFirms(query);
         }
@@ -33,6 +34,11 @@ namespace Nexus.LAS.Persistence.Services.LawFirmServices
         public async Task<int> BulkChangePrivate(List<int> ids, bool privateValue)
         {
             return await _repo.BulkChangePrivate(ids, privateValue);
+        }
+
+        public async Task<LawFirmDto?> GetDTOById(int id)
+        {
+            return await _repo.GetDTOById(id);
         }
     }
 }

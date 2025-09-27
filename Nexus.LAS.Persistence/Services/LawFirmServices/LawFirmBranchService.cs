@@ -9,13 +9,20 @@ namespace Nexus.LAS.Persistence.Services.LawFirmServices
 {
     public class LawFirmBranchService : GenericService<LawFirmBranch>, ILawFirmBranchService
     {
+        private readonly ILawFirmBranchRepo _repo;
         public LawFirmBranchService(
             NexusLASDbContext context,
             IUserIdentityService userIdentityService,
             ILawFirmBranchRepo repo
         ) : base(context, userIdentityService, repo)
         {
+            _repo = repo;
         }
-        // Add custom methods for LawFirmBranch if needed
+
+        public async Task<bool> HasPrimaryBranchAsync(int lawFirmId, int? excludedId = null)
+        {
+            return await _repo.HasPrimaryBranchAsync(lawFirmId, excludedId);
+        }
+
     }
 }
