@@ -96,14 +96,8 @@ namespace Nexus.LAS.Persistence.Repositories.LawFirmRepositories
 
             if (query.ExpertiseId.HasValue)
             {
-                queryable = (from lf in queryable
-                             join lfb in _context.LawFirmsBranchs on lf.Id equals lfb.LawFirmId
-                             where lfb.Id == query.ExpertiseId.Value
-                             select lf
-                             )
-                             .Distinct()
-                             .AsQueryable()
-                             ;
+                var lawFirmIds = await _context.LawFirmsExpertises.Where(x => x.Id == query.ExpertiseId).Select(x=>x.LawFirmId).ToListAsync();
+                queryable = queryable.Where(lf => lawFirmIds.Contains(lf.Id)).AsQueryable();
 
 
             }

@@ -8,6 +8,7 @@ using Nexus.LAS.Domain.Entities.LawFirmEntities;
 using Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmExpertiseUseCases.Queries.GetPaging;
 using Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmExpertiseUseCases.Commands.CreateLawFirmExpertise;
 using Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmExpertiseUseCases.Commands.UpdateLawFirmExpertise;
+using Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmExpertiseUseCases.Queries.GetAll;
 
 namespace Nexus.LAS.WebApi.Controllers
 {
@@ -22,6 +23,19 @@ namespace Nexus.LAS.WebApi.Controllers
         {
             return base.GetByQuery();
         }
+
+        [NonAction]
+        public override Task<IActionResult> GetAllByQuery()
+        {
+            return base.GetAllByQuery();
+        }
+        [HttpGet(nameof(GetAllByQuery))]
+        [ApiMethodType(MethodType.Get)]
+        public async Task<IActionResult> GetAll([FromQuery] GetAllLawFirmExpertiseQuery query)
+        {
+            return Ok(await _mediator.Send(query));
+        }
+
 
         [HttpGet]
         [ApiMethodType(MethodType.Get)]

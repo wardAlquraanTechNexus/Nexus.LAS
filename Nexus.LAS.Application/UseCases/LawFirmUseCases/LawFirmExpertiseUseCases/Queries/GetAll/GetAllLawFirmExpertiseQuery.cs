@@ -5,5 +5,8 @@ namespace Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmExpertiseUseCase
 {
     public class GetAllLawFirmExpertiseQuery : GetAllBaseQuery<LawFirmExpertiseDto>
     {
+        public int? LawFirmId { get; set; }
+        public string? ExpertiseName { get; set; } = null;
+
     }
 }

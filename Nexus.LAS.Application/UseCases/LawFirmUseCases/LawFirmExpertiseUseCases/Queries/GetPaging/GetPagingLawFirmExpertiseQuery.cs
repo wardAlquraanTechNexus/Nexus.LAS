@@ -6,6 +6,7 @@ namespace Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmExpertiseUseCase
 {
     public class GetPagingLawFirmExpertiseQuery : GetBasePagingQuery<LawFirmExpertiseDto>
     {
-        public int LawFirmId { get; set; }
+        public int? LawFirmId { get; set; }
+        public string? ExpertiseName { get; set; } = null!;
     }
 }
