@@ -18,7 +18,14 @@ namespace Nexus.LAS.Application.DTOs.Base
             PageSize = pageSize;
             Collection = collection;
             TotalRecords = totalRecords;
-            TotalPages = Convert.ToInt32(Math.Ceiling((decimal)totalRecords / pageSize));
+            if(pageSize == 0)
+            {
+                TotalPages = 0;
+            }
+            else
+            {
+                TotalPages = Convert.ToInt32(Math.Ceiling((decimal)totalRecords / pageSize));
+            }
         }
 
         public int Page {  get; set; }

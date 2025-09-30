@@ -14,5 +14,10 @@ namespace Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionUseCases
             : base(service, mapper)
         {
         }
+
+        public override async Task<PagingResult<TransactionDto>> Handle(GetPagingTransactionQuery request, CancellationToken cancellationToken)
+        {
+            return await _service.SearchTransactions(request);
+        }
     }
 }

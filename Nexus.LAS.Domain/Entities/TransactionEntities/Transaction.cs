@@ -1,4 +1,5 @@
 ﻿using Nexus.LAS.Domain.Constants;
+using Nexus.LAS.Domain.Constants.Enums;
 using Nexus.LAS.Domain.Entities.Base;
 using System;
 using System.Collections.Generic;
@@ -28,15 +29,15 @@ namespace Nexus.LAS.Domain.Entities.TransactionEntities
         public string TransactionCode { get; set; } = null!;
 
         [Column("TransactionSubjectType")]
-        public string SubjectType { get; set; } = null!;
+        public int? SubjectType { get; set; } = null!;
 
         [Column("TransactionSubjectDescription")]
         public string? SubjectDescription { get; set; }
 
         [Column("TransactionStatus")]
-        public string? Status { get; set; }
+        public CommonStatus Status { get; set; } = CommonStatus.New;
 
         [Column("Private")]
-        public bool Private { get; set; }
+        public bool Private { get; set; } = true;
     }
 }
