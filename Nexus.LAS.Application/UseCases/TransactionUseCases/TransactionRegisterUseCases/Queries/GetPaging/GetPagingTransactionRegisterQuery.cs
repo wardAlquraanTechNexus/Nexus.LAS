@@ -6,5 +6,6 @@ namespace Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionRegister
 {
     public class GetPagingTransactionRegisterQuery : GetBasePagingQuery<TransactionRegisterDto>
     {
+        public int TransactionId { get; set; }
     }
 }

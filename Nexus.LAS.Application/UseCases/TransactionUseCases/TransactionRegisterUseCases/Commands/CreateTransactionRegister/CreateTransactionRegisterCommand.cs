@@ -6,6 +6,7 @@ namespace Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionRegister
     {
         public int TransactionId { get; set; }
         public int RegisterId { get; set; }
+        public string RegisterIdc { get; set; } = null!;
         public bool? PrimaryRegister { get; set; }
     }
 }

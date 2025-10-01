@@ -7,6 +7,7 @@ namespace Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionUseCases
     public class UpdateTransactionCommand : UpdateBaseCommand
     {
         public int Id { get; set; }
+        public string TransactionCode { get; set; }
         public DateTime? TransactionDate { get; set; }
         public int? SubjectType { get; set; }
         public string? SubjectDescription { get; set; }

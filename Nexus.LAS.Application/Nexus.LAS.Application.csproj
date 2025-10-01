@@ -21,9 +21,4 @@
     <ProjectReference Include="..\Nexus.LAS.Domain\Nexus.LAS.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="UseCases\TransactionUseCases\TransactionRegisterUseCases\Commands\Create\" />
-    <Folder Include="UseCases\TransactionUseCases\TransactionRegisterUseCases\Commands\Update\" />
-  </ItemGroup>
-
 </Project>
