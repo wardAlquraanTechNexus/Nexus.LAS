@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nexus.LAS.Application.DTOs
+namespace Nexus.LAS.Domain.Constants.Enums
 {
-    public class UploadUserImageDto:FileDto
+    public enum TransactionActionStatus
     {
-        
+        Pending,
+        Active,
+        Closed
     }
 }

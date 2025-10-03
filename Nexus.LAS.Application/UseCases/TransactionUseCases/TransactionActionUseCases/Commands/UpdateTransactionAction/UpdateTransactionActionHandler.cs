@@ -11,5 +11,10 @@ namespace Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionActionUs
             : base(service, mapper)
         {
         }
+
+        public override async Task<bool> Handle(UpdateTransactionActionCommand request, CancellationToken cancellationToken)
+        {
+            return (await _service.UpdateTransactionAction(request)) > 0;
+        }
     }
 }

@@ -253,7 +253,7 @@ namespace Nexus.LAS.Persistence.Services
         }
 
 
-        public async Task<UploadImageDto> UploadUserImage([FromForm] UploadPersonImageCommand command)
+        public async Task<FileDto> UploadUserImage([FromForm] UploadPersonImageCommand command)
         {
             RegisterFileRepo registerFileRepo = new RegisterFileRepo(_context);
 

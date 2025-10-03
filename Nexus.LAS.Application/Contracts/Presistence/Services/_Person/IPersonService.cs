@@ -21,6 +21,6 @@ public interface IPersonService: IGenericService<Person>
     Task<bool> IsPersonArabicNameUniqueAsync(string personArabicName, int? excludeId = null);
     Task<bool> IsPersonShortNameUniqueAsync(string personShortName, int? excludeId = null);
     Task<byte[]> ExportToPdf(int id);
-    Task<UploadImageDto> UploadUserImage(UploadPersonImageCommand command);
+    Task<FileDto> UploadUserImage(UploadPersonImageCommand command);
     Task<PersonDto> GetPersonDto(int id);
 }

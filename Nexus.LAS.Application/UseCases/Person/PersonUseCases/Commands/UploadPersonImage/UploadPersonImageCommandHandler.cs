@@ -4,7 +4,7 @@ using Nexus.LAS.Application.DTOs;
 
 namespace Nexus.LAS.Application.UseCases.PersonUseCases.Commands
 {
-    public class UploadPersonImageCommandHandler:IRequestHandler<UploadPersonImageCommand , UploadImageDto>
+    public class UploadPersonImageCommandHandler:IRequestHandler<UploadPersonImageCommand , FileDto>
     {
         private readonly IPersonService _personService;
 
@@ -13,7 +13,7 @@ namespace Nexus.LAS.Application.UseCases.PersonUseCases.Commands
             _personService = personService;
         }
 
-        public async Task<UploadImageDto> Handle(UploadPersonImageCommand command, CancellationToken cancellationToken)
+        public async Task<FileDto> Handle(UploadPersonImageCommand command, CancellationToken cancellationToken)
         {
             return await _personService.UploadUserImage(command);
         }

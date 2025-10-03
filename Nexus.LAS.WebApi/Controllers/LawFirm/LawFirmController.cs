@@ -8,6 +8,7 @@ using Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmUseCases.Commands.Bu
 using Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmUseCases.Commands.CreateLawFirm;
 using Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmUseCases.Commands.UpdateLawFirm;
 using Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmUseCases.Queries.ExportToExcel;
+using Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmUseCases.Queries.GetAll;
 using Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmUseCases.Queries.GetLawFirmDto;
 using Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmUseCases.Queries.GetPaging;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Queries;
@@ -35,6 +36,19 @@ namespace Nexus.LAS.WebApi.Controllers
         public override Task<IActionResult> GetByQuery()
         {
             return base.GetByQuery();
+        }
+
+        [NonAction]
+        public override Task<IActionResult> GetAllByQuery()
+        {
+            return base.GetAllByQuery();
+        }
+
+        [HttpGet(nameof(GetAllByQuery))]
+        [ApiMethodType(Domain.Constants.Enums.MethodType.Get)]
+        public virtual async Task<IActionResult> GetAll([FromQuery]GetAllLawFirmQuery query)
+        {
+            return Ok(await _mediator.Send(query));
         }
 
         [HttpGet]

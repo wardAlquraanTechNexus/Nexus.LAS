@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Nexus.LAS.Persistence.DatabaseContext;
 
@@ -11,9 +12,11 @@ using Nexus.LAS.Persistence.DatabaseContext;
 namespace Nexus.LAS.Persistence.Migrations
 {
     [DbContext(typeof(NexusLASDbContext))]
-    partial class NexusLASDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251001232935_undo-transaction-action-and-pid")]
+    partial class undotransactionactionandpid
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -3639,6 +3642,9 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Name");
 
+                    b.Property<int?>("PersonsIDDetailId")
+                        .HasColumnType("int");
+
                     b.Property<string>("RegistersIdc")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
@@ -3648,7 +3654,17 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("int")
                         .HasColumnName("Registers_IDN");
 
+                    b.Property<int?>("TransactionActionId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TransactionActionTransactionsActionIdc")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("PersonsIDDetailId");
+
+                    b.HasIndex("TransactionActionTransactionsActionIdc", "TransactionActionId");
 
                     b.ToTable("tblFiles");
                 });
@@ -4241,6 +4257,27 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasForeignKey("ParentId");
 
                     b.Navigation("Parent");
+                });
+
+            modelBuilder.Entity("Nexus.LAS.Domain.Entities.RegisterEntities.RegisterFile", b =>
+                {
+                    b.HasOne("Nexus.LAS.Domain.Entities.PersonEntities.PersonsIDDetail", null)
+                        .WithMany("RegisterFiles")
+                        .HasForeignKey("PersonsIDDetailId");
+
+                    b.HasOne("Nexus.LAS.Domain.Entities.TransactionEntities.TransactionAction", null)
+                        .WithMany("RegisterFiles")
+                        .HasForeignKey("TransactionActionTransactionsActionIdc", "TransactionActionId");
+                });
+
+            modelBuilder.Entity("Nexus.LAS.Domain.Entities.PersonEntities.PersonsIDDetail", b =>
+                {
+                    b.Navigation("RegisterFiles");
+                });
+
+            modelBuilder.Entity("Nexus.LAS.Domain.Entities.TransactionEntities.TransactionAction", b =>
+                {
+                    b.Navigation("RegisterFiles");
                 });
 #pragma warning restore 612, 618
         }

@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Nexus.LAS.Application.DTOs
 {
-    public class UploadImageDto
+    public class FileDto
     {
+        public int? FileId { get; set; }
         public string FileName { get; set; }
         public string ContentType { get; set; }
         public byte[] Data { get; set; }

@@ -6,5 +6,8 @@ namespace Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionActionUs
 {
     public class GetPagingTransactionActionQuery : GetBasePagingQuery<TransactionActionDto>
     {
+        public int TransactionId { get; set; }
+        public string OrderBy { get; set; } = "Id";
+        public string OrderDir { get; set; } = "desc";
     }
 }

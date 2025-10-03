@@ -1,5 +1,7 @@
 ﻿using Nexus.LAS.Domain.Constants;
+using Nexus.LAS.Domain.Constants.Enums;
 using Nexus.LAS.Domain.Entities.Base;
+using Nexus.LAS.Domain.Entities.RegisterEntities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -40,7 +42,8 @@ namespace Nexus.LAS.Domain.Entities.TransactionEntities
         public DateTime? ClosedDate { get; set; }
 
         [Column("ActionStatus")]
-        public string ActionStatus { get; set; } = null!;
+        public TransactionActionStatus ActionStatus { get; set; } = TransactionActionStatus.Pending;
+
     }
 
 }

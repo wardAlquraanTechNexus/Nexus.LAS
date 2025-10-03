@@ -1,9 +1,12 @@
+using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.Contracts.Presistence._Repositories._TransactionRepos;
 using Nexus.LAS.Application.Contracts.Presistence.Services._Transaction;
+using Nexus.LAS.Application.DTOs.Base;
+using Nexus.LAS.Application.DTOs.TransactionDTOs;
+using Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionRegisterUseCases.Queries.GetPaging;
 using Nexus.LAS.Domain.Entities.TransactionEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Services.Base;
-using Nexus.LAS.Application.Contracts.Identity;
 using System.Threading.Tasks;
 
 namespace Nexus.LAS.Persistence.Services.TransactionServices
@@ -29,6 +32,11 @@ namespace Nexus.LAS.Persistence.Services.TransactionServices
         public async Task<bool> ExistsByTransactionAndRegisterAsync(int transactionId, int registerId, string registerIdc, int? excludedId = null)
         {
             return await _repo.ExistsByTransactionAndRegisterAsync(transactionId , registerId , registerIdc , excludedId);
+        }
+
+        public async Task<PagingResult<TransactionRegisterDto>> GetPaging(GetPagingTransactionRegisterQuery query)
+        {
+            return await _repo.GetPaging(query);
         }
     }
 }

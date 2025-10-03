@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Nexus.LAS.Application.UseCases.PersonUseCases.Commands
 {
-    public class UploadPersonImageCommand:IRequest<UploadImageDto>
+    public class UploadPersonImageCommand:IRequest<FileDto>
     {
         public IFormFile File { get; set; }
         public int PersonId { get; set; }

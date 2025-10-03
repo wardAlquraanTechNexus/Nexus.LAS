@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Nexus.LAS.Persistence.DatabaseContext;
 
@@ -11,9 +12,11 @@ using Nexus.LAS.Persistence.DatabaseContext;
 namespace Nexus.LAS.Persistence.Migrations
 {
     [DbContext(typeof(NexusLASDbContext))]
-    partial class NexusLASDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251001231349_change-transaction-action-set-reltionship")]
+    partial class changetransactionactionsetreltionship
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -3641,7 +3644,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.Property<string>("RegistersIdc")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
+                        .HasColumnType("nvarchar(450)")
                         .HasColumnName("Registers_IDC");
 
                     b.Property<int>("RegistersIdn")
@@ -3649,6 +3652,8 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnName("Registers_IDN");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("RegistersIdn", "RegistersIdc");
 
                     b.ToTable("tblFiles");
                 });
@@ -3815,10 +3820,6 @@ namespace Nexus.LAS.Persistence.Migrations
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.TransactionEntities.TransactionAction", b =>
                 {
-                    b.Property<string>("TransactionsActionIdc")
-                        .HasColumnType("nvarchar(450)")
-                        .HasColumnName("TransactionsActionIDC");
-
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
@@ -3877,7 +3878,12 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("int")
                         .HasColumnName("Transactions_IDN");
 
-                    b.HasKey("TransactionsActionIdc", "Id");
+                    b.Property<string>("TransactionsActionIdc")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)")
+                        .HasColumnName("TransactionsActionIDC");
+
+                    b.HasKey("Id");
 
                     b.ToTable("TransactionsActions");
                 });
@@ -4241,6 +4247,21 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasForeignKey("ParentId");
 
                     b.Navigation("Parent");
+                });
+
+            modelBuilder.Entity("Nexus.LAS.Domain.Entities.RegisterEntities.RegisterFile", b =>
+                {
+                    b.HasOne("Nexus.LAS.Domain.Entities.TransactionEntities.TransactionAction", null)
+                        .WithMany("RegisterFiles")
+                        .HasForeignKey("RegistersIdn", "RegistersIdc")
+                        .HasPrincipalKey("Id", "TransactionsActionIdc")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Nexus.LAS.Domain.Entities.TransactionEntities.TransactionAction", b =>
+                {
+                    b.Navigation("RegisterFiles");
                 });
 #pragma warning restore 612, 618
         }

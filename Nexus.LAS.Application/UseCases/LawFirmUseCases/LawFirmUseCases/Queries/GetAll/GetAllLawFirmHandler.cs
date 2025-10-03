@@ -12,5 +12,10 @@ namespace Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmUseCases.Queries
             : base(service, mapper)
         {
         }
+
+        public override async Task<List<LawFirmDto>> Handle(GetAllLawFirmQuery request, CancellationToken cancellationToken)
+        {
+            return await _service.GetAllLawFirms(request);
+        }
     }
 }

@@ -1,8 +1,14 @@
 using Microsoft.EntityFrameworkCore;
 using Nexus.LAS.Application.Contracts.Presistence._Repositories._TransactionRepos;
+using Nexus.LAS.Application.DTOs.Base;
+using Nexus.LAS.Application.DTOs.LawFirmDTOs;
+using Nexus.LAS.Application.DTOs.TransactionDTOs;
+using Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionRegisterUseCases.Queries.GetPaging;
 using Nexus.LAS.Domain.Entities.TransactionEntities;
+using Nexus.LAS.Domain.ExtensionMethods;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Repositories.BaseRepo;
+using System.Linq;
 
 namespace Nexus.LAS.Persistence.Repositories.TransactionRepositories
 {
@@ -10,6 +16,36 @@ namespace Nexus.LAS.Persistence.Repositories.TransactionRepositories
     {
         public TransactionRegisterRepo(NexusLASDbContext context) : base(context)
         {
+        }
+
+        public async Task<PagingResult<TransactionRegisterDto>> GetPaging(GetPagingTransactionRegisterQuery query)
+        {
+            var queryable = _dbSet.Where(tr =>
+                (!query.TransactionId.HasValue || query.TransactionId == tr.TransactionId) &&
+                (!query.RegisterIdcList.Any() || query.RegisterIdcList.Contains(tr.RegisterIdc))
+                )
+                .Select(x=>new TransactionRegisterDto()
+                {
+                    Id = x.Id,
+                    TransactionId = x.TransactionId,
+                    RegisterId = x.RegisterId,
+                    RegisterIdc = x.RegisterIdc,
+                    PrimaryRegister = x.PrimaryRegister,
+                })
+                .AsQueryable();
+
+            int totalRecords = await queryable.CountAsync();
+
+            queryable = queryable.Paginate(query.Page, query.PageSize);
+
+            if (!string.IsNullOrEmpty(query.OrderBy))
+            {
+                queryable = queryable.Order(query.OrderBy, query.OrderDir ?? "asc");
+            }
+
+            var data = await queryable.ToListAsync();
+
+            return new PagingResult<TransactionRegisterDto>(data, query.Page, query.PageSize, totalRecords);
         }
         public async Task<bool> HasPrimaryRegisterAsync(string registerIdc, int transactionId, int? excludedId = null)
         {

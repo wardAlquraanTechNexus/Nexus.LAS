@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Nexus.LAS.Application.Contracts.Presistence._Repositories._LawFirmRepos;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.DTOs.LawFirmDTOs;
+using Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmUseCases.Queries.GetAll;
 using Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmUseCases.Queries.GetPaging;
 using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Queries.GetPaging;
 using Nexus.LAS.Domain.Constants;
@@ -53,7 +54,7 @@ namespace Nexus.LAS.Persistence.Repositories.LawFirmRepositories
         public async Task<PagingResult<LawFirmDto>> GetPagingLawFirms(GetPagingLawFirmQuery query)
         {
             var queryable =
-                    from lf in _dbSet
+                    (from lf in _dbSet
                     where
                         (!query.Privates.Any() || query.Privates.Contains(lf.Private))
                         && (!query.Statuses.Any() || query.Statuses.Contains(lf.Status))
@@ -90,7 +91,7 @@ namespace Nexus.LAS.Persistence.Repositories.LawFirmRepositories
                         CreatedBy = lf.CreatedBy,
                         ModifiedAt = lf.ModifiedAt,
                         ModifiedBy = lf.ModifiedBy,
-                    };
+                    }).Distinct().AsQueryable();
 
 
 
@@ -116,6 +117,64 @@ namespace Nexus.LAS.Persistence.Repositories.LawFirmRepositories
             var data = await queryable.ToListAsync();
 
             return new PagingResult<LawFirmDto>(data , query.Page, query.PageSize ,totalRecords);
+        }
+        
+        public async Task<List<LawFirmDto>> GetAllLawFirms(GetAllLawFirmQuery query)
+        {
+            var queryable =
+                    from lf in _dbSet
+                    where
+                        (!query.Privates.Any() || query.Privates.Contains(lf.Private))
+                        && (!query.Statuses.Any() || query.Statuses.Contains(lf.Status))
+                        && (
+                            query.SearchBy == null
+                            || (lf.LawFirmCode.ToLower().Contains(query.SearchBy.ToLower()))
+                            || (!string.IsNullOrEmpty(lf.EnglishName) && lf.EnglishName.ToLower().Contains(query.SearchBy.ToLower()))
+                            || (!string.IsNullOrEmpty(lf.ArabicName) && lf.ArabicName.ToLower().Contains(query.SearchBy.ToLower()))
+                            || (!string.IsNullOrEmpty(lf.ShortName) && lf.ShortName.ToLower().Contains(query.SearchBy.ToLower()))
+                        )
+                        && (string.IsNullOrEmpty(query.Fid) || query.Fid == lf.LawFirmCode)
+                        && (string.IsNullOrEmpty(query.EnglishName) || query.EnglishName == lf.EnglishName)
+                        && (string.IsNullOrEmpty(query.ArabicName) || query.ArabicName == lf.ArabicName)
+                        && (string.IsNullOrEmpty(query.ShortName) || query.ShortName == lf.ShortName)
+                    select new LawFirmDto
+                    {
+                        Id = lf.Id,
+                        LawFirmCode = lf.LawFirmCode,
+                        ShortName = lf.ShortName,
+                        EnglishName = lf.EnglishName,
+                        ArabicName = lf.ArabicName,
+                        Status = lf.Status,
+                        LasDate = lf.LasDate,
+                        EstYear = lf.EstYear,
+                        Website = lf.Website,
+                        Private = lf.Private,
+                        CreatedAt = lf.CreatedAt,
+                        CreatedBy = lf.CreatedBy,
+                        ModifiedAt = lf.ModifiedAt,
+                        ModifiedBy = lf.ModifiedBy,
+                    };
+
+
+
+            if (query.ExpertiseId.HasValue)
+            {
+                var lawFirmIds = await _context.LawFirmsExpertises.Where(x => x.Id == query.ExpertiseId).Select(x=>x.LawFirmId).ToListAsync();
+                queryable = queryable.Where(lf => lawFirmIds.Contains(lf.Id)).AsQueryable();
+
+
+            }
+
+
+
+            if (!string.IsNullOrEmpty(query.OrderBy))
+            {
+                queryable = queryable.Order(query.OrderBy, query.OrderDir ?? "asc");
+            }
+
+            var data = await queryable.ToListAsync();
+
+            return data;
         }
 
         public override async Task<int> CreateAsync(LawFirm entity)

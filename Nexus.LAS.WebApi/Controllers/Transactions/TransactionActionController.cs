@@ -44,14 +44,21 @@ namespace Nexus.LAS.WebApi.Controllers.Transactions
 
         [HttpPost]
         [ApiMethodType(MethodType.Insert)]
-        public async Task<IActionResult> CreateTransactionAction(CreateTransactionActionCommand command)
+        public async Task<IActionResult> CreateTransactionAction([FromForm] CreateTransactionActionCommand command)
         {
             return Ok(await _mediator.Send(command));
         }
 
-        [HttpPut]
+        [HttpPut(nameof(UpdateByForm))]
         [ApiMethodType(MethodType.Update)]
-        public async Task<IActionResult> UpdateTransactionAction(UpdateTransactionActionCommand command)
+        public async Task<IActionResult> UpdateByForm([FromForm]UpdateTransactionActionCommand command)
+        {
+            return Ok(await _mediator.Send(command));
+        }
+
+        [HttpPut(nameof(UpdateByBody))]
+        [ApiMethodType(MethodType.Update)]
+        public async Task<IActionResult> UpdateByBody([FromBody] UpdateTransactionActionCommand command)
         {
             return Ok(await _mediator.Send(command));
         }

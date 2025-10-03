@@ -1,5 +1,6 @@
 ﻿using Nexus.LAS.Domain.Constants;
 using Nexus.LAS.Domain.Entities.Base;
+using Nexus.LAS.Domain.Entities.RegisterEntities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
