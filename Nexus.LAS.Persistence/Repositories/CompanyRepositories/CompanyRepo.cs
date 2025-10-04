@@ -54,12 +54,13 @@ public class CompanyRepo : GenericRepo<Company>, ICompanyRepo
 
         int totalRecords = await companysQueryable.CountAsync();
 
-        companysQueryable = companysQueryable.Paginate(companyQuery.Page, companyQuery.PageSize);
-
         if (!string.IsNullOrEmpty(companyQuery.OrderBy))
         {
             companysQueryable = companysQueryable.Order(companyQuery.OrderBy, companyQuery.OrderDir ?? "asc");
         }
+
+        companysQueryable = companysQueryable.Paginate(companyQuery.Page, companyQuery.PageSize);
+
 
         int totalPages = (int)Math.Ceiling((double)totalRecords / companyQuery.PageSize);
 

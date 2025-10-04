@@ -51,12 +51,12 @@ public class PropertyRepo : GenericRepo<Property>, IPropertyRepo
 
         int totalRecords = await propertiesQueryable.CountAsync();
 
-        propertiesQueryable = propertiesQueryable.Paginate(propertyQuery.Page, propertyQuery.PageSize);
-
         if (!string.IsNullOrEmpty(propertyQuery.OrderBy))
         {
             propertiesQueryable = propertiesQueryable.Order(propertyQuery.OrderBy, propertyQuery.OrderDir ?? "asc");
         }
+
+        propertiesQueryable = propertiesQueryable.Paginate(propertyQuery.Page, propertyQuery.PageSize);
 
         int totalPages = (int)Math.Ceiling((double)totalRecords / propertyQuery.PageSize);
 

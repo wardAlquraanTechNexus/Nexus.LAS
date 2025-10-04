@@ -177,7 +177,7 @@ public static class QueryCollectionMethods
     }
     public static IQueryable<T> Paginate<T, Params>(this IQueryable<T> queryable, Params @params, out int page, out int pageSize)
     {
-        page = 1;      // default page
+        page = 0;      // default page
         pageSize = 10; // default page size
 
         // Get "page" property
@@ -198,7 +198,7 @@ public static class QueryCollectionMethods
                 pageSize = pgNum;
         }
 
-        queryable = queryable.Skip((page - 1) * pageSize).Take(pageSize);
+        queryable = queryable.Skip((page) * pageSize).Take(pageSize);
         return queryable;
     }
     public static IQueryable<T> Paginate<T>(this IQueryable<T> queryable, IQueryCollection query)

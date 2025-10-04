@@ -6,5 +6,7 @@ namespace Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionInvoiceU
 {
     public class GetPagingTransactionInvoiceQuery : GetBasePagingQuery<TransactionInvoiceDto>
     {
+        public int? TransactionId { get; set; } = null!;
+        public int? LawFirmId { get; set; } = null!;
     }
 }

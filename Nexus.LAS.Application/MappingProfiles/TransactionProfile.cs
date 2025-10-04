@@ -3,6 +3,8 @@ using Nexus.LAS.Application.DTOs.CompanyDTOs;
 using Nexus.LAS.Application.DTOs.TransactionDTOs;
 using Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionActionUseCases.Commands.CreateTransactionAction;
 using Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionActionUseCases.Commands.UpdateTransactionAction;
+using Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionInvoiceUseCases.Commands.CreateTransactionInvoice;
+using Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionInvoiceUseCases.Commands.UpdateTransactionInvoice;
 using Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionRegisterUseCases.Commands.CreateTransactionRegister;
 using Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionRegisterUseCases.Commands.UpdateTransactionRegister;
 using Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionUseCases.Commands.CreateTransaction;
@@ -32,6 +34,10 @@ namespace Nexus.LAS.Application.MappingProfiles
             CreateMap<TransactionAction, TransactionActionDto>();
             CreateMap<CreateTransactionActionCommand, TransactionAction>();
             CreateMap<UpdateTransactionActionCommand, TransactionAction>();
+
+            CreateMap<TransactionInvoice, TransactionInvoiceDto>();
+            CreateMap<CreateTransactionInvoiceCommand, TransactionInvoice>();
+            CreateMap<UpdateTransactionInvoiceCommand, TransactionInvoice>();
         }
     }
 }

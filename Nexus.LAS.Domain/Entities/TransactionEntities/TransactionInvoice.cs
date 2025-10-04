@@ -34,15 +34,15 @@ namespace Nexus.LAS.Domain.Entities.TransactionEntities
         public DateTime? InvoiceDate { get; set; }
 
         [Column("Amount")]
-        public string? Amount { get; set; }
+        public long? Amount { get; set; }
 
         [Column("Paid")]
-        public string? Paid { get; set; }
+        public long? Paid { get; set; }
 
         [Column("Currency")]
         public int? Currency { get; set; }
 
         [Column("Note")]
-        public string? Note { get; set; }
+        public string Note { get; set; }
     }
 }

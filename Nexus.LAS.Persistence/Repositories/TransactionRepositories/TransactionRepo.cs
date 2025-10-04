@@ -54,14 +54,14 @@ namespace Nexus.LAS.Persistence.Repositories.TransactionRepositories
                             ModifiedBy = t.ModifiedBy,
                         };
 
-            int totalRecords = await queryable.CountAsync();
-
-            queryable = queryable.Paginate(query.Page, query.PageSize);
-
             if (!string.IsNullOrEmpty(query.OrderBy))
             {
                 queryable = queryable.Order(query.OrderBy, query.OrderDir ?? "asc");
             }
+
+            int totalRecords = await queryable.CountAsync();
+
+            queryable = queryable.Paginate(query.Page, query.PageSize);
 
             var data = await queryable.ToListAsync();
 
