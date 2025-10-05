@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http;
 using Nexus.LAS.Application.UseCases._GenericUseCases.Commands;
 
 namespace Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionInvoiceUseCases.Commands.CreateTransactionInvoice
@@ -12,5 +13,6 @@ namespace Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionInvoiceU
         public int? Paid { get; set; }
         public int? Currency { get; set; }
         public string Note { get; set; }
+        public IFormFile? File { get; set; }
     }
 }

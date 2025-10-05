@@ -1,10 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts.Presistence;
-using Nexus.LAS.Application.Contracts.Presistence.Services;
-using Nexus.LAS.Application.DTOs;
-using Nexus.LAS.Application.DTOs.Base;
-using Nexus.LAS.Application.UseCases._GenericUseCases.Queries;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Commands;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Commands.BulkChangePrivate;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Commands.BulkChangeStatus;
@@ -12,6 +8,7 @@ using Nexus.LAS.Application.UseCases.PersonUseCases.Commands.CreatePerson;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Commands.UpdatePerson;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Queries;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Queries.GetAllActivePerson;
+using Nexus.LAS.Application.UseCases.PersonUseCases.Queries.GetAllPersonsByCompanyId;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 using Nexus.LAS.WebApi.Attributes;
 using Nexus.LAS.WebApi.Controllers._GenericController;
@@ -41,6 +38,12 @@ namespace Nexus.LAS.WebApi.Controllers
                 Id = id
             };
             return Ok(await _mediator.Send(personQuery));
+        }
+
+        [HttpGet(nameof(GetPersonsCompany))]
+        public async Task<IActionResult> GetPersonsCompany([FromQuery]GetAllPersonsCompanyQuery query)
+        {
+            return Ok(await _mediator.Send(query));
         }
 
         [ApiMethodType(Domain.Constants.Enums.MethodType.Get)]

@@ -1,9 +1,13 @@
+using DocumentFormat.OpenXml.Spreadsheet;
+using EFCore.BulkExtensions;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.Contracts.Presistence._Repositories._TransactionRepos;
 using Nexus.LAS.Application.Contracts.Presistence.Services._Transaction;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.DTOs.TransactionDTOs;
+using Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionRegisterUseCases.Commands.CreatePCTransactionRegister;
 using Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionRegisterUseCases.Queries.GetPaging;
+using Nexus.LAS.Domain.Constants;
 using Nexus.LAS.Domain.Entities.TransactionEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Services.Base;
@@ -37,6 +41,42 @@ namespace Nexus.LAS.Persistence.Services.TransactionServices
         public async Task<PagingResult<TransactionRegisterDto>> GetPaging(GetPagingTransactionRegisterQuery query)
         {
             return await _repo.GetPaging(query);
+        }
+
+        
+        public async Task<int> CreatePCTransactionRegister(CreatePCTransactionRegisterCommand command)
+        {
+            using var transaction = await _context.Database.BeginTransactionAsync();
+
+            try
+            {
+                var id = await _repo.CreateAsync(new TransactionRegister()
+                {
+                    PrimaryRegister = command.PrimaryRegister,
+                    RegisterIdc = EntityIDCs.Company,
+                    RegisterId = command.CompanyId,
+                    TransactionId = command.TransactionId,
+                    TransactionsRegisterIdc = EntityIDCs.TransactionsRegisters
+                });
+
+                await _repo.CreateAsync(new TransactionRegister()
+                {
+                    PrimaryRegister = command.PrimaryRegister,
+                    RegisterIdc = EntityIDCs.Person,
+                    RegisterId = command.PersonId,
+                    TransactionId = command.TransactionId,
+                    TransactionsRegisterIdc = EntityIDCs.TransactionsRegisters
+                });
+
+                await transaction.CommitAsync();
+                return id;
+
+            }
+            catch
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
         }
     }
 }

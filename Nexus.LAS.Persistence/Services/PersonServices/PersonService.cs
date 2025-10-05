@@ -11,6 +11,7 @@ using Nexus.LAS.Application.DTOs.PersonDTOs;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Commands;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Queries;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Queries.GetAllActivePerson;
+using Nexus.LAS.Application.UseCases.PersonUseCases.Queries.GetAllPersonsByCompanyId;
 using Nexus.LAS.Domain.Constants;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 using Nexus.LAS.Domain.Entities.RegisterEntities;
@@ -276,7 +277,9 @@ namespace Nexus.LAS.Persistence.Services
             };
         }
 
-
-
+        public async Task<List<PersonDto>> GetAllPersonsCompanyAsync(GetAllPersonsCompanyQuery query)
+        {
+            return await _personRepo.GetAllPersonsCompany(query);
+        }
     }
 }

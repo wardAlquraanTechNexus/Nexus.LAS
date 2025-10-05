@@ -5,6 +5,7 @@ using Nexus.LAS.Application.DTOs.PersonDTOs;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Commands;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Queries;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Queries.GetAllActivePerson;
+using Nexus.LAS.Application.UseCases.PersonUseCases.Queries.GetAllPersonsByCompanyId;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 
 namespace Nexus.LAS.Application.Contracts.Presistence;
@@ -23,4 +24,5 @@ public interface IPersonService: IGenericService<Person>
     Task<byte[]> ExportToPdf(int id);
     Task<FileDto> UploadUserImage(UploadPersonImageCommand command);
     Task<PersonDto> GetPersonDto(int id);
+    Task<List<PersonDto>> GetAllPersonsCompanyAsync(GetAllPersonsCompanyQuery query);
 }

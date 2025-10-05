@@ -48,10 +48,16 @@ namespace Nexus.LAS.WebApi.Controllers.Transactions
         {
             return Ok(await _mediator.Send(command));
         }
+        [HttpPost(nameof(CreateByForm))]
+        [ApiMethodType(MethodType.Insert)]
+        public async Task<IActionResult> CreateByForm([FromForm]CreateTransactionInvoiceCommand command)
+        {
+            return Ok(await _mediator.Send(command));
+        }
 
-        [HttpPut]
+        [HttpPut(nameof(UpdateByForm))]
         [ApiMethodType(MethodType.Update)]
-        public async Task<IActionResult> UpdateTransactionInvoice(UpdateTransactionInvoiceCommand command)
+        public async Task<IActionResult> UpdateByForm([FromForm]UpdateTransactionInvoiceCommand command)
         {
             return Ok(await _mediator.Send(command));
         }

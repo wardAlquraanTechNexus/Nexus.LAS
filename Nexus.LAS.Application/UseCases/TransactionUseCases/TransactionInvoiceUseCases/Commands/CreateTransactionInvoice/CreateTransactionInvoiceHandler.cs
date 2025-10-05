@@ -11,5 +11,10 @@ namespace Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionInvoiceU
             : base(service, mapper)
         {
         }
+
+        public override async Task<int> Handle(CreateTransactionInvoiceCommand request, CancellationToken cancellationToken)
+        {
+            return await _service.CreateTransactionInvoice(request);
+        }
     }
 }

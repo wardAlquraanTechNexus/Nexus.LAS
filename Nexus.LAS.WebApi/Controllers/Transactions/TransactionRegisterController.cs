@@ -8,6 +8,7 @@ using Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionRegisterUseC
 using Nexus.LAS.Domain.Constants.Enums;
 using Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionRegisterUseCases.Commands.CreateTransactionRegister;
 using Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionRegisterUseCases.Commands.UpdateTransactionRegister;
+using Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionRegisterUseCases.Commands.CreatePCTransactionRegister;
 
 namespace Nexus.LAS.WebApi.Controllers.Transactions
 {
@@ -45,6 +46,14 @@ namespace Nexus.LAS.WebApi.Controllers.Transactions
         [HttpPost]
         [ApiMethodType(MethodType.Insert)]
         public async Task<IActionResult> CreateTransactionRegister(CreateTransactionRegisterCommand command)
+        {
+            return Ok(await _mediator.Send(command));
+        }
+        
+        [HttpPost(nameof(CreatePCTransactionRegister))]
+        [ApiMethodType(MethodType.Insert)]
+        public async Task<IActionResult> CreatePCTransactionRegister([FromBody]CreatePCTransactionRegisterCommand command)
+
         {
             return Ok(await _mediator.Send(command));
         }

@@ -2,9 +2,11 @@
 using Microsoft.Extensions.Options;
 using Nexus.LAS.Application.Contracts.Presistence._Repositories._PersonRepos;
 using Nexus.LAS.Application.DTOs.Base;
+using Nexus.LAS.Application.DTOs.PersonDTOs;
 using Nexus.LAS.Application.Models;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Queries;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Queries.GetAllActivePerson;
+using Nexus.LAS.Application.UseCases.PersonUseCases.Queries.GetAllPersonsByCompanyId;
 using Nexus.LAS.Domain.Constants.Enums;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 using Nexus.LAS.Domain.ExtensionMethods;
@@ -38,7 +40,9 @@ public class PersonRepo : GenericRepo<Person>, IPersonRepo
                 || (!string.IsNullOrEmpty(person.PersonCode) && person.PersonCode.ToLower().Contains(personQuery.SearchBy.ToLower()))
 
                 )
-            ).AsQueryable();
+            )
+            .AsNoTracking()
+            .AsQueryable();
 
         if (personQuery.Nationality.HasValue)
         {
@@ -127,6 +131,35 @@ public class PersonRepo : GenericRepo<Person>, IPersonRepo
             TotalPages = totalPages,
             TotalRecords = totalRecords
         };
+    }
+
+    public async Task<List<PersonDto>> GetAllPersonsCompany(GetAllPersonsCompanyQuery query)
+    {
+        var q = (from p in _dbSet
+                 join pc in _context.CompaniesPersonInCharges on p.Id equals pc.PersonIdn
+                 where pc.CompanyIdn == query.CompanyId
+                 && (!query.PersonId.HasValue || p.Id == query.PersonId.Value)
+                    && (string.IsNullOrEmpty(query.PersonName)
+                        || (!string.IsNullOrEmpty(p.PersonEnglishName) && p.PersonEnglishName.ToLower().Contains(query.PersonName.ToLower()))
+                        || (!string.IsNullOrEmpty(p.PersonArabicName) && p.PersonArabicName.ToLower().Contains(query.PersonName.ToLower()))
+                        || (!string.IsNullOrEmpty(p.PersonShortName) && p.PersonShortName.ToLower().Contains(query.PersonName.ToLower()))
+                        )
+                 select new PersonDto
+                 {
+                     Id = p.Id,
+                     PersonCode = p.PersonCode,
+                     PersonEnglishName = p.PersonEnglishName,
+                     PersonArabicName = p.PersonArabicName,
+                     PersonShortName = p.PersonShortName,
+                     CompanyId = pc.CompanyIdn,
+                 }
+                 )
+                 .Distinct()
+                 .AsNoTracking()
+                 .AsQueryable();
+
+
+        return await q.ToListAsync();
     }
 
     public override async Task<int> CreateAsync(Person entity)
