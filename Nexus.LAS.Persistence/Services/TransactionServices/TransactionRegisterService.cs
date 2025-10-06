@@ -38,9 +38,9 @@ namespace Nexus.LAS.Persistence.Services.TransactionServices
             return await _repo.ExistsByTransactionAndRegisterAsync(transactionId , registerId , registerIdc , excludedId);
         }
 
-        public async Task<PagingResult<TransactionRegisterDto>> GetPaging(GetPagingTransactionRegisterQuery query)
+        public async Task<PagingResult<TransactionRegisterDto>> GetPagingByListIdcs(GetPagingTransactionRegisterByListIdcsQuery query)
         {
-            return await _repo.GetPaging(query);
+            return await _repo.GetPagingByListIdcs(query);
         }
 
         
@@ -77,6 +77,11 @@ namespace Nexus.LAS.Persistence.Services.TransactionServices
                 await transaction.RollbackAsync();
                 throw;
             }
+        }
+
+        public async Task<PagingResult<TransactionRegisterDto>> GetPaging(GetPagingTransactionRegisterQuery query)
+        {
+            return await _repo.GetPaging(query);
         }
     }
 }

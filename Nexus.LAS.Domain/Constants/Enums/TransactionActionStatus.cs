@@ -8,8 +8,8 @@ namespace Nexus.LAS.Domain.Constants.Enums
 {
     public enum TransactionActionStatus
     {
+        New,
         Pending,
-        Active,
-        Closed
+        Closed,
     }
 }

@@ -22,6 +22,7 @@ namespace Nexus.LAS.Domain.Entities.TransactionEntities
         public override int Id { get; set; }
 
         [Column("Transactions_IDN")]
+        [ForeignKey(nameof(TransactionId))]
         public int TransactionId { get; set; }
 
         [Column("Registers_IDC")]
@@ -32,6 +33,7 @@ namespace Nexus.LAS.Domain.Entities.TransactionEntities
 
         [Column("PrimaryRegister")]
         public bool? PrimaryRegister { get; set; }
+        public Transaction Transaction { get; set; }
 
     }
 }

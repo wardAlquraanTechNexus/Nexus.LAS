@@ -23,10 +23,16 @@ namespace Nexus.LAS.WebApi.Controllers.Transactions
         {
             return base.GetByQuery();
         }
-
         [HttpGet]
         [ApiMethodType(MethodType.Get)]
         public async Task<IActionResult> GetPaging([FromQuery] GetPagingTransactionRegisterQuery query)
+        {
+            return Ok(await _mediator.Send(query));
+        }
+
+        [HttpGet(nameof(GetPagingByListIdcs))]
+        [ApiMethodType(MethodType.Get)]
+        public async Task<IActionResult> GetPagingByListIdcs([FromQuery] GetPagingTransactionRegisterByListIdcsQuery query)
         {
             return Ok(await _mediator.Send(query));
         }

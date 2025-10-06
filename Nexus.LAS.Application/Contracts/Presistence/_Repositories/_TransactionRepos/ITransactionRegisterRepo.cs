@@ -11,6 +11,7 @@ namespace Nexus.LAS.Application.Contracts.Presistence._Repositories._Transaction
     {
         Task<bool> HasPrimaryRegisterAsync(string registerIdc, int transactionId, int? excludedId = null);
         Task<bool> ExistsByTransactionAndRegisterAsync(int transactionId, int registerId, string registerIdc, int? excludedId = null);
+        Task<PagingResult<TransactionRegisterDto>> GetPagingByListIdcs(GetPagingTransactionRegisterByListIdcsQuery query);
         Task<PagingResult<TransactionRegisterDto>> GetPaging(GetPagingTransactionRegisterQuery query);
     }
 }
