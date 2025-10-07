@@ -162,9 +162,9 @@ BEGIN
     (29, 6, N'Add Transaction', N'Transactions/Add-Transaction', 1, N'Add new transaction', NULL, 0, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
     (30, 6, N'All Transactions', N'All-Transactions', 2, N'View all transactions', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
     (31, 6, N'Active Transactions', N'Active-Transactions', 3, N'View active transactions', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (32, 6, N'Completed Transactions', N'Completed-Transactions', 4, N'View completed transactions', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (33, 6, N'Pending Transactions', N'Pending-Transactions', 5, N'View pending transactions', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    
+    (32, 6, N'Active Private Transactions', N'Active-private-transactions', 4, N'View Active Private transactions', NULL, 1, N'system', CAST(N'2025-09-12T13:08:10.3000000' AS DateTime2), N'admin@rg.com', CAST(N'2025-10-07T19:43:32.8707688' AS DateTime2), 0, NULL, NULL),
+    (33, 6, N'Active Public Transactions', N'Active-public-transactions', 5, N'Active-public-transactions', NULL, 1, N'system', CAST(N'2025-09-12T13:08:10.3000000' AS DateTime2), N'admin@rg.com', CAST(N'2025-10-07T19:44:19.3342515' AS DateTime2), 0, NULL, NULL),    
+
     -- FPC Sub-menus (Parent ID: 7)
     (34, 7, N'Add FPC', N'FPCs/Add-FPC', 1, N'Add new fire proof cabint', NULL, 0, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
     (35, 7, N'All FPCs', N'All-FPCs', 2, N'View all fire proof cabints', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),

@@ -3,6 +3,8 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts.Presistence.Services._Transaction;
 using Nexus.LAS.Application.DTOs.TransactionDTOs;
+using Nexus.LAS.Application.UseCases.PersonUseCases.Queries;
+using Nexus.LAS.Application.UseCases.TransactionUseCases.ExportTransactionToPdfUseCases;
 using Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionUseCases.Commands.BulkChangePrivate;
 using Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionUseCases.Commands.BulkChangeStatus;
 using Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionUseCases.Commands.CreateTransaction;
@@ -87,6 +89,13 @@ namespace Nexus.LAS.WebApi.Controllers.Transactions
         public async Task<IActionResult> ExportToExcel()
         {
             var query = new ExportTransactionToExcelQuery { Query = Request.Query };
+            return Ok(await _mediator.Send(query));
+        }
+
+        [HttpGet(nameof(ExportToPdf))]
+        public async Task<IActionResult> ExportToPdf([FromQuery] int id)
+        {
+            var query = new ExportTransactionToPdfQuery() { Id = id };
             return Ok(await _mediator.Send(query));
         }
     }

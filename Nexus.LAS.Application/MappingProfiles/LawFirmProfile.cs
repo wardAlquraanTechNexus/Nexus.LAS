@@ -7,6 +7,7 @@ using Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmCounselUseCases.Comm
 using Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmExpertiseUseCases.Commands.CreateLawFirmExpertise;
 using Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmExpertiseUseCases.Commands.UpdateLawFirmExpertise;
 using Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmPersonUseCases.Commands.CreateLawFirmPerson;
+using Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmPersonUseCases.Commands.UpdateLawFirmPerson;
 using Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmUseCases.Commands.CreateLawFirm;
 using Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmUseCases.Commands.UpdateLawFirm;
 using Nexus.LAS.Domain.Entities.LawFirmEntities;
@@ -27,7 +28,7 @@ namespace Nexus.LAS.Application.MappingProfiles
             CreateMap<UpdateLawFirmCommand, LawFirm>();
 
             CreateMap<LawFirmPerson, LawFirmPersonDto>();
-            CreateMap<CreateLawFirmPersonCommand, LawFirmPerson>();
+            CreateMap<UpdateLawFirmPersonCommand, LawFirmPerson>();
             CreateMap<CreateLawFirmPersonCommand, LawFirmPerson>();
 
             CreateMap<LawFirmBranch, LawFirmBranchDto>();

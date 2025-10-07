@@ -13,6 +13,7 @@ namespace Nexus.LAS.Application.DTOs.TransactionDTOs
         public string Description { get; set; } = null!;
         public DateTime DueDate { get; set; }
         public DateTime? ClosedDate { get; set; }
+        public string? PersonName { get; set; }
         public TransactionActionStatus ActionStatus { get; set; }
         public List<FileDto> Files { get; set; } = new();
 

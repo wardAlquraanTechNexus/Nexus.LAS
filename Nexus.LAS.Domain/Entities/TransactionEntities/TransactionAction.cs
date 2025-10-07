@@ -1,6 +1,7 @@
 ﻿using Nexus.LAS.Domain.Constants;
 using Nexus.LAS.Domain.Constants.Enums;
 using Nexus.LAS.Domain.Entities.Base;
+using Nexus.LAS.Domain.Entities.PersonEntities;
 using Nexus.LAS.Domain.Entities.RegisterEntities;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,7 @@ namespace Nexus.LAS.Domain.Entities.TransactionEntities
         public int TransactionId { get; set; }
 
         [Column("Persons_IDN")]
+        [ForeignKey(nameof(Person))]
         public int PersonId { get; set; }
 
         [Column("Time")]
@@ -43,6 +45,7 @@ namespace Nexus.LAS.Domain.Entities.TransactionEntities
 
         [Column("ActionStatus")]
         public TransactionActionStatus ActionStatus { get; set; } = TransactionActionStatus.Pending;
+        public Person Person { get; set; }
 
     }
 

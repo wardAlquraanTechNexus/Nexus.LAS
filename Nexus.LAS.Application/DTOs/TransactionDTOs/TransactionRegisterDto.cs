@@ -21,6 +21,7 @@ namespace Nexus.LAS.Application.DTOs.TransactionDTOs
         public string? TransactionSubjectDecription { get; set; }
         public string RegisterIdc { get; set; }
         public int RegisterId { get; set; }
+        public string? RegisterName { get; set; }
         public bool? PrimaryRegister { get; set; }
         public int? SubjectType { get; set; }
 

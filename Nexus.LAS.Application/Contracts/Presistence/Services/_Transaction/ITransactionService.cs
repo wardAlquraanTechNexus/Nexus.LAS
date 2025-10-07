@@ -12,5 +12,6 @@ namespace Nexus.LAS.Application.Contracts.Presistence.Services._Transaction
         Task<PagingResult<TransactionDto>> SearchTransactions(GetPagingTransactionQuery query);
         Task<int> BulkChangeStatus(List<int> ids, CommonStatus status);
         Task<int> BulkChangePrivate(List<int> ids, bool privateValue);
+        Task<byte[]> ExportToPdf(int id);
     }
 }
