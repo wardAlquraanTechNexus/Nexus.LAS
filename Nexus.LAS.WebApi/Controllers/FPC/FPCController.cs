@@ -1,13 +1,16 @@
-using Microsoft.AspNetCore.Mvc;
 using MediatR;
-using Nexus.LAS.WebApi.Attributes;
-using Nexus.LAS.WebApi.Controllers._GenericController;
-using Nexus.LAS.Domain.Constants.Enums;
+using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
-using Nexus.LAS.Domain.Entities;
-using Nexus.LAS.Application.UseCases.FPCUseCases.FPCUseCases.Queries.GetPaging;
+using Nexus.LAS.Application.UseCases.FPCUseCases.FPCUseCases.Commands.BulkChangePrivate;
+using Nexus.LAS.Application.UseCases.FPCUseCases.FPCUseCases.Commands.BulkChangeStatus;
 using Nexus.LAS.Application.UseCases.FPCUseCases.FPCUseCases.Commands.CreateFPC;
 using Nexus.LAS.Application.UseCases.FPCUseCases.FPCUseCases.Commands.UpdateFPC;
+using Nexus.LAS.Application.UseCases.FPCUseCases.FPCUseCases.Queries.ExportToExcel;
+using Nexus.LAS.Application.UseCases.FPCUseCases.FPCUseCases.Queries.GetPaging;
+using Nexus.LAS.Domain.Constants.Enums;
+using Nexus.LAS.Domain.Entities;
+using Nexus.LAS.WebApi.Attributes;
+using Nexus.LAS.WebApi.Controllers._GenericController;
 
 namespace Nexus.LAS.WebApi.Controllers
 {
@@ -54,6 +57,26 @@ namespace Nexus.LAS.WebApi.Controllers
         public async Task<IActionResult> UpdateFPC(UpdateFPCCommand command)
         {
             return Ok(await _mediator.Send(command));
+        }
+
+        [HttpPut(nameof(BulkChangeStatus))]
+        [ApiMethodType(Domain.Constants.Enums.MethodType.Admin)]
+        public async Task<IActionResult> BulkChangeStatus([FromBody] BulkChangeFPCStatusCommand command)
+        {
+            return Ok(await _mediator.Send(command));
+        }
+        [HttpPut(nameof(BulkChangePrivate))]
+        [ApiMethodType(Domain.Constants.Enums.MethodType.Admin)]
+        public async Task<IActionResult> BulkChangePrivate([FromBody] BulkChangeFPCPrivateCommand command)
+        {
+            return Ok(await _mediator.Send(command));
+        }
+
+        [HttpGet(nameof(ExportToExcel))]
+        public async Task<IActionResult> ExportToExcel()
+        {
+            var query = new ExportFPCToExcelQuery { Query = Request.Query };
+            return Ok(await _mediator.Send(query));
         }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Nexus.LAS.Persistence.DatabaseContext;
 
@@ -11,9 +12,11 @@ using Nexus.LAS.Persistence.DatabaseContext;
 namespace Nexus.LAS.Persistence.Migrations
 {
     [DbContext(typeof(NexusLASDbContext))]
-    partial class NexusLASDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251007200928_change-fpc-status-dt")]
+    partial class changefpcstatusdt
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1710,6 +1713,11 @@ namespace Nexus.LAS.Persistence.Migrations
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.FPC", b =>
                 {
+                    b.Property<string>("FpcIdc")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("FPCIDC");
+
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
@@ -1735,12 +1743,6 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("FPCCode");
-
-                    b.Property<string>("FpcIdc")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("FPCIDC");
 
                     b.Property<int>("FpcStatus")
                         .HasMaxLength(50)
@@ -1770,13 +1772,18 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("int")
                         .HasColumnName("Registers_IDN");
 
-                    b.HasKey("Id");
+                    b.HasKey("FpcIdc", "Id");
 
                     b.ToTable("FPCs");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.FPCOD", b =>
                 {
+                    b.Property<string>("FPCOdIdc")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("FPCsODIDC");
+
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
@@ -1812,12 +1819,6 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("int")
                         .HasColumnName("FPCs_IDN");
 
-                    b.Property<string>("FPCOdIdc")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("FPCsODIDC");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -1827,13 +1828,18 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("FPCOdIdc", "Id");
 
                     b.ToTable("FPCsODs");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.FPCODAction", b =>
                 {
+                    b.Property<string>("FPCsOdsActionIdc")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("FPCsODsActionIDC");
+
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
@@ -1873,12 +1879,6 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasColumnType("int")
                         .HasColumnName("FPCsODs_IDN");
 
-                    b.Property<string>("FPCsOdsActionIdc")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("FPCsODsActionIDC");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -1888,7 +1888,7 @@ namespace Nexus.LAS.Persistence.Migrations
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("FPCsOdsActionIdc", "Id");
 
                     b.ToTable("FPCsODsActions");
                 });

@@ -1,4 +1,6 @@
-﻿using Nexus.LAS.Domain.Entities.Base;
+﻿using Nexus.LAS.Domain.Constants;
+using Nexus.LAS.Domain.Constants.Enums;
+using Nexus.LAS.Domain.Entities.Base;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,7 +16,7 @@ namespace Nexus.LAS.Domain.Entities
     {
         [Column("FPCIDC")]
         [MaxLength(50)]
-        public string FpcIdc { get; set; } = null!;
+        public string FpcIdc { get; set; } = EntityIDCs.FPCs;
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -38,7 +40,7 @@ namespace Nexus.LAS.Domain.Entities
         [Required]
         [Column("FPCStatus")]
         [MaxLength(50)]
-        public string FpcStatus { get; set; } = null!;
+        public CommonStatus FpcStatus { get; set; }
 
         [Required]
         [Column("Private")]

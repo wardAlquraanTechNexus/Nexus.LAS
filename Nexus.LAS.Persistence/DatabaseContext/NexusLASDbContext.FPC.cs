@@ -18,13 +18,6 @@ namespace Nexus.LAS.Persistence.DatabaseContext
 
         protected void OnFPCModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<FPC>()
-                          .HasKey(f => new { f.FpcIdc, f.Id });
-
-            modelBuilder.Entity<FPCOD>()
-                .HasKey(e => new { e.FPCOdIdc, e.Id });
-            modelBuilder.Entity<FPCODAction>()
-                .HasKey(e => new { e.FPCsOdsActionIdc, e.Id });
 
         }
 
