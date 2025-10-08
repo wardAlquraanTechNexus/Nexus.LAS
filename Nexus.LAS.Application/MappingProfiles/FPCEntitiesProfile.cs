@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using Nexus.LAS.Application.DTOs.FPCDTOs;
+using Nexus.LAS.Application.UseCases.FPCUseCases.FPCsODUseCases.Commands.CreateFPCsOD;
+using Nexus.LAS.Application.UseCases.FPCUseCases.FPCsODUseCases.Commands.UpdateFPCsOD;
 using Nexus.LAS.Application.UseCases.FPCUseCases.FPCUseCases.Commands.CreateFPC;
 using Nexus.LAS.Application.UseCases.FPCUseCases.FPCUseCases.Commands.UpdateFPC;
 using Nexus.LAS.Domain.Entities;
@@ -18,6 +20,10 @@ namespace Nexus.LAS.Application.MappingProfiles
             CreateMap<FPC, FPCDto>();
             CreateMap<CreateFPCCommand , FPC>();
             CreateMap<UpdateFPCCommand , FPC>();
+
+            CreateMap<FPCOD, FPCODDto>();
+            CreateMap<CreateFPCODCommand, FPCOD>();
+            CreateMap<UpdateFPCODCommand, FPCOD>();
         }
     }
 }

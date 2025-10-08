@@ -47,7 +47,9 @@ public class GetPagingFPCQuery : GetBasePagingQuery<FPCDto>
     private string? _status;
 
     public List<CommonStatus> Statuses { get; set; } = new();
-
+    public string? RegisterIdc { get; set; }
+    public int? RegisterIdn { get; set; }
+    public int? ExecludedId { get; set; }
     public string OrderBy { get; set; } = "Id";
     public string OrderDir { get; set; } = "desc";
 }

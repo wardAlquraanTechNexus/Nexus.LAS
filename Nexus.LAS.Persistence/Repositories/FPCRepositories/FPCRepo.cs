@@ -17,7 +17,61 @@ public class FPCRepo : GenericRepo<FPC>, IFPCRepo
     public FPCRepo(NexusLASDbContext context) : base(context)
     {
     }
+    public async Task<FPCDto?> GetDtoByIdAsync(int id)
+    {
+        var queryable =
+                (from t in _dbSet
+                 where t.Id == id
+                 select new FPCDto
+                 {
+                     Id = t.Id,
+                     FpcCode = t.FpcCode,
+                     FpcStatus = t.FpcStatus,
+                     Private = t.Private,
+                     RegisterIdc = t.RegisterIdc,
+                     RegisterIdn = t.RegisterIdn,
+                     CreatedAt = t.CreatedAt,
+                     CreatedBy = t.CreatedBy,
+                     ModifiedAt = t.ModifiedAt,
+                     ModifiedBy = t.ModifiedBy,
+                 }).AsQueryable().AsNoTracking();
 
+        var fpc = await queryable.FirstOrDefaultAsync();
+
+        if (fpc != null)
+        {
+            if(fpc.RegisterIdc == EntityIDCs.Person)
+            {
+                var person = await _context.People
+                    .Where(p => p.Id == fpc.RegisterIdn)
+                    .Select(p => new { p.PersonEnglishName, p.PersonArabicName, p.PersonShortName, p.PersonCode })
+                    .AsQueryable()
+                    .FirstOrDefaultAsync()
+                    ;
+                fpc.RegisterEnglishName = person?.PersonEnglishName;
+                fpc.RegisterArabicName = person?.PersonArabicName;
+                fpc.RegisterShortName = person?.PersonShortName;
+                fpc.RegisterCode = person?.PersonCode;
+
+            }
+            else if(fpc.RegisterIdc == EntityIDCs.Company)
+            {
+                var company = await _context.Companies
+                    .Where(c => c.Id == fpc.RegisterIdn)
+                    .Select(c => new { c.CompanyEnglishName, c.CompanyArabicName, c.CompanyShortName, c.CompanyCode })
+                    .AsQueryable()
+                    .FirstOrDefaultAsync()
+                    ;
+
+                fpc.RegisterEnglishName = company?.CompanyEnglishName;
+                fpc.RegisterArabicName = company?.CompanyArabicName;
+                fpc.RegisterShortName = company?.CompanyShortName;
+                fpc.RegisterCode = company?.CompanyCode;
+            }
+        }
+
+        return fpc;
+    }
     public async Task<PagingResult<FPCDto>> SearchFPCs(GetPagingFPCQuery query)
     {
         var queryable =
@@ -29,11 +83,9 @@ public class FPCRepo : GenericRepo<FPC>, IFPCRepo
                         query.SearchBy == null
                         || (t.FpcCode.ToLower().Contains(query.SearchBy.ToLower()))
                     )
-                    //&& (string.IsNullOrEmpty(query.TransactionCode) || query.TransactionCode == t.TransactionCode)
-                    //&& (string.IsNullOrEmpty(query.SubjectDescription) || query.SubjectDescription == t.SubjectDescription)
-                    //&& (!query.SubjectType.HasValue || query.SubjectType == t.SubjectType)
-                    //&& (!query.TransactionDateFrom.HasValue || query.TransactionDateFrom <= t.TransactionDate)
-                    //&& (!query.TransactionDateTo.HasValue || query.TransactionDateTo >= t.TransactionDate)
+                    && (string.IsNullOrEmpty(query.RegisterIdc) || query.RegisterIdc == t.RegisterIdc)
+                    && (!query.RegisterIdn.HasValue || query.RegisterIdn == t.RegisterIdn)
+                    && (!query.ExecludedId.HasValue || query.ExecludedId != t.Id)
                 select new FPCDto
                 {
                     Id = t.Id,

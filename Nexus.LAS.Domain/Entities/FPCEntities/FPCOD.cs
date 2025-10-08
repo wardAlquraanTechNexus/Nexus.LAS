@@ -1,4 +1,5 @@
-﻿using Nexus.LAS.Domain.Entities.Base;
+﻿using Nexus.LAS.Domain.Constants;
+using Nexus.LAS.Domain.Entities.Base;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -15,7 +16,7 @@ namespace Nexus.LAS.Domain.Entities
     {
         [Column("FPCsODIDC")]
         [MaxLength(50)]
-        public string FPCOdIdc { get; set; } = null!;
+        public string FPCOdIdc { get; set; } = EntityIDCs.FPCsODs;
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -28,8 +29,7 @@ namespace Nexus.LAS.Domain.Entities
 
         [Required]
         [Column("DocType")]
-        [MaxLength(50)]
-        public string DocType { get; set; } = null!;
+        public int DocType { get; set; }
 
         [Column("Description")]
         [MaxLength(4000)]

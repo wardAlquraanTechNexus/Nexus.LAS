@@ -12,6 +12,10 @@ public class FPCDto
     public string RegisterIdc { get; set; } = null!;
     public int RegisterIdn { get; set; }
     public CommonStatus FpcStatus { get; set; }
+    public string? RegisterEnglishName { get; set; }
+    public string? RegisterArabicName { get; set; }
+    public string? RegisterShortName { get; set; }
+    public string? RegisterCode { get; set; }
     public bool Private { get; set; }
     [IgnoreOnExport]
     public string CreatedBy { get; set; }

@@ -6,7 +6,7 @@ namespace Nexus.LAS.Application.UseCases.FPCUseCases.FPCsODsActionUseCases.Comma
 public class CreateFPCsODsActionCommand : CreateBaseCommand
 {
     public int FPCOdIdn { get; set; }
-    public string ActionType { get; set; } = null!;
+    public int ActionType { get; set; }
     public DateTime ActionDate { get; set; }
     public string? ActionDescription { get; set; }
 }

@@ -1,11 +1,7 @@
-﻿using Nexus.LAS.Domain.Entities.Base;
-using System;
-using System.Collections.Generic;
+﻿using Nexus.LAS.Domain.Constants;
+using Nexus.LAS.Domain.Entities.Base;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Nexus.LAS.Domain.Entities
 {
@@ -14,7 +10,7 @@ namespace Nexus.LAS.Domain.Entities
     {
         [Column("FPCsODsActionIDC")]
         [MaxLength(50)]
-        public string FPCsOdsActionIdc { get; set; } = null!;
+        public string FPCsOdsActionIdc { get; set; } = EntityIDCs.FPCsODsActions;
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -27,8 +23,7 @@ namespace Nexus.LAS.Domain.Entities
 
         [Required]
         [Column("ActionType")]
-        [MaxLength(50)]
-        public string ActionType { get; set; } = null!;
+        public int ActionType { get; set; }
 
         [Required]
         [Column("ActionDate")]

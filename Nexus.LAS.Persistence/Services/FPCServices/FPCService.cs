@@ -34,5 +34,9 @@ public class FPCService : GenericService<FPC>, IFPCService
     {
         return await _repo.BulkChangePrivate(ids, privateValue);
     }
+    public async Task<FPCDto?> GetDtoByIdAsync(int id)
+    {
+        return await _repo.GetDtoByIdAsync(id);
+    }
 
 }

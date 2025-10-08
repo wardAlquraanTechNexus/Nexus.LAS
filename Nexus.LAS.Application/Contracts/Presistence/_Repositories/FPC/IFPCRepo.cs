@@ -12,5 +12,6 @@ namespace Nexus.LAS.Application.Contracts.Presistence._Repositories
         Task<PagingResult<FPCDto>> SearchFPCs(GetPagingFPCQuery query);
         Task<int> BulkChangeStatus(List<int> ids, CommonStatus status);
         Task<int> BulkChangePrivate(List<int> ids, bool privateValue);
+        Task<FPCDto?> GetDtoByIdAsync(int id);
     }
 }

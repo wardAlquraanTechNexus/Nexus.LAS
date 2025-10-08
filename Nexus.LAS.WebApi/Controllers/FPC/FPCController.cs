@@ -6,6 +6,7 @@ using Nexus.LAS.Application.UseCases.FPCUseCases.FPCUseCases.Commands.BulkChange
 using Nexus.LAS.Application.UseCases.FPCUseCases.FPCUseCases.Commands.CreateFPC;
 using Nexus.LAS.Application.UseCases.FPCUseCases.FPCUseCases.Commands.UpdateFPC;
 using Nexus.LAS.Application.UseCases.FPCUseCases.FPCUseCases.Queries.ExportToExcel;
+using Nexus.LAS.Application.UseCases.FPCUseCases.FPCUseCases.Queries.GetById;
 using Nexus.LAS.Application.UseCases.FPCUseCases.FPCUseCases.Queries.GetPaging;
 using Nexus.LAS.Domain.Constants.Enums;
 using Nexus.LAS.Domain.Entities;
@@ -24,6 +25,13 @@ namespace Nexus.LAS.WebApi.Controllers
         public override Task<IActionResult> GetByQuery()
         {
             return base.GetByQuery();
+        }
+        [HttpGet("{id}")]
+        public override async Task<IActionResult> GetById(int id)
+        {
+            var query = new GetFPCByIdQuery(id);
+            return Ok(await _mediator.Send(query));
+
         }
 
         [HttpGet]

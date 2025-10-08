@@ -7,6 +7,6 @@ public class FPCODDto
 {
     public int Id { get; set; }
     public int FPCIdn { get; set; }
-    public string DocType { get; set; } = null!;
+    public int DocType { get; set; }
     public string? Description { get; set; }
 }

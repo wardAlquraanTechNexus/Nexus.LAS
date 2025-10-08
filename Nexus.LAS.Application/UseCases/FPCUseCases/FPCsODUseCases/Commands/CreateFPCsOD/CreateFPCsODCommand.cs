@@ -5,8 +5,7 @@ namespace Nexus.LAS.Application.UseCases.FPCUseCases.FPCsODUseCases.Commands.Cre
 
 public class CreateFPCODCommand : CreateBaseCommand
 {
-    public int Id { get; set; }
-    public string FPCsOdIdc { get; set; }
-    public string Description { get; set; }
-    public DateTime? CreatedDate { get; set; }
+    public int FPCIdn { get; set; }
+    public int DocType { get; set; }
+    public string? Description { get; set; }
 }

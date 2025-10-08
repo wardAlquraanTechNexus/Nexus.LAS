@@ -6,4 +6,5 @@ namespace Nexus.LAS.Application.UseCases.FPCUseCases.FPCsODUseCases.Queries.GetP
 
 public class GetPagingFPCsODQuery : GetBasePagingQuery<FPCODDto>
 {
+    public int FpcIdn { get; set; }
 }
