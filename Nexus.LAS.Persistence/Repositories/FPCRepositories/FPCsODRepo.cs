@@ -7,6 +7,7 @@ using Nexus.LAS.Domain.Entities;
 using Nexus.LAS.Domain.ExtensionMethods;
 using Nexus.LAS.Persistence.DatabaseContext;
 using Nexus.LAS.Persistence.Repositories.BaseRepo;
+using System.Linq;
 
 namespace Nexus.LAS.Persistence.Repositories.FPCRepositories;
 
@@ -35,7 +36,7 @@ public class FPCsODRepo : GenericRepo<FPCOD>, IFPCsODRepo
         var actionQuerable = (from d in querable
                               join a in _context.FPCsODsActions
                               on d.Id equals a.FPCOdIdn
-                              select new { DocumentId = d.Id, ActionId = a.Id, ActionDate = a.ActionDate }
+                              select new { DocumentId = d.Id, ActionId = a.Id, ActionDate = a.ActionDate , ActionType = a.ActionType , LastActionDescription = a.ActionDescription}
                               )
                               .OrderBy(x=>x.ActionDate)
                               .GroupBy(x => x.DocumentId)
@@ -51,6 +52,8 @@ public class FPCsODRepo : GenericRepo<FPCOD>, IFPCsODRepo
             if (action is not null)
             {
                 doc.LastActionDate = action.ActionDate;
+                doc.LastActionType = action.ActionType;
+                doc.LastActionDescription = $"{action.ActionDate.ToString("yyyy-MM-dd hh-mm-ss")} {action.LastActionDescription}" ;
             }
         }
 

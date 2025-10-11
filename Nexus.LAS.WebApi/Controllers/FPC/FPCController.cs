@@ -6,8 +6,10 @@ using Nexus.LAS.Application.UseCases.FPCUseCases.FPCUseCases.Commands.BulkChange
 using Nexus.LAS.Application.UseCases.FPCUseCases.FPCUseCases.Commands.CreateFPC;
 using Nexus.LAS.Application.UseCases.FPCUseCases.FPCUseCases.Commands.UpdateFPC;
 using Nexus.LAS.Application.UseCases.FPCUseCases.FPCUseCases.Queries.ExportToExcel;
+using Nexus.LAS.Application.UseCases.FPCUseCases.FPCUseCases.Queries.ExportToPdf;
 using Nexus.LAS.Application.UseCases.FPCUseCases.FPCUseCases.Queries.GetById;
 using Nexus.LAS.Application.UseCases.FPCUseCases.FPCUseCases.Queries.GetPaging;
+using Nexus.LAS.Application.UseCases.PersonUseCases.Queries;
 using Nexus.LAS.Domain.Constants.Enums;
 using Nexus.LAS.Domain.Entities;
 using Nexus.LAS.WebApi.Attributes;
@@ -84,6 +86,13 @@ namespace Nexus.LAS.WebApi.Controllers
         public async Task<IActionResult> ExportToExcel()
         {
             var query = new ExportFPCToExcelQuery { Query = Request.Query };
+            return Ok(await _mediator.Send(query));
+        }
+
+        [HttpGet(nameof(ExportToPdf))]
+        public async Task<IActionResult> ExportToPdf([FromQuery] int id)
+        {
+            var query = new ExportFPCToPdfQuery() { Id = id };
             return Ok(await _mediator.Send(query));
         }
     }

@@ -10,4 +10,6 @@ public class FPCODDto
     public int DocType { get; set; }
     public string? Description { get; set; }
     public DateTime LastActionDate { get; set; }
+    public int? LastActionType { get; set; }
+    public string? LastActionDescription { get; set; }
 }

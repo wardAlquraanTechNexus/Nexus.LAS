@@ -13,4 +13,6 @@ public interface IFPCService : IGenericService<FPC>
     Task<int> BulkChangeStatus(List<int> ids, CommonStatus status);
     Task<int> BulkChangePrivate(List<int> ids, bool privateValue);
     Task<FPCDto?> GetDtoByIdAsync(int id);
+    Task<byte[]> ExportToPdf(int id);
+
 }
