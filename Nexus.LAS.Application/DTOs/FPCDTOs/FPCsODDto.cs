@@ -9,4 +9,5 @@ public class FPCODDto
     public int FPCIdn { get; set; }
     public int DocType { get; set; }
     public string? Description { get; set; }
+    public DateTime LastActionDate { get; set; }
 }

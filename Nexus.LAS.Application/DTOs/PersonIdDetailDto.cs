@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Nexus.LAS.Application.DTOs
 {
-    public class PersonIdDetailDto
+    public class PersonIdDetailDto : FileDto
     {
         public string PersonsIDDetailIdc { get; set; } = "PID";
         public int Id { get; set; }
@@ -20,8 +20,5 @@ namespace Nexus.LAS.Application.DTOs
         public DateTime? IDIssueDate { get; set; }
         public DateTime? ExpiryDate { get; set; }
         public bool? ActiveReminder { get; set; }
-        public string? FileName { get; set; }
-        public string? ContentType { get; set; }
-        public byte[]? DataFile { get; set; }
     }
 }

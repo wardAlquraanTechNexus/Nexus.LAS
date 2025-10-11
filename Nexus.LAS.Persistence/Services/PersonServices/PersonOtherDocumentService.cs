@@ -87,7 +87,8 @@ namespace Nexus.LAS.Persistence.Services
             {
                 otherDocumentDto.FileName = firstFile?.Name;
                 otherDocumentDto.ContentType = firstFile?.ContentType;
-                otherDocumentDto.DataFile = firstFile?.Data;
+                otherDocumentDto.Data = firstFile?.Data;
+                otherDocumentDto.FileId = firstFile?.Id;
             }
 
             return otherDocumentDto;

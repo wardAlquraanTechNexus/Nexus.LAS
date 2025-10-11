@@ -1,6 +1,6 @@
 ﻿namespace Nexus.LAS.Application.DTOs.CompanyLicenseDTOs;
 
-public class CompanyLicenseDto
+public class CompanyLicenseDto : FileDto
 {
     public int Id { get; set; }
     public int CompanyIdn { get; set; }
@@ -11,8 +11,5 @@ public class CompanyLicenseDto
     public DateTime LicenseIssueDate { get; set; }
     public DateTime? LicenseExpiryDate { get; set; }
     public bool LicenseExpiryActiveReminder { get; set; }
-    public string? FileName { get; set; }
-    public string? ContentType { get; set; }
-    public byte[]? DataFile { get; set; }
 
 }

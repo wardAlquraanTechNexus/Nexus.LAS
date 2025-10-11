@@ -117,7 +117,7 @@ namespace Nexus.LAS.Persistence.Services.TransactionServices
                     page.Content()
                         .Column(column =>
                         {
-                            column.Item().Background(Colors.Black).Padding(10).AlignCenter().Text("Company Details")
+                            column.Item().Background(Colors.Black).Padding(10).AlignCenter().Text("Transaction Details")
                                             .FontSize(20)
                                             .FontColor(Colors.White)
                                             .Bold();

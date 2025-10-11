@@ -38,7 +38,8 @@ public class CompanyContractRepo : GenericRepo<CompanyContract>, ICompanyContrac
                         DocumentDate = cc.DocumentDate,
                         FileName = registerFile != null ? registerFile.Name : null,
                         ContentType = registerFile != null ? registerFile.ContentType : null,
-                        DataFile = registerFile != null ? registerFile.Data : null,
+                        Data = registerFile != null ? registerFile.Data : null,
+                        FileId = registerFile != null ? registerFile.Id : null,
                     };
 
 

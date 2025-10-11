@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Nexus.LAS.Application.DTOs.PropertyDTOs;
 
-public class PropertyDocumentDto
+public class PropertyDocumentDto : FileDto
 {
     public int Id { get; set; }
     public int? PropertyId { get; set; }
@@ -12,7 +12,4 @@ public class PropertyDocumentDto
     public DateTime? DocumentExpiryDate { get; set; }
     public bool? ActiveReminder { get; set; }
     public string? Description { get; set; }
-    public string? FileName { get; set; }
-    public string? ContentType { get; set; }
-    public byte[]? DataFile { get; set; }
 }

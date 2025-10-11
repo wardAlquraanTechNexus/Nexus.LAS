@@ -92,7 +92,8 @@ public class CompanyContractService : GenericService<CompanyContract> , ICompany
         {
             detailDto.FileName = firstFile?.Name;
             detailDto.ContentType = firstFile?.ContentType;
-            detailDto.DataFile = firstFile?.Data;
+            detailDto.Data = firstFile?.Data;
+            detailDto.FileId = firstFile?.Id;
 
         }
 

@@ -42,7 +42,7 @@ namespace Nexus.LAS.Persistence.Repositories
                     DocumentType = pid.DocumentType,
                     FileName = registerFile != null ? registerFile.Name : null,
                     ContentType = registerFile != null ? registerFile.ContentType : null,
-                    DataFile = registerFile != null ? registerFile.Data : null
+                    Data = registerFile != null ? registerFile.Data : null
                 };
 
             var count = await queryable.CountAsync();
