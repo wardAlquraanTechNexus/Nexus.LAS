@@ -5,7 +5,6 @@ namespace Nexus.LAS.Application.UseCases.DocumentUseCases.DocumentTrackingUseCas
 
 public class CreateDocumentTrackingCommand : CreateBaseCommand
 {
-    public string DocumentTrackingCode { get; set; }
     public string ReferenceNumber { get; set; }
     public int PersonId { get; set; }
     public string RegisterIdc { get; set; }

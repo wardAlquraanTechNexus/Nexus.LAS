@@ -3,6 +3,7 @@ using Nexus.LAS.Application.Contracts.Presistence._Repositories._TransactionRepo
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.DTOs.LawFirmDTOs;
 using Nexus.LAS.Application.DTOs.TransactionDTOs;
+using Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionUseCases.Queries.GetAll;
 using Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionUseCases.Queries.GetPaging;
 using Nexus.LAS.Domain.Constants;
 using Nexus.LAS.Domain.Constants.Enums;
@@ -33,26 +34,26 @@ namespace Nexus.LAS.Persistence.Repositories.TransactionRepositories
                             || (t.SubjectDescription.ToLower().Contains(query.SearchBy.ToLower()))
                         )
                         && (string.IsNullOrEmpty(query.TransactionCode) || query.TransactionCode == t.TransactionCode)
-                        && (string.IsNullOrEmpty(query.SubjectDescription) || query.SubjectDescription== t.SubjectDescription)
+                        && (string.IsNullOrEmpty(query.SubjectDescription) || query.SubjectDescription == t.SubjectDescription)
                         && (!query.SubjectType.HasValue || query.SubjectType == t.SubjectType)
                         && (!query.TransactionDateFrom.HasValue || query.TransactionDateFrom <= t.TransactionDate)
                         && (!query.TransactionDateTo.HasValue || query.TransactionDateTo >= t.TransactionDate)
-                        select new TransactionDto
-                        {
-                            Id = t.Id,
-                            TransactionCode = t.TransactionCode,
-                            SubjectType = t.SubjectType,
-                            SubjectDescription = t.SubjectDescription,
-                            TransactionDate = t.TransactionDate,
-                            Private = t.Private,
-                            Status = t.Status,
-                            CompanyId = null,
-                            PersonId = null,
-                            CreatedAt = t.CreatedAt,
-                            CreatedBy = t.CreatedBy,
-                            ModifiedAt = t.ModifiedAt,
-                            ModifiedBy = t.ModifiedBy,
-                        };
+                    select new TransactionDto
+                    {
+                        Id = t.Id,
+                        TransactionCode = t.TransactionCode,
+                        SubjectType = t.SubjectType,
+                        SubjectDescription = t.SubjectDescription,
+                        TransactionDate = t.TransactionDate,
+                        Private = t.Private,
+                        Status = t.Status,
+                        CompanyId = null,
+                        PersonId = null,
+                        CreatedAt = t.CreatedAt,
+                        CreatedBy = t.CreatedBy,
+                        ModifiedAt = t.ModifiedAt,
+                        ModifiedBy = t.ModifiedBy,
+                    };
 
             if (!string.IsNullOrEmpty(query.OrderBy))
             {
@@ -100,6 +101,21 @@ namespace Nexus.LAS.Persistence.Repositories.TransactionRepositories
             }
             await _context.SaveChangesAsync();
             return properties.Count;
+        }
+
+
+        public async Task<List<AllTransactionDTO>> GetAllDTOs(GetAllTransactionQuery query)
+        {
+            var queyrable = from t in _dbSet
+                            where
+                               (string.IsNullOrEmpty(query.TransactionCode) || t.TransactionCode.ToLower().Contains(query.TransactionCode))
+                            select new AllTransactionDTO
+                            {
+                                Id = t.Id,
+                                TransactionCode = t.TransactionCode
+                            };
+
+            return await queyrable.ToListAsync();
         }
 
     }

@@ -8,9 +8,13 @@ public class DocumentTrackingDto
     public int Id { get; set; }
     public string DocumentTrackingCode { get; set; }
     public string ReferenceNumber { get; set; }
-
+    public string PersonEnglishName { get; set; }
+    public string PersonArabicName { get; set; }
+    public string PersonShortName { get; set; }
     public int PersonId { get; set; }
     public string RegisterIdc { get; set; }
     public int RegisterIdn { get; set; }
     public string Description { get; set; }
+    public string RegisterCode { get; set; }
+    public string? ActionType { get; set; }
 }

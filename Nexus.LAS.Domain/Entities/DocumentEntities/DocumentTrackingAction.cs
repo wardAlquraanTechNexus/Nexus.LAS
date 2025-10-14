@@ -1,4 +1,5 @@
-﻿using Nexus.LAS.Domain.Entities.Base;
+﻿using Nexus.LAS.Domain.Constants;
+using Nexus.LAS.Domain.Entities.Base;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -15,7 +16,7 @@ namespace Nexus.LAS.Domain.Entities.DocumentEntities
     {
         [Column("DocumentTrackingsActionIDC")]
         [MaxLength(50)]
-        public string DocumentTrackingsActionIdc { get; set; } = null!;
+        public string DocumentTrackingsActionIdc { get; set; } = EntityIDCs.DocumentTrackingsActions;
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

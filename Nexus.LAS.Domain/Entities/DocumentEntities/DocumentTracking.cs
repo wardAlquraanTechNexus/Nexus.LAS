@@ -1,4 +1,6 @@
-﻿using Nexus.LAS.Domain.Entities.Base;
+﻿using Nexus.LAS.Domain.Constants;
+using Nexus.LAS.Domain.Entities.Base;
+using Nexus.LAS.Domain.Entities.PersonEntities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -15,7 +17,7 @@ namespace Nexus.LAS.Domain.Entities.DocumentEntities
     {
         [Column("DocumentTrackingIDC")]
         [MaxLength(50)]
-        public string DocumentTrackingIdc { get; set; }
+        public string DocumentTrackingIdc { get; set; } = EntityIDCs.DocumentTrackings;
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -47,5 +49,7 @@ namespace Nexus.LAS.Domain.Entities.DocumentEntities
         [Column("Description")]
         [MaxLength(4000)]
         public string Description { get; set; }
+        [ForeignKey(nameof(PersonId))]
+        public Person Person { get; set; }
     }
 }

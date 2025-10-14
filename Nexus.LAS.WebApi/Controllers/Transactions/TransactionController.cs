@@ -10,6 +10,7 @@ using Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionUseCases.Com
 using Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionUseCases.Commands.CreateTransaction;
 using Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionUseCases.Commands.UpdateTransaction;
 using Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionUseCases.Queries.ExportToExcel;
+using Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionUseCases.Queries.GetAll;
 using Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionUseCases.Queries.GetPaging;
 using Nexus.LAS.Domain.Constants.Enums;
 using Nexus.LAS.Domain.Entities.TransactionEntities;
@@ -24,6 +25,16 @@ namespace Nexus.LAS.WebApi.Controllers.Transactions
         public TransactionController(ITransactionService service, IMediator mediator, IMapper mapper) : base(service, mediator)
         {
             _mapper = mapper;
+        }
+        [NonAction]
+        public override Task<IActionResult> GetAllByQuery()
+        {
+            return base.GetAllByQuery();
+        }
+        [HttpGet(nameof(GetAllByQuery))]
+        public async Task<IActionResult> GetAll([FromQuery]GetAllTransactionQuery query)
+        {
+            return Ok(await _mediator.Send(query));
         }
 
         [NonAction]

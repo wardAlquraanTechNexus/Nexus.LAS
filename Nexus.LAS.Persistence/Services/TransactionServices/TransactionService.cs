@@ -6,6 +6,7 @@ using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.Contracts.Presistence.Services._Transaction;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.DTOs.TransactionDTOs;
+using Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionUseCases.Queries.GetAll;
 using Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionUseCases.Queries.GetPaging;
 using Nexus.LAS.Domain.Constants;
 using Nexus.LAS.Domain.Constants.Enums;
@@ -48,7 +49,10 @@ namespace Nexus.LAS.Persistence.Services.TransactionServices
         {
             return await _repo.BulkChangePrivate(ids, privateValue);
         }
-
+        public async Task<List<AllTransactionDTO>> GetAllDTOs(GetAllTransactionQuery query)
+        {
+            return await _repo.GetAllDTOs(query);
+        }
 
         public async Task<byte[]> ExportToPdf(int id)
         {

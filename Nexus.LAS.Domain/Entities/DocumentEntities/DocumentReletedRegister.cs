@@ -1,4 +1,5 @@
-﻿using Nexus.LAS.Domain.Entities.Base;
+﻿using Nexus.LAS.Domain.Constants;
+using Nexus.LAS.Domain.Entities.Base;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -15,7 +16,7 @@ namespace Nexus.LAS.Domain.Entities.DocumentEntities
 
         [Column("Document_IDC")]
         [MaxLength(50)]
-        public string DocumentIdc { get; set; }
+        public string DocumentIdc { get; set; } = EntityIDCs.DocumentReletedRegister;
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         [Column("Document_IDN")]
