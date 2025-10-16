@@ -40,6 +40,10 @@ public class DocumentTrackingRepo : GenericRepo<DocumentTracking>, IDocumentTrac
                 PersonEnglishName = d.Person.PersonEnglishName,
                 PersonArabicName = d.Person.PersonArabicName,
                 PersonShortName = d.Person.PersonShortName,
+                CreatedAt = d.CreatedAt,
+                CreatedBy = d.CreatedBy,
+                ModifiedAt = d.ModifiedAt,
+                ModifiedBy = d.ModifiedBy
             })
             .AsQueryable();
 

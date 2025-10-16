@@ -1,3 +1,4 @@
+using Nexus.LAS.Domain.CommonAttributes;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -17,4 +18,12 @@ public class DocumentTrackingDto
     public string Description { get; set; }
     public string RegisterCode { get; set; }
     public string? ActionType { get; set; }
+    [IgnoreOnExport]
+    public string CreatedBy { get; set; }
+    [IgnoreOnExport]
+    public DateTime CreatedAt { get; set; }
+    [IgnoreOnExport]
+    public string? ModifiedBy { get; set; }
+    [IgnoreOnExport]
+    public DateTime? ModifiedAt { get; set; }
 }
