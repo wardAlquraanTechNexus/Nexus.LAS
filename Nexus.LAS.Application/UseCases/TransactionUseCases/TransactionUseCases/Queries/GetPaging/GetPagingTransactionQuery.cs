@@ -46,14 +46,12 @@ namespace Nexus.LAS.Application.UseCases.TransactionUseCases.TransactionUseCases
 
         }
         private string? _status;
-
         public List<CommonStatus> Statuses { get; set; } = new();
         public DateTime? TransactionDateFrom { get; set; }
         public DateTime? TransactionDateTo { get; set; }
         public string? TransactionCode { get; set; } = null!;
         public int? SubjectType { get; set; }
         public string? SubjectDescription { get; set; }
-
         public string OrderBy { get; set; } = "Id";
         public string OrderDir { get; set; } = "desc";
     }

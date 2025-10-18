@@ -7,5 +7,8 @@ namespace Nexus.LAS.Application.UseCases.CompanyUseCases.CompanyChamberOfCommerc
     {
         // Add any filter properties if needed
         public int CompanyIdn { get; set; }
+        public int? CciExpiryDatePeriod { get; set; }
+        public bool? CciExpiryActiveReminder { get; set; }
+
     }
 }

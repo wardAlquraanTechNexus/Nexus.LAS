@@ -13,6 +13,8 @@ namespace Nexus.LAS.Application.UseCases.CompanyLicenseUseCases.Queries.GetPagin
     public class GetCompanyLicensePagingQuery: BaseParams , IRequest<PagingResult<CompanyLicenseDto>>
     {
         public int? CompanyId { get; set; }
+        public int? LicenseExpiryDatePeriod { get; set; }
+        public bool? LicenseExpiryActiveReminder { get; set; }
 
     }
 }

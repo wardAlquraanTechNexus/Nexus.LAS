@@ -16,15 +16,32 @@ public class CompanyContractRepo : GenericRepo<CompanyContract>, ICompanyContrac
     {
     }
 
-    public async Task<PagingResult<CompanyContractDto>> SearhDtoAsync(GetPagingCompanyContractQuery query)
+    public async Task<PagingResult<CompanyContractDto>> SearhDtoAsync(GetPagingCompanyContractQuery param)
     {
+        DateTime? periodDateBefore = null;
+        DateTime? periodDateAfter = null;
+        if (param.ExpiryDatePeriod.HasValue)
+        {
+            if (param.ExpiryDatePeriod >= 0)
+            {
+                periodDateAfter = DateTime.Now.AddDays(param.ExpiryDatePeriod.Value).Date;
+                periodDateBefore = DateTime.Now.Date;
+            }
+            else
+            {
+                periodDateBefore = DateTime.Now.AddDays(param.ExpiryDatePeriod.Value).Date;
+                periodDateAfter = DateTime.Now.Date;
+            }
+        }
         var queryable =
                     from cc in _dbSet
                     join rf in _context.RegisterFiles
                         on new { RegistersIdc = cc.CompaniesContractIdc, RegistersIdn = cc.Id }
                         equals new { RegistersIdc = rf.RegistersIdc, RegistersIdn = rf.RegistersIdn } into gj
                     from registerFile in gj.DefaultIfEmpty() // left join
-                    where cc.CompanyId == query.CompanyId
+                    where (cc.CompanyId == param.CompanyId)
+                     && (!param.ExpiryDatePeriod.HasValue || (cc.ContractExpiryDate.HasValue && (cc.ContractExpiryDate.Value >= periodDateBefore && cc.ContractExpiryDate.Value <= periodDateAfter)))
+                && (!param.ActiveReminder.HasValue || ((cc.ContractExpiryActiveReminder == param.ActiveReminder)))
                     select new CompanyContractDto
                     {
                         Id = cc.Id,
@@ -44,9 +61,9 @@ public class CompanyContractRepo : GenericRepo<CompanyContract>, ICompanyContrac
 
 
         var count = await queryable.CountAsync();
-        queryable = queryable.Paginate(query.Page , query.PageSize);
+        queryable = queryable.Paginate(param.Page , param.PageSize);
         var data = await queryable.ToListAsync();
-        return new PagingResult<CompanyContractDto>(data, query.Page, query.PageSize, count);
+        return new PagingResult<CompanyContractDto>(data, param.Page, param.PageSize, count);
     }
 
     public async Task<List<CompanyContract>> GetListByCompanyId(int companyId)

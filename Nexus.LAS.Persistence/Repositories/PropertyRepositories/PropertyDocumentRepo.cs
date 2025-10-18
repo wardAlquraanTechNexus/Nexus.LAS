@@ -20,13 +20,32 @@ public class PropertyDocumentRepo : GenericRepo<PropertyDocument>, IPropertyDocu
 
     public async Task<PagingResult<PropertyDocumentDto>> GetPaging(GetPagingPropertyDocumentQuery param)
     {
+        DateTime? periodDateBefore = null;
+        DateTime? periodDateAfter = null;
+        if (param.ExpiryDatePeriod.HasValue)
+        {
+            if (param.ExpiryDatePeriod >= 0)
+            {
+                periodDateAfter = DateTime.Now.AddDays(param.ExpiryDatePeriod.Value).Date;
+                periodDateBefore = DateTime.Now.Date;
+            }
+            else
+            {
+                periodDateBefore = DateTime.Now.AddDays(param.ExpiryDatePeriod.Value).Date;
+                periodDateAfter = DateTime.Now.Date;
+            }
+        }
+
         var queryable =
             from pd in _dbSet
             join rf in _context.RegisterFiles
                 on new { RegistersIdc = pd.PropertyDocumentsIdc, RegistersIdn = pd.Id }
                 equals new { RegistersIdc = rf.RegistersIdc, RegistersIdn = rf.RegistersIdn } into gj
             from registerFile in gj.DefaultIfEmpty()
-            where !param.PropertyId.HasValue || pd.PropertyId == param.PropertyId.Value
+            where (!param.PropertyId.HasValue || pd.PropertyId == param.PropertyId.Value)
+            && (!param.ExpiryDatePeriod.HasValue || (pd.DocumentExpiryDate.HasValue && (pd.DocumentExpiryDate.Value >= periodDateBefore && pd.DocumentExpiryDate.Value <= periodDateAfter)))
+                && (!param.ActiveReminder.HasValue || ((pd.ActiveReminder == param.ActiveReminder)))
+
             select new PropertyDocumentDto
             {
                 Id = pd.Id,

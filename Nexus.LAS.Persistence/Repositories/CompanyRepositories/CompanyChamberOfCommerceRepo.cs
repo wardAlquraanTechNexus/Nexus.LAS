@@ -18,15 +18,33 @@ public class CompanyChamberOfCommerceRepo : GenericRepo<CompanyChamberOfCommerce
         _context = context;
     }
 
-    public async Task<PagingResult<CompanyChamberOfCommerceDto>> SearhDtoAsync(GetPagingCompanyChamberOfCommerceQuery query)
+    public async Task<PagingResult<CompanyChamberOfCommerceDto>> SearhDtoAsync(GetPagingCompanyChamberOfCommerceQuery param)
     {
+        DateTime? periodDateBefore = null;
+        DateTime? periodDateAfter = null;
+        if (param.CciExpiryDatePeriod.HasValue)
+        {
+            if (param.CciExpiryDatePeriod >= 0)
+            {
+                periodDateAfter = DateTime.Now.AddDays(param.CciExpiryDatePeriod.Value).Date;
+                periodDateBefore = DateTime.Now.Date;
+            }
+            else
+            {
+                periodDateBefore = DateTime.Now.AddDays(param.CciExpiryDatePeriod.Value).Date;
+                periodDateAfter = DateTime.Now.Date;
+            }
+        }
+
         var queryable =
             from ccc in _dbSet
             join rf in _context.RegisterFiles
                 on new { RegistersIdc = ccc.CompanyChamberOfCommerceIdc, RegistersIdn = ccc.Id }
                 equals new { RegistersIdc = rf.RegistersIdc, RegistersIdn = rf.RegistersIdn } into gj
             from registerFile in gj.DefaultIfEmpty()
-            where ccc.CompanyIdn == query.CompanyIdn
+            where (ccc.CompanyIdn == param.CompanyIdn)
+             && (!param.CciExpiryDatePeriod.HasValue || (ccc.CciExpiryDate.HasValue && (ccc.CciExpiryDate.Value >= periodDateBefore && ccc.CciExpiryDate.Value <= periodDateAfter)))
+                && (!param.CciExpiryActiveReminder.HasValue || (ccc.CciExpiryActiveReminder == param.CciExpiryActiveReminder))
             select new CompanyChamberOfCommerceDto
             {
                 Id = ccc.Id,
@@ -43,9 +61,9 @@ public class CompanyChamberOfCommerceRepo : GenericRepo<CompanyChamberOfCommerce
             };
 
         var count = await queryable.CountAsync();
-        queryable = queryable.Skip((query.Page) * query.PageSize).Take(query.PageSize);
+        queryable = queryable.Skip((param.Page) * param.PageSize).Take(param.PageSize);
         var data = await queryable.ToListAsync();
-        return new PagingResult<CompanyChamberOfCommerceDto>(data, query.Page, query.PageSize, count);
+        return new PagingResult<CompanyChamberOfCommerceDto>(data, param.Page, param.PageSize, count);
     }
 
     public async Task<List<CompanyChamberOfCommerce>> GetListByCompanyId(int companyId)

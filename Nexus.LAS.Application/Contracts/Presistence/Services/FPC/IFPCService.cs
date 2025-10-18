@@ -1,6 +1,7 @@
 using Nexus.LAS.Application.Contracts.Presistence.Services.Base;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.DTOs.FPCDTOs;
+using Nexus.LAS.Application.FPCUseCases;
 using Nexus.LAS.Application.UseCases.FPCUseCases.FPCUseCases.Queries.GetPaging;
 using Nexus.LAS.Domain.Constants.Enums;
 using Nexus.LAS.Domain.Entities;
@@ -14,5 +15,6 @@ public interface IFPCService : IGenericService<FPC>
     Task<int> BulkChangePrivate(List<int> ids, bool privateValue);
     Task<FPCDto?> GetDtoByIdAsync(int id);
     Task<byte[]> ExportToPdf(int id);
+    Task<List<FPCDto>> GetAllFPCs(GetAllFPCQuery query);
 
 }

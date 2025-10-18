@@ -7,5 +7,7 @@ namespace Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyDocumentUseCas
     {
         public int Id { get; set; }
         public int? PropertyId { get; set; }
+        public int? ExpiryDatePeriod { get; set; }
+        public bool? ActiveReminder { get; set; }
     }
 }

@@ -12,5 +12,7 @@ namespace Nexus.LAS.Application.UseCases.Queries.GetPaging
     {
         public int ? PersonsIdn { get; set; }
         public int ? DocumentType { get; set; }
+        public int? ExpityDatePeriod { get; set; }
+        public bool? ActiveReminder { get; set; }
     }
 }

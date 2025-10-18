@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Nexus.LAS.Application.Contracts.Presistence._Repositories;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.DTOs.FPCDTOs;
+using Nexus.LAS.Application.FPCUseCases;
 using Nexus.LAS.Application.UseCases.FPCUseCases.FPCUseCases.Queries.GetPaging;
 using Nexus.LAS.Domain.Constants;
 using Nexus.LAS.Domain.Constants.Enums;
@@ -72,6 +73,7 @@ public class FPCRepo : GenericRepo<FPC>, IFPCRepo
 
         return fpc;
     }
+    
     public async Task<PagingResult<FPCDto>> SearchFPCs(GetPagingFPCQuery query)
     {
         var queryable =
@@ -112,6 +114,44 @@ public class FPCRepo : GenericRepo<FPC>, IFPCRepo
         var data = await queryable.ToListAsync();
 
         return new PagingResult<FPCDto>(data, query.Page, query.PageSize, totalRecords);
+    }
+    public async Task<List<FPCDto>> GetAllFPCs(GetAllFPCQuery query)
+    {
+        var queryable =
+                from t in _dbSet
+                where
+                    (!query.Privates.Any() || query.Privates.Contains(t.Private))
+                    && (!query.Statuses.Any() || query.Statuses.Contains(t.FpcStatus))
+                    && (
+                        query.SearchBy == null
+                        || (t.FpcCode.ToLower().Contains(query.SearchBy.ToLower()))
+                    )
+                    && (string.IsNullOrEmpty(query.RegisterIdc) || query.RegisterIdc == t.RegisterIdc)
+                    && (!query.RegisterIdn.HasValue || query.RegisterIdn == t.RegisterIdn)
+                    && (!query.ExecludedId.HasValue || query.ExecludedId != t.Id)
+                select new FPCDto
+                {
+                    Id = t.Id,
+                    FpcCode = t.FpcCode,
+                    FpcStatus = t.FpcStatus,
+                    Private = t.Private,
+                    RegisterIdc = t.RegisterIdc,
+                    RegisterIdn = t.RegisterIdn,
+                    CreatedAt = t.CreatedAt,
+                    CreatedBy = t.CreatedBy,
+                    ModifiedAt = t.ModifiedAt,
+                    ModifiedBy = t.ModifiedBy,
+                };
+
+        if (!string.IsNullOrEmpty(query.OrderBy))
+        {
+            queryable = queryable.Order(query.OrderBy, query.OrderDir ?? "asc");
+        }
+
+
+        var data = await queryable.ToListAsync();
+
+        return data;
     }
 
     public override async Task<int> CreateAsync(FPC entity)

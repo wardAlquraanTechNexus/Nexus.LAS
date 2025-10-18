@@ -11,5 +11,7 @@ namespace Nexus.LAS.Application.UseCases.CompanyContractUseCases.Queries.GetPagi
     public class GetPagingCompanyContractQuery: GetBasePagingQuery<CompanyContractDto>
     {
         public int CompanyId { get; set; }
+        public int? ExpiryDatePeriod { get; set; }
+        public bool? ActiveReminder { get; set; } 
     }
 }

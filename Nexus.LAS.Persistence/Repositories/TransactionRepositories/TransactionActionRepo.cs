@@ -21,7 +21,10 @@ namespace Nexus.LAS.Persistence.Repositories.TransactionRepositories
         public async Task<PagingResult<TransactionActionDto>> GetPaging(GetPagingTransactionActionQuery query)
         {
             var queryable = _dbSet
-    .Where(ta => query.TransactionId == ta.TransactionId)
+    .Where(ta => 
+    (query.TransactionId == ta.TransactionId)
+    && (!query.PersonId.HasValue || query.PersonId == ta.PersonId)
+    )
     .Select(ta => new TransactionActionDto
     {
         TransactionId = ta.TransactionId,

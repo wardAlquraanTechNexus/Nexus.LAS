@@ -21,13 +21,31 @@ public class CompanyLicenseRepo : GenericRepo<CompanyLicense>, ICompanyLicenseRe
 
     public async Task<PagingResult<CompanyLicenseDto>> GetPaging(GetCompanyLicensePagingQuery param)
     {
+        DateTime? periodDateBefore = null;
+        DateTime? periodDateAfter = null;
+        if (param.LicenseExpiryDatePeriod.HasValue)
+        {
+            if (param.LicenseExpiryDatePeriod >= 0)
+            {
+                periodDateAfter = DateTime.Now.AddDays(param.LicenseExpiryDatePeriod.Value).Date;
+                periodDateBefore = DateTime.Now.Date;
+            }
+            else
+            {
+                periodDateBefore = DateTime.Now.AddDays(param.LicenseExpiryDatePeriod.Value).Date;
+                periodDateAfter = DateTime.Now.Date;
+            }
+        }
+
         var queryable =
             from cl in _dbSet
             join rf in _context.RegisterFiles
                 on new { RegistersIdc = cl.CompanyLicenseIdc, RegistersIdn = cl.Id }
                 equals new { RegistersIdc = rf.RegistersIdc, RegistersIdn = rf.RegistersIdn } into gj
             from registerFile in gj.DefaultIfEmpty()
-            where !param.CompanyId.HasValue || cl.CompanyIdn == param.CompanyId.Value
+            where (!param.CompanyId.HasValue || cl.CompanyIdn == param.CompanyId.Value)
+             && (!param.LicenseExpiryDatePeriod.HasValue || (cl.LicenseExpiryDate.HasValue && (cl.LicenseExpiryDate.Value >= periodDateBefore && cl.LicenseExpiryDate.Value <= periodDateAfter)))
+                && (!param.LicenseExpiryActiveReminder.HasValue || (cl.LicenseExpiryActiveReminder == param.LicenseExpiryActiveReminder))
             select new CompanyLicenseDto
             {
                 Id = cl.Id,

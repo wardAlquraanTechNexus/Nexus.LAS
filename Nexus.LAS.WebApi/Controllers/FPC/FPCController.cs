@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
+using Nexus.LAS.Application.FPCUseCases;
 using Nexus.LAS.Application.UseCases.FPCUseCases.FPCUseCases.Commands.BulkChangePrivate;
 using Nexus.LAS.Application.UseCases.FPCUseCases.FPCUseCases.Commands.BulkChangeStatus;
 using Nexus.LAS.Application.UseCases.FPCUseCases.FPCUseCases.Commands.CreateFPC;
@@ -32,6 +33,18 @@ namespace Nexus.LAS.WebApi.Controllers
         public override async Task<IActionResult> GetById(int id)
         {
             var query = new GetFPCByIdQuery(id);
+            return Ok(await _mediator.Send(query));
+
+        }
+        [NonAction]
+        public override Task<IActionResult> GetAllByQuery()
+        {
+            return base.GetAllByQuery();
+        }
+        [HttpGet(nameof(GetAllByQuery))]
+        [ApiMethodType(Domain.Constants.Enums.MethodType.Get)]
+        public async Task<IActionResult> GetAll([FromQuery]GetAllFPCQuery query)
+        {
             return Ok(await _mediator.Send(query));
 
         }

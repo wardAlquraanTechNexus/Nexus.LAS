@@ -5,6 +5,7 @@ using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.DTOs.FPCDTOs;
 using Nexus.LAS.Application.DTOs.TransactionDTOs;
+using Nexus.LAS.Application.FPCUseCases;
 using Nexus.LAS.Application.UseCases.FPCUseCases.FPCUseCases.Queries.GetPaging;
 using Nexus.LAS.Domain.Constants;
 using Nexus.LAS.Domain.Constants.Enums;
@@ -31,6 +32,10 @@ public class FPCService : GenericService<FPC>, IFPCService
         _fPCsODRepo = fPCsODRepo;
     }
 
+    public async Task<List<FPCDto>> GetAllFPCs(GetAllFPCQuery query)
+    {
+        return await _repo.GetAllFPCs(query);
+    }
     public async Task<PagingResult<FPCDto>> SearchFPCs(GetPagingFPCQuery query)
     {
         return await _repo.SearchFPCs(query);

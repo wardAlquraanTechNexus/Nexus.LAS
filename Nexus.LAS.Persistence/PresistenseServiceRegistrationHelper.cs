@@ -22,6 +22,7 @@ using Nexus.LAS.Persistence.Repositories.NumberRepositories;
 using Nexus.LAS.Persistence.Repositories.PropertyRepositories;
 using Nexus.LAS.Persistence.Repositories.RegisterFileRepositories;
 using Nexus.LAS.Persistence.Repositories.RegisterNoteRepositories;
+using Nexus.LAS.Persistence.Repositories.SearchRepositories;
 using Nexus.LAS.Persistence.Repositories.TransactionRepositories;
 using Nexus.LAS.Persistence.Services;
 using Nexus.LAS.Persistence.Services.CompanyServices;
@@ -191,6 +192,9 @@ namespace Nexus.LAS.Persistence
             services.AddScoped<IFPCsODRepo, FPCsODRepo>();
             services.AddScoped<IFPCODActionRepo, FPCODActionRepo>();
             services.AddScoped<INumberRepo, NumberRepo>();
+            services.AddScoped<ISearchRepo, SearchRepo>();
+
+            
         }
     }
 }
