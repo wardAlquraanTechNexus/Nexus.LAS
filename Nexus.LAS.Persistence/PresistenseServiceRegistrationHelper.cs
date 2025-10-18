@@ -192,7 +192,7 @@ namespace Nexus.LAS.Persistence
             services.AddScoped<IFPCsODRepo, FPCsODRepo>();
             services.AddScoped<IFPCODActionRepo, FPCODActionRepo>();
             services.AddScoped<INumberRepo, NumberRepo>();
-            services.AddScoped<ISearchRepo, SearchRepo>();
+            services.AddScoped<IGlobalRepo, GlobalhRepo>();
 
             
         }

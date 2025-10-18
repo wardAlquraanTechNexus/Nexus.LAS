@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nexus.LAS.Application.DTOs.SearchDTOs
+namespace Nexus.LAS.Application.DTOs
 {
     public class GlobalSearchDTO
     {

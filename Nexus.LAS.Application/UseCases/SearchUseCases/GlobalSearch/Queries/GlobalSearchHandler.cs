@@ -1,14 +1,14 @@
 using MediatR;
 using Nexus.LAS.Application.Contracts.Presistence._Repositories;
-using Nexus.LAS.Application.DTOs.SearchDTOs;
+using Nexus.LAS.Application.DTOs;
 
 namespace Nexus.LAS.Application.UseCases.SearchUseCases.GlobalSearch.Queries
 {
     public class GlobalSearchHandler : IRequestHandler<GlobalSearchQuery, List<GlobalSearchDTO>>
     {
-        private readonly ISearchRepo _searchRepo;
+        private readonly IGlobalRepo _searchRepo;
 
-        public GlobalSearchHandler(ISearchRepo searchRepo)
+        public GlobalSearchHandler(IGlobalRepo searchRepo)
         {
             _searchRepo = searchRepo;
         }
