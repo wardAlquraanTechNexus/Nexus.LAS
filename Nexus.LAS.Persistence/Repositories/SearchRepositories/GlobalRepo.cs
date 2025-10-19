@@ -155,7 +155,7 @@ namespace Nexus.LAS.Persistence.Repositories.SearchRepositories
             new GlobalInfoDTO()
             {
                 Count = peopleCount,
-                Name = "People",
+                Name = "Persons",
                 Icon = "people",
                 Path = "Persons/All-persons",
                 Idc = EntityIDCs.Person
@@ -182,7 +182,7 @@ namespace Nexus.LAS.Persistence.Repositories.SearchRepositories
             {
                 Count = lawFirmsCount,
                 Name = "Law Firms",
-                Icon = "home_work",
+                Icon = "gavel",
                 Path = "Law-firms/All-law-firms",
                 Idc = EntityIDCs.LawFirmIDC
             }

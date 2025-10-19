@@ -119,81 +119,78 @@ BEGIN
                               [IconClass], [InDashboard], [CreatedBy], [CreatedAt], 
                               [ModifiedBy], [ModifiedAt], [IsDeleted], [DeletedBy], [DeletedAt])
     VALUES 
-    -- Main Menu Items
-    (1, NULL, N'Settings', N'Settings', 8, N'System settings', N'settings', 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (2, NULL, N'Persons', N'Persons', 1, N'Person management', N'people', 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (3, NULL, N'Companies', N'Companies', 2, N'Company management', N'domain', 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (4, NULL, N'Real Estates', N'Real-Estates', 3, N'Real Estate management', N'home_work', 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (5, NULL, N'Law Firms', N'Law-Firms', 4, N'Law Firm management', N'gavel', 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (6, NULL, N'Transactions', N'Transactions', 5, N'Transaction management', N'swap_horiz', 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (7, NULL, N'FPCs', N'FPCs', 6, N'fire proof cabints management', N'business_center', 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (8, NULL, N'Doc. Tracking', N'Doc-Tracking', 7, N'Document Tracking management', N'track_changes', 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    -- Dashboard - Now ID 1 with Rank 1
+    (1, NULL, N'Dashboard', N'Dashboard', 1, N'Home dashboard', N'dashboard', 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    
+    -- Main Menu Items - IDs shifted up
+    (2, NULL, N'Persons', N'Persons', 2, N'Person management', N'people', 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (3, NULL, N'Companies', N'Companies', 3, N'Company management', N'domain', 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (4, NULL, N'Real Estates', N'Real-Estates', 4, N'Real Estate management', N'home_work', 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (5, NULL, N'Law Firms', N'Law-Firms', 5, N'Law Firm management', N'gavel', 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (6, NULL, N'Transactions', N'Transactions', 6, N'Transaction management', N'swap_horiz', 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (7, NULL, N'FPCs', N'FPCs', 7, N'fire proof cabints management', N'business_center', 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (8, NULL, N'Doc. Tracking', N'Doc-Tracking', 8, N'Document Tracking management', N'track_changes', 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (9, NULL, N'Settings', N'Settings', 9, N'System settings', N'settings', 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
     
     -- Person Sub-menus (Parent ID: 2)
-    (9, 2, N'Add Person', N'Persons/Add-Person', 1, N'Add new person', NULL, 0, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (10, 2, N'All Persons', N'All-Persons', 2, N'View all persons', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (11, 2, N'Active Persons', N'Active-Persons', 3, N'View active persons', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (12, 2, N'Active Private Persons', N'Active-Private-Persons', 4, N'View active private persons', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (13, 2, N'Active Public Persons', N'Active-Public-Persons', 5, N'View active public persons', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (10, 2, N'Add Person', N'Persons/Add-Person', 1, N'Add new person', NULL, 0, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (11, 2, N'All Persons', N'All-Persons', 2, N'View all persons', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (12, 2, N'Active Persons', N'Active-Persons', 3, N'View active persons', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (13, 2, N'Active Private Persons', N'Active-Private-Persons', 4, N'View active private persons', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (14, 2, N'Active Public Persons', N'Active-Public-Persons', 5, N'View active public persons', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
 
-    
     -- Company Sub-menus (Parent ID: 3)
-    (14, 3, N'Add Company', N'Companies/Add-Company', 1, N'Add new company', NULL, 0, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (15, 3, N'All Companies', N'All-Companies', 2, N'View all companies', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (16, 3, N'Active Companies', N'Active-Companies', 3, N'View active companies', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (17, 3, N'Active Private Companies', N'Active-Private-Companies', 4, N'View active private companies', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (18, 3, N'Active Public Companies', N'Active-Public-Companies', 5, N'View active public companies', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (15, 3, N'Add Company', N'Companies/Add-Company', 1, N'Add new company', NULL, 0, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (16, 3, N'All Companies', N'All-Companies', 2, N'View all companies', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (17, 3, N'Active Companies', N'Active-Companies', 3, N'View active companies', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (18, 3, N'Active Private Companies', N'Active-Private-Companies', 4, N'View active private companies', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (19, 3, N'Active Public Companies', N'Active-Public-Companies', 5, N'View active public companies', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
     
     -- Real Estate Sub-menus (Parent ID: 4)
-    (19, 4, N'Add Real Estate', N'Real-Estates/Add-Real-Estate', 1, N'Add new real estate property', NULL, 0, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (20, 4, N'All Real Estates', N'All-Real-Estates', 2, N'View all real estate properties', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (21, 4, N'Active Real Estates', N'Active-Real-Estates', 3, N'View active real estate properties', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (22, 4, N'Active Private Real Estates', N'Active-Private-Real-Estates', 4, N'View active private properties', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (23, 4, N'Active Public Real Estates', N'Active-Public-Real-Estates', 5, N'View active public properties', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (20, 4, N'Add Real Estate', N'Real-Estates/Add-Real-Estate', 1, N'Add new real estate property', NULL, 0, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (21, 4, N'All Properties', N'All-Properties', 2, N'View all real estate properties', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (22, 4, N'Active Properties', N'Active-Properties', 3, N'View active real estate properties', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (23, 4, N'Active Private Properties', N'Active-Private-Properties', 4, N'View active private properties', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (24, 4, N'Active Public Properties', N'Active-Public-Properties', 5, N'View active public properties', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
     
     -- Law Firm Sub-menus (Parent ID: 5)
-    (24, 5, N'Add Law Firm', N'Law-Firms/Add-Law-Firm', 1, N'Add new law firm', NULL, 0, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (25, 5, N'All Law Firms', N'All-Law-Firms', 2, N'View all law firms', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (26, 5, N'Active Law Firms', N'Active-Law-Firms', 3, N'View active law firms', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (27, 5, N'Active Private Law Firms', N'Active-Private-Law-Firms', 4, N'View active private law firms', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (28, 5, N'Active Public Law Firms', N'Active-Public-Law-Firms', 5, N'View active public law firms', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (25, 5, N'Add Law Firm', N'Law-Firms/Add-Law-Firm', 1, N'Add new law firm', NULL, 0, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (26, 5, N'All Law Firms', N'All-Law-Firms', 2, N'View all law firms', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (27, 5, N'Active Law Firms', N'Active-Law-Firms', 3, N'View active law firms', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (28, 5, N'Active Private Law Firms', N'Active-Private-Law-Firms', 4, N'View active private law firms', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (29, 5, N'Active Public Law Firms', N'Active-Public-Law-Firms', 5, N'View active public law firms', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
     
     -- Transaction Sub-menus (Parent ID: 6)
-    (29, 6, N'Add Transaction', N'Transactions/Add-Transaction', 1, N'Add new transaction', NULL, 0, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (30, 6, N'All Transactions', N'All-Transactions', 2, N'View all transactions', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (31, 6, N'Active Transactions', N'Active-Transactions', 3, N'View active transactions', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (32, 6, N'Active Private Transactions', N'Active-private-transactions', 4, N'View Active Private transactions', NULL, 1, N'system', CAST(N'2025-09-12T13:08:10.3000000' AS DateTime2), N'admin@rg.com', CAST(N'2025-10-07T19:43:32.8707688' AS DateTime2), 0, NULL, NULL),
-    (33, 6, N'Active Public Transactions', N'Active-public-transactions', 5, N'Active-public-transactions', NULL, 1, N'system', CAST(N'2025-09-12T13:08:10.3000000' AS DateTime2), N'admin@rg.com', CAST(N'2025-10-07T19:44:19.3342515' AS DateTime2), 0, NULL, NULL),    
+    (30, 6, N'Add Transaction', N'Transactions/Add-Transaction', 1, N'Add new transaction', NULL, 0, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (31, 6, N'All Transactions', N'All-Transactions', 2, N'View all transactions', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (32, 6, N'Active Transactions', N'Active-Transactions', 3, N'View active transactions', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (33, 6, N'Active Private Transactions', N'Active-private-transactions', 4, N'View active private transactions', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (34, 6, N'Active Public Transactions', N'Active-public-transactions', 5, N'View active public transactions', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),    
 
     -- FPC Sub-menus (Parent ID: 7)
-    (34, 7, N'Add FPC', N'FPCs/Add-FPC', 1, N'Add new fire proof cabint', NULL, 0, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (35, 7, N'All FPCs', N'All-FPCs', 2, N'View all fire proof cabints', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (36, 7, N'Active FPCs', N'Active-FPCs', 3, N'View active fire proof cabints', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (37, 7, N'Active Private FPCs', N'Active-Private-FPCs', 4, N'View active private fire proof cabints', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (38, 7, N'Active Public FPCs', N'Active-Public-FPCs', 5, N'View active public fire proof cabints', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (35, 7, N'Add FPC', N'FPCs/Add-FPC', 1, N'Add new fire proof cabint', NULL, 0, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (36, 7, N'All FPCs', N'All-FPCs', 2, N'View all fire proof cabints', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (37, 7, N'Active FPCs', N'Active-FPCs', 3, N'View active fire proof cabints', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (38, 7, N'Active Private FPCs', N'Active-Private-FPCs', 4, N'View active private fire proof cabints', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (39, 7, N'Active Public FPCs', N'Active-Public-FPCs', 5, N'View active public fire proof cabints', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
     
     -- Document Tracking Sub-menus (Parent ID: 8)
-    (39, 8, N'Add Document', N'Doc-Tracking/Add-Document', 1, N'Add new document for tracking', NULL, 0, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (40, 8, N'All Documents', N'All-Documents', 2, N'View all tracked documents', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (40, 8, N'Add Document', N'Doc-Tracking/Add-Document', 1, N'Add new document for tracking', NULL, 0, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (41, 8, N'All Documents', N'All-Documents', 2, N'View all tracked documents', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
 
-    
-    -- Settings Sub-menus (Parent ID: 1)
-    (41, 1, N'Dynamic List', N'Dynamic-List', 1, N'Manage dynamic lists', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (42, 1, N'Menus', N'Menus', 2, N'Manage system menus', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (43, 1, N'Users', N'Users', 3, N'Manage users', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (44, 1, N'User Groups', N'User-Groups', 4, N'Manage user groups', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (45, 1, N'Groups', N'Groups', 4, N'Manage groups', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (46, 1, N'Group Menu', N'Group-Menus', 4, N'Manage group menus', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (47, 1, N'Setting', N'', 1, N'setting', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL);
+    -- Settings Sub-menus (Parent ID: 9) - Updated parent reference
+    (42, 9, N'Dynamic List', N'Dynamic-List', 1, N'Manage dynamic lists', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (43, 9, N'Menus', N'Menus', 2, N'Manage system menus', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (44, 9, N'Users', N'Users', 3, N'Define and manage users', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (45, 9, N'User Groups', N'User-Groups', 4, N'Manage user group memberships', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (46, 9, N'Groups', N'Groups', 5, N'Define groups', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (47, 9, N'Group Menu', N'Group-Menus', 6, N'Manage group (menu item) permissions', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL);
 
-
-
-    
     SET IDENTITY_INSERT [dbo].[Menus] OFF
     PRINT 'Menus seeded successfully.'
 END
 
--- Group Menu Permissions - Batch insert with full permissions for administrators
+-- Group Menu Permissions - Updated to handle the new menu range
 IF NOT EXISTS (SELECT 1 FROM [dbo].[GroupsMenus] WHERE [GroupID] = 1 AND [MenuID] = 1)
 BEGIN
     SET IDENTITY_INSERT [dbo].[GroupsMenus] ON
@@ -270,6 +267,7 @@ SELECT 'User Groups Count', COUNT(*) FROM [dbo].[UserGroups]
 UNION ALL
 SELECT 'App Users Count', COUNT(*) FROM [dbo].[Users];
 */
+
 
 
 
