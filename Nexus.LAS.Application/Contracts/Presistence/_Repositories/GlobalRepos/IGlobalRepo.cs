@@ -11,5 +11,6 @@ namespace Nexus.LAS.Application.Contracts.Presistence._Repositories
         Task<List<GlobalSearchDTO>> GlobalSearch(GlobalSearchQuery query);
         Task<List<GlobalInfoDTO>> GlobalInfo();
         Task<PagingResult<GlobalDocumentExpiredDto>> GlobalDocumentExpired(GetGlobalExpiredDocumentQuery request);
+        Task<List<GlobalDocumentExpiredDto>> GlobalAllDocumentExpired(GetGlobalExpiredDocumentQuery request);
     }
 }

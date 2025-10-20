@@ -1,5 +1,6 @@
 ﻿using Nexus.LAS.Domain.Constants;
 using Nexus.LAS.Domain.Entities.Base;
+using Nexus.LAS.Domain.Entities.PersonEntities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -23,5 +24,7 @@ namespace Nexus.LAS.Domain.Entities.UserGroupEntities
 
         [Column("Persons_IDN")]
         public int? PersonsIdN { get; set; }
+        [ForeignKey(nameof(PersonsIdN))]
+        public Person? Person { get; set; }
     }
 }

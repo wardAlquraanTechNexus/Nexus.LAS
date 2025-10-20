@@ -5,6 +5,8 @@ using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.DTOs;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.Identity;
+using Nexus.LAS.Application.UseCases.Lookup.UserUseCases.Commands;
+using Nexus.LAS.Application.UseCases.Lookup.UserUseCases.Queries.GetLdStuffPerson;
 using Nexus.LAS.Application.UseCases.UserUseCases.Queries;
 using Nexus.LAS.Domain.Entities.RegisterEntities;
 using Nexus.LAS.Domain.Entities.UserGroupEntities;
@@ -17,6 +19,7 @@ namespace Nexus.LAS.Persistence.Services
 {
     public class UserService : GenericService<User>, IUserService
     {
+        private readonly IUserRepo _repo;
         private readonly IAuthService _authService;
         private readonly NexusLASIdentityDbContext _identityDbContext;
 
@@ -24,18 +27,18 @@ namespace Nexus.LAS.Persistence.Services
         {
             _authService = authService;
             _identityDbContext = identityDbContext;
+            _repo = repo;
         }
         public async Task<AuthResponse> Login(AuthRequest request)
         {
             var authResponse = await _authService.Login(request);
             
-            UserRepo userRepo = new UserRepo(_context, _identityDbContext);
 
-            var user = await userRepo.GetByUsernameAsync(authResponse.UserName);
+            var user = await _repo.GetByUsernameAsync(authResponse.UserName);
 
             if (user == null) 
             {
-                await userRepo.CreateAsync(new User()
+                await _repo.CreateAsync(new User()
                 {
                     Username = authResponse.UserName,
                     CreatedBy = authResponse.UserName
@@ -50,8 +53,17 @@ namespace Nexus.LAS.Persistence.Services
 
         public async Task<PagingResult<UserDto>> GetUserDTOs(SearchUserQuery query)
         {
-            UserRepo userRepo = new UserRepo(_context, _identityDbContext);
-            return await userRepo.SearchUser(query);
+            return await _repo.SearchUser(query);
+        }
+
+        public async Task<bool> LinkUserWithPerson(LinkUserPersonCommand command)
+        {
+            return await _repo.LinkUserWithPerson(command);
+        }
+
+        public async Task<PagingResult<UserDto>> GetLdStuffPersons(GetLdStuffPersonQuery param)
+        {
+            return await _repo.GetLdStuffPersons(param);
         }
 
     }

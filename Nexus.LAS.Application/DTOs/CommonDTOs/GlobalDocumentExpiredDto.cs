@@ -11,14 +11,23 @@ namespace Nexus.LAS.Application.DTOs.CommonDTOs
     public class GlobalDocumentExpiredDto
     {
         public int Id { get; set; }
+        [IgnoreOnExport]
         public string MainIdc { get; set; }
+        [IgnoreOnExport]
         public string SubIdc { get; set; }
+        [IgnoreOnExport]
         public int ExpiryPeriod { get; set; }
+        [IgnoreOnExport]
         public bool ActiveReminder { get; set; }
+        [IgnoreOnExport]
         public string CreatedBy { get; set; }
+        [IgnoreOnExport]
         public DateTime CreatedAt { get; set; }
+        [IgnoreOnExport]
         public string? ModifiedBy { get; set; }
+        [IgnoreOnExport]
         public DateTime? ModifiedAt { get; set; }
+        [IgnoreOnExport]
         public DateTime ExpiryDate { get; set; }
 
         // Computed properties — safe for EF Core
@@ -38,6 +47,16 @@ namespace Nexus.LAS.Application.DTOs.CommonDTOs
             EntityIDCs.CompaniesContracts => "Company Contracts",
             EntityIDCs.PropertyDocuments => "Property Documents",
             _ => ""
+        };
+
+        public string ExpiredPeriod => ExpiryPeriod switch
+        {
+            -15 => "Before 15 Days",
+            -30 => "Before 30 Days",
+            -45 => "Before 45 Days",
+            15 => "Within 15 Days",
+            30 => "Within 30 Days",
+            45 => "Within 45 Days",
         };
     }
 }

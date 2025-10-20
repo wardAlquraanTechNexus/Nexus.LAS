@@ -1,7 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Nexus.LAS.Application.Contracts.Presistence._Repositories;
 using Nexus.LAS.Application.DTOs;
 using Nexus.LAS.Application.DTOs.Base;
+using Nexus.LAS.Application.Models;
+using Nexus.LAS.Application.UseCases.Base;
+using Nexus.LAS.Application.UseCases.Lookup.UserUseCases.Commands;
+using Nexus.LAS.Application.UseCases.Lookup.UserUseCases.Queries.GetLdStuffPerson;
 using Nexus.LAS.Application.UseCases.UserUseCases.Queries;
 using Nexus.LAS.Domain.Entities.UserGroupEntities;
 using Nexus.LAS.Domain.ExtensionMethods;
@@ -19,9 +24,16 @@ namespace Nexus.LAS.Persistence.Repositories
     public class UserRepo : GenericRepo<User>, IUserRepo
     {
         private readonly NexusLASIdentityDbContext _identityDbContext;
-        public UserRepo(NexusLASDbContext context, NexusLASIdentityDbContext identityDbContext) : base(context)
+        private readonly IOptions<AppSettings> _appSettings;
+
+        public UserRepo(
+            NexusLASDbContext context, 
+            NexusLASIdentityDbContext identityDbContext, 
+            IOptions<AppSettings> appSettings
+            ) : base(context)
         {
             _identityDbContext = identityDbContext;
+            _appSettings = appSettings;
         }
 
         public async Task<User?> GetByUsernameAsync(string username)
@@ -29,6 +41,17 @@ namespace Nexus.LAS.Persistence.Repositories
             return await _context.Users.FirstOrDefaultAsync(x => x.Username == username);
         }
 
+        public async Task<bool> LinkUserWithPerson(LinkUserPersonCommand command)
+        {
+            var user = await _dbSet.FirstOrDefaultAsync(u => u.Username == command.Username);
+            if (user == null)
+            {
+                return false; // User not found
+            }
+            user.PersonsIdN = command.PersonId;
+            await _context.SaveChangesAsync();
+            return true;
+        }
         public async Task<PagingResult<UserDto>> SearchUser(SearchUserQuery query)
         {
 
@@ -85,5 +108,72 @@ namespace Nexus.LAS.Persistence.Repositories
             return new PagingResult<UserDto>(data, query.Page, query.PageSize, totalRecords);
 
         }
+
+        public async Task<bool> ExistsByPersonIdAsync(int personId, string? excludeUsername = null)
+        {
+            return await _dbSet.AnyAsync(u =>
+                u.PersonsIdN == personId &&
+                (excludeUsername == null || u.Username != excludeUsername)
+            );
+        }
+
+        public async Task<PagingResult<UserDto>> GetLdStuffPersons(GetLdStuffPersonQuery param)
+        {
+            var ldStuffUsersQuery = _context.UserGroups.Where(x => x.GroupId == _appSettings.Value.LdStaffId).Select(x=>x.UserId).AsQueryable();
+            var userIds = await ldStuffUsersQuery.ToListAsync();
+
+            var query = _context.Users
+                .Where(
+                u => userIds.Contains(u.Id)
+                && u.PersonsIdN != null
+                && (string.IsNullOrEmpty(param.EnglishName) || u.Person.PersonEnglishName.ToLower().Contains(param.EnglishName.ToLower()))
+                )
+                .OrderBy(x=>x.Person.PersonEnglishName)
+                .Select(u => new UserDto
+                {
+                    Id = u.Id.ToString(),
+                    Username = u.Username,
+                    PersonsIdN = u.PersonsIdN,
+                    PersonName = u.Person != null ? (u.Person.PersonEnglishName) : null,
+                    LoginName = u.LoginName,
+                    NTLogin = u.NTLogin
+                })
+                .AsQueryable()
+                .AsNoTracking()
+                ;
+
+
+            var totalRecords = await query.CountAsync();
+
+            query = query.Paginate(param.Page, param.PageSize);
+
+            var data =  await query.ToListAsync();
+
+            var usernames = data.Select(d => d.Username.ToLower()).ToList();
+            var identityUsersQuery=  _identityDbContext.Users
+                .Where(x=> usernames.Contains(x.UserName.ToLower()))
+                .AsQueryable()
+                .AsNoTracking();
+
+            var identityUsers = await identityUsersQuery.ToListAsync();
+
+            foreach (var userDto in data)
+            {
+                var idUser = identityUsers.FirstOrDefault(x => x.UserName.Equals(userDto.Username, StringComparison.OrdinalIgnoreCase));
+                if (idUser != null)
+                {
+                    userDto.Email = idUser.Email;
+                    userDto.FirstName = idUser.FirstName;
+                    userDto.LastName = idUser.LastName;
+                    userDto.PhoneNumber = idUser.PhoneNumber;
+
+                }
+            }
+
+            return new PagingResult<UserDto>(data, param.Page, param.PageSize, totalRecords);
+
+
+        }
+
     }
 }

@@ -105,6 +105,10 @@ BEGIN
                                [ModifiedBy], [ModifiedAt], [IsDeleted], [DeletedBy], [DeletedAt])
     VALUES (1, N'Administrators', N'System administrators with full access', @systemUser, 
             @currentDatetime, NULL, NULL, 0, NULL, NULL);
+    INSERT INTO [dbo].[Groups] ([id], [GroupName], [Description], [CreatedBy], [CreatedAt], 
+                               [ModifiedBy], [ModifiedAt], [IsDeleted], [DeletedBy], [DeletedAt])
+    VALUES (2, N'Ld Stuff', N'For Ld Stuff', @systemUser, 
+            @currentDatetime, NULL, NULL, 0, NULL, NULL);
     
     SET IDENTITY_INSERT [dbo].[Groups] OFF
     PRINT 'Groups seeded successfully.'
