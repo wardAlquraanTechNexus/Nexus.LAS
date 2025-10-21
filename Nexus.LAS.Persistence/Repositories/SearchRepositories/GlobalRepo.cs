@@ -219,100 +219,111 @@ namespace Nexus.LAS.Persistence.Repositories.SearchRepositories
 
         }
 
-        public async Task<PagingResult<GlobalDocumentExpiredDto>> GlobalDocumentExpired(GetGlobalExpiredDocumentQuery request)
+
+        public IQueryable<GlobalDocumentExpiredDto>? GetGlobalDocumentExpiredQuery(GetGlobalExpiredDocumentQuery request)
         {
-            List<GlobalDocumentExpiredDto> expiredDocuments = new();
 
-            var dateThresholds = new Dictionary<int, DateTime>
-                                        {
-                                            { 15, DateTime.Now.AddDays(-15).Date },
-                                            { 30, DateTime.Now.AddDays(-30).Date },
-                                            { 45, DateTime.Now.AddDays(-45).Date }
-                                        };
 
+            Dictionary<int, DateTime> dateThresholds = request.ExpiredPeriod.HasValue ?
+                new Dictionary<int, DateTime>
+                {
+                    { request.ExpiredPeriod.Value, DateTime.Now.AddDays(request.ExpiredPeriod.Value).Date }
+                }
+                :
+                new Dictionary<int, DateTime>
+                {
+                    { -45, DateTime.Now.AddDays(-45).Date },
+                    { -30, DateTime.Now.AddDays(-30).Date },
+                    { -15, DateTime.Now.AddDays(-15).Date },
+                    { 0, DateTime.Now.Date },
+                    { 15, DateTime.Now.AddDays(15).Date },
+                    { 30, DateTime.Now.AddDays(30).Date },
+                    { 45, DateTime.Now.AddDays(45).Date }
+                };
 
             IQueryable<GlobalDocumentExpiredDto>? mergedQuery = null;
+
             foreach (var threshold in dateThresholds)
             {
-
                 int days = threshold.Key;
                 DateTime targetDate = threshold.Value;
 
-                if (mergedQuery is null)
-                {
-                    mergedQuery = _context.PersonsIDDetails
-                    .Where(x => x.ExpiryDate.HasValue &&
-                                (days == 45
-                                    ? x.ExpiryDate.Value.Date >= targetDate
-                                    : x.ExpiryDate.Value.Date == targetDate))
+                // PERSONS
+                var personQuery = _context.PersonsIDDetails
+                    .Where(x => x.ExpiryDate.HasValue && x.ActiveReminder == true &&
+                        (
+                            days < 0
+                                ? (days == -45
+                                    ? x.ExpiryDate.Value.Date <= targetDate
+                                    : x.ExpiryDate.Value.Date == targetDate)
+                                : (
+                                    days == 45
+                                        ? x.ExpiryDate.Value.Date > DateTime.Now.AddDays(30).Date && x.ExpiryDate.Value.Date <= targetDate
+                                        : (days == 30)
+                                            ? (x.ExpiryDate.Value > DateTime.Now.AddDays(15).Date && x.ExpiryDate.Value <= targetDate)
+                                            : (x.ExpiryDate.Value >= DateTime.Now.Date && x.ExpiryDate.Value <= targetDate)
+                                )
+                        ))
                     .Select(x => new GlobalDocumentExpiredDto
                     {
                         Id = x.Id,
                         MainIdc = EntityIDCs.Person,
                         SubIdc = x.PersonsIDDetailIdc,
                         ExpiryPeriod = days,
-                        ActiveReminder = x.ActiveReminder.HasValue ? x.ActiveReminder.Value : false,
+                        ActiveReminder = x.ActiveReminder ?? false,
                         CreatedAt = x.CreatedAt,
                         ModifiedAt = x.ModifiedAt,
                         CreatedBy = x.CreatedBy,
                         ModifiedBy = x.ModifiedBy,
                         ExpiryDate = x.ExpiryDate.Value
-                    })
-                    .AsQueryable();
+                    });
 
-
-                }
-                else
-                {
-                    mergedQuery = mergedQuery!.Union(_context.PersonsIDDetails
-                    .Where(x => x.ExpiryDate.HasValue &&
-                                (days == 45
-                                    ? x.ExpiryDate.Value.Date >= targetDate
-                                    : x.ExpiryDate.Value.Date == targetDate))
+                // COMPANIES - CHAMBER OF COMMERCE
+                var chamberQuery = _context.CompaniesChamberOfCommerce
+                    .Where(x => x.CciExpiryDate.HasValue && x.CciExpiryActiveReminder == true &&
+                        (
+                            days < 0
+                                ? (days == -45
+                                    ? x.CciExpiryDate.Value.Date <= targetDate
+                                    : x.CciExpiryDate.Value.Date == targetDate)
+                                : (
+                                    days == 45
+                                        ? x.CciExpiryDate.Value.Date > DateTime.Now.AddDays(30).Date && x.CciExpiryDate.Value.Date <= targetDate
+                                        : (days == 30)
+                                            ? (x.CciExpiryDate.Value > DateTime.Now.AddDays(15).Date && x.CciExpiryDate.Value <= targetDate)
+                                            : (x.CciExpiryDate.Value >= DateTime.Now.Date && x.CciExpiryDate.Value <= targetDate)
+                                )
+                        ))
                     .Select(x => new GlobalDocumentExpiredDto
                     {
                         Id = x.Id,
-                        MainIdc = EntityIDCs.Person,
-                        SubIdc = x.PersonsIDDetailIdc,
+                        MainIdc = EntityIDCs.Company,
+                        SubIdc = x.CompanyChamberOfCommerceIdc,
                         ExpiryPeriod = days,
-                        ActiveReminder = x.ActiveReminder.HasValue ? x.ActiveReminder.Value : false,
+                        ActiveReminder = x.CciExpiryActiveReminder,
                         CreatedAt = x.CreatedAt,
                         ModifiedAt = x.ModifiedAt,
                         CreatedBy = x.CreatedBy,
                         ModifiedBy = x.ModifiedBy,
-                        ExpiryDate = x.ExpiryDate.Value
-                    })
-                    .AsQueryable());
+                        ExpiryDate = x.CciExpiryDate.Value
+                    });
 
-                }
-
-                mergedQuery = mergedQuery.Union(_context.CompaniesChamberOfCommerce
-                        .Where(x => x.CciExpiryDate.HasValue &&
-                                    (days == 45
-                                        ? x.CciExpiryDate.Value.Date >= targetDate
-                                        : x.CciExpiryDate.Value.Date == targetDate))
-                        .Select(x => new GlobalDocumentExpiredDto
-                        {
-                            Id = x.Id,
-                            MainIdc = EntityIDCs.Company,
-                            SubIdc = x.CompanyChamberOfCommerceIdc,
-                            ExpiryPeriod = days,
-                            ActiveReminder = x.CciExpiryActiveReminder,
-                            CreatedAt = x.CreatedAt,
-                            ModifiedAt = x.ModifiedAt,
-                            CreatedBy = x.CreatedBy,
-                            ModifiedBy = x.ModifiedBy,
-                            ExpiryDate = x.CciExpiryDate.Value
-                        })
-                        .AsQueryable());
-
-
-
-                mergedQuery = mergedQuery.Union(_context.CompaniesLicenses
-                    .Where(x => x.LicenseExpiryDate.HasValue &&
-                                (days == 45
-                                    ? x.LicenseExpiryDate.Value.Date >= targetDate
-                                    : x.LicenseExpiryDate.Value.Date == targetDate))
+                // COMPANIES - LICENSE
+                var licenseQuery = _context.CompaniesLicenses
+                    .Where(x => x.LicenseExpiryDate.HasValue && x.LicenseExpiryActiveReminder == true &&
+                        (
+                            days < 0
+                                ? (days == -45
+                                    ? x.LicenseExpiryDate.Value.Date <= targetDate
+                                    : x.LicenseExpiryDate.Value.Date == targetDate)
+                                : (
+                                    days == 45
+                                        ? x.LicenseExpiryDate.Value.Date > DateTime.Now.AddDays(30).Date && x.LicenseExpiryDate.Value.Date <= targetDate
+                                        : (days == 30)
+                                            ? (x.LicenseExpiryDate.Value > DateTime.Now.AddDays(15).Date && x.LicenseExpiryDate.Value <= targetDate)
+                                            : (x.LicenseExpiryDate.Value >= DateTime.Now.Date && x.LicenseExpiryDate.Value <= targetDate)
+                                )
+                        ))
                     .Select(x => new GlobalDocumentExpiredDto
                     {
                         Id = x.Id,
@@ -325,72 +336,106 @@ namespace Nexus.LAS.Persistence.Repositories.SearchRepositories
                         CreatedBy = x.CreatedBy,
                         ModifiedBy = x.ModifiedBy,
                         ExpiryDate = x.LicenseExpiryDate.Value
+                    });
 
-                    })
-                    .AsQueryable());
-
-
-
-                mergedQuery = mergedQuery.Union(_context.CompaniesContracts
-                    .Where(x => x.ContractExpiryDate.HasValue &&
-                                (days == 45
-                                    ? x.ContractExpiryDate.Value.Date >= targetDate
-                                    : x.ContractExpiryDate.Value.Date == targetDate))
+                // COMPANIES - CONTRACTS
+                var contractQuery = _context.CompaniesContracts
+                    .Where(x => x.ContractExpiryDate.HasValue && x.ContractExpiryActiveReminder == true &&
+                        (
+                            days < 0
+                                ? (days == -45
+                                    ? x.ContractExpiryDate.Value.Date <= targetDate
+                                    : x.ContractExpiryDate.Value.Date == targetDate)
+                                : (
+                                    days == 45
+                                        ? x.ContractExpiryDate.Value.Date > DateTime.Now.AddDays(30).Date && x.ContractExpiryDate.Value <= targetDate
+                                        : (days == 30)
+                                            ? (x.ContractExpiryDate.Value > DateTime.Now.AddDays(15).Date && x.ContractExpiryDate.Value <= targetDate)
+                                            : (x.ContractExpiryDate.Value >= DateTime.Now.Date && x.ContractExpiryDate.Value <= targetDate)
+                                )
+                        ))
                     .Select(x => new GlobalDocumentExpiredDto
                     {
                         Id = x.Id,
                         MainIdc = EntityIDCs.Company,
                         SubIdc = x.CompaniesContractIdc,
                         ExpiryPeriod = days,
-                        ActiveReminder = x.ContractExpiryActiveReminder.HasValue ? x.ContractExpiryActiveReminder.Value : false,
+                        ActiveReminder = x.ContractExpiryActiveReminder.Value,
                         CreatedAt = x.CreatedAt,
                         ModifiedAt = x.ModifiedAt,
                         CreatedBy = x.CreatedBy,
                         ModifiedBy = x.ModifiedBy,
                         ExpiryDate = x.ContractExpiryDate.Value
+                    });
 
-                    })
-                    .AsQueryable());
-
-
-                mergedQuery = mergedQuery.Union(_context.PropertyDocuments
-                    .Where(x => x.DocumentExpiryDate.HasValue &&
-                                (days == 45
-                                    ? x.DocumentExpiryDate.Value.Date >= targetDate
-                                    : x.DocumentExpiryDate.Value.Date == targetDate))
+                // PROPERTY DOCUMENTS
+                var propertyQuery = _context.PropertyDocuments
+                    .Where(x => x.DocumentExpiryDate.HasValue && x.ActiveReminder == true &&
+                        (
+                            days < 0
+                                ? (days == -45
+                                    ? x.DocumentExpiryDate.Value.Date <= targetDate
+                                    : x.DocumentExpiryDate.Value.Date == targetDate)
+                                : (
+                                    days == 45
+                                        ? x.DocumentExpiryDate.Value.Date > DateTime.Now.AddDays(30).Date && x.DocumentExpiryDate.Value.Date <= targetDate
+                                        : (days == 30)
+                                            ? (x.DocumentExpiryDate.Value > DateTime.Now.AddDays(15).Date && x.DocumentExpiryDate.Value <= targetDate)
+                                            : (x.DocumentExpiryDate.Value >= DateTime.Now.Date && x.DocumentExpiryDate.Value <= targetDate)
+                                )
+                        ))
                     .Select(x => new GlobalDocumentExpiredDto
                     {
                         Id = x.Id,
                         MainIdc = EntityIDCs.Properties,
                         SubIdc = x.PropertyDocumentsIdc,
                         ExpiryPeriod = days,
-                        ActiveReminder = x.ActiveReminder.HasValue ? x.ActiveReminder.Value : false,
+                        ActiveReminder = x.ActiveReminder ?? false,
                         CreatedAt = x.CreatedAt,
                         ModifiedAt = x.ModifiedAt,
                         CreatedBy = x.CreatedBy,
                         ModifiedBy = x.ModifiedBy,
                         ExpiryDate = x.DocumentExpiryDate.Value
+                    });
 
-                    })
-                    .AsQueryable());
-
-
-
+                // MERGE ALL QUERIES
+                mergedQuery = mergedQuery == null
+                    ? personQuery.Union(chamberQuery).Union(licenseQuery).Union(contractQuery).Union(propertyQuery)
+                    : mergedQuery.Union(personQuery).Union(chamberQuery).Union(licenseQuery).Union(contractQuery).Union(propertyQuery);
             }
+
+            return mergedQuery;
+        }
+        public async Task<List<GlobalDocumentExpiredDto>> GlobalAllDocumentExpired(GetGlobalExpiredDocumentQuery request)
+        {
+            var mergedQuery = GetGlobalDocumentExpiredQuery(request);
 
             if (mergedQuery is null)
-            {
-                return new PagingResult<GlobalDocumentExpiredDto>(expiredDocuments, request.Page, request.PageSize, 0);
-            }
+                return new List<GlobalDocumentExpiredDto>();
 
-            mergedQuery = mergedQuery!.Order(request);
+            mergedQuery = mergedQuery.Order(request);
+
+            var data = await mergedQuery.ToListAsync();
+
+            return data;
+
+        }
+        public async Task<PagingResult<GlobalDocumentExpiredDto>> GlobalDocumentExpired(GetGlobalExpiredDocumentQuery request)
+        {
+            var mergedQuery = GetGlobalDocumentExpiredQuery(request);
+
+            if (mergedQuery is null)
+                return new PagingResult<GlobalDocumentExpiredDto>(new List<GlobalDocumentExpiredDto>(), request.Page, request.PageSize, 0);
+
+            mergedQuery = mergedQuery.Order(request);
             var count = await mergedQuery.CountAsync();
-            mergedQuery = mergedQuery!.Paginate(request.Page, request.PageSize);
+            mergedQuery = mergedQuery.Paginate(request.Page, request.PageSize);
 
             var data = await mergedQuery.ToListAsync();
 
             return new PagingResult<GlobalDocumentExpiredDto>(data, request.Page, request.PageSize, count);
 
         }
+
     }
 }

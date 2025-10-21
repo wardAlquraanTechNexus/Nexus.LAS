@@ -117,6 +117,9 @@ namespace Nexus.LAS.Persistence
             services.AddScoped<IFPCODService, FPCODService>();
             services.AddScoped<IFPCODActionService, FPCODActionService>();
             services.AddScoped<INumberService, NumberService>();
+
+            services.AddScoped<IGlobalService, GlobalService>();
+
         }
 
         public static void RegisterRepositories(this IServiceCollection services)

@@ -22,5 +22,6 @@ namespace Nexus.LAS.Application.DTOs
         public DateTimeOffset? LockoutEnd { get; set; }
         public bool LockoutEnabled { get; set; }
         public bool IsInRole(string role) => Roles.Any(r => r.Name == role);
+        public string? PersonName { get; set; }
     }
 }

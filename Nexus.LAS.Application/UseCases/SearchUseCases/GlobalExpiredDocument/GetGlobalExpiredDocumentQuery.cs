@@ -14,5 +14,6 @@ namespace Nexus.LAS.Application.UseCases.SearchUseCases
     {
         public string OrderBy { get; set; } = "CreatedAt";
         public string OrderDir { get; set; } = "desc";
+        public int? ExpiredPeriod { get; set; }
     }
 }

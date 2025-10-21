@@ -21,32 +21,34 @@ namespace Nexus.LAS.Persistence.Repositories.TransactionRepositories
         public async Task<PagingResult<TransactionActionDto>> GetPaging(GetPagingTransactionActionQuery query)
         {
             var queryable = _dbSet
-    .Where(ta => 
-    (query.TransactionId == ta.TransactionId)
-    && (!query.PersonId.HasValue || query.PersonId == ta.PersonId)
-    )
-    .Select(ta => new TransactionActionDto
-    {
-        TransactionId = ta.TransactionId,
-        Id = ta.Id,
-        ActionStatus = ta.ActionStatus,
-        ClosedDate = ta.ClosedDate,
-        Description = ta.Description,
-        DueDate = ta.DueDate,
-        PersonId = ta.PersonId,
-        Time = ta.Time,
+                    .Where(ta => 
+                    (!query.TransactionId.HasValue || query.TransactionId == ta.TransactionId)
+                    && (!query.PersonId.HasValue || query.PersonId == ta.PersonId)
+                    && (query.StatusesList == null || query.StatusesList.Count == 0 || query.StatusesList.Contains(ta.ActionStatus))
+                    )
+                    .Select(ta => new TransactionActionDto
+                    {
+                        TransactionId = ta.TransactionId,
+                        Id = ta.Id,
+                        ActionStatus = ta.ActionStatus,
+                        ClosedDate = ta.ClosedDate,
+                        Description = ta.Description,
+                        DueDate = ta.DueDate,
+                        PersonId = ta.PersonId,
+                        Time = ta.Time,
 
-        Files = _context.RegisterFiles
-            .Where(f => f.RegistersIdn == ta.Id && f.RegistersIdc == EntityIDCs.TransactionsActions)
-            .Select(f => new FileDto
-            {
-                FileId = f.Id,
-                FileName = f.Name,
-                Data = f.Data,
-                ContentType = f.ContentType
-            }).ToList()
-    })
-    .AsQueryable();
+                        Files = _context.RegisterFiles
+                            .Where(f => f.RegistersIdn == ta.Id && f.RegistersIdc == EntityIDCs.TransactionsActions)
+                            .Select(f => new FileDto
+                            {
+                                FileId = f.Id,
+                                FileName = f.Name,
+                                Data = f.Data,
+                                ContentType = f.ContentType
+                            }).ToList()
+                    })
+                    .AsQueryable()
+                    .AsNoTracking();
 
 
             if (!string.IsNullOrEmpty(query.OrderBy))

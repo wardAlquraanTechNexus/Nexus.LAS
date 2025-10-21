@@ -105,6 +105,10 @@ BEGIN
                                [ModifiedBy], [ModifiedAt], [IsDeleted], [DeletedBy], [DeletedAt])
     VALUES (1, N'Administrators', N'System administrators with full access', @systemUser, 
             @currentDatetime, NULL, NULL, 0, NULL, NULL);
+    INSERT INTO [dbo].[Groups] ([id], [GroupName], [Description], [CreatedBy], [CreatedAt], 
+                               [ModifiedBy], [ModifiedAt], [IsDeleted], [DeletedBy], [DeletedAt])
+    VALUES (2, N'Ld Stuff', N'For Ld Stuff', @systemUser, 
+            @currentDatetime, NULL, NULL, 0, NULL, NULL);
     
     SET IDENTITY_INSERT [dbo].[Groups] OFF
     PRINT 'Groups seeded successfully.'
@@ -184,7 +188,10 @@ BEGIN
     (44, 9, N'Users', N'Users', 3, N'Define and manage users', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
     (45, 9, N'User Groups', N'User-Groups', 4, N'Manage user group memberships', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
     (46, 9, N'Groups', N'Groups', 5, N'Define groups', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (47, 9, N'Group Menu', N'Group-Menus', 6, N'Manage group (menu item) permissions', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL);
+    (47, 9, N'Group Menu', N'Group-Menus', 6, N'Manage group (menu item) permissions', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+
+    (48, NULL, N'Home', N'', 0, N'', N'home', 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL);
+
 
     SET IDENTITY_INSERT [dbo].[Menus] OFF
     PRINT 'Menus seeded successfully.'
@@ -204,7 +211,7 @@ BEGIN
            @systemUser as [CreatedBy], @currentDatetime as [CreatedAt], 
            NULL as [ModifiedBy], NULL as [ModifiedAt], 0 as [IsDeleted], NULL as [DeletedBy], NULL as [DeletedAt]
     FROM [dbo].[Menus] m
-    WHERE m.[id] BETWEEN 1 AND 47;
+    WHERE m.[id] BETWEEN 1 AND 48;
     
     SET IDENTITY_INSERT [dbo].[GroupsMenus] OFF
     PRINT 'Group menu permissions seeded successfully.'
