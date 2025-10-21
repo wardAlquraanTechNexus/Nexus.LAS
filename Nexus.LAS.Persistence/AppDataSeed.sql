@@ -189,10 +189,7 @@ BEGIN
     (45, 9, N'User Groups', N'User-Groups', 4, N'Manage user group memberships', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
     (46, 9, N'Groups', N'Groups', 5, N'Define groups', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
     (47, 9, N'Group Menu', N'Group-Menus', 6, N'Manage group (menu item) permissions', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-
-
-    (48, NULL, N'Home', N'', 0, N'', N'home', 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-        (47, 1, N'Setting', N'', 1, N'User Settings', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL);
+    (48, 1, N'Setting', N'User-settings', 1, N'User Settings', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL);
 
 
     SET IDENTITY_INSERT [dbo].[Menus] OFF
