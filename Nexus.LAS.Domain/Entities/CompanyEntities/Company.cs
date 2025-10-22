@@ -15,7 +15,7 @@ public class Company:BaseEntity
 
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    [Column("CompanyIdn ")]
+    [Column("CompanyIdn")]
     public override int Id { get; set; }
 
     [Required]
