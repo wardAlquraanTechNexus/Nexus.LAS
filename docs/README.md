@@ -55,3 +55,10 @@ The Repository class communicates with the Database
 
 Example in a convention repository pattern having PlayerRepository, BookRepository, StudentRepository and their Interfaces we will have to inject all of them in the Program.cs file and then use them in the main method. But with the help of Unit of Work, we can inject only the Unit of Work in the Program.cs file and then use the repositories in the main method
 
+Steps to Deploy Angular App On-Premise
+
+Publish Web API project
+
+
+Build the Angular App for Production
+ng build --configuration production
