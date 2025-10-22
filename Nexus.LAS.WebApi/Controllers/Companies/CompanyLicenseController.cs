@@ -42,27 +42,27 @@ public class CompanyLicenseController : GenericController<ICompanyLicenseService
     }
     [HttpPost]
     [ApiMethodType(Domain.Constants.Enums.MethodType.Insert)]
-    public async Task<IActionResult> CreateCompanyLicense(CreateCompanyLicenseCommand command)
+    public async Task<IActionResult> CreateCompanyLicense([FromBody] CreateCompanyLicenseCommand command)
     {
         return Ok(await _mediator.Send(command));
     }
 
     [HttpPut]
     [ApiMethodType(Domain.Constants.Enums.MethodType.Update)]
-    public async Task<IActionResult> UpdateCompanyLicense(UpdateCompanyLicenseCommand command)
+    public async Task<IActionResult> UpdateCompanyLicense([FromBody] UpdateCompanyLicenseCommand command)
     {
         return Ok(await _mediator.Send(command));
     }
     [HttpPost(nameof(CreateByForm))]
     [ApiMethodType(Domain.Constants.Enums.MethodType.Insert)]
-    public async Task<IActionResult> CreateByForm(CreateCompanyLicenseCommand command)
+    public async Task<IActionResult> CreateByForm([FromForm]CreateCompanyLicenseCommand command)
     {
         return Ok(await _mediator.Send(command));
     }
 
     [HttpPut(nameof(UpdateByForm))]
     [ApiMethodType(Domain.Constants.Enums.MethodType.Update)]
-    public async Task<IActionResult> UpdateByForm(UpdateCompanyLicenseCommand command)
+    public async Task<IActionResult> UpdateByForm([FromForm] UpdateCompanyLicenseCommand command)
     {
         return Ok(await _mediator.Send(command));
     }

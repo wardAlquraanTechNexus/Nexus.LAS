@@ -17,4 +17,9 @@ public class CompanyActivityRepo : GenericRepo<CompanyActivity> , ICompanyActivi
         IQueryable<CompanyActivity> queryable = _dbSet.Where(x => x.CompanyId == companyId);
         return await queryable.ToListAsync();
     }
+
+    public async Task<bool> ExistsByCompanyAndActivityAsync(int companyId, int activity, int? excludeId = null)
+    {
+        return await _dbSet.Where(x => x.CompanyId == companyId && x.Activity == activity && (excludeId == null || x.Id != excludeId)).AnyAsync();
+    }
 }

@@ -35,18 +35,19 @@ namespace Nexus.LAS.Persistence.Repositories
                              && (!query.CompanyBankAccountId.HasValue || cba.Id == query.CompanyBankAccountId)
                              && (!query.PersonId.HasValue || cas.PersonId == query.PersonId)
                              select new CompanyAccountSignatoryDTO()
-                                {
-                                    Id = cas.Id,
-                                    CompanyBankAccountId = cas.CompanyBankAccountId,
-                                    PersonId = cas.PersonId,
-                                    AccountSignatoryActive = cas.AccountSignatoryActive,
-                                    AccountSignatoryDate = cas.AccountSignatoryDate,
-                                    Description = cas.Description,
-                                    FromAmount = cas.FromAmount,
-                                    Rule= cas.Rule,
-                                    ToAmount = cas.ToAmount,
-                                    CompanyNameEn = c.CompanyEnglishName,
-                                    CompanyNameAr = c.CompanyArabicName
+                             {
+                                 Id = cas.Id,
+                                 CompanyBankAccountId = cas.CompanyBankAccountId, 
+                                 PersonId = cas.PersonId,
+                                 AccountSignatoryActive = cas.AccountSignatoryActive,
+                                 AccountSignatoryDate = cas.AccountSignatoryDate,
+                                 CessationDate = cas.CessationDate,
+                                 Description = cas.Description,
+                                 FromAmount = cas.FromAmount,
+                                 Rule = cas.Rule,
+                                 ToAmount = cas.ToAmount,
+                                 CompanyNameEn = c.CompanyEnglishName,
+                                 CompanyNameAr = c.CompanyArabicName
                              }
                              ).AsQueryable();
 

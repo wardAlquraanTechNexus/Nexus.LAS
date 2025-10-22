@@ -43,14 +43,14 @@ public class CompanyChamberOfCommerceController : GenericController<ICompanyCham
     }
     [HttpPost]
     [ApiMethodType(Domain.Constants.Enums.MethodType.Insert)]
-    public async Task<IActionResult> CreateCompanyChamperPfCommerce(CreateCompanyChamberOfCommerceCommand command)
+    public async Task<IActionResult> CreateCompanyChamperPfCommerce([FromBody]CreateCompanyChamberOfCommerceCommand command)
     {
         return Ok(await _mediator.Send(command));
     }
 
     [HttpPut]
     [ApiMethodType(Domain.Constants.Enums.MethodType.Update)]
-    public async Task<IActionResult> UpdateCompanyChamperOfCommerce(UpdateCompanyChamberOfCommerceCommand command)
+    public async Task<IActionResult> UpdateCompanyChamperOfCommerce([FromBody]UpdateCompanyChamberOfCommerceCommand command)
     {
         return Ok(await _mediator.Send(command));
     }

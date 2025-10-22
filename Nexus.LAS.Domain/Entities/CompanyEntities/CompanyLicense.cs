@@ -32,9 +32,9 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
         public int LicenseStatus { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [Range(1, int.MaxValue)]
         [Column("LicenseClassification")]
-        public string LicenseClassification { get; set; }
+        public int LicenseClassification { get; set; }
 
         [Required]
         [MaxLength(50)]

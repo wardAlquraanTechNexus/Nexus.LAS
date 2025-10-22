@@ -45,7 +45,7 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
         public long ToAmount { get; set; }
 
         [Column("Description")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         [Column("AccountSignatoryDate")]
         public DateTime? AccountSignatoryDate { get; set; }

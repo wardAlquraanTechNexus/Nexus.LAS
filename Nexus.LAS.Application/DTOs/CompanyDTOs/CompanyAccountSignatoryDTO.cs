@@ -16,6 +16,7 @@ namespace Nexus.LAS.Application.DTOs.CompanyDTOs
         public long ToAmount { get; set; }
         public string? Description { get; set; }
         public DateTime? AccountSignatoryDate { get; set; }
+        public DateTime? CessationDate { get; set; }
         public bool? AccountSignatoryActive { get; set; }
         public string CompanyNameEn { get; set; }
         public string CompanyNameAr { get; set; }

@@ -256,13 +256,9 @@ namespace Nexus.LAS.Persistence.Repositories.SearchRepositories
                                 ? (days == -45
                                     ? x.ExpiryDate.Value.Date <= targetDate
                                     : x.ExpiryDate.Value.Date == targetDate)
-                                : (
-                                    days == 45
-                                        ? x.ExpiryDate.Value.Date > DateTime.Now.AddDays(30).Date && x.ExpiryDate.Value.Date <= targetDate
-                                        : (days == 30)
-                                            ? (x.ExpiryDate.Value > DateTime.Now.AddDays(15).Date && x.ExpiryDate.Value <= targetDate)
-                                            : (x.ExpiryDate.Value >= DateTime.Now.Date && x.ExpiryDate.Value <= targetDate)
-                                )
+                                :
+                                    (x.ExpiryDate.Value > DateTime.Now.Date && x.ExpiryDate.Value <= targetDate)
+
                         ))
                     .Select(x => new GlobalDocumentExpiredDto
                     {
@@ -286,13 +282,9 @@ namespace Nexus.LAS.Persistence.Repositories.SearchRepositories
                                 ? (days == -45
                                     ? x.CciExpiryDate.Value.Date <= targetDate
                                     : x.CciExpiryDate.Value.Date == targetDate)
-                                : (
-                                    days == 45
-                                        ? x.CciExpiryDate.Value.Date > DateTime.Now.AddDays(30).Date && x.CciExpiryDate.Value.Date <= targetDate
-                                        : (days == 30)
-                                            ? (x.CciExpiryDate.Value > DateTime.Now.AddDays(15).Date && x.CciExpiryDate.Value <= targetDate)
-                                            : (x.CciExpiryDate.Value >= DateTime.Now.Date && x.CciExpiryDate.Value <= targetDate)
-                                )
+                                :
+
+                                    (x.CciExpiryDate.Value >= DateTime.Now.Date && x.CciExpiryDate.Value <= targetDate)
                         ))
                     .Select(x => new GlobalDocumentExpiredDto
                     {
@@ -317,11 +309,7 @@ namespace Nexus.LAS.Persistence.Repositories.SearchRepositories
                                     ? x.LicenseExpiryDate.Value.Date <= targetDate
                                     : x.LicenseExpiryDate.Value.Date == targetDate)
                                 : (
-                                    days == 45
-                                        ? x.LicenseExpiryDate.Value.Date > DateTime.Now.AddDays(30).Date && x.LicenseExpiryDate.Value.Date <= targetDate
-                                        : (days == 30)
-                                            ? (x.LicenseExpiryDate.Value > DateTime.Now.AddDays(15).Date && x.LicenseExpiryDate.Value <= targetDate)
-                                            : (x.LicenseExpiryDate.Value >= DateTime.Now.Date && x.LicenseExpiryDate.Value <= targetDate)
+                                    x.LicenseExpiryDate.Value >= DateTime.Now.Date && x.LicenseExpiryDate.Value <= targetDate
                                 )
                         ))
                     .Select(x => new GlobalDocumentExpiredDto
@@ -347,11 +335,7 @@ namespace Nexus.LAS.Persistence.Repositories.SearchRepositories
                                     ? x.ContractExpiryDate.Value.Date <= targetDate
                                     : x.ContractExpiryDate.Value.Date == targetDate)
                                 : (
-                                    days == 45
-                                        ? x.ContractExpiryDate.Value.Date > DateTime.Now.AddDays(30).Date && x.ContractExpiryDate.Value <= targetDate
-                                        : (days == 30)
-                                            ? (x.ContractExpiryDate.Value > DateTime.Now.AddDays(15).Date && x.ContractExpiryDate.Value <= targetDate)
-                                            : (x.ContractExpiryDate.Value >= DateTime.Now.Date && x.ContractExpiryDate.Value <= targetDate)
+                                    x.ContractExpiryDate.Value >= DateTime.Now.Date && x.ContractExpiryDate.Value <= targetDate
                                 )
                         ))
                     .Select(x => new GlobalDocumentExpiredDto
@@ -377,11 +361,8 @@ namespace Nexus.LAS.Persistence.Repositories.SearchRepositories
                                     ? x.DocumentExpiryDate.Value.Date <= targetDate
                                     : x.DocumentExpiryDate.Value.Date == targetDate)
                                 : (
-                                    days == 45
-                                        ? x.DocumentExpiryDate.Value.Date > DateTime.Now.AddDays(30).Date && x.DocumentExpiryDate.Value.Date <= targetDate
-                                        : (days == 30)
-                                            ? (x.DocumentExpiryDate.Value > DateTime.Now.AddDays(15).Date && x.DocumentExpiryDate.Value <= targetDate)
-                                            : (x.DocumentExpiryDate.Value >= DateTime.Now.Date && x.DocumentExpiryDate.Value <= targetDate)
+
+                                    x.DocumentExpiryDate.Value >= DateTime.Now.Date && x.DocumentExpiryDate.Value <= targetDate
                                 )
                         ))
                     .Select(x => new GlobalDocumentExpiredDto

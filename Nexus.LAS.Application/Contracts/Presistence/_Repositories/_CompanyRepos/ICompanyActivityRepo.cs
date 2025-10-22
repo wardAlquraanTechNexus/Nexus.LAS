@@ -11,5 +11,6 @@ namespace Nexus.LAS.Application.Contracts.Presistence._Repositories._CompanyRepo
     public interface ICompanyActivityRepo:IGenericRepo<CompanyActivity>
     {
         Task<List<CompanyActivity>> GetListByCompanyId(int companyId);
+        Task<bool> ExistsByCompanyAndActivityAsync(int companyId, int activity, int? excludeId = null);
     }
 }
