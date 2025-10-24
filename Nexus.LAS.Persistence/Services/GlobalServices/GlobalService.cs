@@ -6,8 +6,8 @@ using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.DTOs;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.DTOs.CommonDTOs;
-using Nexus.LAS.Application.UseCases.SearchUseCases;
-using Nexus.LAS.Application.UseCases.SearchUseCases.GlobalSearch.Queries;
+using Nexus.LAS.Application.UseCases.GlobalUseCases.Queries.GlobalExpiredDocument;
+using Nexus.LAS.Application.UseCases.GlobalUseCases.Queries.GlobalSearch;
 using Nexus.LAS.Domain.CommonAttributes;
 using System;
 using System.Collections.Generic;
@@ -88,6 +88,11 @@ namespace Nexus.LAS.Persistence.Services
                     return stream.ToArray();
                 }
             }
+        }
+
+        public async Task<bool> DeactivateReminderAsync(string subIdc, int id)
+        {
+            return await _repo.DeactivateReminderAsync(subIdc, id);
         }
     }
 }

@@ -3,8 +3,8 @@ using Nexus.LAS.Application.Contracts.Presistence._Repositories;
 using Nexus.LAS.Application.DTOs;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.DTOs.CommonDTOs;
-using Nexus.LAS.Application.UseCases.SearchUseCases;
-using Nexus.LAS.Application.UseCases.SearchUseCases.GlobalSearch.Queries;
+using Nexus.LAS.Application.UseCases.GlobalUseCases.Queries.GlobalExpiredDocument;
+using Nexus.LAS.Application.UseCases.GlobalUseCases.Queries.GlobalSearch;
 using Nexus.LAS.Domain.Constants;
 using Nexus.LAS.Domain.ExtensionMethods;
 using Nexus.LAS.Persistence.DatabaseContext;
@@ -416,6 +416,76 @@ namespace Nexus.LAS.Persistence.Repositories.SearchRepositories
 
             return new PagingResult<GlobalDocumentExpiredDto>(data, request.Page, request.PageSize, count);
 
+        }
+
+        public async Task<bool> DeactivateReminderAsync(string subIdc, int id)
+        {
+            if (subIdc == EntityIDCs.PersonIdDetail)
+            {
+                var pid = await _context.PersonsIDDetails.FindAsync(id);
+                if (pid != null && (pid.ActiveReminder ?? false))
+                {
+                    pid.ActiveReminder = false;
+                    _context.PersonsIDDetails.Update(pid);
+                    await _context.SaveChangesAsync();
+                    return true;
+                }
+
+            }
+
+            if (subIdc == EntityIDCs.CompaniesChamberOfCommerces)
+            {
+                var chamber = await _context.CompaniesChamberOfCommerce.FindAsync(id);
+                if (chamber != null && (chamber.CciExpiryActiveReminder == true))
+                {
+                    chamber.CciExpiryActiveReminder = false;
+                    _context.CompaniesChamberOfCommerce.Update(chamber);
+                    await _context.SaveChangesAsync();
+                    return true;
+
+                }
+            }
+
+            if (subIdc == EntityIDCs.CompaniesLicenseIDC)
+            {
+                var license = await _context.CompaniesLicenses.FindAsync(id);
+                if (license != null && (license.LicenseExpiryActiveReminder == true))
+                {
+                    license.LicenseExpiryActiveReminder = false;
+                    _context.CompaniesLicenses.Update(license);
+                    await _context.SaveChangesAsync();
+                    return true;
+
+                }
+            }
+
+            if (subIdc == EntityIDCs.CompaniesContracts)
+            {
+                var contract = await _context.CompaniesContracts.FindAsync(id);
+                if (contract != null && (contract.ContractExpiryActiveReminder == true))
+                {
+                    contract.ContractExpiryActiveReminder = false;
+                    _context.CompaniesContracts.Update(contract);
+                    await _context.SaveChangesAsync();
+                    return true;
+
+                }
+            }
+
+            if (subIdc == EntityIDCs.PropertyDocuments)
+            {
+                var propDoc = await _context.PropertyDocuments.FindAsync(id);
+                if (propDoc != null && (propDoc.ActiveReminder ?? false))
+                {
+                    propDoc.ActiveReminder = false;
+                    _context.PropertyDocuments.Update(propDoc);
+                    await _context.SaveChangesAsync();
+                    return true;
+
+                }
+
+            }
+            return false;
         }
 
     }

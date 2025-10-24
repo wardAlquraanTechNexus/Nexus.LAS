@@ -2,7 +2,7 @@
 using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.DTOs.Base;
 
-namespace Nexus.LAS.Application.UseCases.GlobalUseCases.Queries
+namespace Nexus.LAS.Application.UseCases.GlobalUseCases.Queries.ExportExpiredDocumentsToExcel
 {
     internal class ExportExpiredDocumentsToExcelHandler : IRequestHandler<ExportExpiredDocumentsToExcelQuery , ExcelDto>
     {

@@ -8,6 +8,7 @@ using Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmUseCases.Commands.Bu
 using Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmUseCases.Commands.CreateLawFirm;
 using Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmUseCases.Commands.UpdateLawFirm;
 using Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmUseCases.Queries.ExportToExcel;
+using Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmUseCases.Queries.ExportToPdf;
 using Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmUseCases.Queries.GetAll;
 using Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmUseCases.Queries.GetLawFirmDto;
 using Nexus.LAS.Application.UseCases.LawFirmUseCases.LawFirmUseCases.Queries.GetPaging;
@@ -104,5 +105,15 @@ namespace Nexus.LAS.WebApi.Controllers
             var query = new ExportLawFirmToExcelQuery { Query = Request.Query };
             return Ok(await _mediator.Send(query));
         }
+
+        [HttpGet(nameof(ExportToPdf))]
+        [ApiMethodType(Domain.Constants.Enums.MethodType.Get)]
+        public async Task<IActionResult> ExportToPdf([FromQuery] int id)
+        {
+            var query = new ExportLawFirmToPdfQuery { Id = id };
+            return Ok(await _mediator.Send(query));
+        }
+
+
     }
 }

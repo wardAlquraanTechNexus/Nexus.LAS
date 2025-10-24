@@ -2,7 +2,7 @@ using MediatR;
 using Nexus.LAS.Application.Contracts.Presistence._Repositories;
 using Nexus.LAS.Application.DTOs;
 
-namespace Nexus.LAS.Application.UseCases.SearchUseCases.GlobalSearch.Queries
+namespace Nexus.LAS.Application.UseCases.GlobalUseCases.Queries.GlobalSearch
 {
     public class GlobalSearchHandler : IRequestHandler<GlobalSearchQuery, List<GlobalSearchDTO>>
     {

@@ -5,5 +5,6 @@ namespace Nexus.LAS.Application.Contracts.Presistence._Repositories
 {
     public interface IRegisterNoteRepo : IGenericRepo<RegistersNote>
     {
+        Task<List<RegistersNote>> GetNotesByRegisterIdcAndId(string registerIdc, int registerId);
     }
 }

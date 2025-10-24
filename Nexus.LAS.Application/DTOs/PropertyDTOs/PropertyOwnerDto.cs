@@ -11,5 +11,7 @@ public class PropertyOwnerDto
     public DateTime? OwnFinishDate { get; set; }
     public bool? OwnActive { get; set; }
     public string? Remarks { get; set; }
+    public string? RegisterName { get; set; }
+    public string? OwnerType { get; set; }
 
 }

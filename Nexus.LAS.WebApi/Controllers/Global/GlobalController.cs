@@ -4,9 +4,11 @@ using Nexus.LAS.Application.Contracts.Presistence._Repositories;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.DTOs;
 using Nexus.LAS.Application.UseCases.CompanyUseCases.CompanyUseCases.Queries.ExportToExcel;
+using Nexus.LAS.Application.UseCases.GlobalUseCases.Commands.DeactivateReminder;
 using Nexus.LAS.Application.UseCases.GlobalUseCases.Queries;
-using Nexus.LAS.Application.UseCases.SearchUseCases;
-using Nexus.LAS.Application.UseCases.SearchUseCases.GlobalSearch.Queries;
+using Nexus.LAS.Application.UseCases.GlobalUseCases.Queries.ExportExpiredDocumentsToExcel;
+using Nexus.LAS.Application.UseCases.GlobalUseCases.Queries.GlobalExpiredDocument;
+using Nexus.LAS.Application.UseCases.GlobalUseCases.Queries.GlobalSearch;
 
 namespace Nexus.LAS.WebApi.Controllers.Search
 {
@@ -48,6 +50,16 @@ namespace Nexus.LAS.WebApi.Controllers.Search
             return Ok(await _mediator.Send(query));
         }
 
+
+        [HttpPost("DeactiveReminder")]
+        public async Task<IActionResult> DeactiveReminder([FromBody] DeactivateReminderCommand command)
+        {
+            if (command == null)
+                return BadRequest();
+
+            return Ok(await _mediator.Send(command)) ;
+            
+        }
 
     }
 }

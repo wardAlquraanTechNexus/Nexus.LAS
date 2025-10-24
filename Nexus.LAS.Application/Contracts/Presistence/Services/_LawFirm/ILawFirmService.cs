@@ -15,5 +15,6 @@ namespace Nexus.LAS.Application.Contracts.Presistence.Services._LawFirm
         Task<int> BulkChangePrivate(List<int> ids, bool privateValue);
         Task<int> BulkChangeStatus(List<int> ids, CommonStatus status);
         Task<LawFirmDto?> GetDTOById(int id);
+        Task<byte[]> ExportToPdf(int id);
     }
 }

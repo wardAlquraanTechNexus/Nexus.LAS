@@ -1,23 +1,38 @@
+using Microsoft.EntityFrameworkCore;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.Contracts.Presistence._Repositories;
+using Nexus.LAS.Application.Contracts.Presistence._Repositories._CompanyRepos;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.DTOs.PropertyDTOs;
 using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Queries.GetPaging;
 using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Queries.GetShared;
+using Nexus.LAS.Domain.Constants;
 using Nexus.LAS.Domain.Entities.PropertyEntities;
+using Nexus.LAS.Domain.Entities.RegisterEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
+using Nexus.LAS.Persistence.Repositories;
 using Nexus.LAS.Persistence.Services.Base;
+using QuestPDF.Fluent;
+using QuestPDF.Helpers;
 
 namespace Nexus.LAS.Persistence.Services.PropertyServices;
 
 public class PropertyService : GenericService<Property>, IPropertyService
 {
     private readonly IPropertyRepo _repo;
-    public PropertyService(NexusLASDbContext context, IUserIdentityService userIdentityService, IPropertyRepo repo)
+    private readonly IDynamicListRepo _dynamicListRepo;
+    private readonly IPropertyDocumentRepo _propertyDocumentRepo;
+    private readonly IPropertyOwnerRepo _propertyOwnerRepo;
+    private readonly IRegisterNoteRepo _registerNoteRepo;
+    public PropertyService(NexusLASDbContext context, IUserIdentityService userIdentityService, IPropertyRepo repo, IDynamicListRepo dynamicListRepo, IPropertyDocumentRepo propertyDocumentRepo, IPropertyOwnerRepo propertyOwnerRepo, IRegisterNoteRepo registerNoteRepo)
         : base(context, userIdentityService, repo)
     {
         _repo = repo;
+        _dynamicListRepo = dynamicListRepo;
+        _propertyDocumentRepo = propertyDocumentRepo;
+        _propertyOwnerRepo = propertyOwnerRepo;
+        _registerNoteRepo = registerNoteRepo;
     }
 
     public async Task<PagingResult<Property>> GetPagingProperties(GetPagingPropertyQuery propertyQuery)
@@ -39,4 +54,121 @@ public class PropertyService : GenericService<Property>, IPropertyService
     {
         return await _repo.GetSharedProperties(query);
     }
+
+    public async Task<byte[]> ExportToPdf(int id)
+    {
+
+
+
+        var property = await _repo.GetAsync(id);
+        if (property == null)
+            throw new Exception("Company not found");
+
+        string typeOfTitle = string.Empty;
+        string country = string.Empty;
+        string city = string.Empty;
+        string area = string.Empty;
+        string type = string.Empty;
+        string purpose = string.Empty;
+
+        if (property.TypeOfTitle is > 0)
+        {
+            typeOfTitle = await _dynamicListRepo.GetNameById(property.TypeOfTitle);
+        }
+        if (property.LocationCountryId.HasValue)
+        {
+            country = await _dynamicListRepo.GetNameById(property.LocationCountryId.Value);
+        }
+        if (property.LocationCityId.HasValue)
+        {
+            city = await _dynamicListRepo.GetNameById(property.LocationCityId.Value);
+        }
+        if (property.LocationAreaId.HasValue)
+        {
+            area = await _dynamicListRepo.GetNameById(property.LocationAreaId.Value);
+        }
+        if (property.Type.HasValue)
+        {
+            type = await _dynamicListRepo.GetNameById(property.Type.Value);
+        }
+        
+        if (property.Purpose.HasValue)
+        {
+            purpose = await _dynamicListRepo.GetNameById(property.Type.Value);
+        }
+
+        var notes = await _registerNoteRepo.GetNotesByRegisterIdcAndId(EntityIDCs.Properties, property.Id);
+
+
+        var propertyOwners = await _propertyOwnerRepo.GetOwnersByPropertyId(property.Id);
+        Dictionary<int, string> peopertyOwnersDynamicList = new Dictionary<int, string>();
+
+        if (propertyOwners != null && propertyOwners.Count > 0)
+        {
+            peopertyOwnersDynamicList = await _dynamicListRepo.GetDictionaryByIds(propertyOwners.Where(x=>x.Relation.HasValue).Select(x => x.Relation.Value).ToList());
+
+        }
+
+        string grantor = property.Grantor is true ? "Yes" : "No";
+        string commencmentDate = property.GrantorTitleCommencementDate.HasValue ? property.GrantorTitleCommencementDate.Value.ToString("dd/MM/yyyy") : string.Empty;
+        string expiryDate = property.GrantorTitleExpiryDate.HasValue ? property.GrantorTitleExpiryDate.Value.ToString("dd/MM/yyyy") : string.Empty;
+        var document = Document.Create(container =>
+        {
+            container.Page(page =>
+            {
+                page.Margin(30);
+                page.Size(PageSizes.A4);
+                page.Content()
+                    .Column(column =>
+                    {
+                        column.Item().Background(Colors.Black).Padding(10).AlignCenter().Text("Company Details")
+                                        .FontSize(20)
+                                        .FontColor(Colors.White)
+                                        .Bold();
+
+                        column.Item().Text($"Type Of Title: {typeOfTitle}");
+                        column.Item().Text($"Grantor: {grantor}");
+                        column.Item().Text($"Grantor Address: {property.GrantorAddress}");
+                        column.Item().Text($"Commencement Date: {commencmentDate}");
+                        column.Item().Text($"Expiry Date: {expiryDate}");
+                        column.Item().Text($"Description: {property.GrantorDescription}");
+                        column.Item().Text($"Country Name: {country}");
+                        column.Item().Text($"City: {city}");
+                        column.Item().Text($"Area: {area}");
+                        column.Item().Text($"Details: {property.LocationDetails}");
+                        column.Item().Text($"Type: {type}");
+                        column.Item().Text($"Purpose: {purpose}");
+
+                        column.Item().Padding(10).Text(string.Empty);
+
+                        column.CreateTable(notes, new List<PdfDisplayColumn>()
+                                {
+                                    new PdfDisplayColumn("Note", nameof(RegistersNote.RegistersNotesText)),
+                                    new PdfDisplayColumn("Note Date", nameof(RegistersNote.NoteDate)),
+                                }, "Notes");
+
+                        column.Item().Padding(10).Text(string.Empty);
+                        column.CreateTable(propertyOwners, new List<PdfDisplayColumn>()
+                                {
+                                    new PdfDisplayColumn("Owner Type", nameof(PropertyOwnerDto.OwnerType)),
+                                    new PdfDisplayColumn("Owner", nameof(PropertyOwnerDto.RegisterName) ),
+                                    new PdfDisplayColumn("Relation", nameof(PropertyOwnerDto.Relation) , peopertyOwnersDynamicList ),
+                                    new PdfDisplayColumn("Start Date", nameof(PropertyOwnerDto.OwnStartDate)  ),
+                                    new PdfDisplayColumn("Finish Date", nameof(PropertyOwnerDto.OwnFinishDate)  ),
+                                    new PdfDisplayColumn("Active", nameof(PropertyOwnerDto.OwnActive)  ),
+                                }, "Owners");
+
+
+
+
+                    });
+            });
+        });
+
+        using var ms = new MemoryStream();
+        document.GeneratePdf(ms);
+        return ms.ToArray();
+    }
+
+
 }

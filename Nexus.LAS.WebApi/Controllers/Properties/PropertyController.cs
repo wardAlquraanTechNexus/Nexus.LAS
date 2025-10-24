@@ -9,6 +9,7 @@ using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Commands.
 using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Commands.CreateProperty;
 using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Commands.UpdateProperty;
 using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Queries.ExportToExcel;
+using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Queries.ExportToPdf;
 using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Queries.GetPaging;
 using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Queries.GetPropertyDto;
 using Nexus.LAS.Application.UseCases.PropertyUseCases.PropertyUseCases.Queries.GetShared;
@@ -99,6 +100,14 @@ namespace Nexus.LAS.WebApi.Controllers.Properties
         public async Task<IActionResult> ExportToExcel()
         {
             var query = new ExportPropertyToExcelQuery() { Query = Request.Query };
+            return Ok(await _mediator.Send(query));
+        }
+
+        [HttpGet(nameof(ExportToPdf))]
+        [ApiMethodType(MethodType.Get)]
+        public async Task<IActionResult> ExportToPdf([FromQuery] int id)
+        {
+            var query = new ExportPropertyToPdfQuery() { Id = id };
             return Ok(await _mediator.Send(query));
         }
     }

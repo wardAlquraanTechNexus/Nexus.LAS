@@ -2,7 +2,7 @@
 using Nexus.LAS.Application.DTOs;
 using Nexus.LAS.Application.UseCases.Base;
 
-namespace Nexus.LAS.Application.UseCases.SearchUseCases.GlobalSearch.Queries
+namespace Nexus.LAS.Application.UseCases.GlobalUseCases.Queries.GlobalSearch
 {
     public class GlobalSearchQuery: BaseParams , IRequest<List<GlobalSearchDTO>>
     {

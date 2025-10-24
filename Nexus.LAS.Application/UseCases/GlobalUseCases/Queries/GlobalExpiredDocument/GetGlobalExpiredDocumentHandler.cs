@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nexus.LAS.Application.UseCases.SearchUseCases
+namespace Nexus.LAS.Application.UseCases.GlobalUseCases.Queries.GlobalExpiredDocument
 {
     public class GetGlobalExpiredDocumentHandler: IRequestHandler<GetGlobalExpiredDocumentQuery , PagingResult<GlobalDocumentExpiredDto>>
     {

@@ -13,4 +13,5 @@ public interface IPropertyService : IGenericService<Property>
     Task<int> BulkChangeStatus(List<int> propertyIds, int status);
     Task<int> BulkChangePrivate(List<int> propertyIds, bool privateValue);
     Task<PagingResult<SharedPropertyDTO>> GetSharedProperties(GetSharedPropertyQuery query);
+    Task<byte[]> ExportToPdf(int id);
 }   
