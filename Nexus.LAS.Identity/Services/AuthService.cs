@@ -71,6 +71,8 @@ namespace Nexus.LAS.Identity.Services
                 Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken),
                 Email = user.Email ?? string.Empty,
                 UserName = user.UserName ?? string.Empty,
+                FirstName = user.FirstName,
+                LastName = user.LastName ?? string.Empty
             };
             RefreshToken refreshToken;
             if (user.RefreshTokens.Any(t => t.IsActive))

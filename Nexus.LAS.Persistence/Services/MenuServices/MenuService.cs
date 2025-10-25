@@ -24,6 +24,10 @@ namespace Nexus.LAS.Persistence.Services
         {
             return await _repo.GetAllByUsername(_userIdentityService.Username);
         }
+        public async Task<List<MenuGroupAuthorizeVM>> GetAllMenusByUsername(string username)
+        {
+            return await _repo.GetAllByUsername(username);
+        }
         public async Task<List<MenuGroupAuthorizeVM>> GetAllMenusByPath(string path)
         {
             return await _repo.GetAllByPathname(path);

@@ -33,4 +33,6 @@ public class DocumentTrackingService : GenericService<DocumentTracking>, IDocume
     {
         return await _repo.ExistsByRegisterAsync(registerIdc, registerIdn, excludedId);
     }
+
+
 }

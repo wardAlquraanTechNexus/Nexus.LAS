@@ -10,6 +10,7 @@ namespace Nexus.LAS.Application.Contracts.Presistence.Services;
 public interface IMenuService:IGenericService<Menu>
 {
     Task<List<MenuGroupAuthorizeVM>> GetAllMenus();
+    Task<List<MenuGroupAuthorizeVM>> GetAllMenusByUsername(string username);
     Task<List<MenuGroupAuthorizeVM>> GetAllMenusByPath(string path);
     Task<List<Menu>> GetParents(int id);
     Task<PagingResult<MenuDto>> GetListAsync(GetMenuDtoQuery param);

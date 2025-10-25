@@ -13,6 +13,8 @@ namespace Nexus.LAS.Application.Identity
         public string UserName { get; set; }
         public string Email { get; set; }
         public string Token { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         [JsonIgnore]
         public string RefreshToken { get; set; }
         public DateTime RefreshTokenExpiration { get; set; }

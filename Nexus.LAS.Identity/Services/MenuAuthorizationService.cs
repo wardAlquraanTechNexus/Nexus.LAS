@@ -24,12 +24,11 @@ namespace Nexus.LAS.Identity.Services
 
             var pathes = pathname.Split('/');
             var menus = await _menuService.GetAllMenusByPath(pathes[^1]);
+            menus = menus.Where(x => x.Username.Equals(username, StringComparison.OrdinalIgnoreCase)).ToList();
             if (!menus.Any())
                 return true; // no menu defined → allow access
 
-            var menuUser = menus.FirstOrDefault(m => m.Username.Equals(username, StringComparison.OrdinalIgnoreCase));
-            if (menuUser == null)
-                return false;
+       
 
             return methodType switch
             {

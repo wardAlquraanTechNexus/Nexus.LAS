@@ -8,7 +8,7 @@ namespace Nexus.LAS.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthController(IAuthService _authenticationService, IUserIdentityService _userIdentityService, IUserService _userService) : ControllerBase
+    public class AuthController(IAuthService _authenticationService, IUserIdentityService _userIdentityService, IUserService _userService , IMenuService _menuService) : ControllerBase
     {
         const string refreshTokenCookie = "refreshToken";
 
@@ -16,6 +16,12 @@ namespace Nexus.LAS.WebApi.Controllers
         public async Task<ActionResult<AuthResponse>> Login(AuthRequest request)
         {
             var res = await _userService.Login(request);
+            var menus = await _menuService.GetAllMenusByUsername(res.UserName);
+            if(menus is null || menus.Count == 0)
+            {
+                throw new Exception("You don't have access to any menu. Please contact administrator.");
+            }
+
             SetRefreshTokenInCookie(res.RefreshToken, res.RefreshTokenExpiration);
             return Ok(res);
         }
