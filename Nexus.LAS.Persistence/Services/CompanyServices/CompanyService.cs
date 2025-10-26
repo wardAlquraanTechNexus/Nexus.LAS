@@ -226,7 +226,7 @@ public class CompanyService : GenericService<Company>, ICompanyService
 
                     header.RelativeItem().Column(titleColumn =>
                     {
-                        titleColumn.Item().AlignCenter().Text("Legal Administration System")
+                        titleColumn.Item().AlignCenter().Text("Legal Assistance System")
                             .FontSize(16)
                             .FontColor("#1e3a8a")
                             .Bold()
@@ -268,56 +268,67 @@ public class CompanyService : GenericService<Company>, ICompanyService
                             row.ConstantItem(120).Text("Incorporation Date:").Bold();
                             row.RelativeItem().Text(company.IncorporationDate?.ToString("dd/MM/yyyy") ?? "-");
                         });
+                        column.Item().Padding(3).Text(string.Empty);
                         column.Item().Row(row =>
                         {
                             row.ConstantItem(120).Text("Name En:").Bold();
                             row.RelativeItem().Text(company.CompanyEnglishName ?? "-");
                         });
+                        column.Item().Padding(3).Text(string.Empty);
                         column.Item().Row(row =>
                         {
                             row.ConstantItem(120).Text("Name Ar:").Bold();
                             row.RelativeItem().Text(company.CompanyArabicName ?? "-");
                         });
+                        column.Item().Padding(3).Text(string.Empty);
                         column.Item().Row(row =>
                         {
                             row.ConstantItem(120).Text("Short Name:").Bold();
                             row.RelativeItem().Text(company.CompanyShortName ?? "-");
                         });
+                        column.Item().Padding(3).Text(string.Empty);
                         column.Item().Row(row =>
                         {
                             row.ConstantItem(120).Text("Company Type:").Bold();
                             row.RelativeItem().Text(companyTypeName ?? "-");
                         });
+                        column.Item().Padding(3).Text(string.Empty);
                         column.Item().Row(row =>
                         {
                             row.ConstantItem(120).Text("Company Class:").Bold();
                             row.RelativeItem().Text(companyClassName ?? "-");
                         });
+                        column.Item().Padding(3).Text(string.Empty);
                         column.Item().Row(row =>
                         {
                             row.ConstantItem(120).Text("Legal Form:").Bold();
                             row.RelativeItem().Text(companyLegalForm ?? "-");
                         });
+                        column.Item().Padding(3).Text(string.Empty);
                         column.Item().Row(row =>
                         {
                             row.ConstantItem(120).Text("Place Of Registration:").Bold();
                             row.RelativeItem().Text(placeOfRegistration ?? "-");
                         });
+                        column.Item().Padding(3).Text(string.Empty);
                         column.Item().Row(row =>
                         {
                             row.ConstantItem(120).Text("City:").Bold();
                             row.RelativeItem().Text(city ?? "-");
                         });
+                        column.Item().Padding(3).Text(string.Empty);
                         column.Item().Row(row =>
                         {
                             row.ConstantItem(120).Text("Total Shares:").Bold();
                             row.RelativeItem().Text(company.TotalShares?.ToString() ?? "-");
                         });
+                        column.Item().Padding(3).Text(string.Empty);
                         column.Item().Row(row =>
                         {
                             row.ConstantItem(120).Text("Capital Amount:").Bold();
                             row.RelativeItem().Text(company.CapitalAmount?.ToString("N2") ?? "-");
                         });
+                        column.Item().Padding(3).Text(string.Empty);
                         column.Item().Row(row =>
                         {
                             row.ConstantItem(120).Text("Number Of Partners:").Bold();

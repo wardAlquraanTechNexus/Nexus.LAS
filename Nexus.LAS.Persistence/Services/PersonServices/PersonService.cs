@@ -194,7 +194,7 @@ namespace Nexus.LAS.Persistence.Services
 
                         header.RelativeItem().Column(titleColumn =>
                         {
-                            titleColumn.Item().AlignCenter().Text("Legal Administration System")
+                            titleColumn.Item().AlignCenter().Text("Legal Assistance System")
                                 .FontSize(16)
                                 .FontColor("#1e3a8a")
                                 .Bold()
@@ -237,11 +237,13 @@ namespace Nexus.LAS.Persistence.Services
                                 row.ConstantItem(120).Text("Name En:").Bold();
                                 row.RelativeItem().Text(person.PersonEnglishName ?? "-");
                             });
+                            column.Item().Padding(3).Text(string.Empty);
                             column.Item().Row(row =>
                             {
                                 row.ConstantItem(120).Text("Name Ar:").Bold();
                                 row.RelativeItem().Text(person.PersonArabicName ?? "-");
                             });
+                            column.Item().Padding(3).Text(string.Empty);
                             column.Item().Row(row =>
                             {
                                 row.ConstantItem(120).Text("Short Name:").Bold();

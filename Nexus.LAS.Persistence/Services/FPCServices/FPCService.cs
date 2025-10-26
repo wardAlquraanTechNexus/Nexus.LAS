@@ -121,7 +121,7 @@ public class FPCService : GenericService<FPC>, IFPCService
 
                     header.RelativeItem().Column(titleColumn =>
                     {
-                        titleColumn.Item().AlignCenter().Text("Legal Administration System")
+                        titleColumn.Item().AlignCenter().Text("Legal Assistance System")
                             .FontSize(16)
                             .FontColor("#1e3a8a")
                             .Bold()
@@ -166,7 +166,7 @@ public class FPCService : GenericService<FPC>, IFPCService
                             row.ConstantItem(120).Text("Type:").Bold();
                             row.RelativeItem().Text(registerType ?? "-");
                         });
-
+                        column.Item().Padding(3).Text(string.Empty);
                         column.Item().Row(row =>
                         {
                             row.ConstantItem(120).Text("Registers:").Bold();

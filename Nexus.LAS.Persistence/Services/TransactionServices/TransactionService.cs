@@ -129,7 +129,7 @@ public class TransactionService : GenericService<Transaction>, ITransactionServi
 
                     header.RelativeItem().Column(titleColumn =>
                     {
-                        titleColumn.Item().AlignCenter().Text("Legal Administration System")
+                        titleColumn.Item().AlignCenter().Text("Legal Assistance System")
                             .FontSize(16)
                             .FontColor("#1e3a8a")
                             .Bold()
@@ -174,12 +174,13 @@ public class TransactionService : GenericService<Transaction>, ITransactionServi
                             row.ConstantItem(140).Text("Primary Company:").Bold();
                             row.RelativeItem().Text(isPrimaryCompany ?? "-");
                         });
-
+                        column.Item().Padding(3).Text(string.Empty);
                         column.Item().Row(row =>
                         {
                             row.ConstantItem(140).Text("Subject Type:").Bold();
                             row.RelativeItem().Text(subjectType ?? "-");
                         });
+                        column.Item().Padding(3).Text(string.Empty);
                         column.Item().Row(row =>
                         {
                             row.ConstantItem(140).Text("Description:").Bold();
