@@ -214,6 +214,45 @@ public class CompanyService : GenericService<Company>, ICompanyService
             {
                 page.Margin(30);
                 page.Size(PageSizes.A4);
+
+                page.Header().Height(100).Background("#f8fafc").Padding(15).Row(header =>
+                {
+                    header.ConstantItem(80).Column(logoColumn =>
+                    {
+                        logoColumn.Item().AlignCenter().Border(1).BorderColor("#cccccc")
+                            .Width(60).Height(60).AlignCenter().AlignMiddle()
+                            .Text("LOGO").FontSize(10).FontColor("#888888");
+                    });
+
+                    header.RelativeItem().Column(titleColumn =>
+                    {
+                        titleColumn.Item().AlignCenter().Text("Legal Administration System")
+                            .FontSize(16)
+                            .FontColor("#1e3a8a")
+                            .Bold()
+                            .FontFamily("Arial");
+
+                        titleColumn.Item().PaddingTop(5).AlignCenter().Text("Company Report")
+                            .FontSize(14)
+                            .FontColor("#374151")
+                            .SemiBold()
+                            .FontFamily("Arial");
+                    });
+
+                    header.ConstantItem(120).Column(dateColumn =>
+                    {
+                        dateColumn.Item().AlignRight().Text($"Generated: {DateTime.Now:dd/MM/yyyy}")
+                            .FontSize(8)
+                            .FontColor("#6b7280")
+                            .FontFamily("Arial");
+
+                        dateColumn.Item().AlignRight().Text($"Time: {DateTime.Now:HH:mm}")
+                            .FontSize(8)
+                            .FontColor("#6b7280")
+                            .FontFamily("Arial");
+                    });
+                });
+
                 page.Content()
                     .Column(column =>
                     {
@@ -222,7 +261,7 @@ public class CompanyService : GenericService<Company>, ICompanyService
                                         .FontColor(Colors.White)
                                         .Bold();
 
-                        column.Item().Text($"Incorporation Date: {company.IncorporationDate}");
+                        column.Item().Text($"Incorporation Date: {company.IncorporationDate?.ToString("dd/MM/yyyy") ?? "-"}");
                         column.Item().Text($"Name En: {company.CompanyEnglishName}");
                         column.Item().Text($"Name Ar: {company.CompanyArabicName}");
                         column.Item().Text($"Short Name: {company.CompanyShortName}");

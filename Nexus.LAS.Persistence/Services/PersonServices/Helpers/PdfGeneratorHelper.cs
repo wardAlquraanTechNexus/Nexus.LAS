@@ -73,7 +73,7 @@ namespace Nexus.LAS.Persistence.Services
                                 {
                                     if (value is DateTime dateValue)
                                     {
-                                        value = dateValue.ToString("yyyy/MM/dd");
+                                        value = dateValue.ToString("dd/MM/yyyy");
                                     }
 
                                 }
