@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts;
+using Nexus.LAS.Application.UseCases.Lookup.UserGroupUseCases.Queries.GetAllUsersByGroup;
 using Nexus.LAS.Application.UseCases.UserGroupUseCases.Commands;
 using Nexus.LAS.Application.UseCases.UserGroupUseCases.Queries;
 using Nexus.LAS.Domain.Entities.UserGroupEntities;
@@ -25,10 +26,17 @@ namespace Nexus.LAS.WebApi.Controllers.Lookup
         {
             return Ok(await _mediator.Send(query));
         }
-        [HttpGet(nameof(GetAllUserGroups))]
+        [HttpGet(nameof(GetAllGroupsByUser))]
         [ApiMethodType(Domain.Constants.Enums.MethodType.Get)]
 
-        public async Task<IActionResult> GetAllUserGroups([FromQuery]GetAllUsetGroupDTOQuery query)
+        public async Task<IActionResult> GetAllGroupsByUser([FromQuery]GetAllGroupsByUserQuery query)
+        {
+            return Ok(await _mediator.Send(query));
+        }
+        [HttpGet(nameof(GetAllUsersByGroup))]
+        [ApiMethodType(Domain.Constants.Enums.MethodType.Get)]
+
+        public async Task<IActionResult> GetAllUsersByGroup([FromQuery]GetAllUsersByGroupQuery query)
         {
             return Ok(await _mediator.Send(query));
         }

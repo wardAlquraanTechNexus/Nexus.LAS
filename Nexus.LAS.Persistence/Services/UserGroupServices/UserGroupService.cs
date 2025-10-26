@@ -3,6 +3,7 @@ using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.Contracts.Presistence._Repositories;
 using Nexus.LAS.Application.DTOs;
 using Nexus.LAS.Application.DTOs.Base;
+using Nexus.LAS.Application.UseCases.Lookup.UserGroupUseCases.Queries.GetAllUsersByGroup;
 using Nexus.LAS.Application.UseCases.UserGroupUseCases.Commands;
 using Nexus.LAS.Application.UseCases.UserGroupUseCases.Queries;
 using Nexus.LAS.Domain.Entities.UserGroupEntities;
@@ -19,44 +20,42 @@ namespace Nexus.LAS.Persistence.Services
 {
     public class UserGroupService : GenericService<UserGroup>, IUserGroupService
     {
+        private readonly IUserGroupRepo _repo;
         public UserGroupService(NexusLASDbContext context, IUserIdentityService userIdentityService,IUserGroupRepo repo) : base(context, userIdentityService, repo)
         {
+            _repo = repo;
         }
 
         public async Task<PagingResult<UserGroupDTO>> GetUserGroupDTO(GetUsetGroupDTOQuery query)
         {
-            UserGroupRepo repo = new UserGroupRepo(_context);
-            return await repo.GetUserGroupDTO(query);
+            return await _repo.GetUserGroupDTO(query);
         }
-        public async Task<List<UserGroupDTO>> GerAllUserGroupDTO(GetAllUsetGroupDTOQuery query)
+        public async Task<List<UserGroupDTO>> GerAllUserGroupDTO(GetAllGroupsByUserQuery query)
         {
-            UserGroupRepo repo = new UserGroupRepo(_context);
-            return await repo.GerAllUserGroupDTO(query);
+            return await _repo.GerAllUserGroupDTO(query);
         }
 
         public async Task<bool> ExistsByGroupIdAndUserIdAsync(int userId, int groupId, int? currentId = null)
         {
-            UserGroupRepo repo = new UserGroupRepo(_context);
-            return await repo.ExistsByGroupIdAndUserIdAsync(userId, groupId, currentId);
+            return await _repo.ExistsByGroupIdAndUserIdAsync(userId, groupId, currentId);
         }
 
-
+      
         public async Task<bool> UpsertCollectionOfUsers(UpsertCollectionOfUsersGroupsCommand command)
         {
             using (var transaction = await _context.Database.BeginTransactionAsync())
             {
-                UserGroupRepo repo = new UserGroupRepo(_context);
 
                 try
                 {
                     foreach (var user in command.Users)
                     {
-                        var userGroup = await repo.GetByGroupIdAndUserIdAsync(user.Id, command.GroupId);
+                        var userGroup = await _repo.GetByGroupIdAndUserIdAsync(user.Id, command.GroupId);
 
                         if (userGroup is null && user.IsChecked)
                         {
 
-                            await repo.CreateAsync(new UserGroup()
+                            await _repo.CreateAsync(new UserGroup()
                             {
                                 UserId = user.Id,
                                 GroupId = command.GroupId,
@@ -65,7 +64,7 @@ namespace Nexus.LAS.Persistence.Services
                         }
                         else if (userGroup != null && !user.IsChecked)
                         {
-                            await repo.DeleteAsync(userGroup.Id);
+                            await _repo.DeleteAsync(userGroup.Id);
                         }
 
                     }
@@ -81,6 +80,15 @@ namespace Nexus.LAS.Persistence.Services
                 }
             }
 
+        }
+
+        public async Task<PagingResult<UserGroupDTO>> GetAllGrouByUser(GetAllGroupsByUserQuery query)
+        {
+            return await _repo.GetAllGroupsByUser(query);
+        }
+        public async Task<PagingResult<UserGroupDTO>> GetAllUsersByGroup(GetAllUsersByGroupQuery query)
+        {
+            return await _repo.GetAllUsersByGroup(query);
         }
     }
 }

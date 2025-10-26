@@ -1,6 +1,7 @@
 ﻿using Nexus.LAS.Application.Contracts.Presistence.Services.Base;
 using Nexus.LAS.Application.DTOs;
 using Nexus.LAS.Application.DTOs.Base;
+using Nexus.LAS.Application.UseCases.Lookup.UserGroupUseCases.Queries.GetAllUsersByGroup;
 using Nexus.LAS.Application.UseCases.UserGroupUseCases.Commands;
 using Nexus.LAS.Application.UseCases.UserGroupUseCases.Queries;
 using Nexus.LAS.Domain.Entities.UserGroupEntities;
@@ -15,8 +16,10 @@ namespace Nexus.LAS.Application.Contracts
     public interface IUserGroupService:IGenericService<UserGroup>
     {
         Task<PagingResult<UserGroupDTO>> GetUserGroupDTO(GetUsetGroupDTOQuery query);
-        Task<List<UserGroupDTO>> GerAllUserGroupDTO(GetAllUsetGroupDTOQuery query);
+        Task<List<UserGroupDTO>> GerAllUserGroupDTO(GetAllGroupsByUserQuery query);
         Task<bool> ExistsByGroupIdAndUserIdAsync(int userId, int groupId, int? currentId = null);
         Task<bool> UpsertCollectionOfUsers(UpsertCollectionOfUsersGroupsCommand command);
+        Task<PagingResult<UserGroupDTO>> GetAllGrouByUser(GetAllGroupsByUserQuery query);
+        Task<PagingResult<UserGroupDTO>> GetAllUsersByGroup(GetAllUsersByGroupQuery query);
     }
 }
