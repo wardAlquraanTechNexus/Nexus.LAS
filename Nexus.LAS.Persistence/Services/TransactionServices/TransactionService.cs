@@ -159,9 +159,11 @@ public class TransactionService : GenericService<Transaction>, ITransactionServi
                 page.Content()
                     .Column(column =>
                     {
-                        column.Item().Background(Colors.Black).Padding(10).AlignCenter().Text("Transaction Details")
-                                        .FontSize(20)
-                                        .FontColor(Colors.White)
+                         column.Item().Padding(4).Text(string.Empty);
+
+                        column.Item().Background("#f8fafc").BorderBottom(2).BorderColor("#e2e8f0").Padding(12).AlignCenter().Text("Transaction Details")
+                                        .FontSize(18)
+                                        .FontColor("#334155")
                                         .Bold();
 
                         column.Item().Padding(10).Text(string.Empty);
@@ -185,7 +187,7 @@ public class TransactionService : GenericService<Transaction>, ITransactionServi
                         });
 
 
-                        column.Item().Padding(10).Text(string.Empty);
+                        column.Item().Padding(4).Text(string.Empty);
 
                         column.CreateTable(transactionRegisters, new List<PdfDisplayColumn>()
                             {
@@ -193,7 +195,7 @@ public class TransactionService : GenericService<Transaction>, ITransactionServi
                                 new PdfDisplayColumn("Register Type", nameof(TransactionRegisterDto.RegisterIdc)),
                             }, "Registers");
 
-                        column.Item().Padding(10).Text(string.Empty);
+                        column.Item().Padding(4).Text(string.Empty);
 
                         column.CreateTable(transactionActions, new List<PdfDisplayColumn>()
                             {

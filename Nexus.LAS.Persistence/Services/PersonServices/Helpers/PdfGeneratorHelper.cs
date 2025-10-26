@@ -16,23 +16,35 @@ namespace Nexus.LAS.Persistence.Services
 
         public static void CreateTable<T>(this ColumnDescriptor column, List<T> items, List<PdfDisplayColumn> displayColumns, string tableName)
         {
-            column.Item().Background("#808080").Padding(10).AlignCenter().Text(tableName)
-                                                                                .FontSize(15)
-                                                                                .FontColor(Colors.White)
+            column.Item().Background("#f8fafc").BorderBottom(2).BorderColor("#e2e8f0").Padding(12).AlignCenter().Text(tableName)
+                                                                                .FontSize(18)
+                                                                                .FontColor("#334155")
                                                                                 .Bold();
 
             column.Item().Padding(2).Text(string.Empty);
 
-            column.Item().Table(table =>
+            column.Item().Border(1).BorderColor("#e2e8f0").Table(table =>
             {
                 table.Header(header =>
                 {
-                    // Columns
+                    // Columns with dynamic sizing
                     table.ColumnsDefinition(columns =>
                     {
                         foreach (var column in displayColumns)
                         {
-                            columns.RelativeColumn();
+                            // Give more space to date columns and description columns
+                            if (column.Label.ToLower().Contains("date") || column.Label.ToLower().Contains("time"))
+                            {
+                                columns.ConstantColumn(80);
+                            }
+                            else if (column.Label.ToLower().Contains("description") || column.Label.ToLower().Contains("note") || column.Label.ToLower().Contains("address"))
+                            {
+                                columns.RelativeColumn(2);
+                            }
+                            else
+                            {
+                                columns.RelativeColumn();
+                            }
                         }
                     });
 
@@ -40,12 +52,12 @@ namespace Nexus.LAS.Persistence.Services
                     foreach (var column in displayColumns)
                     {
                         header.Cell().Element(cell =>
-                            cell.Background("#D3D3D3")
-                                .BorderRight(1)
-                                .BorderColor(Colors.Black)
-                                .Padding(5)
+                            cell.Background("#f1f5f9")
+                                .Border(1)
+                                .BorderColor("#e2e8f0")
+                                .Padding(8)
                                 .AlignCenter()
-                                .Text(column.Label).SemiBold());
+                                .Text(column.Label).SemiBold().FontSize(10));
 
                     }
 
@@ -90,12 +102,25 @@ namespace Nexus.LAS.Persistence.Services
                         }
 
                         table.Cell().Element(cell =>
-                            cell.BorderRight(1)
-                                .BorderColor(Colors.Black)
-                                .Padding(5)
-                                .AlignCenter()
-                                .Text(value)
-                        );
+                        {
+                            var cellElement = cell.Border(1)
+                                .BorderColor("#e2e8f0")
+                                .Padding(8);
+
+                            // Handle different content types
+                            if (column.Label.ToLower().Contains("date") || column.Label.ToLower().Contains("time"))
+                            {
+                                cellElement.AlignCenter().Text(value).FontSize(9);
+                            }
+                            else if (column.Label.ToLower().Contains("description") || column.Label.ToLower().Contains("note") || column.Label.ToLower().Contains("address"))
+                            {
+                                cellElement.AlignLeft().Text(value).FontSize(9);
+                            }
+                            else
+                            {
+                                cellElement.AlignCenter().Text(value).FontSize(9);
+                            }
+                        });
                     }
 
 

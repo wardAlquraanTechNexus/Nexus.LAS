@@ -256,11 +256,13 @@ public class CompanyService : GenericService<Company>, ICompanyService
                 page.Content()
                     .Column(column =>
                     {
-                        column.Item().Background(Colors.Black).Padding(10).AlignCenter().Text("Company Details")
-                                        .FontSize(20)
-                                        .FontColor(Colors.White)
-                                        .Bold();
+                         column.Item().Padding(4).Text(string.Empty);
 
+                        column.Item().Background("#f8fafc").BorderBottom(2).BorderColor("#e2e8f0").Padding(12).AlignCenter().Text("Company Details")
+                                        .FontSize(18)
+                                        .FontColor("#334155")
+                                        .Bold();
+                        column.Item().Padding(4).Text(string.Empty);
                         column.Item().Row(row =>
                         {
                             row.ConstantItem(120).Text("Incorporation Date:").Bold();
@@ -322,7 +324,7 @@ public class CompanyService : GenericService<Company>, ICompanyService
                             row.RelativeItem().Text(company.NumberOfPartners?.ToString() ?? "-");
                         });
 
-                        column.Item().Padding(10).Text(string.Empty);
+                        column.Item().Padding(4).Text(string.Empty);
 
                         column.CreateTable(companyActivies, new List<PdfDisplayColumn>()
                             {

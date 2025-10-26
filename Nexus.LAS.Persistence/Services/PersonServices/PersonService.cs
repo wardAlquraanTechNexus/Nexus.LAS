@@ -224,10 +224,13 @@ namespace Nexus.LAS.Persistence.Services
                     page.Content()
                         .Column(column =>
                         {
-                            column.Item().Background(Colors.Black).Padding(10).AlignCenter().Text("Person Details")
-                                            .FontSize(20)
-                                            .FontColor(Colors.White)
+                             column.Item().Padding(4).Text(string.Empty);
+
+                            column.Item().Background("#f8fafc").BorderBottom(2).BorderColor("#e2e8f0").Padding(12).AlignCenter().Text("Person Details")
+                                            .FontSize(18)
+                                            .FontColor("#334155")
                                             .Bold();
+                            column.Item().Padding(4).Text(string.Empty);
 
                             column.Item().Row(row =>
                             {
@@ -245,7 +248,7 @@ namespace Nexus.LAS.Persistence.Services
                                 row.RelativeItem().Text(person.PersonShortName ?? "-");
                             });
 
-                            column.Item().Padding(10).Text(string.Empty);
+                            column.Item().Padding(4).Text(string.Empty);
 
                             column.CreateTable(personIdDetails, new List<PdfDisplayColumn>()
                                 {
@@ -258,15 +261,15 @@ namespace Nexus.LAS.Persistence.Services
                                     new PdfDisplayColumn("Primary", nameof(PersonsIDDetail.IsPrimary)),
                                 }, "Document Details");
                             
-                            column.Item().Padding(10).Text(string.Empty);
-                            
+                            column.Item().Padding(4).Text(string.Empty);
+
                             column.CreateTable(personsOtherDocuments, new List<PdfDisplayColumn>()
                                 {
                                     new PdfDisplayColumn("Type", nameof(PersonsOtherDocument.DocumentType)),
                                     new PdfDisplayColumn("Document Description", nameof(PersonsOtherDocument.DocumentType)),
                                 }, "Other Document Details");
                             
-                            column.Item().Padding(10).Text(string.Empty);
+                            column.Item().Padding(4).Text(string.Empty);
 
                             column.CreateTable(personPhones, new List<PdfDisplayColumn>()
                                 {
@@ -275,7 +278,7 @@ namespace Nexus.LAS.Persistence.Services
                                     new PdfDisplayColumn("Phone Primary", nameof(PersonsPhone.PhonePrimary)),
                                 }, "Phones");
 
-                            column.Item().Padding(10).Text(string.Empty);
+                            column.Item().Padding(4).Text(string.Empty);
 
                             column.CreateTable(personEmails, new List<PdfDisplayColumn>()
                                 {
@@ -283,7 +286,7 @@ namespace Nexus.LAS.Persistence.Services
                                     new PdfDisplayColumn("Email", nameof(PersonsEmail.Email)),
                                 }, "Emails");
                             
-                            column.Item().Padding(10).Text(string.Empty);
+                            column.Item().Padding(4).Text(string.Empty);
 
                             column.CreateTable(personAddress, new List<PdfDisplayColumn>()
                                 {

@@ -158,9 +158,11 @@ namespace Nexus.LAS.Persistence.Services.LawFirmServices
                     page.Content()
                         .Column(column =>
                         {
-                            column.Item().Background(Colors.Black).Padding(10).AlignCenter().Text("Law Firm Details")
-                                            .FontSize(20)
-                                            .FontColor(Colors.White)
+                             column.Item().Padding(4).Text(string.Empty);
+
+                            column.Item().Background("#f8fafc").BorderBottom(2).BorderColor("#e2e8f0").Padding(12).AlignCenter().Text("Law Firm Details")
+                                            .FontSize(18)
+                                            .FontColor("#334155")
                                             .Bold();
 
                             column.Item().Padding(10).Text(string.Empty);
@@ -183,7 +185,7 @@ namespace Nexus.LAS.Persistence.Services.LawFirmServices
                             });
 
 
-                            column.Item().Padding(10).Text(string.Empty);
+                            column.Item().Padding(4).Text(string.Empty);
 
                             column.CreateTable(notes, new List<PdfDisplayColumn>()
                                 {
@@ -191,22 +193,22 @@ namespace Nexus.LAS.Persistence.Services.LawFirmServices
                                     new PdfDisplayColumn("Note Date", nameof(RegistersNote.NoteDate)),
                                 }, "Notes");
 
-                            column.Item().Padding(10).Text(string.Empty);
+                            column.Item().Padding(4).Text(string.Empty);
 
                             column.CreateTable(branches, new List<PdfDisplayColumn>()
                                 {
                                     new PdfDisplayColumn("Branch Name", nameof(LawFirmBranch.BranchName)),
                                 }, "Branches");
 
-                            column.Item().Padding(10).Text(string.Empty);
-                            
+                            column.Item().Padding(4).Text(string.Empty);
+
                             column.CreateTable(counsels, new List<PdfDisplayColumn>()
                                 {
                                     new PdfDisplayColumn("Counsel Level", nameof(LawFirmCounsel.CounselLevel) , counselLevelsDynamicList),
                                 }, "Counsels");
 
-                            column.Item().Padding(10).Text(string.Empty);
-                          
+                            column.Item().Padding(4).Text(string.Empty);
+
                             column.CreateTable(counsels, new List<PdfDisplayColumn>()
                                 {
                                     new PdfDisplayColumn("Expertise Name", nameof(LawFirmExpertise.ExpertiseName) ),

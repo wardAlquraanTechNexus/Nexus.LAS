@@ -160,9 +160,11 @@ public class PropertyService : GenericService<Property>, IPropertyService
                 page.Content()
                     .Column(column =>
                     {
-                        column.Item().Background(Colors.Black).Padding(10).AlignCenter().Text("Company Details")
-                                        .FontSize(20)
-                                        .FontColor(Colors.White)
+                         column.Item().Padding(4).Text(string.Empty);
+
+                        column.Item().Background("#f8fafc").BorderBottom(2).BorderColor("#e2e8f0").Padding(12).AlignCenter().Text("Property Details")
+                                        .FontSize(18)
+                                        .FontColor("#334155")
                                         .Bold();
 
                         column.Item().Row(row =>
@@ -226,7 +228,7 @@ public class PropertyService : GenericService<Property>, IPropertyService
                             row.RelativeItem().Text(purpose ?? "-");
                         });
 
-                        column.Item().Padding(10).Text(string.Empty);
+                        column.Item().Padding(4).Text(string.Empty);
 
                         column.CreateTable(notes, new List<PdfDisplayColumn>()
                                 {
@@ -234,7 +236,7 @@ public class PropertyService : GenericService<Property>, IPropertyService
                                     new PdfDisplayColumn("Note Date", nameof(RegistersNote.NoteDate)),
                                 }, "Notes");
 
-                        column.Item().Padding(10).Text(string.Empty);
+                        column.Item().Padding(4).Text(string.Empty);
                         column.CreateTable(propertyOwners, new List<PdfDisplayColumn>()
                                 {
                                     new PdfDisplayColumn("Owner Type", nameof(PropertyOwnerDto.OwnerType)),
