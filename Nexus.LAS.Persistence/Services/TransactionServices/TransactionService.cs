@@ -167,10 +167,22 @@ public class TransactionService : GenericService<Transaction>, ITransactionServi
                         column.Item().Padding(10).Text(string.Empty);
 
 
-                        column.Item().Text($"Primary Company: {isPrimaryCompany}");
+                        column.Item().Row(row =>
+                        {
+                            row.ConstantItem(140).Text("Primary Company:").Bold();
+                            row.RelativeItem().Text(isPrimaryCompany ?? "-");
+                        });
 
-                        column.Item().Text($"Subject Type: {subjectType}");
-                        column.Item().Text($"Description: {transaction.SubjectDescription}");
+                        column.Item().Row(row =>
+                        {
+                            row.ConstantItem(140).Text("Subject Type:").Bold();
+                            row.RelativeItem().Text(subjectType ?? "-");
+                        });
+                        column.Item().Row(row =>
+                        {
+                            row.ConstantItem(140).Text("Description:").Bold();
+                            row.RelativeItem().Text(transaction.SubjectDescription ?? "-");
+                        });
 
 
                         column.Item().Padding(10).Text(string.Empty);

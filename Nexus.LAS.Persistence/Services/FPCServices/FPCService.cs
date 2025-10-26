@@ -159,9 +159,17 @@ public class FPCService : GenericService<FPC>, IFPCService
                         column.Item().Padding(10).Text(string.Empty);
 
 
-                        column.Item().Text($"Type: {registerType}");
+                        column.Item().Row(row =>
+                        {
+                            row.ConstantItem(120).Text("Type:").Bold();
+                            row.RelativeItem().Text(registerType ?? "-");
+                        });
 
-                        column.Item().Text($"Registers: {registerName}");
+                        column.Item().Row(row =>
+                        {
+                            row.ConstantItem(120).Text("Registers:").Bold();
+                            row.RelativeItem().Text(registerName ?? "-");
+                        });
 
 
                         column.Item().Padding(10).Text(string.Empty);

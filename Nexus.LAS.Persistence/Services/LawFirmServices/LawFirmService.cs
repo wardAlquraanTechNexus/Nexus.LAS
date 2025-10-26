@@ -166,9 +166,21 @@ namespace Nexus.LAS.Persistence.Services.LawFirmServices
                             column.Item().Padding(10).Text(string.Empty);
 
 
-                            column.Item().Text($"Name En: {lawFirm.EnglishName}");
-                            column.Item().Text($"Name Ar: {lawFirm.ArabicName}");
-                            column.Item().Text($"Short Name: {lawFirm.ShortName}");
+                            column.Item().Row(row =>
+                            {
+                                row.ConstantItem(120).Text("Name En:").Bold();
+                                row.RelativeItem().Text(lawFirm.EnglishName ?? "-");
+                            });
+                            column.Item().Row(row =>
+                            {
+                                row.ConstantItem(120).Text("Name Ar:").Bold();
+                                row.RelativeItem().Text(lawFirm.ArabicName ?? "-");
+                            });
+                            column.Item().Row(row =>
+                            {
+                                row.ConstantItem(120).Text("Short Name:").Bold();
+                                row.RelativeItem().Text(lawFirm.ShortName ?? "-");
+                            });
 
 
                             column.Item().Padding(10).Text(string.Empty);

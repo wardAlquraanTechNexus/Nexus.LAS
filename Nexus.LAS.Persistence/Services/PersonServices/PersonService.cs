@@ -229,9 +229,21 @@ namespace Nexus.LAS.Persistence.Services
                                             .FontColor(Colors.White)
                                             .Bold();
 
-                            column.Item().Text($"Name En: {person.PersonEnglishName}");
-                            column.Item().Text($"Name Ar: {person.PersonArabicName}");
-                            column.Item().Text($"Short Name: {person.PersonShortName}");
+                            column.Item().Row(row =>
+                            {
+                                row.ConstantItem(120).Text("Name En:").Bold();
+                                row.RelativeItem().Text(person.PersonEnglishName ?? "-");
+                            });
+                            column.Item().Row(row =>
+                            {
+                                row.ConstantItem(120).Text("Name Ar:").Bold();
+                                row.RelativeItem().Text(person.PersonArabicName ?? "-");
+                            });
+                            column.Item().Row(row =>
+                            {
+                                row.ConstantItem(120).Text("Short Name:").Bold();
+                                row.RelativeItem().Text(person.PersonShortName ?? "-");
+                            });
 
                             column.Item().Padding(10).Text(string.Empty);
 

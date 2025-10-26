@@ -165,18 +165,66 @@ public class PropertyService : GenericService<Property>, IPropertyService
                                         .FontColor(Colors.White)
                                         .Bold();
 
-                        column.Item().Text($"Type Of Title: {typeOfTitle}");
-                        column.Item().Text($"Grantor: {grantor}");
-                        column.Item().Text($"Grantor Address: {property.GrantorAddress}");
-                        column.Item().Text($"Commencement Date: {commencmentDate}");
-                        column.Item().Text($"Expiry Date: {expiryDate}");
-                        column.Item().Text($"Description: {property.GrantorDescription}");
-                        column.Item().Text($"Country Name: {country}");
-                        column.Item().Text($"City: {city}");
-                        column.Item().Text($"Area: {area}");
-                        column.Item().Text($"Details: {property.LocationDetails}");
-                        column.Item().Text($"Type: {type}");
-                        column.Item().Text($"Purpose: {purpose}");
+                        column.Item().Row(row =>
+                        {
+                            row.ConstantItem(140).Text("Type Of Title:").Bold();
+                            row.RelativeItem().Text(typeOfTitle ?? "-");
+                        });
+                        column.Item().Row(row =>
+                        {
+                            row.ConstantItem(140).Text("Grantor:").Bold();
+                            row.RelativeItem().Text(grantor ?? "-");
+                        });
+                        column.Item().Row(row =>
+                        {
+                            row.ConstantItem(140).Text("Grantor Address:").Bold();
+                            row.RelativeItem().Text(property.GrantorAddress ?? "-");
+                        });
+                        column.Item().Row(row =>
+                        {
+                            row.ConstantItem(140).Text("Commencement Date:").Bold();
+                            row.RelativeItem().Text(commencmentDate ?? "-");
+                        });
+                        column.Item().Row(row =>
+                        {
+                            row.ConstantItem(140).Text("Expiry Date:").Bold();
+                            row.RelativeItem().Text(expiryDate ?? "-");
+                        });
+                        column.Item().Row(row =>
+                        {
+                            row.ConstantItem(140).Text("Description:").Bold();
+                            row.RelativeItem().Text(property.GrantorDescription ?? "-");
+                        });
+                        column.Item().Row(row =>
+                        {
+                            row.ConstantItem(140).Text("Country Name:").Bold();
+                            row.RelativeItem().Text(country ?? "-");
+                        });
+                        column.Item().Row(row =>
+                        {
+                            row.ConstantItem(140).Text("City:").Bold();
+                            row.RelativeItem().Text(city ?? "-");
+                        });
+                        column.Item().Row(row =>
+                        {
+                            row.ConstantItem(140).Text("Area:").Bold();
+                            row.RelativeItem().Text(area ?? "-");
+                        });
+                        column.Item().Row(row =>
+                        {
+                            row.ConstantItem(140).Text("Details:").Bold();
+                            row.RelativeItem().Text(property.LocationDetails ?? "-");
+                        });
+                        column.Item().Row(row =>
+                        {
+                            row.ConstantItem(140).Text("Type:").Bold();
+                            row.RelativeItem().Text(type ?? "-");
+                        });
+                        column.Item().Row(row =>
+                        {
+                            row.ConstantItem(140).Text("Purpose:").Bold();
+                            row.RelativeItem().Text(purpose ?? "-");
+                        });
 
                         column.Item().Padding(10).Text(string.Empty);
 

@@ -261,18 +261,66 @@ public class CompanyService : GenericService<Company>, ICompanyService
                                         .FontColor(Colors.White)
                                         .Bold();
 
-                        column.Item().Text($"Incorporation Date: {company.IncorporationDate?.ToString("dd/MM/yyyy") ?? "-"}");
-                        column.Item().Text($"Name En: {company.CompanyEnglishName}");
-                        column.Item().Text($"Name Ar: {company.CompanyArabicName}");
-                        column.Item().Text($"Short Name: {company.CompanyShortName}");
-                        column.Item().Text($"Company Type: {companyTypeName}");
-                        column.Item().Text($"Company Class: {companyClassName}");
-                        column.Item().Text($"Legal Form: {companyLegalForm}");
-                        column.Item().Text($"Place Of Registration: {placeOfRegistration}");
-                        column.Item().Text($"City: {city}");
-                        column.Item().Text($"Total Shared: {company.TotalShares}");
-                        column.Item().Text($"Amount: {company.CapitalAmount}");
-                        column.Item().Text($"Number Of Partners: {company.NumberOfPartners}");
+                        column.Item().Row(row =>
+                        {
+                            row.ConstantItem(120).Text("Incorporation Date:").Bold();
+                            row.RelativeItem().Text(company.IncorporationDate?.ToString("dd/MM/yyyy") ?? "-");
+                        });
+                        column.Item().Row(row =>
+                        {
+                            row.ConstantItem(120).Text("Name En:").Bold();
+                            row.RelativeItem().Text(company.CompanyEnglishName ?? "-");
+                        });
+                        column.Item().Row(row =>
+                        {
+                            row.ConstantItem(120).Text("Name Ar:").Bold();
+                            row.RelativeItem().Text(company.CompanyArabicName ?? "-");
+                        });
+                        column.Item().Row(row =>
+                        {
+                            row.ConstantItem(120).Text("Short Name:").Bold();
+                            row.RelativeItem().Text(company.CompanyShortName ?? "-");
+                        });
+                        column.Item().Row(row =>
+                        {
+                            row.ConstantItem(120).Text("Company Type:").Bold();
+                            row.RelativeItem().Text(companyTypeName ?? "-");
+                        });
+                        column.Item().Row(row =>
+                        {
+                            row.ConstantItem(120).Text("Company Class:").Bold();
+                            row.RelativeItem().Text(companyClassName ?? "-");
+                        });
+                        column.Item().Row(row =>
+                        {
+                            row.ConstantItem(120).Text("Legal Form:").Bold();
+                            row.RelativeItem().Text(companyLegalForm ?? "-");
+                        });
+                        column.Item().Row(row =>
+                        {
+                            row.ConstantItem(120).Text("Place Of Registration:").Bold();
+                            row.RelativeItem().Text(placeOfRegistration ?? "-");
+                        });
+                        column.Item().Row(row =>
+                        {
+                            row.ConstantItem(120).Text("City:").Bold();
+                            row.RelativeItem().Text(city ?? "-");
+                        });
+                        column.Item().Row(row =>
+                        {
+                            row.ConstantItem(120).Text("Total Shares:").Bold();
+                            row.RelativeItem().Text(company.TotalShares?.ToString() ?? "-");
+                        });
+                        column.Item().Row(row =>
+                        {
+                            row.ConstantItem(120).Text("Capital Amount:").Bold();
+                            row.RelativeItem().Text(company.CapitalAmount?.ToString("N2") ?? "-");
+                        });
+                        column.Item().Row(row =>
+                        {
+                            row.ConstantItem(120).Text("Number Of Partners:").Bold();
+                            row.RelativeItem().Text(company.NumberOfPartners?.ToString() ?? "-");
+                        });
 
                         column.Item().Padding(10).Text(string.Empty);
 
