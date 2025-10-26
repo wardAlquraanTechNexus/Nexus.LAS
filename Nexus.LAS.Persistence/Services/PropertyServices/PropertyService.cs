@@ -62,7 +62,7 @@ public class PropertyService : GenericService<Property>, IPropertyService
 
         var property = await _repo.GetAsync(id);
         if (property == null)
-            throw new Exception("Company not found");
+            throw new Exception("Property not found");
 
         string typeOfTitle = string.Empty;
         string country = string.Empty;
@@ -166,6 +166,8 @@ public class PropertyService : GenericService<Property>, IPropertyService
                                         .FontSize(18)
                                         .FontColor("#334155")
                                         .Bold();
+
+                        column.Item().Padding(4).Text(string.Empty);
 
                         column.Item().Row(row =>
                         {
