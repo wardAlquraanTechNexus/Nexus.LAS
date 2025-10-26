@@ -37,7 +37,11 @@ namespace Nexus.LAS.Persistence.Services
                             {
                                 columns.ConstantColumn(80);
                             }
-                            else if (column.Label.ToLower().Contains("description") || column.Label.ToLower().Contains("note") || column.Label.ToLower().Contains("address"))
+                            else if (column.Label.ToLower().Contains("note") && !column.Label.ToLower().Contains("date"))
+                            {
+                                columns.RelativeColumn(3); // Give extra space for note content
+                            }
+                            else if (column.Label.ToLower().Contains("description") || column.Label.ToLower().Contains("address"))
                             {
                                 columns.RelativeColumn(2);
                             }

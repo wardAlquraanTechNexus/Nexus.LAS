@@ -191,8 +191,8 @@ namespace Nexus.LAS.Persistence.Services.LawFirmServices
 
                             column.CreateTable(notes, new List<PdfDisplayColumn>()
                                 {
+                                    new PdfDisplayColumn("Date", nameof(RegistersNote.NoteDate)),
                                     new PdfDisplayColumn("Note", nameof(RegistersNote.RegistersNotesText)),
-                                    new PdfDisplayColumn("Note Date", nameof(RegistersNote.NoteDate)),
                                 }, "Notes");
 
                             column.Item().Padding(4).Text(string.Empty);

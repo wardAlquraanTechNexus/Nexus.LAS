@@ -243,8 +243,8 @@ public class PropertyService : GenericService<Property>, IPropertyService
 
                         column.CreateTable(notes, new List<PdfDisplayColumn>()
                                 {
+                                    new PdfDisplayColumn("Date", nameof(RegistersNote.NoteDate)),
                                     new PdfDisplayColumn("Note", nameof(RegistersNote.RegistersNotesText)),
-                                    new PdfDisplayColumn("Note Date", nameof(RegistersNote.NoteDate)),
                                 }, "Notes");
 
                         column.Item().Padding(4).Text(string.Empty);
