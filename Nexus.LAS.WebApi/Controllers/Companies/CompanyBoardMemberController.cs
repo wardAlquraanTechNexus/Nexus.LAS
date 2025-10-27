@@ -1,15 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
-using Nexus.LAS.Application.UseCases.CompanyBoardMemberUseCases;
 using Nexus.LAS.Application.UseCases.CompanyBoardMemberUseCases.Commands.CreateCompanyBoardMember;
 using Nexus.LAS.Application.UseCases.CompanyBoardMemberUseCases.Commands.UpdateCompanyBoardMember;
 using Nexus.LAS.Application.UseCases.CompanyBoardMemberUseCases.Queries.GetPaging;
-using Nexus.LAS.Application.UseCases.CompanyBoardUseCases.Commands.Create;
-using Nexus.LAS.Application.UseCases.CompanyBoardUseCases.Queries.GetPaging;
-using Nexus.LAS.Application.UseCases.CompanyCapitalUseCases.Commands.CreateCompanyCapital;
-using Nexus.LAS.Application.UseCases.CompanyCapitalUseCases.Commands.UpdateCompanyCapital;
-using Nexus.LAS.Application.UseCases.CompanyCapitalUseCases.Queries.GetPagingCompanyCapital;
 using Nexus.LAS.Domain.Entities.CompanyEntities;
 using Nexus.LAS.WebApi.Attributes;
 using Nexus.LAS.WebApi.Controllers._GenericController;

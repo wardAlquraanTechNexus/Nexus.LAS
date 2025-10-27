@@ -32,9 +32,6 @@ public class CompanyRepo : GenericRepo<Company>, ICompanyRepo
                 || (!string.IsNullOrEmpty(com.CompanyCode) && com.CompanyCode.ToLower().Contains(companyQuery.SearchBy.ToLower()))
 
                 )
-            && (!companyQuery.CapitalAmount.HasValue || companyQuery.CapitalAmount == com.CapitalAmount)
-            && (!companyQuery.TotalShares.HasValue || companyQuery.TotalShares == com.TotalShares)
-            && (!companyQuery.NumberOfPartners.HasValue || companyQuery.NumberOfPartners == com.NumberOfPartners)
             && (!companyQuery.CompanyTypeIdn.HasValue || companyQuery.CompanyTypeIdn == com.CompanyTypeIdn)
             && (!companyQuery.CompanyClassIdn.HasValue || companyQuery.CompanyClassIdn == com.CompanyClassIdn)
             && (!companyQuery.PlaceOfRegistrationMainIdn.HasValue || companyQuery.PlaceOfRegistrationMainIdn == com.PlaceOfRegistrationMainIdn)

@@ -317,23 +317,6 @@ public class CompanyService : GenericService<Company>, ICompanyService
                             row.RelativeItem().Text(city ?? "-");
                         });
                         column.Item().Padding(3).Text(string.Empty);
-                        column.Item().Row(row =>
-                        {
-                            row.ConstantItem(120).Text("Total Shares:").Bold();
-                            row.RelativeItem().Text(company.TotalShares?.ToString() ?? "-");
-                        });
-                        column.Item().Padding(3).Text(string.Empty);
-                        column.Item().Row(row =>
-                        {
-                            row.ConstantItem(120).Text("Capital Amount:").Bold();
-                            row.RelativeItem().Text(company.CapitalAmount?.ToString("N2") ?? "-");
-                        });
-                        column.Item().Padding(3).Text(string.Empty);
-                        column.Item().Row(row =>
-                        {
-                            row.ConstantItem(120).Text("Number Of Partners:").Bold();
-                            row.RelativeItem().Text(company.NumberOfPartners?.ToString() ?? "-");
-                        });
 
                         column.Item().Padding(4).Text(string.Empty);
 

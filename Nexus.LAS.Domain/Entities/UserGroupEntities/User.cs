@@ -1,30 +1,19 @@
-﻿using Nexus.LAS.Domain.Constants;
-using Nexus.LAS.Domain.Entities.Base;
+﻿using Nexus.LAS.Domain.Entities.Base;
 using Nexus.LAS.Domain.Entities.PersonEntities;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Nexus.LAS.Domain.Entities.UserGroupEntities
+namespace Nexus.LAS.Domain.Entities.UserGroupEntities;
+
+[Table("Users")]
+public class User : BaseEntity
 {
-    [Table("Users")]
-    public class User : BaseEntity
-    {
-        public string Username { get; set; }
+    public string Username { get; set; }
 
-        [Column("LoginName")]
-        public string? LoginName { get; set; }
-
-        [Column("NTLogin")]
-        public string? NTLogin { get; set; }
-
-        [Column("Persons_IDN")]
-        public int? PersonsIdN { get; set; }
-        [ForeignKey(nameof(PersonsIdN))]
-        public Person? Person { get; set; }
-    }
+    [Column("NTLogin")]
+    public string? NTLogin { get; set; }
+    
+    [Column("Persons_IDN")]
+    public int? PersonsIdN { get; set; }
+    [ForeignKey(nameof(PersonsIdN))]
+    public Person? Person { get; set; }
 }

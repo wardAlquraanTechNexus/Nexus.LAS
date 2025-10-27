@@ -1,5 +1,4 @@
-﻿using Nexus.LAS.Domain.Constants;
-using Nexus.LAS.Domain.Entities.Base;
+﻿using Nexus.LAS.Domain.Entities.Base;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -37,9 +36,7 @@ public class Company:BaseEntity
     public int? CompanyClassIdn { get; set; }
     public int? GroupCompanyIdn { get; set; }
     public int? RelevantCompanyIdn { get; set; }
-
     public int? LegalTypeIdn { get; set; }
-
     [MaxLength(50)]
     public string? CciNumber { get; set; }
     public DateTime? CciIssueDate { get; set; }
@@ -47,19 +44,8 @@ public class Company:BaseEntity
     public bool? CciExpiryActiveReminder { get; set; }
     public int? PlaceOfRegistrationMainIdn { get; set; }
     public int? PlaceOfRegistrationSubIdn { get; set; }
-    public decimal? CapitalAmount { get; set; }
-    public long? TotalShares { get; set; }
-    public int? NumberOfPartners { get; set; }
-    public DateTime? UpdateDate { get; set; }
-
-    [MaxLength(50)]
-    public string? UpdateDescription { get; set; }
-
-    [Column("Persons_IDN")]
-    public int? PersonsIdn { get; set; }
     [Required]
     public int CompanyStatus { get; set; }
-
     [Required]
     public bool Private { get; set; }
 }

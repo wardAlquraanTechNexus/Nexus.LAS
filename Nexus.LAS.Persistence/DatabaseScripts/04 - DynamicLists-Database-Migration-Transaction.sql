@@ -4,6 +4,20 @@
 BEGIN TRANSACTION;
 
 BEGIN TRY
+    -- Check if target table is empty before proceeding
+    DECLARE @ExistingCount INT;
+    SELECT @ExistingCount = COUNT(*) FROM [NEXUS-RG-LAS-Production-DB].[dbo].[DynamicLists];
+
+    IF @ExistingCount > 0
+    BEGIN
+        PRINT 'WARNING: Target table [DynamicLists] already contains ' + CAST(@ExistingCount AS VARCHAR(10)) + ' records.';
+        PRINT 'Migration will only add new records that do not already exist.';
+    END
+    ELSE
+    BEGIN
+        PRINT 'Target table [DynamicLists] is empty. Proceeding with full migration.';
+    END
+
     -- Disable constraints temporarily for better performance
     ALTER TABLE [NEXUS-RG-LAS-Production-DB].[dbo].[DynamicLists] NOCHECK CONSTRAINT ALL;
 
@@ -35,8 +49,8 @@ BEGIN TRY
         [MainListID],
         [MenuCategory],
         [MenuValue],
-        [Active],
-        [Rank],
+        ISNULL([Active], 0),    -- Active: not null --> false (default 0)
+        ISNULL([Rank], 0),      -- Rank: not null --> 0 (default 0)
         [CreatedBy_IDN],        -- Maps to CreatedBy
         [CreatedBy_Date],       -- Maps to CreatedAt
         [UpdatedBy_IDN],        -- Maps to ModifiedBy

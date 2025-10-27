@@ -2,7 +2,6 @@
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Domain.Entities.Base;
 using Nexus.LAS.Domain.Entities.Lookup;
-using Nexus.LAS.Domain.Entities.NumberEntities;
 using Nexus.LAS.Domain.Entities.UserGroupEntities;
 using System.Linq.Expressions;
 
@@ -21,12 +20,7 @@ namespace Nexus.LAS.Persistence.DatabaseContext
         public DbSet<UserGroup> UserGroups { get; set; }
         public DbSet<Menu> Menus { get; set; }
         public DbSet<GroupMenu> GroupsMenus { get; set; }
-        public DbSet<Country> Countries { get; set; }
-        public DbSet<Currency> Currencies { get; set; }
         public DbSet<DynamicList> DynamicLists { get; set; }
-
-        public DbSet<Number> Numbers { get; set; }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             this.OnCompanyModelCreating(modelBuilder);

@@ -22,35 +22,26 @@ using Nexus.LAS.Application.UseCases.CompanyAddressUseCases.Commands.UpdateCompa
 using Nexus.LAS.Application.UseCases.CompanyBankAccountUseCases;
 using Nexus.LAS.Application.UseCases.CompanyBankAccountUseCases.Commands.CreateCompanyBankAccount;
 using Nexus.LAS.Application.UseCases.CompanyBankAccountUseCases.Commands.UpdateCompanyBankAccount;
-using Nexus.LAS.Application.UseCases.CompanyBoardMemberUseCases;
 using Nexus.LAS.Application.UseCases.CompanyBoardMemberUseCases.Commands.CreateCompanyBoardMember;
 using Nexus.LAS.Application.UseCases.CompanyBoardMemberUseCases.Commands.UpdateCompanyBoardMember;
-using Nexus.LAS.Application.UseCases.CompanyBoardUseCases.Commands.Create;
-using Nexus.LAS.Application.UseCases.CompanyCapitalUseCases;
 using Nexus.LAS.Application.UseCases.CompanyCapitalUseCases.Commands.CreateCompanyCapital;
 using Nexus.LAS.Application.UseCases.CompanyCapitalUseCases.Commands.UpdateCompanyCapital;
-using Nexus.LAS.Application.UseCases.CompanyChamberOfCommerceUseCases;
 using Nexus.LAS.Application.UseCases.CompanyChamberOfCommerceUseCases.Commands.CreateCompanyChamberOfCommerce;
 using Nexus.LAS.Application.UseCases.CompanyChamberOfCommerceUseCases.Commands.UpdateCompanyChamberOfCommerce;
 using Nexus.LAS.Application.UseCases.CompanyContractUseCases;
 using Nexus.LAS.Application.UseCases.CompanyContractUseCases.Commands.CreateCompanyContract;
 using Nexus.LAS.Application.UseCases.CompanyContractUseCases.Commands.UpdateCompanyContract;
-using Nexus.LAS.Application.UseCases.CompanyEmailUseCases;
 using Nexus.LAS.Application.UseCases.CompanyEmailUseCases.Commands.CreateCompanyEmail;
 using Nexus.LAS.Application.UseCases.CompanyEmailUseCases.Commands.UpdateCompanyEmail;
-using Nexus.LAS.Application.UseCases.CompanyLicenseUseCases;
 using Nexus.LAS.Application.UseCases.CompanyLicenseUseCases.Commands.CreateCompanyLicense;
 using Nexus.LAS.Application.UseCases.CompanyLicenseUseCases.Commands.UpdateCompanyLicense;
-using Nexus.LAS.Application.UseCases.CompanyOtherContractUseCases;
 using Nexus.LAS.Application.UseCases.CompanyOtherContractUseCases.Commands.CreateCompanyOtherContract;
 using Nexus.LAS.Application.UseCases.CompanyOtherContractUseCases.Commands.UpdateCompanyOtherContract;
 using Nexus.LAS.Application.UseCases.CompanyPersonInChargeUseCases;
 using Nexus.LAS.Application.UseCases.CompanyPersonInChargeUseCases.Commands.CreateCompanyPersonInCharge;
 using Nexus.LAS.Application.UseCases.CompanyPersonInChargeUseCases.Commands.UpdateCompanyPersonInCharge;
-using Nexus.LAS.Application.UseCases.CompanyPhoneUseCases;
 using Nexus.LAS.Application.UseCases.CompanyPhoneUseCases.Commands.CreateCompanyPhone;
 using Nexus.LAS.Application.UseCases.CompanyPhoneUseCases.Commands.UpdateCompanyPhone;
-using Nexus.LAS.Application.UseCases.CompanyShareHolderUseCases;
 using Nexus.LAS.Application.UseCases.CompanyShareHolderUseCases.Commands.CreateCompanyShareHolder;
 using Nexus.LAS.Application.UseCases.CompanyShareHolderUseCases.Commands.UpdateCompanyShareHolder;
 using Nexus.LAS.Application.UseCases.CompanyUseCases.Commands;
@@ -89,11 +80,6 @@ public class CompanyEntitiesProfile : Profile
         CreateMap<CompanyBankAccount ,CompanyBankAccountDto>();
         CreateMap<UpsertCompanyBankAccountCommand, CompanyBankAccount>()
     .ForMember(dest => dest.Id, opt => opt.Condition(src => src.Id.HasValue));
-
-
-        CreateMap<CreateCompanyBoardCommand, CompanyBoard>();
-        CreateMap<UpdateCompanyBoardCommand, CompanyBoard>();
-        CreateMap<CompanyBoard, CompanyBoardDto>();
 
 
         // CompanyBoardMember

@@ -18,7 +18,6 @@ using Nexus.LAS.Persistence.Repositories.CompanyRepositories;
 using Nexus.LAS.Persistence.Repositories.DocumentRepositories;
 using Nexus.LAS.Persistence.Repositories.FPCRepositories;
 using Nexus.LAS.Persistence.Repositories.LawFirmRepositories;
-using Nexus.LAS.Persistence.Repositories.NumberRepositories;
 using Nexus.LAS.Persistence.Repositories.PropertyRepositories;
 using Nexus.LAS.Persistence.Repositories.RegisterFileRepositories;
 using Nexus.LAS.Persistence.Repositories.RegisterNoteRepositories;
@@ -29,7 +28,6 @@ using Nexus.LAS.Persistence.Services.CompanyServices;
 using Nexus.LAS.Persistence.Services.DocumentServices;
 using Nexus.LAS.Persistence.Services.FPCServices;
 using Nexus.LAS.Persistence.Services.LawFirmServices;
-using Nexus.LAS.Persistence.Services.NumberServices;
 using Nexus.LAS.Persistence.Services.PropertyServices;
 using Nexus.LAS.Persistence.Services.RegisterNoteServices;
 using Nexus.LAS.Persistence.Services.TransactionServices;
@@ -40,8 +38,6 @@ namespace Nexus.LAS.Persistence
     {
         public static void RegisterServices(this IServiceCollection services)
         {
-            services.AddScoped<ICountryService, CountryService>();
-
             services.AddScoped<IUserIdentityService, UserIdentityService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUserGroupService, UserGroupService>();
@@ -79,8 +75,6 @@ namespace Nexus.LAS.Persistence
             services.AddScoped<ICompanyPhoneService, CompanyPhoneService>();
             services.AddScoped<ICompanyShareHolderService, CompanyShareHolderService>();
             services.AddScoped<ICompanyAccountSignatoryService, CompanyAccountSignatoryService>();
-            services.AddScoped<ICompanyBoardService, CompanyBoardService>();
-            services.AddScoped<ICompanyShareHoldersGroupService, CompanyShareHoldersGroupService>();
             services.AddScoped<ICompanyLeaseContractRegisterService, CompanyLeaseContractRegisterService>();
             // Transaction services
             services.AddScoped<ITransactionService, TransactionService>();
@@ -92,7 +86,6 @@ namespace Nexus.LAS.Persistence
             // LawFirm services
             services.AddScoped<ILawFirmService, LawFirmService>();
             services.AddScoped<ILawFirmPersonService, LawFirmPersonService>();
-            services.AddScoped<ILawFirmAffiliateService, LawFirmAffiliateService>();
             services.AddScoped<ILawFirmBranchService, LawFirmBranchService>();
             services.AddScoped<ILawFirmExpertiseService, LawFirmExpertiseService>();
             services.AddScoped<ILawFirmCounselService, LawFirmCounselService>();
@@ -107,8 +100,6 @@ namespace Nexus.LAS.Persistence
             services.AddScoped<IPropertyStatusService, PropertyStatusService>();
 
 
-            services.AddScoped<IDocumentService, DocumentService>();
-            services.AddScoped<IDocumentReletedRegisterService, DocumentReletedRegisterService>();
             services.AddScoped<IDocumentTrackingService, DocumentTrackingService>();
             services.AddScoped<IDocumentTrackingsActionService, DocumentTrackingsActionService>();
 
@@ -116,7 +107,6 @@ namespace Nexus.LAS.Persistence
             services.AddScoped<IFPCService, FPCService>();
             services.AddScoped<IFPCODService, FPCODService>();
             services.AddScoped<IFPCODActionService, FPCODActionService>();
-            services.AddScoped<INumberService, NumberService>();
 
             services.AddScoped<IGlobalService, GlobalService>();
 
@@ -124,7 +114,6 @@ namespace Nexus.LAS.Persistence
 
         public static void RegisterRepositories(this IServiceCollection services)
         {
-            services.AddScoped<ICountryRepo, CountryRepo>();
             services.AddScoped<IDynamicListRepo, DynamicListRepo>();
             services.AddScoped<IGroupRepo, GroupRepo>();
             services.AddScoped<IMenuRepo, MenuRepo>();
@@ -161,8 +150,6 @@ namespace Nexus.LAS.Persistence
             services.AddScoped<ICompanyOtherContractRepo, CompanyOtherContractRepo>();
             services.AddScoped<ICompanyPhoneRepo, CompanyPhoneRepo>();
             services.AddScoped<ICompanyAccountSignatoryRepo, CompanyAccountSignatoryRepo>();
-            services.AddScoped<ICompanyBoardRepo, CompanyBoardRepo>();
-            services.AddScoped<ICompanyShareHoldersGroupRepo, CompanyShareHoldersGroupRepo>();
 
             // Transaction repositories
             services.AddScoped<ITransactionRepo, TransactionRepo>();
@@ -174,7 +161,6 @@ namespace Nexus.LAS.Persistence
             // LawFirm repositories
             services.AddScoped<ILawFirmRepo, LawFirmRepo>();
             services.AddScoped<ILawFirmPersonRepo, LawFirmPersonRepo>();
-            services.AddScoped<ILawFirmAffiliateRepo, LawFirmAffiliateRepo>();
             services.AddScoped<ILawFirmBranchRepo, LawFirmBranchRepo>();
             services.AddScoped<ILawFirmExpertiseRepo, LawFirmExpertiseRepo>();
             services.AddScoped<ILawFirmCounselRepo, LawFirmCounselRepo>();
@@ -187,14 +173,11 @@ namespace Nexus.LAS.Persistence
             services.AddScoped<IPropertyLinkRepo, PropertyLinkRepo>();
             services.AddScoped<IPropertyDocumentRepo, PropertyDocumentRepo>();
             services.AddScoped<IPropertyStatusRepo, PropertyStatusRepo>();
-            services.AddScoped<IDocumentRepo, DocumentRepo>();
-            services.AddScoped<IDocumentReletedRegisterRepo, DocumentReletedRegisterRepo>();
             services.AddScoped<IDocumentTrackingRepo, DocumentTrackingRepo>();
             services.AddScoped<IDocumentTrackingsActionRepo, DocumentTrackingsActionRepo>();
             services.AddScoped<IFPCRepo, FPCRepo>();
             services.AddScoped<IFPCsODRepo, FPCsODRepo>();
             services.AddScoped<IFPCODActionRepo, FPCODActionRepo>();
-            services.AddScoped<INumberRepo, NumberRepo>();
             services.AddScoped<IGlobalRepo, GlobalhRepo>();
 
             

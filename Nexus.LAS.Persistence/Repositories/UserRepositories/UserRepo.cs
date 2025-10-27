@@ -95,7 +95,6 @@ namespace Nexus.LAS.Persistence.Repositories
                                 LastName = idUser.LastName,
                                 PhoneNumber = idUser.PhoneNumber,
                                 Username = idUser.UserName,
-                                LoginName = sysUser.LoginName,
                                 NTLogin = sysUser.NTLogin,
                                 PersonsIdN = sysUser.PersonsIdN,
                             }).AsQueryable();
@@ -135,7 +134,6 @@ namespace Nexus.LAS.Persistence.Repositories
                     Username = u.Username,
                     PersonsIdN = u.PersonsIdN,
                     PersonName = u.Person != null ? (u.Person.PersonEnglishName) : null,
-                    LoginName = u.LoginName,
                     NTLogin = u.NTLogin
                 })
                 .AsQueryable()
