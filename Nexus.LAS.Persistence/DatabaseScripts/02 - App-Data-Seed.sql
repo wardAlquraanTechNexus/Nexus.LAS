@@ -180,10 +180,7 @@ BEGIN
     (42, 9, N'Dynamic List', N'Dynamic-List', 1, N'Manage dynamic lists', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
     (43, 9, N'Menus', N'Menus', 2, N'Manage system menus', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
     (44, 9, N'Users', N'Users', 3, N'Define and manage users', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (45, 9, N'User Groups', N'User-Groups', 4, N'Manage user group memberships', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (46, 9, N'Groups', N'Groups', 5, N'Define groups', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (47, 9, N'Group Menu', N'Group-Menus', 6, N'Manage group (menu item) permissions', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (48, 9, N'Setting', N'User-settings', 1, N'User Settings', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL);
+    (45, 9, N'Groups', N'Groups', 5, N'Define groups', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL);
 
 
     SET IDENTITY_INSERT [dbo].[Menus] OFF
@@ -204,7 +201,7 @@ BEGIN
            @systemUser as [CreatedBy], @currentDatetime as [CreatedAt], 
            NULL as [ModifiedBy], NULL as [ModifiedAt], 0 as [IsDeleted], NULL as [DeletedBy], NULL as [DeletedAt]
     FROM [dbo].[Menus] m
-    WHERE m.[id] BETWEEN 1 AND 48;
+    WHERE m.[id] BETWEEN 1 AND 45;
     
     SET IDENTITY_INSERT [dbo].[GroupsMenus] OFF
     PRINT 'Group menu permissions seeded successfully.'
