@@ -55,7 +55,12 @@ builder.Services.AddHealthChecks()
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("all", policy => policy
-        .WithOrigins("http://localhost:4200", "https://localhost:4200", "https://las-staging.royalgroupuae.com:4200", "https://localhost", "https://las-prod.royalgroupuae.com")
+        .WithOrigins(
+            "https://localhost:4200",
+            "https://las-staging.royalgroupuae.com:4200",
+            "https://localhost",
+            "https://las-prod.royalgroupuae.com"
+        )
         .AllowAnyHeader()
         .AllowAnyMethod()
         .AllowCredentials()

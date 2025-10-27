@@ -2,7 +2,7 @@
 
 public class EntityIDCs
 {
-    public const string Person = "P";
+    public const string Person = "PP";
     public const string User = "U";
     public const string PersonIdDetail = "PID";
     public const string PersonOtherDocument = "POD";
