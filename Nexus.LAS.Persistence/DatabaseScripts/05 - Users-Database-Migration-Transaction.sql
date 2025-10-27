@@ -28,7 +28,6 @@ BEGIN TRY
     INSERT INTO [NEXUS-RG-LAS-Production-DB].[dbo].[Users] (
         [id],
         [Username],             -- New column, using LoginName as default
-        [LoginName],
         [NTLogin],
         [Persons_IDN],
         [CreatedBy],            -- Maps from CreatedBy_IDN
@@ -42,7 +41,6 @@ BEGIN TRY
     SELECT
         [id],
         [LoginName],            -- Maps to Username (assuming LoginName can serve as Username)
-        [LoginName],
         [NTLogin],
         [Persons_IDN],
         [CreatedBy_IDN],        -- Maps to CreatedBy
@@ -76,7 +74,7 @@ BEGIN TRY
     WHERE EXISTS (
         SELECT 1 FROM [RGLAS].[dbo].[Users] r
         WHERE r.[id] = p.[id]
-        AND r.[LoginName] = p.[LoginName]
+        AND r.[LoginName] = p.[Username]
         AND r.[Persons_IDN] = p.[Persons_IDN]
     );
 
