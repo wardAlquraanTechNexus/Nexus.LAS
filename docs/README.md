@@ -62,3 +62,4 @@ Publish Web API project
 
 Build the Angular App for Production
 ng build --configuration production
+Output location: C:\Dev\Nexus.LAS.Frontend\dist\nexus.las then copy contents of browser

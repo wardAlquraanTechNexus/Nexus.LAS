@@ -19,7 +19,7 @@ namespace Nexus.LAS.WebApi.Controllers
             var menus = await _menuService.GetAllMenusByUsername(res.UserName);
             if(menus is null || menus.Count == 0)
             {
-                throw new Exception("You don't have access to any menu. Please contact administrator.");
+                throw new Exception("You don't have access. Please contact administrator.");
             }
 
             SetRefreshTokenInCookie(res.RefreshToken, res.RefreshTokenExpiration);

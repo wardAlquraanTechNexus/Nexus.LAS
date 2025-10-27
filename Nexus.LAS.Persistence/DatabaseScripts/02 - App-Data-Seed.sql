@@ -25,11 +25,6 @@ DECLARE @currentDatetime AS DATETIME2 = GETUTCDATE(); -- Use UTC time for consis
 DECLARE @seedVersion AS NVARCHAR(50) = '1.0.0'; -- Track seed version
 DECLARE @adminUserId AS NVARCHAR(450) = 'd7b6a1e1-7c4b-4b6a-9b7e-7c4b4b6a9b7e';
 DECLARE @systemUser AS NVARCHAR(50) = 'system'; -- System user for seed operations
-DECLARE @wardUserId AS NVARCHAR(450) = 'f2a52c77-6507-47a5-bf7f-08fdfce3768b'; -- Ward user ID
-DECLARE @wardUserName AS NVARCHAR(50) = 'ward'; -- Ward username
-DECLARE @wardEmail AS NVARCHAR(100) = 'ward@example.com'; -- Ward email
-DECLARE @wardFirstName AS NVARCHAR(50) = 'ward'; -- Ward first name
-DECLARE @wardLastName AS NVARCHAR(50) = 'al quraan'; -- Ward last name
 
 -- Check if data already exists to prevent duplicate seeding
 IF EXISTS (SELECT 1 FROM [dbo].[AspNetRoles] WHERE [Id] = 'd1b6a1e1-1c4b-4b6a-9b1e-1c4b4b6a9b1e')
@@ -77,8 +72,7 @@ SELECT * FROM (VALUES
     (@adminUserId, 'd1b6a1e1-1c4b-4b6a-9b1e-1c4b4b6a9b1e'), -- Admin
     ('e8b6a1e1-8c4b-4b6a-9b8e-8c4b4b6a9b8e', 'e2b6a1e1-2c4b-4b6a-9b2e-2c4b4b6a9b2e'), -- Staff
     ('f9b6a1e1-9c4b-4b6a-9b9e-9c4b4b6a9b9e', 'f3b6a1e1-3c4b-4b6a-9b3e-3c4b4b6a9b3e'), -- Management
-    ('a0b6a1e1-0c4b-4b6a-9b0e-0c4b4b6a9b0e', 'a4b6a1e1-4c4b-4b6a-9b4e-4c4b4b6a9b4e'), -- General
-    (@wardUserId, 'd1b6a1e1-1c4b-4b6a-9b1e-1c4b4b6a9b1e')  -- Ward as Admin
+    ('a0b6a1e1-0c4b-4b6a-9b0e-0c4b4b6a9b0e', 'a4b6a1e1-4c4b-4b6a-9b4e-4c4b4b6a9b4e') -- General
 ) AS UserRoles([UserId], [RoleId])
 WHERE NOT EXISTS (
     SELECT 1 FROM [dbo].[AspNetUserRoles] ur 
@@ -216,7 +210,7 @@ BEGIN
     PRINT 'Group menu permissions seeded successfully.'
 END
 
--- User Groups - Link ward user to administrators group
+-- User Groups - Link user #1 to administrators group
 IF NOT EXISTS (SELECT 1 FROM [dbo].[UserGroups] WHERE [UserId] = 1 AND [GroupId] = 1)
 BEGIN
     SET IDENTITY_INSERT [dbo].[UserGroups] ON
@@ -237,7 +231,7 @@ BEGIN
     INSERT INTO [dbo].[Users] ([id], [Username], [LoginName], [NTLogin], [Persons_IDN], 
                               [CreatedBy], [CreatedAt], [ModifiedBy], [ModifiedAt], 
                               [IsDeleted], [DeletedBy], [DeletedAt])
-    VALUES (1, 'admin@rg.com', 'admin@rg.com', NULL, NULL, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL);
+    VALUES (1, 'admin@rg.com', NULL, NULL, NULL, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL);
     
     SET IDENTITY_INSERT [dbo].[Users] OFF
     PRINT 'Application users seeded successfully.'
