@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.UseCases.Commands;
 using Nexus.LAS.Application.UseCases.GroupMenuUseCases.Commands;
+using Nexus.LAS.Application.UseCases.Lookup.Queries.GetAllMenusByGroup;
 using Nexus.LAS.Application.UseCases.Queries;
 using Nexus.LAS.Application.UseCases.Queries.SearchMenu;
 using Nexus.LAS.Domain.Entities.Lookup;
@@ -49,19 +50,26 @@ public class GroupMenuController : GenericController<IGroupMenuService, GroupMen
     }
     [HttpGet]
     [ApiMethodType(Domain.Constants.Enums.MethodType.Get)]
-    public async Task<IActionResult> SearchGroupMenu([FromQuery]SearchGroupMenuQuery query)
+    public async Task<IActionResult> SearchGroupMenu([FromQuery] SearchGroupMenuQuery query)
     {
         return Ok(await _mediator.Send(query));
     }
     [HttpGet(nameof(GetAllGroupMenu))]
     [ApiMethodType(Domain.Constants.Enums.MethodType.Get)]
-    public async Task<IActionResult> GetAllGroupMenu([FromQuery]GetAllGroupMenuQuery query)
+    public async Task<IActionResult> GetAllGroupMenu([FromQuery] GetAllGroupMenuQuery query)
     {
         return Ok(await _mediator.Send(query));
     }
     [HttpPut(nameof(UpsertCollectionOfGroupsMenus))]
     [ApiMethodType(Domain.Constants.Enums.MethodType.Update)]
     public async Task<IActionResult> UpsertCollectionOfGroupsMenus(UpsertCollectionOfGroupsMenusCommand query)
+    {
+        return Ok(await _mediator.Send(query));
+    }
+
+    [HttpGet(nameof(GetAllMenusByGroup))]
+    [ApiMethodType(Domain.Constants.Enums.MethodType.Get)]
+    public async Task<IActionResult> GetAllMenusByGroup([FromQuery] GetAllMenusByGroupQuery query)
     {
         return Ok(await _mediator.Send(query));
     }

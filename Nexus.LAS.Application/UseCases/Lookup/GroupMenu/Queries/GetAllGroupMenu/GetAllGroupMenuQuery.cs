@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Nexus.LAS.Application.UseCases.Queries
 {
-    public class GetAllGroupMenuQuery: IRequest<List<SearchGroupMenuDTO>>
+    public class GetAllGroupMenuQuery: IRequest<List<GroupMenuDTO>>
     {
         public int? GroupId { get; set; }
         public int? MenuId { get; set; }

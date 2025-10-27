@@ -47,4 +47,12 @@ public class CompanyCapitalRepo : GenericRepo<CompanyCapital>, ICompanyCapitalRe
             .FirstOrDefaultAsync();
         return capital;
     }
+    public async Task<long?> GetTotalSharedCompanyIdAsync(int companyId)
+    {
+        var capital = await _dbSet
+            .Where(c => c.CompanyId == companyId && c.CapitalActive)
+            .Select(x=>x.NumberOfShares)
+            .FirstOrDefaultAsync();
+        return capital;
+    }
 }

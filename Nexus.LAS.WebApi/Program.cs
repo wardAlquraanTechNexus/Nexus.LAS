@@ -57,6 +57,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("all", policy => policy
         .WithOrigins(
             "https://localhost:4200",
+            "http://localhost:4200",
             "https://las-staging.royalgroupuae.com:4200",
             "https://localhost",
             "https://las-prod.royalgroupuae.com"

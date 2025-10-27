@@ -24,7 +24,7 @@ public class GetCompanyDto
     public bool? CciExpiryActiveReminder { get; set; }
     public int? PlaceOfRegistrationMainIdn { get; set; }
     public int? PlaceOfRegistrationSubIdn { get; set; }
-    public decimal? CapitalAmount { get; set; }
+    public double? CapitalAmount { get; set; }
     public long? TotalShares { get; set; }
     public int? NumberOfPartners { get; set; }
     public DateTime? UpdateDate { get; set; }

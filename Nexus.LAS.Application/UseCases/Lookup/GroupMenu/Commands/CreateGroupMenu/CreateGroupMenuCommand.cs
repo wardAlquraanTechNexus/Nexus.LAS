@@ -6,7 +6,7 @@ public class CreateGroupMenuCommand:CreateBaseCommand
 {
     public int GroupId { get; set; }
     public int MenuId { get; set; }
-    public bool Access { get; set; }
+    public bool Access = true;
     public bool CanInsert { get; set; }
     public bool CanUpdate { get; set; }
     public bool CanDelete { get; set; }

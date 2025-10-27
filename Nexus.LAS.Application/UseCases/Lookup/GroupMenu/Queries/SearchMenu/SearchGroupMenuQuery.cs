@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Nexus.LAS.Application.UseCases.Queries.SearchMenu
 {
-    public class SearchGroupMenuQuery: BaseParams , IRequest<PagingResult<SearchGroupMenuDTO>>
+    public class SearchGroupMenuQuery: BaseParams , IRequest<PagingResult<GroupMenuDTO>>
     {
         public int? GroupId { get; set; }
         public int? MenuId { get; set; }

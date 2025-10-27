@@ -18,5 +18,6 @@ namespace Nexus.LAS.Application.Contracts.Presistence._Repositories._CompanyRepo
         Task<List<CompanyShareHolder>> GetListByCompanyId(int company);
         Task<long> SumActiveSharesAsync(int company, int? excludeShareHolderId = null);
         Task<PagingResult<AssetsShareholderDto>> GetShareholderAssets(GetShareholderAssetsQuery query);
+        Task<int> GetActiveCountByCompanyId(int company);
     }
 }

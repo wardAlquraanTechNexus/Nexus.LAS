@@ -4,7 +4,7 @@ using Nexus.LAS.Application.DTOs.GroupMenuDTOs;
 
 namespace Nexus.LAS.Application.UseCases.Queries
 {
-    public class GetAllGroupMenuHandler : IRequestHandler<GetAllGroupMenuQuery, List<SearchGroupMenuDTO>>
+    public class GetAllGroupMenuHandler : IRequestHandler<GetAllGroupMenuQuery, List<GroupMenuDTO>>
     {
         private readonly IGroupMenuService _service;
 
@@ -13,7 +13,7 @@ namespace Nexus.LAS.Application.UseCases.Queries
             _service = service;
         }
 
-        public async Task<List<SearchGroupMenuDTO>> Handle(GetAllGroupMenuQuery request, CancellationToken cancellationToken)
+        public async Task<List<GroupMenuDTO>> Handle(GetAllGroupMenuQuery request, CancellationToken cancellationToken)
         {
             return await _service.GetAllGroupMenus(request);
         }

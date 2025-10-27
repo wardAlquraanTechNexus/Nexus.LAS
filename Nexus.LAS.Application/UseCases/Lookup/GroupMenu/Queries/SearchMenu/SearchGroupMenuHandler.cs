@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Nexus.LAS.Application.UseCases.Queries.SearchMenu
 {
-    public class SearchGroupMenuHandler : IRequestHandler<SearchGroupMenuQuery , PagingResult<SearchGroupMenuDTO>>
+    public class SearchGroupMenuHandler : IRequestHandler<SearchGroupMenuQuery , PagingResult<GroupMenuDTO>>
     {
         private readonly IGroupMenuService _service;
 
@@ -19,7 +19,7 @@ namespace Nexus.LAS.Application.UseCases.Queries.SearchMenu
             _service = service;
         }
 
-        public async Task<PagingResult<SearchGroupMenuDTO>> Handle(SearchGroupMenuQuery request, CancellationToken cancellationToken)
+        public async Task<PagingResult<GroupMenuDTO>> Handle(SearchGroupMenuQuery request, CancellationToken cancellationToken)
         {
             return await _service.SearchGroupMenus(request);
         }

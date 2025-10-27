@@ -6,6 +6,7 @@ using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.DTOs.GroupMenuDTOs;
 using Nexus.LAS.Application.UseCases.Commands;
+using Nexus.LAS.Application.UseCases.Lookup.Queries.GetAllMenusByGroup;
 using Nexus.LAS.Application.UseCases.Queries;
 using Nexus.LAS.Application.UseCases.Queries.SearchMenu;
 using Nexus.LAS.Application.UseCases.UserGroupUseCases.Commands;
@@ -25,11 +26,11 @@ public class GroupMenuService : GenericService<GroupMenu>, IGroupMenuService
         _repo = repo;
     }
 
-    public async Task<PagingResult<SearchGroupMenuDTO>> SearchGroupMenus(SearchGroupMenuQuery query)
+    public async Task<PagingResult<GroupMenuDTO>> SearchGroupMenus(SearchGroupMenuQuery query)
     {
         return await _repo.SearchGroupMenus(query);
     }
-    public async Task<List<SearchGroupMenuDTO>> GetAllGroupMenus(GetAllGroupMenuQuery query)
+    public async Task<List<GroupMenuDTO>> GetAllGroupMenus(GetAllGroupMenuQuery query)
     {
         return await _repo.GetAllGroupMenu(query);
     }
@@ -94,5 +95,10 @@ public class GroupMenuService : GenericService<GroupMenu>, IGroupMenuService
             }
         }
 
+    }
+
+    public async Task<PagingResult<GroupMenuDTO>> GetAllMenusByGroup(GetAllMenusByGroupQuery query)
+    {
+        return await _repo.GetAllMenusByGroup(query);
     }
 }

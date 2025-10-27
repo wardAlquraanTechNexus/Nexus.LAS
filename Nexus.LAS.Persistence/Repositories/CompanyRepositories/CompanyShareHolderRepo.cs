@@ -147,7 +147,12 @@ public class CompanyShareHolderRepo : GenericRepo<CompanyShareHolder>, ICompanyS
 
     public async Task<List<CompanyShareHolder>> GetListByCompanyId(int company)
     {
-        return await _dbSet.Where(x => x.CompanyId == company).ToListAsync();
+        return await _dbSet.Where(x => x.CompanyId == company).AsNoTracking().ToListAsync();
+    }
+    
+    public async Task<int> GetActiveCountByCompanyId(int company)
+    {
+        return await _dbSet.Where(x => x.CompanyId == company && x.ShareHolderActive == true).CountAsync();
     }
 
     public async Task<long> SumActiveSharesAsync(int company, int? excludeShareHolderId = null)

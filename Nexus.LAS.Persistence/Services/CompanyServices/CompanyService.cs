@@ -30,6 +30,8 @@ public class CompanyService : GenericService<Company>, ICompanyService
     private readonly ICompanyRepo _repo;
     private readonly IDynamicListRepo _dynamicListRepo;
     private readonly ICompanyActivityRepo _companyActivityRepo;
+    private readonly ICompanyCapitalRepo _companyCapitalRepo;
+    private readonly ICompanyShareHolderRepo _companyShareHolderRepo;
     IOptions<AppSettings> _appSettings;
     public CompanyService(
         NexusLASDbContext context,  
@@ -37,7 +39,9 @@ public class CompanyService : GenericService<Company>, ICompanyService
         IUserIdentityService userIdentityService, 
         ICompanyRepo repo , 
         IDynamicListRepo dynamicListRepo , 
-        ICompanyActivityRepo companyActivityRepo, 
+        ICompanyActivityRepo companyActivityRepo,
+        ICompanyCapitalRepo companyCapitalRepo,
+        ICompanyShareHolderRepo companyShareHolderRepo,
         IOptions<AppSettings> appSettings)
         : base(context, userIdentityService,repo)
     {
@@ -45,6 +49,8 @@ public class CompanyService : GenericService<Company>, ICompanyService
         _repo = repo;
         _dynamicListRepo = dynamicListRepo;
         _companyActivityRepo = companyActivityRepo;
+        _companyCapitalRepo = companyCapitalRepo;
+        _companyShareHolderRepo = companyShareHolderRepo;
         _appSettings = appSettings;
     }
     public async Task<GetCompanyDto> GetCompanyDto(int id)
@@ -52,6 +58,13 @@ public class CompanyService : GenericService<Company>, ICompanyService
         var company = await _repo.GetAsync(id);
 
         var companyDto = _mapper.Map<GetCompanyDto>(company);
+
+        var companyCapital = await _companyCapitalRepo.GetActiveCapitalByCompanyIdAsync(id);
+
+        companyDto.TotalShares = companyCapital?.NumberOfShares;
+        companyDto.CapitalAmount = companyCapital?.CapitalAmount;
+
+        companyDto.NumberOfPartners = await _companyShareHolderRepo.GetActiveCountByCompanyId(id);
 
         return companyDto;
     }
