@@ -64,11 +64,23 @@ BEGIN TRY
             )
         END AS [POBoxCity],
         -- Transform POBoxCountry from nvarchar to int using DynamicLists lookup
-        (
-            SELECT TOP 1 [DynamicListIDN]
-            FROM [NEXUS-RG-LAS-Production-DB].[dbo].[DynamicLists]
-            WHERE LOWER(LTRIM(RTRIM([MenuValue]))) = LOWER(LTRIM(RTRIM([POBoxCountry])))
-            AND [MainListID] = 1010 -- countries
+        -- If POBoxCountry not mappable, try to get country from POBoxCity
+        COALESCE(
+            (
+                SELECT TOP 1 [DynamicListIDN]
+                FROM [NEXUS-RG-LAS-Production-DB].[dbo].[DynamicLists]
+                WHERE LOWER(LTRIM(RTRIM([MenuValue]))) = LOWER(LTRIM(RTRIM([POBoxCountry])))
+                AND [MainListID] = 1010 -- countries
+            ),
+            (
+                SELECT TOP 1 country.[DynamicListIDN]
+                FROM [NEXUS-RG-LAS-Production-DB].[dbo].[DynamicLists] city
+                INNER JOIN [NEXUS-RG-LAS-Production-DB].[dbo].[DynamicLists] country
+                    ON city.[MainListID] = country.[DynamicListIDN]
+                    AND country.[MainListID] = 1010 -- countries
+                WHERE LOWER(LTRIM(RTRIM(city.[MenuValue]))) = LOWER(LTRIM(RTRIM([POBoxCity])))
+                AND city.[MainListID] = 194 -- cities category
+            )
         ) AS [POBoxCountry],
         [CreatedBy_IDN],        -- Maps to CreatedBy
         [CreatedBy_Date],       -- Maps to CreatedAt
@@ -83,13 +95,31 @@ BEGIN TRY
         WHERE [NEXUS-RG-LAS-Production-DB].[dbo].[CompaniesAddresses].[CompaniesAddressIDC] = [RGLAS].[dbo].[CompaniesAddresses].[CompaniesAddressIDC]
           AND [NEXUS-RG-LAS-Production-DB].[dbo].[CompaniesAddresses].[CompaniesAddressIDN] = [RGLAS].[dbo].[CompaniesAddresses].[CompaniesAddressIDN]
     )
-    -- Only insert records where POBoxCountry can be mapped to DynamicLists (NOT NULL constraint)
-    AND [POBoxCountry] IS NOT NULL
-    AND LTRIM(RTRIM([POBoxCountry])) != ''
-    AND EXISTS (
-        SELECT 1 FROM [NEXUS-RG-LAS-Production-DB].[dbo].[DynamicLists]
-        WHERE LOWER(LTRIM(RTRIM([MenuValue]))) = LOWER(LTRIM(RTRIM([POBoxCountry])))
-        AND [MainListID] = 1010
+    -- Only insert records where POBoxCountry can be mapped directly OR derived from POBoxCity (NOT NULL constraint)
+    AND (
+        (
+            [POBoxCountry] IS NOT NULL
+            AND LTRIM(RTRIM([POBoxCountry])) != ''
+            AND EXISTS (
+                SELECT 1 FROM [NEXUS-RG-LAS-Production-DB].[dbo].[DynamicLists]
+                WHERE LOWER(LTRIM(RTRIM([MenuValue]))) = LOWER(LTRIM(RTRIM([POBoxCountry])))
+                AND [MainListID] = 1010
+            )
+        )
+        OR
+        (
+            [POBoxCity] IS NOT NULL
+            AND LTRIM(RTRIM([POBoxCity])) != ''
+            AND EXISTS (
+                SELECT 1
+                FROM [NEXUS-RG-LAS-Production-DB].[dbo].[DynamicLists] city
+                INNER JOIN [NEXUS-RG-LAS-Production-DB].[dbo].[DynamicLists] country
+                    ON city.[MainListID] = country.[DynamicListIDN]
+                    AND country.[MainListID] = 1010
+                WHERE LOWER(LTRIM(RTRIM(city.[MenuValue]))) = LOWER(LTRIM(RTRIM([POBoxCity])))
+                AND city.[MainListID] = 194
+            )
+        )
     );
 
     -- Disable IDENTITY_INSERT after migration
@@ -104,15 +134,33 @@ BEGIN TRY
     SELECT @RGLASCount = COUNT(*) FROM [RGLAS].[dbo].[CompaniesAddresses];
     SELECT @ProductionAfter = COUNT(*) FROM [NEXUS-RG-LAS-Production-DB].[dbo].[CompaniesAddresses];
 
-    -- Count records that were skipped due to unmappable POBoxCountry
+    -- Count records that were skipped due to unmappable POBoxCountry (both direct and city-derived)
     SELECT @SkippedCount = COUNT(*)
     FROM [RGLAS].[dbo].[CompaniesAddresses]
-    WHERE [POBoxCountry] IS NULL
-    OR LTRIM(RTRIM([POBoxCountry])) = ''
-    OR NOT EXISTS (
-        SELECT 1 FROM [NEXUS-RG-LAS-Production-DB].[dbo].[DynamicLists]
-        WHERE LOWER(LTRIM(RTRIM([MenuValue]))) = LOWER(LTRIM(RTRIM([POBoxCountry])))
-        AND [MainListID] = 1010
+    WHERE NOT (
+        (
+            [POBoxCountry] IS NOT NULL
+            AND LTRIM(RTRIM([POBoxCountry])) != ''
+            AND EXISTS (
+                SELECT 1 FROM [NEXUS-RG-LAS-Production-DB].[dbo].[DynamicLists]
+                WHERE LOWER(LTRIM(RTRIM([MenuValue]))) = LOWER(LTRIM(RTRIM([POBoxCountry])))
+                AND [MainListID] = 1010
+            )
+        )
+        OR
+        (
+            [POBoxCity] IS NOT NULL
+            AND LTRIM(RTRIM([POBoxCity])) != ''
+            AND EXISTS (
+                SELECT 1
+                FROM [NEXUS-RG-LAS-Production-DB].[dbo].[DynamicLists] city
+                INNER JOIN [NEXUS-RG-LAS-Production-DB].[dbo].[DynamicLists] country
+                    ON city.[MainListID] = country.[DynamicListIDN]
+                    AND country.[MainListID] = 1010
+                WHERE LOWER(LTRIM(RTRIM(city.[MenuValue]))) = LOWER(LTRIM(RTRIM([POBoxCity])))
+                AND city.[MainListID] = 194
+            )
+        )
     );
 
     -- Count records that were actually migrated from RGLAS
@@ -177,16 +225,30 @@ BEGIN TRY
     -- Log records that were skipped
     IF @SkippedCount > 0
     BEGIN
-        PRINT 'SKIPPED RECORDS: The following records were NOT migrated due to unmappable POBoxCountry (NOT NULL constraint):';
+        PRINT 'SKIPPED RECORDS: The following records were NOT migrated due to unmappable POBoxCountry (neither direct nor city-derived):';
         DECLARE @SkippedRecords NVARCHAR(MAX) = '';
-        SELECT @SkippedRecords = @SkippedRecords + 'ID: ' + CAST([CompaniesAddressIDN] AS VARCHAR(10)) + ' (POBoxCountry: ''' + ISNULL(LTRIM(RTRIM([POBoxCountry])), 'NULL') + '''), '
+        SELECT @SkippedRecords = @SkippedRecords + 'ID: ' + CAST([CompaniesAddressIDN] AS VARCHAR(10)) + ' (POBoxCountry: ''' + ISNULL(LTRIM(RTRIM([POBoxCountry])), 'NULL') + ''', POBoxCity: ''' + ISNULL(LTRIM(RTRIM([POBoxCity])), 'NULL') + '''), '
         FROM [RGLAS].[dbo].[CompaniesAddresses]
-        WHERE [POBoxCountry] IS NULL
-        OR LTRIM(RTRIM([POBoxCountry])) = ''
-        OR NOT EXISTS (
-            SELECT 1 FROM [NEXUS-RG-LAS-Production-DB].[dbo].[DynamicLists]
-            WHERE LOWER(LTRIM(RTRIM([MenuValue]))) = LOWER(LTRIM(RTRIM([POBoxCountry])))
-            AND [MainListID] = 1010
+        WHERE NOT (
+            (
+                [POBoxCountry] IS NOT NULL
+                AND LTRIM(RTRIM([POBoxCountry])) != ''
+                AND EXISTS (
+                    SELECT 1 FROM [NEXUS-RG-LAS-Production-DB].[dbo].[DynamicLists]
+                    WHERE LOWER(LTRIM(RTRIM([MenuValue]))) = LOWER(LTRIM(RTRIM([POBoxCountry])))
+                    AND [MainListID] = 1010
+                )
+            )
+            OR
+            (
+                [POBoxCity] IS NOT NULL
+                AND LTRIM(RTRIM([POBoxCity])) != ''
+                AND EXISTS (
+                    SELECT 1 FROM [NEXUS-RG-LAS-Production-DB].[dbo].[DynamicLists] city
+                    WHERE LOWER(LTRIM(RTRIM(city.[MenuValue]))) = LOWER(LTRIM(RTRIM([POBoxCity])))
+                    AND city.[MainListID] = 194
+                    )
+            )
         );
 
         IF LEN(@SkippedRecords) > 2
@@ -205,9 +267,10 @@ BEGIN TRY
     PRINT 'IMPORTANT NOTES:';
     PRINT '- POBoxCity transformed from nvarchar to int using DynamicLists lookup (MainListID=194)';
     PRINT '- POBoxCountry transformed from nvarchar to int using DynamicLists lookup (MainListID=1010)';
-    PRINT '- Records with unmappable POBoxCountry are SKIPPED and logged above (NOT NULL constraint)';
-    PRINT '- No fallback values used - only exact matches are migrated';
-    PRINT '- Add unmapped countries to DynamicLists and re-run migration for skipped records';
+    PRINT '- If POBoxCountry not mappable, tries to derive country from POBoxCity.ParentIDN';
+    PRINT '- Records with unmappable POBoxCountry (direct or city-derived) are SKIPPED and logged above';
+    PRINT '- No fallback values used - only exact matches and city-derived countries are migrated';
+    PRINT '- Add unmapped countries/cities to DynamicLists and re-run migration for skipped records';
     PRINT '- AddressLine2, AddressLine3, POBoxumber: NULL values converted to empty strings';
     PRINT '- Column size changes: CompaniesAddressIDC (50->50), AddressLine fields (50->50)';
     PRINT '- Primary key changed from compound (CompaniesAddressIDC+CompaniesAddressIDN) to single (CompaniesAddressIDN)';
