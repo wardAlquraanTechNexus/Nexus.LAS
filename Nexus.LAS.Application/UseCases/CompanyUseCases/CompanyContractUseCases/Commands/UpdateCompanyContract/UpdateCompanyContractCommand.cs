@@ -16,5 +16,6 @@ public class UpdateCompanyContractCommand : UpdateBaseCommand
     public string? ContractDescription { get; set; } = string.Empty;
     public int? ContractStatus { get; set; }
     public IFormFile? File { get; set; }
+    public bool? RemoveFile { get; set; }
 
 }

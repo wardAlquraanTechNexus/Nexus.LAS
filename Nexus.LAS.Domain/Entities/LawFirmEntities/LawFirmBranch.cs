@@ -34,8 +34,7 @@ namespace Nexus.LAS.Domain.Entities.LawFirmEntities
         public int? CountryId { get; set; }
 
         [Column("City")]
-        [StringLength(50)]
-        public string? City { get; set; }
+        public int? City { get; set; }
 
         [Column("Phone1")]
         [StringLength(50)]

@@ -13,5 +13,6 @@ namespace Nexus.LAS.Application.DTOs
         public string EntityCode { get; set; }
         public string EntityType { get; set; }
         public DateTime CreatedAt { get; set; }
+        public string? FullName { get; set; }
     }
 }

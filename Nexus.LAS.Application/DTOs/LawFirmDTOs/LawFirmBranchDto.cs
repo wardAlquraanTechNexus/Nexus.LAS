@@ -6,7 +6,7 @@ namespace Nexus.LAS.Application.DTOs.LawFirmDTOs
         public int LawFirmId { get; set; }
         public string? BranchName { get; set; }
         public int? CountryId { get; set; }
-        public string? City { get; set; }
+        public int? City { get; set; }
         public string? Phone1 { get; set; }
         public string? Phone2 { get; set; }
         public string? Phone3 { get; set; }

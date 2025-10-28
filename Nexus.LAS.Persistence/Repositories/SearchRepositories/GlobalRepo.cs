@@ -38,6 +38,7 @@ namespace Nexus.LAS.Persistence.Repositories.SearchRepositories
                 EntityId = p.Id,
                 EntityIdc = EntityIDCs.Person,
                 EntityType = "Person",
+                FullName = p.PersonEnglishName,
                 CreatedAt = p.CreatedAt
             })
             .AsQueryable();
@@ -56,6 +57,7 @@ namespace Nexus.LAS.Persistence.Repositories.SearchRepositories
                 EntityId = p.Id,
                 EntityIdc = EntityIDCs.Company,
                 EntityType = "Company",
+                FullName = p.CompanyEnglishName,
                 CreatedAt = p.CreatedAt
 
             })
@@ -72,6 +74,7 @@ namespace Nexus.LAS.Persistence.Repositories.SearchRepositories
                 EntityId = p.Id,
                 EntityIdc = EntityIDCs.Properties,
                 EntityType = "Real Estate",
+                FullName = string.Empty,
                 CreatedAt = p.CreatedAt
 
             })
@@ -91,6 +94,7 @@ namespace Nexus.LAS.Persistence.Repositories.SearchRepositories
                 EntityId = p.Id,
                 EntityIdc = EntityIDCs.LawFirmIDC,
                 EntityType = "Law Firm",
+                FullName = p.EnglishName,
                 CreatedAt = p.CreatedAt
 
             })
@@ -106,6 +110,7 @@ namespace Nexus.LAS.Persistence.Repositories.SearchRepositories
                 EntityId = p.Id,
                 EntityIdc = EntityIDCs.Transactions,
                 EntityType = "Transaction",
+                FullName = string.Empty,
                 CreatedAt = p.CreatedAt
 
             })
@@ -122,6 +127,7 @@ namespace Nexus.LAS.Persistence.Repositories.SearchRepositories
                 EntityId = p.Id,
                 EntityIdc = EntityIDCs.FPCs,
                 EntityType = "FPC",
+                FullName = string.Empty,
                 CreatedAt = p.CreatedAt
 
             })

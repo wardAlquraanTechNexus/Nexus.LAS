@@ -111,6 +111,11 @@ public class CompanyContractService : GenericService<CompanyContract> , ICompany
                 var companyContract = _mapper.Map<CompanyContract>(command);
                 await _repo.UpdateAsync(companyContract);
 
+                if(command.RemoveFile is true)
+                {
+                    await _registerFileRepo.DeleteAsync(EntityIDCs.CompaniesContracts, command.Id);
+                }
+
                 if (command.File is not null)
                 {
 
