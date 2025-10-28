@@ -10,7 +10,7 @@ public class CompanyCapitalDto
     public DateTime? CapitalDate { get; set; }
     public double? CapitalAmount { get; set; }
     public double? NominalValueOfShare { get; set; }
-    public string ClassOfShares { get; set; }
+    public string? ClassOfShares { get; set; }
     public long? NumberOfShares { get; set; }
     public double? CapitalAuthorized { get; set; }
     public double? CapitalPaid { get; set; }

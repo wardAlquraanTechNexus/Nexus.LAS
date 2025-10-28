@@ -34,7 +34,7 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
         public double? NominalValueOfShare { get; set; }
 
         [MaxLength(50)]
-        public string ClassOfShares { get; set; }
+        public string? ClassOfShares { get; set; }
 
         [Column("CompaniesCapitalNumberOfShares")]
         public long? NumberOfShares { get; set; }

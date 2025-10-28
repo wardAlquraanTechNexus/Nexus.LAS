@@ -28,7 +28,7 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
         public int RegistersIdn { get; set; } //List of person or companies
 
         [Column("ShareHolderNumbersOfShares")]
-        public long NumbersOfShares { get; set; }
+        public long? NumbersOfShares { get; set; }
 
         [Column("ShareHolderDate")]
         public DateTime? ShareHolderDate { get; set; }

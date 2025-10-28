@@ -157,6 +157,6 @@ public class CompanyShareHolderRepo : GenericRepo<CompanyShareHolder>, ICompanyS
 
     public async Task<long> SumActiveSharesAsync(int company, int? excludeShareHolderId = null)
     {
-        return await _dbSet.Where(x => x.CompanyId == company && x.ShareHolderActive && (!excludeShareHolderId.HasValue || x.Id != excludeShareHolderId)).Select(x => x.NumbersOfShares).SumAsync();
+        return await _dbSet.Where(x => x.CompanyId == company && x.ShareHolderActive && (!excludeShareHolderId.HasValue || x.Id != excludeShareHolderId)).Select(x => x.NumbersOfShares ?? 0).SumAsync();
     }
 }

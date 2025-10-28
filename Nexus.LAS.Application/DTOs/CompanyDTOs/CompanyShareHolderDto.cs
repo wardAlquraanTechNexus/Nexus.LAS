@@ -8,7 +8,7 @@ public class CompanyShareHolderDto
 
     public int RegistersIdn { get; set; }
 
-    public long NumbersOfShares { get; set; }
+    public long? NumbersOfShares { get; set; }
 
     public DateTime? ShareHolderDate { get; set; }
 

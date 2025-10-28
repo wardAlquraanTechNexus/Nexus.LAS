@@ -1809,7 +1809,7 @@ GO
 INSERT [dbo].[DynamicLists] ([DynamicListIDC], [DynamicListIDN], [LinkedCategory], [MainListID], [MenuCategory], [MenuValue], [Active], [Rank], [CreatedBy], [CreatedAt], [ModifiedBy], [ModifiedAt], [IsDeleted], [DeletedBy], [DeletedAt]) VALUES (N'DL', 960, NULL, 999, N'Banks', N'Dubai Islamic Bank DIB', 1, 1, N'5', CAST(N'2025-05-16T17:34:51.1533333' AS DateTime2), NULL, NULL, 0, NULL, NULL)
 GO
 
-INSERT [dbo].[DynamicLists] ([DynamicListIDC], [DynamicListIDN], [MainListID], [MenuValue], [Active], [Rank], [CreatedBy], [CreatedAt], [ModifiedBy], [ModifiedAt], [IsDeleted], [DeletedBy], [DeletedAt], [LinkedCategory], [MenuCategory]) VALUES (N'DL', 1053, NULL, N'Class of shares', 1, 25, N'admin@rg.com', CAST(N'2025-09-11T07:50:06.8139469' AS DateTime2), NULL, NULL, 0, NULL, NULL, NULL, NULL)
+INSERT [dbo].[DynamicLists] ([DynamicListIDC], [DynamicListIDN], [MainListID], [MenuValue], [Active], [Rank], [CreatedBy], [CreatedAt], [ModifiedBy], [ModifiedAt], [IsDeleted], [DeletedBy], [DeletedAt], [LinkedCategory], [MenuCategory]) VALUES (N'DL', 1053, NULL, N'Class of Shares', 1, 25, N'admin@rg.com', CAST(N'2025-09-11T07:50:06.8139469' AS DateTime2), NULL, NULL, 0, NULL, NULL, NULL, NULL)
 GO
 INSERT [dbo].[DynamicLists] ([DynamicListIDC], [DynamicListIDN], [MainListID], [MenuValue], [Active], [Rank], [CreatedBy], [CreatedAt], [ModifiedBy], [ModifiedAt], [IsDeleted], [DeletedBy], [DeletedAt], [LinkedCategory], [MenuCategory]) VALUES (N'DL', 1054, 1053, N'Ordinary', 1, 0, N'admin@rg.com', CAST(N'2025-09-11T07:50:28.3017267' AS DateTime2), NULL, NULL, 0, NULL, NULL, NULL, NULL)
 GO
