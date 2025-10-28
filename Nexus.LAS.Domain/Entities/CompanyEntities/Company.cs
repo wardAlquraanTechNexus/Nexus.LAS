@@ -37,11 +37,6 @@ public class Company:BaseEntity
     public int? GroupCompanyIdn { get; set; }
     public int? RelevantCompanyIdn { get; set; }
     public int? LegalTypeIdn { get; set; }
-    [MaxLength(50)]
-    public string? CciNumber { get; set; }
-    public DateTime? CciIssueDate { get; set; }
-    public DateTime? CciExpiryDate { get; set; }
-    public bool? CciExpiryActiveReminder { get; set; }
     public int? PlaceOfRegistrationMainIdn { get; set; }
     public int? PlaceOfRegistrationSubIdn { get; set; }
     [Required]
