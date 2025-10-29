@@ -101,8 +101,8 @@ namespace Nexus.LAS.Persistence.DatabaseContext
             foreach (var entry in entries)
             {
                 // Check if IsDeleted was changed to true
-                var isDeletedCurrent = (bool)entry.CurrentValues["IsDeleted"];
-                var isDeletedOriginal = (bool)entry.OriginalValues["IsDeleted"];
+                var isDeletedCurrent = (bool)(entry.CurrentValues["IsDeleted"] ?? 0);
+                var isDeletedOriginal = (bool)(entry.OriginalValues["IsDeleted"] ?? 0);
 
                 if (!isDeletedOriginal && isDeletedCurrent)
                 {

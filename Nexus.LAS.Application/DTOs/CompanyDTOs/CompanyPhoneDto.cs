@@ -7,5 +7,6 @@ public class CompanyPhoneDto
     public bool? PhonePrimary { get; set; }
     public string? PhoneType { get; set; }
     public string? PhoneNumber { get; set; }
+    public string? PhoneNumberNote { get; set; }
 
 }

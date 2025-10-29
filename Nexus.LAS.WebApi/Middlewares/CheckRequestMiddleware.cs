@@ -30,7 +30,7 @@ namespace Nexus.LAS.WebApi.Middlewares
                         throw new NotAuthorizedException();
                     }
                     var email = user.FindFirst(ClaimTypes.Email)?.Value;
-                    var userDto = await _userService.FindUserByEmailOrUsename(email);
+                    var userDto = await _userService.FindUserByEmailOrUsename(email??"");
 
                     if (userDto is null)
                     {

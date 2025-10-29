@@ -64,7 +64,7 @@ public class CompanyService : GenericService<Company>, ICompanyService
         companyDto.TotalShares = companyCapital?.NumberOfShares;
         companyDto.CapitalAmount = companyCapital?.CapitalAmount;
 
-        companyDto.NumberOfPartners = await _companyShareHolderRepo.GetActiveCountByCompanyId(id);
+        companyDto.NumberOfPartners = companyCapital?.NumberOfPartners;  //await _companyShareHolderRepo.GetActiveCountByCompanyId(id);
 
         return companyDto;
     }

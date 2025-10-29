@@ -18,18 +18,11 @@ public class GetCompanyDto
     public int? GroupCompanyIdn { get; set; }
     public int? RelevantCompanyIdn { get; set; }
     public int? LegalTypeIdn { get; set; }
-    public string? CciNumber { get; set; }
-    public DateTime? CciIssueDate { get; set; }
-    public DateTime? CciExpiryDate { get; set; }
-    public bool? CciExpiryActiveReminder { get; set; }
     public int? PlaceOfRegistrationMainIdn { get; set; }
     public int? PlaceOfRegistrationSubIdn { get; set; }
     public double? CapitalAmount { get; set; }
     public long? TotalShares { get; set; }
     public int? NumberOfPartners { get; set; }
-    public DateTime? UpdateDate { get; set; }
-    public string UpdateDescription { get; set; }
-    public int? PersonsIdn { get; set; }
     public string FPCCode { get; set; }
     public bool Private { get; set; }
     public string CreatedBy { get; set; }

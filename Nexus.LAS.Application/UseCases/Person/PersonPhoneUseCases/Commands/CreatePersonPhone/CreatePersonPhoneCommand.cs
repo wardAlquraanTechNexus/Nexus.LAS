@@ -9,4 +9,5 @@ public class CreatePersonPhoneCommand : CreateBaseCommand
     public bool PhonePrimary { get; set; }
     public int? PhoneType { get; set; }
     public string PhoneNumber { get; set; }
+    public string? PhoneNumberNote { get; set; }
 }

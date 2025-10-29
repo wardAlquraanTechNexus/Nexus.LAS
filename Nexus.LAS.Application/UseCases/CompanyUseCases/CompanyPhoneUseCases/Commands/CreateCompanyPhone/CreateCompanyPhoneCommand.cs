@@ -12,4 +12,5 @@ public class CreateCompanyPhoneCommand : CreateBaseCommand
     [MinLength(6)]
     [MaxLength(14)]
     public string PhoneNumber { get; set; }
+    public string? PhoneNumberNote { get; set; }
 }

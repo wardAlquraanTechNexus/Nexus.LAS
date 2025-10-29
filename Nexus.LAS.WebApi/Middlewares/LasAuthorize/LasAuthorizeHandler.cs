@@ -41,7 +41,7 @@ namespace Nexus.LAS.WebApi.Middlewares
             var methodTypeAttr = endpoint?.Metadata.GetMetadata<ApiMethodTypeAttribute>();
             var methodType = methodTypeAttr?.Method ?? Domain.Constants.Enums.MethodType.Get;
 
-            var hasAccess = await _menuAuthorizationService.HasAccessAsync(userId, pathname, methodType);
+            var hasAccess = await _menuAuthorizationService.HasAccessAsync(userId??"", pathname, methodType);
             if (!hasAccess)
             {
                 context.Fail();

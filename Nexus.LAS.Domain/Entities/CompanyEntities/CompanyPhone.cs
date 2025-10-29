@@ -31,5 +31,8 @@ namespace Nexus.LAS.Domain.Entities.CompanyEntities
         [MaxLength(50)]
         [Column("PhoneNumber")]
         public string PhoneNumber { get; set; }
+
+        [Column("PhoneNumberNote")]
+        public string? PhoneNumberNote { get; set; }
     }
 }

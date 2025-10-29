@@ -27,4 +27,7 @@ public class PersonsPhone : BaseEntity
     [MinLength(6)]
     [MaxLength(50)]
     public string? PhoneNumber { get; set; }
+
+    [Column("PhoneNumberNote")]
+    public string? PhoneNumberNote { get; set; }
 }

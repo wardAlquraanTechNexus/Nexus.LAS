@@ -8,6 +8,7 @@ public class PersonPhoneDto
     public bool? PhonePrimary { get; set; }
     public int? PhoneType { get; set; }
     public string? PhoneNumber { get; set; }
+    public string? PhoneNumberNote { get; set; }
     public string? CreatedBy { get; set; }
     public DateTime? CreatedAt { get; set; }
     public string? ModifiedBy { get; set; }
