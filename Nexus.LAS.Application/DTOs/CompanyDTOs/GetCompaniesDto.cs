@@ -1,4 +1,5 @@
 ﻿using Nexus.LAS.Domain.Constants;
+using Nexus.LAS.Domain.Constants.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace Nexus.LAS.Application.DTOs.CompanyDTOs;
@@ -12,7 +13,7 @@ public class GetCompanyDto
     public string? CompanyArabicName { get; set; }
     public string? CompanyShortName { get; set; }
     public DateTime? IncorporationDate { get; set; }
-    public int CompanyStatus { get; set; }
+    public CommonStatus CompanyStatus { get; set; }
     public int? CompanyTypeIdn { get; set; }
     public int? CompanyClassIdn { get; set; }
     public int? GroupCompanyIdn { get; set; }

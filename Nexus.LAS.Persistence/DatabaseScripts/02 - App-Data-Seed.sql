@@ -174,13 +174,12 @@ BEGIN
     
     -- Document Tracking Sub-menus (Parent ID: 8)
     (40, 8, N'Add Document', N'Doc-Tracking/Add-Document', 1, N'Add new document for tracking', NULL, 0, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (41, 8, N'All Documents', N'All-Documents', 2, N'View all tracked documents', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
 
     -- Settings Sub-menus (Parent ID: 9) - Updated parent reference
-    (42, 9, N'Dynamic List', N'Dynamic-List', 1, N'Manage dynamic lists', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (43, 9, N'Menus', N'Menus', 2, N'Manage system menus', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (44, 9, N'Users', N'Users', 3, N'Define and manage users', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (45, 9, N'Groups', N'Groups', 5, N'Define groups', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL);
+    (41, 9, N'Dynamic List', N'Dynamic-List', 1, N'Manage dynamic lists', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (42, 9, N'Menus', N'Menus', 2, N'Manage system menus', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (43, 9, N'Users', N'Users', 3, N'Define and manage users', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (44, 9, N'Groups', N'Groups', 5, N'Define groups', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL);
 
 
     SET IDENTITY_INSERT [dbo].[Menus] OFF
@@ -225,10 +224,10 @@ IF NOT EXISTS (SELECT 1 FROM [dbo].[Users] WHERE [id] = 1)
 BEGIN
     SET IDENTITY_INSERT [dbo].[Users] ON
     
-    INSERT INTO [dbo].[Users] ([id], [Username], [LoginName], [NTLogin], [Persons_IDN], 
+    INSERT INTO [dbo].[Users] ([id], [Username], [NTLogin], [Persons_IDN], 
                               [CreatedBy], [CreatedAt], [ModifiedBy], [ModifiedAt], 
                               [IsDeleted], [DeletedBy], [DeletedAt])
-    VALUES (1, 'admin@rg.com', NULL, NULL, NULL, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL);
+    VALUES (1, 'admin@rg.com', NULL, NULL, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL);
     
     SET IDENTITY_INSERT [dbo].[Users] OFF
     PRINT 'Application users seeded successfully.'

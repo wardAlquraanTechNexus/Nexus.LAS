@@ -1,4 +1,6 @@
-﻿namespace Nexus.LAS.Application.DTOs.CompanyDTOs;
+﻿using Nexus.LAS.Domain.Constants.Enums;
+
+namespace Nexus.LAS.Application.DTOs.CompanyDTOs;
 
 public class CompanyDto
 {
@@ -20,6 +22,6 @@ public class CompanyDto
     public string PlaceOfRegistrationMain { get; set; }
     public string PlaceOfRegistrationSubIdn { get; set; }
     public string PlaceOfRegistrationSub { get; set; }
-    public int? CompanyStatus { get; set; }
+    public CommonStatus? CompanyStatus { get; set; }
     public bool Private { get; set; }
 }

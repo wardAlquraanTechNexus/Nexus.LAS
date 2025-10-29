@@ -2,6 +2,7 @@
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.DTOs.CompanyDTOs;
 using Nexus.LAS.Application.UseCases.Base;
+using Nexus.LAS.Domain.Constants.Enums;
 
 namespace Nexus.LAS.Application.UseCases.CompanyUseCases.Queries;
 
@@ -33,7 +34,7 @@ public class GetCompaniesQuery: BaseParams , IRequest<PagingResult<GetCompanyDto
             _status = value;
             if (!string.IsNullOrEmpty(_status))
             {
-                Statuses = _status.Split(',').Select(x=>Convert.ToInt32(x)).ToList();
+                Statuses = _status.Split(',').Select(x=>Enum.Parse<CommonStatus>(x)).ToList();
             }
             else
             {
@@ -44,7 +45,7 @@ public class GetCompaniesQuery: BaseParams , IRequest<PagingResult<GetCompanyDto
     }
     private string? _status;
 
-    public List<int> Statuses { get; set; } = new();
+    public List<CommonStatus> Statuses { get; set; } = new();
     public int? CapitalAmount { get; set; }
     public long? TotalShares { get; set; }
     public int? NumberOfPartners { get; set; }

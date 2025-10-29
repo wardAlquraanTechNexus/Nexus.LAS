@@ -1,4 +1,5 @@
-﻿using Nexus.LAS.Domain.Entities.Base;
+﻿using Nexus.LAS.Domain.Constants.Enums;
+using Nexus.LAS.Domain.Entities.Base;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -40,7 +41,7 @@ public class Company:BaseEntity
     public int? PlaceOfRegistrationMainIdn { get; set; }
     public int? PlaceOfRegistrationSubIdn { get; set; }
     [Required]
-    public int CompanyStatus { get; set; }
+    public CommonStatus CompanyStatus { get; set; }
     [Required]
     public bool Private { get; set; }
 }

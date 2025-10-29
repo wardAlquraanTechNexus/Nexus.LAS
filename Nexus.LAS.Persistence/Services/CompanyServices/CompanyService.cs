@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-using DocumentFormat.OpenXml.Office.CoverPageProps;
-using DocumentFormat.OpenXml.Vml.Office;
 using EFCore.BulkExtensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -12,11 +10,9 @@ using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.DTOs.CompanyDTOs;
 using Nexus.LAS.Application.Models;
 using Nexus.LAS.Application.UseCases.CompanyUseCases.Queries;
-using Nexus.LAS.Domain.Constants;
 using Nexus.LAS.Domain.Constants.Enums;
 using Nexus.LAS.Domain.Entities.CompanyEntities;
 using Nexus.LAS.Persistence.DatabaseContext;
-using Nexus.LAS.Persistence.Repositories;
 using Nexus.LAS.Persistence.Services.Base;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
@@ -84,13 +80,13 @@ public class CompanyService : GenericService<Company>, ICompanyService
         return await _repo.UpdateCompanyAsync(entity);
     }
 
-    public async Task<int> BulkChangeStatus(List<int> companyIds, int status)
+    public async Task<int> BulkChangeStatus(List<int> companyIds, CommonStatus status)
     {
         using var transaction = await _context.Database.BeginTransactionAsync();
 
         try
         {
-            var companys = await BulkEditProperty<int>(companyIds, nameof(Company.CompanyStatus), status);
+            var companys = await BulkEditProperty<CommonStatus>(companyIds, nameof(Company.CompanyStatus), status);
             await transaction.CommitAsync();
             return companys.Count;
 
@@ -170,7 +166,7 @@ public class CompanyService : GenericService<Company>, ICompanyService
 
     private void SetCodeIfActive(Company company)
     {
-        if(company.CompanyStatus == (int)CompanyStatus.Active)
+        if(company.CompanyStatus == CommonStatus.Active)
         {
             company.CompanyCode = "CC" + company.Id.ToString().PadLeft(6, '0');
         }

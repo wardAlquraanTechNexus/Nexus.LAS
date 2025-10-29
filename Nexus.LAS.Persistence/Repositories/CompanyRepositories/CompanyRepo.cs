@@ -77,7 +77,7 @@ public class CompanyRepo : GenericRepo<Company>, ICompanyRepo
     {
         entity.CompanyIdc = EntityIDCs.Company;
         entity.CompanyCode = "C000000";
-        entity.CompanyStatus = (int)CompanyStatus.New;
+        entity.CompanyStatus = CommonStatus.New;
         await _dbSet.AddAsync(entity);
         await _context.SaveChangesAsync();
         entity.CompanyCode = "CC" + entity.Id.ToString().PadLeft(6, '0');
@@ -90,7 +90,7 @@ public class CompanyRepo : GenericRepo<Company>, ICompanyRepo
         _context.Entry(entity).State = EntityState.Modified;
 
         // Optionally, handle CompanyCode generation if status changed to Active
-        if (entity.CompanyStatus == (int)CompanyStatus.Active && string.IsNullOrEmpty(entity.CompanyCode))
+        if (entity.CompanyStatus == CommonStatus.Active && string.IsNullOrEmpty(entity.CompanyCode))
         {
             entity.CompanyCode = "CC" + entity.Id.ToString().PadLeft(6, '0');
         }
