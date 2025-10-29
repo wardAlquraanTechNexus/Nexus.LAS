@@ -7,11 +7,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <!-- Exclude logs folder from compilation and publishing -->
     <Compile Remove="logs\**" />
     <Content Remove="logs\**" />
     <EmbeddedResource Remove="logs\**" />
     <None Remove="logs\**" />
   </ItemGroup>
+
+  <ItemGroup>
+    <!-- Exclude development/staging appsettings from publish -->
+    <Content Update="appsettings.Development.json" CopyToPublishDirectory="Never" />
+    <Content Update="appsettings.Staging.json" CopyToPublishDirectory="Never" />
+  </ItemGroup>
+
+  <Target Name="ExcludeLogsFromPublish" AfterTargets="ComputeFilesToPublish">
+    <!-- Remove any log files that might have been added during publish -->
+    <ItemGroup>
+      <ResolvedFileToPublish Remove="@(ResolvedFileToPublish)" Condition="$([System.String]::Copy('%(ResolvedFileToPublish.Identity)').Contains('logs'))" />
+      <ResolvedFileToPublish Remove="@(ResolvedFileToPublish)" Condition="$([System.String]::Copy('%(ResolvedFileToPublish.Identity)').EndsWith('.log'))" />
+      <ResolvedFileToPublish Remove="@(ResolvedFileToPublish)" Condition="$([System.String]::Copy('%(ResolvedFileToPublish.Identity)').Contains('log-'))" />
+    </ItemGroup>
+  </Target>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.6">

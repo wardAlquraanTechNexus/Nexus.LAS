@@ -32,6 +32,7 @@ BEGIN TRY
         [PhonePrimary],
         [PhoneType],                -- Transform from nvarchar to int (DynamicLists)
         [PhoneNumber],
+        [PhoneNumberNote],          -- New column for text data
         [CreatedBy],                -- Maps from CreatedBy_IDN
         [CreatedAt],                -- Maps from CreatedBy_Date
         [ModifiedBy],               -- Maps from UpdatedBy_IDN
@@ -51,14 +52,27 @@ BEGIN TRY
             ELSE (
                 SELECT TOP 1 [DynamicListIDN]
                 FROM [NEXUS-RG-LAS-Production-DB].[dbo].[DynamicLists]
-                WHERE LOWER(LTRIM(RTRIM([MenuValue]))) = LOWER(LTRIM(RTRIM([PhoneType])))
-                AND [MainListID] = 1024 -- personsPhones types (assuming same as persons)
+                WHERE [MenuValue] = LTRIM(RTRIM([PhoneType]))
+                AND [MainListID] = 1024 -- PersonsPhonesTypes
             )
         END AS [PhoneType],
-        [PhoneNumber],
-        [CreatedBy_IDN],            -- Maps to CreatedBy
+        -- Check if PhoneNumber contains text data; if numeric, use PhoneNumber, else set empty string
+        CASE
+            WHEN [PhoneNumber] IS NULL OR LTRIM(RTRIM([PhoneNumber])) = '' THEN ''
+            -- Check if contains letters or special characters (not numeric)
+            WHEN PATINDEX('%[^0-9+\-() ]%', LTRIM(RTRIM([PhoneNumber]))) > 0 THEN ''
+            ELSE LTRIM(RTRIM([PhoneNumber]))
+        END AS [PhoneNumber],
+        -- Check if PhoneNumber contains text data; if text, use PhoneNumberNote, else set empty string
+        CASE
+            WHEN [PhoneNumber] IS NULL OR LTRIM(RTRIM([PhoneNumber])) = '' THEN ''
+            -- Check if contains letters or special characters (not numeric)
+            WHEN PATINDEX('%[^0-9+\-() ]%', LTRIM(RTRIM([PhoneNumber]))) > 0 THEN LTRIM(RTRIM([PhoneNumber]))
+            ELSE ''
+        END AS [PhoneNumberNote],
+        (SELECT [LoginName] FROM [RGLAS].[dbo].[Users] WHERE [id] = [CreatedBy_IDN]),  -- Maps to CreatedBy with Username
         [CreatedBy_Date],           -- Maps to CreatedAt
-        [UpdatedBy_IDN],            -- Maps to ModifiedBy
+        (SELECT [LoginName] FROM [RGLAS].[dbo].[Users] WHERE [id] = [UpdatedBy_IDN]),  -- Maps to ModifiedBy with Username
         [UpdatedBy_Date],           -- Maps to ModifiedAt
         0,                          -- Default for IsDeleted
         NULL,                       -- Default for DeletedBy
@@ -78,6 +92,7 @@ BEGIN TRY
 
     -- Verify the migration
     DECLARE @RGLASCount INT, @ProductionAfter INT, @ActualMigrated INT, @PhoneTypeMapped INT;
+    DECLARE @PhoneNumberCount INT, @PhoneNumberNoteCount INT;
 
     SELECT @RGLASCount = COUNT(*) FROM [RGLAS].[dbo].[CompaniesPhones];
     SELECT @ProductionAfter = COUNT(*) FROM [NEXUS-RG-LAS-Production-DB].[dbo].[CompaniesPhones];
@@ -97,6 +112,16 @@ BEGIN TRY
     INNER JOIN [RGLAS].[dbo].[CompaniesPhones] r ON r.[CompaniesPhoneIDC] = p.[CompaniesPhoneIDC] AND r.[CompaniesPhoneIDN] = p.[CompaniesPhoneIDN]
     WHERE r.[PhoneType] IS NOT NULL AND r.[PhoneType] != '' AND p.[PhoneType] IS NOT NULL;
 
+    -- Count phone numbers routed to PhoneNumber field (numeric only)
+    SELECT @PhoneNumberCount = COUNT(*)
+    FROM [NEXUS-RG-LAS-Production-DB].[dbo].[CompaniesPhones]
+    WHERE [PhoneNumber] IS NOT NULL AND [PhoneNumber] != '';
+
+    -- Count phone numbers routed to PhoneNumberNote field (text data)
+    SELECT @PhoneNumberNoteCount = COUNT(*)
+    FROM [NEXUS-RG-LAS-Production-DB].[dbo].[CompaniesPhones]
+    WHERE [PhoneNumberNote] IS NOT NULL AND [PhoneNumberNote] != '';
+
     -- Report unmapped PhoneType values
     PRINT 'Unmapped PhoneType values that need to be added to DynamicLists (MainListID=1024):';
     DECLARE @UnmappedPhoneTypes NVARCHAR(MAX) = '';
@@ -106,7 +131,7 @@ BEGIN TRY
     AND LTRIM(RTRIM([PhoneType])) != ''
     AND NOT EXISTS (
         SELECT 1 FROM [NEXUS-RG-LAS-Production-DB].[dbo].[DynamicLists]
-        WHERE LOWER(LTRIM(RTRIM([MenuValue]))) = LOWER(LTRIM(RTRIM([PhoneType])))
+        WHERE [MenuValue] = LTRIM(RTRIM([PhoneType]))
         AND [MainListID] = 1024
     )
     GROUP BY [PhoneType];
@@ -121,12 +146,17 @@ BEGIN TRY
     PRINT 'RGLAS total records: ' + CAST(@RGLASCount AS VARCHAR(10));
     PRINT 'Records migrated from RGLAS: ' + CAST(@ActualMigrated AS VARCHAR(10));
     PRINT 'PhoneType successful mappings: ' + CAST(@PhoneTypeMapped AS VARCHAR(10));
+    PRINT 'Phone numbers with numeric data (stored in PhoneNumber): ' + CAST(@PhoneNumberCount AS VARCHAR(10));
+    PRINT 'Phone numbers with text data (stored in PhoneNumberNote): ' + CAST(@PhoneNumberNoteCount AS VARCHAR(10));
     PRINT 'Total records in Production after migration: ' + CAST(@ProductionAfter AS VARCHAR(10));
     PRINT '';
     PRINT 'IMPORTANT NOTES:';
     PRINT '- PhoneType transformed from nvarchar to int using DynamicLists lookup (MainListID=1024)';
-    PRINT '- PhoneNumber kept as-is from source (no cleaning applied)';
-    PRINT '- Column mappings: CreatedBy_IDN->CreatedBy, CreatedBy_Date->CreatedAt, UpdatedBy_IDN->ModifiedBy, UpdatedBy_Date->ModifiedAt';
+    PRINT '- PhoneNumber: Text data automatically moved to PhoneNumberNote field';
+    PRINT '- PhoneNumber: Only numeric values (0-9, +, -, (), spaces) are stored in PhoneNumber field';
+    PRINT '- PhoneNumberNote: Contains any phone numbers with letters or non-numeric characters';
+    PRINT '- Column mappings: CreatedBy_IDN->Username (from Users.LoginName), UpdatedBy_IDN->Username (from Users.LoginName)';
+    PRINT '- Column mappings: CreatedBy_Date->CreatedAt, UpdatedBy_Date->ModifiedAt';
     PRINT '- Added standard audit columns: IsDeleted, DeletedBy, DeletedAt with default values';
     PRINT '- Column size changes: CompaniesPhoneIDC (50->50)';
     PRINT '- Primary key changed from compound (CompaniesPhoneIDC+CompaniesPhoneIDN) to single (CompaniesPhoneIDN)';

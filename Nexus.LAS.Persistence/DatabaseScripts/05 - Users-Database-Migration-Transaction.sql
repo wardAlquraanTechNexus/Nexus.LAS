@@ -6,7 +6,7 @@ BEGIN TRANSACTION;
 BEGIN TRY
     -- Check if target table is empty before proceeding
     DECLARE @ExistingCount INT;
-    SELECT @ExistingCount = COUNT(*) FROM [NEXUS-RG-LAS-Production-DB].[dbo].[Users];
+    SELECT @ExistingCount = COUNT(*) FROM [NEXUS-LAS-RG-DB].[dbo].[Users];
 
     IF @ExistingCount > 0
     BEGIN
@@ -19,13 +19,13 @@ BEGIN TRY
     END
 
     -- Disable constraints temporarily for better performance
-    ALTER TABLE [NEXUS-RG-LAS-Production-DB].[dbo].[Users] NOCHECK CONSTRAINT ALL;
+    ALTER TABLE [NEXUS-LAS-RG-DB].[dbo].[Users] NOCHECK CONSTRAINT ALL;
 
     -- Enable IDENTITY_INSERT to preserve original IDs
-    SET IDENTITY_INSERT [NEXUS-RG-LAS-Production-DB].[dbo].[Users] ON;
+    SET IDENTITY_INSERT [NEXUS-LAS-RG-DB].[dbo].[Users] ON;
 
     -- Insert data from RGLAS Users table with column mapping
-    INSERT INTO [NEXUS-RG-LAS-Production-DB].[dbo].[Users] (
+    INSERT INTO [NEXUS-LAS-RG-DB].[dbo].[Users] (
         [id],
         [Username],             -- New column, using LoginName as default
         [NTLogin],
@@ -52,25 +52,25 @@ BEGIN TRY
         NULL                    -- Default for DeletedAt
     FROM [RGLAS].[dbo].[Users]
     WHERE NOT EXISTS (
-        SELECT 1 FROM [NEXUS-RG-LAS-Production-DB].[dbo].[Users]
-        WHERE [NEXUS-RG-LAS-Production-DB].[dbo].[Users].[id] = [RGLAS].[dbo].[Users].[id]
+        SELECT 1 FROM [NEXUS-LAS-RG-DB].[dbo].[Users]
+        WHERE [NEXUS-LAS-RG-DB].[dbo].[Users].[id] = [RGLAS].[dbo].[Users].[id]
     );
 
     -- Disable IDENTITY_INSERT after migration
-    SET IDENTITY_INSERT [NEXUS-RG-LAS-Production-DB].[dbo].[Users] OFF;
+    SET IDENTITY_INSERT [NEXUS-LAS-RG-DB].[dbo].[Users] OFF;
 
     -- Re-enable constraints
-    ALTER TABLE [NEXUS-RG-LAS-Production-DB].[dbo].[Users] CHECK CONSTRAINT ALL;
+    ALTER TABLE [NEXUS-LAS-RG-DB].[dbo].[Users] CHECK CONSTRAINT ALL;
 
     -- Verify the migration
     DECLARE @RGLASCount INT, @ProductionAfter INT, @ActualMigrated INT;
 
     SELECT @RGLASCount = COUNT(*) FROM [RGLAS].[dbo].[Users];
-    SELECT @ProductionAfter = COUNT(*) FROM [NEXUS-RG-LAS-Production-DB].[dbo].[Users];
+    SELECT @ProductionAfter = COUNT(*) FROM [NEXUS-LAS-RG-DB].[dbo].[Users];
 
     -- Count records that were actually migrated from RGLAS
     SELECT @ActualMigrated = COUNT(*)
-    FROM [NEXUS-RG-LAS-Production-DB].[dbo].[Users] p
+    FROM [NEXUS-LAS-RG-DB].[dbo].[Users] p
     WHERE EXISTS (
         SELECT 1 FROM [RGLAS].[dbo].[Users] r
         WHERE r.[id] = p.[id]
@@ -99,7 +99,7 @@ BEGIN TRY
 END TRY
 BEGIN CATCH
     -- Ensure IDENTITY_INSERT is turned off even on error
-    SET IDENTITY_INSERT [NEXUS-RG-LAS-Production-DB].[dbo].[Users] OFF;
+    SET IDENTITY_INSERT [NEXUS-LAS-RG-DB].[dbo].[Users] OFF;
 
     ROLLBACK TRANSACTION;
 

@@ -136,9 +136,9 @@ BEGIN TRY
             ELSE 0  -- Default to New if unknown status
         END AS [CompanyStatus],
         [Private],
-        [CreatedBy_IDN],        -- Maps to CreatedBy
+        (SELECT [LoginName] FROM [RGLAS].[dbo].[Users] WHERE [id] = [CreatedBy_IDN]),  -- Maps to CreatedBy with Username
         [CreatedBy_Date],       -- Maps to CreatedAt
-        [UpdatedBy_IDN],        -- Maps to ModifiedBy
+        (SELECT [LoginName] FROM [RGLAS].[dbo].[Users] WHERE [id] = [UpdatedBy_IDN]),  -- Maps to ModifiedBy with Username
         [UpdatedBy_Date],       -- Maps to ModifiedAt
         0,                      -- Default for IsDeleted
         NULL,                   -- Default for DeletedBy
