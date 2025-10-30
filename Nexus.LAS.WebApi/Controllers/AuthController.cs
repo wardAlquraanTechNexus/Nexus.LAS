@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.Contracts.Presistence.Services;
 using Nexus.LAS.Application.Exceptions;
@@ -15,9 +16,11 @@ namespace Nexus.LAS.WebApi.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<AuthResponse>> Login(AuthRequest request)
         {
-            var res = await _userService.Login(request);
+            // Use the authentication service to get token + refresh token
+            var res = await _authenticationService.Login(request);
+
             var menus = await _menuService.GetAllMenusByUsername(res.UserName);
-            if(menus is null || menus.Count == 0)
+            if (menus is null || menus.Count == 0)
             {
                 throw new Exception("You don't have access. Please contact administrator.");
             }
@@ -33,44 +36,79 @@ namespace Nexus.LAS.WebApi.Controllers
             if (validationResult != null)
             {
                 throw new BadRequestException("Email already exists");
-
             }
 
             var response = await _authenticationService.Register(request);
-
             return Ok(response);
-
         }
 
-        [HttpGet(nameof(RefreshToken))]
+        // Use POST for refresh to avoid CSRF issues with GET and to follow common practice
+        [HttpPost(nameof(RefreshToken))]
         public async Task<ActionResult<AuthResponse>> RefreshToken()
         {
             var refreshToken = Request.Cookies[refreshTokenCookie];
-            var response = await _authenticationService.RefreshToken(refreshToken);
-            SetRefreshTokenInCookie(response.RefreshToken, response.RefreshTokenExpiration);
-            return Ok(response);
+            if (string.IsNullOrEmpty(refreshToken))
+                return Unauthorized(new { message = "Refresh token is missing." });
+
+            try
+            {
+                var response = await _authenticationService.RefreshToken(refreshToken);
+                SetRefreshTokenInCookie(response.RefreshToken, response.RefreshTokenExpiration);
+                return Ok(response);
+            }
+            catch (NotAuthorizedException)
+            {
+                // clear cookie on invalid token
+                Response.Cookies.Delete(refreshTokenCookie);
+                return Unauthorized(new { message = "Invalid or expired refresh token." });
+            }
         }
-        [HttpGet(nameof(RevokeToken))]
+
+        [HttpPost(nameof(RevokeToken))]
         public async Task<IActionResult> RevokeToken()
         {
             var refreshToken = Request.Cookies[refreshTokenCookie];
-            var res = await _authenticationService.RevokeTokenAsync(refreshToken);
-            if (!res)
+            if (string.IsNullOrEmpty(refreshToken))
+                return BadRequest(new { message = "Refresh token is required." });
+
+            var revoked = await _authenticationService.RevokeTokenAsync(refreshToken);
+            if (!revoked)
             {
                 return BadRequest(new { message = "Token revocation failed" });
             }
-            return Ok(res);
+
+            // Remove cookie client-side
+            Response.Cookies.Delete(refreshTokenCookie);
+            return Ok(new { message = "Token revoked" });
         }
+
         private void SetRefreshTokenInCookie(string refreshToken, DateTime expires)
         {
-            var cookieOption = new CookieOptions()
+            var isHttps = Request.IsHttps;
+
+            var cookieOptions = new CookieOptions
             {
-                HttpOnly = true, 
-                Expires = expires,
+                HttpOnly = true,
+                Secure = isHttps, // true for HTTPS, false for localhost
+                SameSite = SameSiteMode.None , // Chrome-safe
+                Path = "/",
+                Expires = expires.ToUniversalTime()
             };
 
-            Response.Cookies.Append(refreshTokenCookie, refreshToken, cookieOption);
+            Response.Cookies.Append(refreshTokenCookie, refreshToken, cookieOptions);
         }
+        [HttpPost("logout")]
+        public IActionResult Logout()
+        {
+            // Clear the refresh token cookie
+            Response.Cookies.Delete(refreshTokenCookie, new CookieOptions
+            {
+                Path = "/",
+                SameSite = SameSiteMode.Lax,
+                Secure = false // Match your cookie creation settings
+            });
 
+            return Ok(new { message = "Logged out successfully" });
+        }
     }
 }

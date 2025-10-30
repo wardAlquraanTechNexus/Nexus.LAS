@@ -165,14 +165,18 @@ namespace Nexus.LAS.Identity.Services
 
         private RefreshToken GenerateRefreshToken()
         {
-            var randomNumber = new byte[32];
-            using RNGCryptoServiceProvider generator = new RNGCryptoServiceProvider();
-            generator.GetBytes(randomNumber);
+            // Use a cryptographically secure RNG and produce a URL-safe token
+            var randomBytes = new byte[64];
+            RandomNumberGenerator.Fill(randomBytes);
+
+            var token = Base64UrlEncoder.Encode(randomBytes);
+
             return new RefreshToken
             {
-                Token = Convert.ToBase64String(randomNumber),
-                ExpiresOn = DateTime.UtcNow.AddMinutes(_jwtSettings.DurationInMinutes*2),
-                CreatedOn = DateTime.UtcNow
+                Token = token,
+                ExpiresOn = DateTime.UtcNow.AddMinutes(_jwtSettings.DurationInMinutes * 2),
+                CreatedOn = DateTime.UtcNow,
+                RevokedOn = null,
             };
 
         }
@@ -189,7 +193,8 @@ namespace Nexus.LAS.Identity.Services
             {
                 throw new NotAuthorizedException("Inactive token");
             }
-            refreshToken.RevokedOn = DateTime.UtcNow;
+            // mark the old token as revoked and inactive
+            refreshToken.RevokedOn = DateTime.Now;
 
             var newRefreshToken = GenerateRefreshToken();
             user.RefreshTokens.Add(newRefreshToken);

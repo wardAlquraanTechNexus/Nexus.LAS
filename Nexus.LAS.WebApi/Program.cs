@@ -10,6 +10,7 @@ using Nexus.LAS.WebApi.Middlewares;
 using QuestPDF.Infrastructure;
 using Serilog;
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.CookiePolicy;
 
 
 // Set QuestPDF license once at the start
@@ -124,10 +125,12 @@ app.UseRequestTimeLogging();
 // 5. CORS
 app.UseCors("all");
 
-// 6. Response caching
+// 6. Cookie policy (must run before any middleware that issues/reads cookies)
+
+// 7. Response caching
 app.UseResponseCaching();
 
-// 7. Authentication and Authorization
+// 8. Authentication and Authorization
 app.UseAuthentication();
 app.UseAuthorization();
 
@@ -142,7 +145,7 @@ app.Use(async (context, next) =>
     }
 });
 
-// 8. Health checks endpoints
+// 9. Health checks endpoints
 app.MapHealthChecks("/health");
 app.MapHealthChecks("/health/ready");
 app.MapHealthChecks("/health/live", new Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions
@@ -150,7 +153,7 @@ app.MapHealthChecks("/health/live", new Microsoft.AspNetCore.Diagnostics.HealthC
     Predicate = check => check.Tags.Contains("live") || check.Name == "self"
 });
 
-// 9. Map controllers
+// 10. Map controllers
 app.MapControllers();
 
 // Run the application
