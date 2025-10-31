@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Nexus.LAS.Persistence.DatabaseContext;
 
@@ -11,9 +12,11 @@ using Nexus.LAS.Persistence.DatabaseContext;
 namespace Nexus.LAS.Persistence.Migrations
 {
     [DbContext(typeof(NexusLASDbContext))]
-    partial class NexusLASDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251031175332_Person-nationaly-change-dt")]
+    partial class Personnationalychangedt
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -122,7 +125,7 @@ namespace Nexus.LAS.Persistence.Migrations
                         .IsUnique()
                         .HasDatabaseName("IX_Companies_CompanyShortName_Unique");
 
-                    b.ToTable("Companies", (string)null);
+                    b.ToTable("Companies");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompanyAccountSignatory", b =>
@@ -199,7 +202,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CompaniesAccountSignatory", (string)null);
+                    b.ToTable("CompaniesAccountSignatory");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompanyActivity", b =>
@@ -249,7 +252,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CompaniesActivities", (string)null);
+                    b.ToTable("CompaniesActivities");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompanyAddress", b =>
@@ -333,7 +336,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CompaniesAddresses", (string)null);
+                    b.ToTable("CompaniesAddresses");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompanyBankAccount", b =>
@@ -404,7 +407,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CompaniesBankAccount", (string)null);
+                    b.ToTable("CompaniesBankAccount");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompanyBoardMember", b =>
@@ -474,7 +477,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasIndex("PersonId");
 
-                    b.ToTable("CompaniesBoardMembers", (string)null);
+                    b.ToTable("CompaniesBoardMembers");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompanyCapital", b =>
@@ -562,7 +565,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CompaniesCapitals", (string)null);
+                    b.ToTable("CompaniesCapitals");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompanyChamberOfCommerce", b =>
@@ -636,7 +639,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CompaniesChamberOfCommerces", (string)null);
+                    b.ToTable("CompaniesChamberOfCommerces");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompanyContract", b =>
@@ -710,7 +713,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CompaniesContracts", (string)null);
+                    b.ToTable("CompaniesContracts");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompanyEmail", b =>
@@ -766,7 +769,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CompaniesEmails", (string)null);
+                    b.ToTable("CompaniesEmails");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompanyLeaseContract", b =>
@@ -824,7 +827,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CompaniesLeaseContracts", (string)null);
+                    b.ToTable("CompaniesLeaseContracts");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompanyLeaseContractRegister", b =>
@@ -870,7 +873,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CompaniesLeaseContractRegisters", (string)null);
+                    b.ToTable("CompaniesLeaseContractRegisters");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompanyLicense", b =>
@@ -947,7 +950,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CompaniesLicenses", (string)null);
+                    b.ToTable("CompaniesLicenses");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompanyOtherContract", b =>
@@ -1003,7 +1006,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CompaniesOtherContracts", (string)null);
+                    b.ToTable("CompaniesOtherContracts");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompanyPersonInCharge", b =>
@@ -1083,7 +1086,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasIndex("PersonIdn");
 
-                    b.ToTable("CompaniesPersonInCharges", (string)null);
+                    b.ToTable("CompaniesPersonInCharges");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompanyPhone", b =>
@@ -1148,7 +1151,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CompaniesPhones", (string)null);
+                    b.ToTable("CompaniesPhones");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompanyShareHolder", b =>
@@ -1222,7 +1225,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("CompaniesShareHolders", (string)null);
+                    b.ToTable("CompaniesShareHolders");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.DocumentEntities.DocumentTracking", b =>
@@ -1298,7 +1301,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasIndex("PersonId");
 
-                    b.ToTable("DocumentTrackings", (string)null);
+                    b.ToTable("DocumentTrackings");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.DocumentEntities.DocumentTrackingAction", b =>
@@ -1359,7 +1362,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DocumentTrackingsActions", (string)null);
+                    b.ToTable("DocumentTrackingsActions");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.FPC", b =>
@@ -1426,7 +1429,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FPCs", (string)null);
+                    b.ToTable("FPCs");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.FPCOD", b =>
@@ -1481,7 +1484,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FPCsODs", (string)null);
+                    b.ToTable("FPCsODs");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.FPCODAction", b =>
@@ -1540,7 +1543,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FPCsODsActions", (string)null);
+                    b.ToTable("FPCsODsActions");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.LawFirmEntities.LawFirm", b =>
@@ -1628,7 +1631,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("LawFirms", (string)null);
+                    b.ToTable("LawFirms");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.LawFirmEntities.LawFirmBranch", b =>
@@ -1722,7 +1725,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("LawFirmsBranches", (string)null);
+                    b.ToTable("LawFirmsBranches");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.LawFirmEntities.LawFirmCounsel", b =>
@@ -1776,7 +1779,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("LawFirmCounsels", (string)null);
+                    b.ToTable("LawFirmCounsels");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.LawFirmEntities.LawFirmExpertise", b =>
@@ -1828,7 +1831,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("LawFirmsExpertises", (string)null);
+                    b.ToTable("LawFirmsExpertises");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.LawFirmEntities.LawFirmPerson", b =>
@@ -1890,7 +1893,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("LawFirmsPersons", (string)null);
+                    b.ToTable("LawFirmsPersons");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.Lookup.DynamicList", b =>
@@ -1953,7 +1956,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("DynamicListIdC", "Id");
 
-                    b.ToTable("DynamicLists", (string)null);
+                    b.ToTable("DynamicLists");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.Lookup.Group", b =>
@@ -2000,7 +2003,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Groups", (string)null);
+                    b.ToTable("Groups");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.Lookup.GroupMenu", b =>
@@ -2070,7 +2073,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasIndex("MenuId");
 
-                    b.ToTable("GroupsMenus", (string)null);
+                    b.ToTable("GroupsMenus");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.Lookup.Menu", b =>
@@ -2138,7 +2141,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasIndex("ParentId");
 
-                    b.ToTable("Menus", (string)null);
+                    b.ToTable("Menus");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.PersonEntities.Person", b =>
@@ -2234,7 +2237,7 @@ namespace Nexus.LAS.Persistence.Migrations
                         .HasDatabaseName("IX_Persons_PersonShortName_Unique")
                         .HasFilter("[PersonShortName] IS NOT NULL");
 
-                    b.ToTable("Persons", (string)null);
+                    b.ToTable("Persons");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.PersonEntities.PersonsAddress", b =>
@@ -2309,7 +2312,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PersonsAddresses", (string)null);
+                    b.ToTable("PersonsAddresses");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.PersonEntities.PersonsCapacity", b =>
@@ -2368,7 +2371,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("PersonsCapacityIdc", "Id");
 
-                    b.ToTable("PersonsCapacities", (string)null);
+                    b.ToTable("PersonsCapacities");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.PersonEntities.PersonsEmail", b =>
@@ -2428,7 +2431,7 @@ namespace Nexus.LAS.Persistence.Migrations
                         .IsUnique()
                         .HasDatabaseName("IX_PersonsEmails_Email_Unique");
 
-                    b.ToTable("PersonsEmails", (string)null);
+                    b.ToTable("PersonsEmails");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.PersonEntities.PersonsIDDetail", b =>
@@ -2507,7 +2510,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PersonsIDDetails", (string)null);
+                    b.ToTable("PersonsIDDetails");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.PersonEntities.PersonsOtherDocument", b =>
@@ -2561,7 +2564,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PersonsOtherDocuments", (string)null);
+                    b.ToTable("PersonsOtherDocuments");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.PersonEntities.PersonsPhone", b =>
@@ -2623,7 +2626,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PersonsPhones", (string)null);
+                    b.ToTable("PersonsPhones");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.PropertyEntities.Property", b =>
@@ -2754,7 +2757,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Properties", (string)null);
+                    b.ToTable("Properties");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.PropertyEntities.PropertyDocument", b =>
@@ -2823,7 +2826,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PropertyDocuments", (string)null);
+                    b.ToTable("PropertyDocuments");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.PropertyEntities.PropertyLink", b =>
@@ -2880,7 +2883,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PropertyLinks", (string)null);
+                    b.ToTable("PropertyLinks");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.PropertyEntities.PropertyOwner", b =>
@@ -2951,7 +2954,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PropertiesOwners", (string)null);
+                    b.ToTable("PropertiesOwners");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.PropertyEntities.PropertyStatus", b =>
@@ -2998,7 +3001,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PropertiesStatus", (string)null);
+                    b.ToTable("PropertiesStatus");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.RegisterEntities.RegisterFile", b =>
@@ -3056,7 +3059,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("tblFiles", (string)null);
+                    b.ToTable("tblFiles");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.RegisterEntities.RegistersCode", b =>
@@ -3091,7 +3094,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Code");
 
-                    b.ToTable("RegistersCodes", (string)null);
+                    b.ToTable("RegistersCodes");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.RegisterEntities.RegistersNote", b =>
@@ -3151,7 +3154,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("RegistersNoteIdc", "Id");
 
-                    b.ToTable("RegistersNotes", (string)null);
+                    b.ToTable("RegistersNotes");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.TransactionEntities.Transaction", b =>
@@ -3217,7 +3220,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Transactions", (string)null);
+                    b.ToTable("Transactions");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.TransactionEntities.TransactionAction", b =>
@@ -3289,7 +3292,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasIndex("PersonId");
 
-                    b.ToTable("TransactionsActions", (string)null);
+                    b.ToTable("TransactionsActions");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.TransactionEntities.TransactionInvoice", b =>
@@ -3363,7 +3366,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TransactionsInvoices", (string)null);
+                    b.ToTable("TransactionsInvoices");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.TransactionEntities.TransactionOtf", b =>
@@ -3421,7 +3424,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TransactionsOTFs", (string)null);
+                    b.ToTable("TransactionsOTFs");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.TransactionEntities.TransactionRegister", b =>
@@ -3481,7 +3484,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasIndex("TransactionId");
 
-                    b.ToTable("TransactionsRegisters", (string)null);
+                    b.ToTable("TransactionsRegisters");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.UserGroupEntities.User", b =>
@@ -3531,7 +3534,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasIndex("PersonsIdN");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.UserGroupEntities.UserGroup", b =>
@@ -3577,7 +3580,7 @@ namespace Nexus.LAS.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserGroups", (string)null);
+                    b.ToTable("UserGroups");
                 });
 
             modelBuilder.Entity("Nexus.LAS.Domain.Entities.CompanyEntities.CompanyBoardMember", b =>

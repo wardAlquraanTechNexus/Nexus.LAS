@@ -8,5 +8,22 @@ public class CreatePersonCommand : CreateBaseCommand
     public string PersonArabicName { get; set; } = null!;
     public string PersonShortName { get; set; } = null!;
     public DateTime? DateOfBirth { get; set; }
-    public int? Nationality { get; set; }
+    public string? Nationality { get; set; }
+    public List<int>? NationalityIds 
+    { 
+        get => _nationalityIds;
+        set
+        {
+            _nationalityIds = value;
+            if (value is not null && value.Any())
+            {
+                Nationality = string.Join(",", value);
+            }
+            else
+            {
+                Nationality = null;
+            }
+        }
+    }
+    public List<int>? _nationalityIds;
 }

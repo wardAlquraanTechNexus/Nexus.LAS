@@ -15,7 +15,24 @@ public class GetPersonsDto
     public string FPCCode { get; set; }
     public bool Private { get; set; }
     public DateTime? DateOfBirth { get; set; }
-    public int? Nationality { get; set; }
+    public string? Nationality
+    {
+        get => _nationality;
+        set
+        {
+            _nationality = value;
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                NationalityIds = new();
+            }
+            else
+            {
+                NationalityIds = value.Split(',').Select(idStr => int.Parse(idStr.Trim())).ToList();
+            }
+        }
+    }
+    private string? _nationality;
+    public List<int>? NationalityIds { get; set; }
 
     // Auditing fields
     [IgnoreOnExport]

@@ -1,10 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Nexus.LAS.Domain.Entities;
 using Nexus.LAS.Domain.Entities.Lookup;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Nexus.LAS.Persistence.DatabaseContext
@@ -28,7 +30,15 @@ namespace Nexus.LAS.Persistence.DatabaseContext
             
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(NexusLASDbContext).Assembly);
 
-            
+            //modelBuilder.Entity<Person>(entity =>
+            //{
+            //    entity.Property(e => e.Nationality)
+            //            .HasConversion(
+            //                v => Converters.SerializeList(v),
+            //                v => Converters.DeserializeList(v)
+            //            )
+            //            .HasColumnType("nvarchar(max)");
+            //});
 
         }
     }

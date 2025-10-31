@@ -59,10 +59,6 @@ public class PersonRepo : GenericRepo<Person>, IPersonRepo
             personsQueryable = personsQueryable.Where(person => person.PersonShortName != null && person.PersonShortName.ToLower() == personQuery.PersonShortName.ToLower());
         }
 
-        if (personQuery.Nationality.HasValue)
-        {
-            personsQueryable = personsQueryable.Where(person => person.Nationality == personQuery.Nationality.Value);
-        }
 
         if (personQuery.Privates.Any())
         {
@@ -73,7 +69,21 @@ public class PersonRepo : GenericRepo<Person>, IPersonRepo
         {
             personsQueryable = personsQueryable.Where(person => personQuery.Statuses.Contains(person.PersonStatus.Value));
         }
-        
+
+        if (personQuery.Nationality.HasValue)
+        {
+            var nationalityId = personQuery.Nationality.Value.ToString();
+
+            personsQueryable = personsQueryable
+                .Where(person => !string.IsNullOrEmpty(person.Nationality) &&
+                                 (
+                                     EF.Functions.Like(person.Nationality, nationalityId + ",%") ||   // start
+                                     EF.Functions.Like(person.Nationality, "%," + nationalityId + ",%") || // middle
+                                     EF.Functions.Like(person.Nationality, "%," + nationalityId) ||   // end
+                                     person.Nationality == nationalityId                              // exact only value
+                                 ));
+        }
+
 
         int totalRecords = await personsQueryable.CountAsync();
 
@@ -223,6 +233,15 @@ public class PersonRepo : GenericRepo<Person>, IPersonRepo
         if (oldEntity.Private != entity.Private)
             oldEntity.Private = entity.Private;
 
+        if(oldEntity.Nationality != entity.Nationality)
+        {
+            oldEntity.Nationality = entity.Nationality;
+        }
+
+        if(oldEntity.DateOfBirth != entity.DateOfBirth)
+        {
+            oldEntity.DateOfBirth = entity.DateOfBirth;
+        }
         //_context.Entry(entity).State = EntityState.Modified;
 
         await _context.SaveChangesAsync();

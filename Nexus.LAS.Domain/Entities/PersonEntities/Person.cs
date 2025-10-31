@@ -43,6 +43,6 @@ namespace Nexus.LAS.Domain.Entities.PersonEntities
         [Required, Column("Private")]
         public bool Private { get; set; }
         public DateTime? DateOfBirth { get; set; }
-        public int? Nationality { get; set; }
+        public string? Nationality { get; set; }
     }
 }
