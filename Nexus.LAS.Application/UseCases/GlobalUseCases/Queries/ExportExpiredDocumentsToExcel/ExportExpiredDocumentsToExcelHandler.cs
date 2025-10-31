@@ -18,7 +18,7 @@ namespace Nexus.LAS.Application.UseCases.GlobalUseCases.Queries.ExportExpiredDoc
             return new ExcelDto()
             {
                 Data = data,
-                FileName = $"Expired Document Sheet"
+                FileName = $"LAS Sheet"
             };
         }
     }

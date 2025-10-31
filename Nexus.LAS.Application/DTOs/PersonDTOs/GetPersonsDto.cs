@@ -1,4 +1,5 @@
 ﻿using Nexus.LAS.Domain.CommonAttributes;
+using Nexus.LAS.Domain.Constants.Enums;
 
 namespace Nexus.LAS.Application.DTOs.PersonDTOs;
 
@@ -10,9 +11,11 @@ public class GetPersonsDto
     public string? PersonEnglishName { get; set; }
     public string? PersonArabicName { get; set; }
     public string? PersonShortName { get; set; }
-    public int PersonStatus { get; set; }
+    public CommonStatus PersonStatus { get; set; }
     public string FPCCode { get; set; }
     public bool Private { get; set; }
+    public DateTime? DateOfBirth { get; set; }
+    public int? Nationality { get; set; }
 
     // Auditing fields
     [IgnoreOnExport]

@@ -1,17 +1,24 @@
 ﻿using AutoMapper;
+using ClosedXML;
+using ClosedXML.Excel;
 using EFCore.BulkExtensions;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Nexus.LAS.Application.Contracts.Identity;
 using Nexus.LAS.Application.Contracts.Presistence;
+using Nexus.LAS.Application.Contracts.Presistence._Repositories;
 using Nexus.LAS.Application.Contracts.Presistence._Repositories._PersonRepos;
 using Nexus.LAS.Application.DTOs;
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.DTOs.PersonDTOs;
+using Nexus.LAS.Application.Models;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Commands;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Queries;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Queries.GetAllActivePerson;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Queries.GetAllPersonsByCompanyId;
+using Nexus.LAS.Domain.CommonAttributes;
 using Nexus.LAS.Domain.Constants;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 using Nexus.LAS.Domain.Entities.RegisterEntities;
@@ -21,6 +28,7 @@ using Nexus.LAS.Persistence.Repositories.RegisterFileRepositories;
 using Nexus.LAS.Persistence.Services.Base;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
+using System.Reflection;
 
 namespace Nexus.LAS.Persistence.Services
 {
@@ -28,10 +36,15 @@ namespace Nexus.LAS.Persistence.Services
     {
         private readonly IMapper _mapper;
         private readonly IPersonRepo _personRepo;
-        public PersonService(NexusLASDbContext context, IPersonRepo personRepo, IUserIdentityService userIdentityService, IMapper mapper) : base(context, userIdentityService,personRepo)
+        private readonly IDynamicListRepo _dynamicListRepo;
+        private readonly IOptions<AppSettings> _appSettings;
+
+        public PersonService(NexusLASDbContext context, IPersonRepo personRepo, IUserIdentityService userIdentityService, IMapper mapper, IOptions<AppSettings> appSettings , IDynamicListRepo dynamicListRepo) : base(context, userIdentityService,personRepo)
         {
             _mapper = mapper;
             _personRepo = personRepo;
+            _appSettings = appSettings;
+            this._dynamicListRepo = dynamicListRepo;
         }
 
         public async Task<PersonDto> GetPersonDto(int id)
@@ -337,5 +350,53 @@ namespace Nexus.LAS.Persistence.Services
         {
             return await _personRepo.GetAllPersonsCompany(query);
         }
+
+        public async Task<byte[]> ExportToExcel(IQueryCollection query)
+        {
+            var data = await _repo.GetAllAsync(query);
+
+
+            var nationalities = await _dynamicListRepo.GetDictionaryByParentId(_appSettings.Value.DynamicListRoots.country);
+
+
+            using (var workbook = new XLWorkbook())
+            {
+                var worksheet = workbook.Worksheets.Add(nameof(Person));
+                var properties = typeof(PersonDto).GetProperties().Where(p => !p.HasAttribute<IgnoreOnExportAttribute>()).ToArray();
+                SetHeader(worksheet, properties);
+
+                // Add autofilter to header row
+                var propertyNames = properties.Select(x => x.Name).ToArray();
+                var entityProps = typeof(Person).GetProperties().Where(x => propertyNames.Select(p => p.ToLower()).Contains(x.Name.ToLower())).ToArray();
+
+                int row = 2;
+                foreach (var item in data)
+                {
+                    for (int col = 0; col < entityProps.Length; col++)
+                    {
+                        object? value = entityProps[col].GetValue(item);
+                        if (entityProps[col].Name == nameof(PersonDto.Nationality) && value is not null)
+                        {
+                            if (nationalities.ContainsKey(Convert.ToInt32(value)))
+                            {
+                                value = nationalities[Convert.ToInt32(value)];
+                            }
+                        }
+
+                        worksheet.Cell(row, col + 1).Value = value is null ? string.Empty : value.ToString();
+                    }
+                    row++;
+                }
+                worksheet.Columns().AdjustToContents();
+
+                using (var stream = new MemoryStream())
+                {
+                    workbook.SaveAs(stream);
+                    stream.Seek(0, SeekOrigin.Begin);
+                    return stream.ToArray();
+                }
+            }
+        }
+
     }
 }

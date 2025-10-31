@@ -7,4 +7,6 @@ public class CreatePersonCommand : CreateBaseCommand
     public string PersonEnglishName { get; set; } = null!;
     public string PersonArabicName { get; set; } = null!;
     public string PersonShortName { get; set; } = null!;
+    public DateTime? DateOfBirth { get; set; }
+    public int? Nationality { get; set; }
 }

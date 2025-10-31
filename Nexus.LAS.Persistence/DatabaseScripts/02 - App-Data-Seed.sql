@@ -121,9 +121,9 @@ BEGIN
     (1, NULL, N'Dashboard', N'Dashboard', 1, N'Home dashboard', N'dashboard', 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
     
     -- Main Menu Items - IDs shifted up
-    (2, NULL, N'Persons', N'Persons', 2, N'Person management', N'people', 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (2, NULL, N'People', N'People', 2, N'Person management', N'people', 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
     (3, NULL, N'Companies', N'Companies', 3, N'Company management', N'domain', 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (4, NULL, N'Real Estates', N'Real-Estates', 4, N'Real Estate management', N'home_work', 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (4, NULL, N'Real Estate', N'Real-Estate', 4, N'Real Estate management', N'home_work', 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
     (5, NULL, N'Law Firms', N'Law-Firms', 5, N'Law Firm management', N'gavel', 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
     (6, NULL, N'Transactions', N'Transactions', 6, N'Transaction management', N'swap_horiz', 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
     (7, NULL, N'FPCs', N'FPCs', 7, N'fire proof cabints management', N'business_center', 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
@@ -131,11 +131,11 @@ BEGIN
     (9, NULL, N'Settings', N'Settings', 9, N'System settings', N'settings', 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
     
     -- Person Sub-menus (Parent ID: 2)
-    (10, 2, N'Add Person', N'Persons/Add-Person', 1, N'Add new person', NULL, 0, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (11, 2, N'All Persons', N'All-Persons', 2, N'View all persons', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (12, 2, N'Active Persons', N'Active-Persons', 3, N'View active persons', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (13, 2, N'Active Private Persons', N'Active-Private-Persons', 4, N'View active private persons', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (14, 2, N'Active Public Persons', N'Active-Public-Persons', 5, N'View active public persons', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (10, 2, N'Add Person', N'People/Add-Person', 1, N'Add new person', NULL, 0, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (11, 2, N'All People', N'All-People', 2, N'View all People', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (12, 2, N'Active People', N'Active-People', 3, N'View active People', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (13, 2, N'Active Private People', N'Active-Private-People', 4, N'View active private People', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (14, 2, N'Active Public People', N'Active-Public-People', 5, N'View active public People', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
 
     -- Company Sub-menus (Parent ID: 3)
     (15, 3, N'Add Company', N'Companies/Add-Company', 1, N'Add new company', NULL, 0, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),

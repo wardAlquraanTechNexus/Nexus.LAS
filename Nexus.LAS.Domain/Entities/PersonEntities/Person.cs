@@ -1,4 +1,5 @@
 ﻿using Nexus.LAS.Domain.Constants;
+using Nexus.LAS.Domain.Constants.Enums;
 using Nexus.LAS.Domain.Entities.Base;
 using System;
 using System.Collections.Generic;
@@ -37,9 +38,11 @@ namespace Nexus.LAS.Domain.Entities.PersonEntities
         public string? Website { get; set; }
 
         [Required, Column("PersonStatus")]
-        public int? PersonStatus { get; set; }
+        public CommonStatus? PersonStatus { get; set; }
 
         [Required, Column("Private")]
         public bool Private { get; set; }
+        public DateTime? DateOfBirth { get; set; }
+        public int? Nationality { get; set; }
     }
 }

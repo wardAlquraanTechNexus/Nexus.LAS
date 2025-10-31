@@ -26,35 +26,54 @@ public class PersonRepo : GenericRepo<Person>, IPersonRepo
 
     public async Task<PagingResult<Person>> GetPersons(GetPersonsQuery personQuery)
     {
-        var personsQueryable = _dbSet.Where(
-            person =>
-            (!personQuery.Id.HasValue || personQuery.Id.Value == person.Id)
-            && (!personQuery.Privates.Any() || personQuery.Privates.Contains(person.Private))
-            && (!personQuery.Statuses.Any() || (person.PersonStatus.HasValue && personQuery.Statuses.Contains(person.PersonStatus.Value)))
-            && (
-                    personQuery.SearchBy == null
-                || (person.PersonIdc.ToLower().Contains(personQuery.SearchBy.ToLower()))
+
+        var personsQueryable = _dbSet.AsQueryable().AsNoTracking();
+        if (personQuery.Id.HasValue)
+        {
+            personsQueryable = personsQueryable.Where(person => personQuery.Id.Value == person.Id);
+        }
+        if (!string.IsNullOrEmpty(personQuery.SearchBy))
+        {
+                       personsQueryable = personsQueryable.Where(
+                person =>
+                (person.PersonIdc.ToLower().Contains(personQuery.SearchBy.ToLower()))
                 || (!string.IsNullOrEmpty(person.PersonEnglishName) && person.PersonEnglishName.ToLower().Contains(personQuery.SearchBy.ToLower()))
                 || (!string.IsNullOrEmpty(person.PersonArabicName) && person.PersonArabicName.ToLower().Contains(personQuery.SearchBy.ToLower()))
                 || (!string.IsNullOrEmpty(person.PersonShortName) && person.PersonShortName.ToLower().Contains(personQuery.SearchBy.ToLower()))
                 || (!string.IsNullOrEmpty(person.PersonCode) && person.PersonCode.ToLower().Contains(personQuery.SearchBy.ToLower()))
+                );
+        }
 
-                )
-            )
-            .AsNoTracking()
-            .AsQueryable();
+        if(!string.IsNullOrEmpty(personQuery.PersonEnglishName))
+        {
+            personsQueryable = personsQueryable.Where(person => person.PersonEnglishName != null && person.PersonEnglishName.ToLower() == personQuery.PersonEnglishName.ToLower());
+        }
+
+        if (!string.IsNullOrEmpty(personQuery.PersonArabicName))
+        {
+            personsQueryable = personsQueryable.Where(person => person.PersonArabicName != null && person.PersonArabicName.ToLower() == personQuery.PersonArabicName.ToLower());
+        }
+
+        if (!string.IsNullOrEmpty(personQuery.PersonShortName))
+        {
+            personsQueryable = personsQueryable.Where(person => person.PersonShortName != null && person.PersonShortName.ToLower() == personQuery.PersonShortName.ToLower());
+        }
 
         if (personQuery.Nationality.HasValue)
         {
-            personsQueryable = personsQueryable.Where(x =>
-                _context.PersonsAddresses.Any(address => address.PersonsIdn == x.Id &&
-                                                         address.POBoxCountry == personQuery.Nationality));
+            personsQueryable = personsQueryable.Where(person => person.Nationality == personQuery.Nationality.Value);
         }
 
-        
-        
+        if (personQuery.Privates.Any())
+        {
+            personsQueryable = personsQueryable.Where(person => personQuery.Privates.Contains(person.Private));
+        }
 
-
+        if(personQuery.Statuses.Any())
+        {
+            personsQueryable = personsQueryable.Where(person => personQuery.Statuses.Contains(person.PersonStatus.Value));
+        }
+        
 
         int totalRecords = await personsQueryable.CountAsync();
 
@@ -104,7 +123,7 @@ public class PersonRepo : GenericRepo<Person>, IPersonRepo
         var personsQueryable = _dbSet.Where(
             x =>
             (personQuery.Private == null || personQuery.Private == x.Private)
-            && (x.PersonStatus == (int)PersonStatus.Active)
+            && (x.PersonStatus == CommonStatus.Active)
             && (
                     personQuery.SearchBy == null
                 || (x.PersonIdc.ToLower().Contains(personQuery.SearchBy.ToLower()))
@@ -164,7 +183,7 @@ public class PersonRepo : GenericRepo<Person>, IPersonRepo
 
     public override async Task<int> CreateAsync(Person entity)
     {
-        entity.PersonStatus = (int)PersonStatus.New;
+        entity.PersonStatus = CommonStatus.New;
         entity.PersonCode = "PP" + entity.Id.ToString().PadLeft(6, '0');
         await _dbSet.AddAsync(entity);
         await _context.SaveChangesAsync();
@@ -194,7 +213,7 @@ public class PersonRepo : GenericRepo<Person>, IPersonRepo
         if (oldEntity.PersonStatus != entity.PersonStatus)
         {
             oldEntity.PersonStatus = entity.PersonStatus;
-            if (entity.PersonStatus == (int)PersonStatus.Active)
+            if (entity.PersonStatus == CommonStatus.Active)
             {
                 oldEntity.PersonCode = "PP" + entity.Id.ToString().PadLeft(6, '0');
 

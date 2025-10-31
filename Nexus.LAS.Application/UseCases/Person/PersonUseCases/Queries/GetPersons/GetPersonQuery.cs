@@ -2,6 +2,7 @@
 using Nexus.LAS.Application.DTOs.Base;
 using Nexus.LAS.Application.DTOs.PersonDTOs;
 using Nexus.LAS.Application.UseCases.Base;
+using Nexus.LAS.Domain.Constants.Enums;
 
 namespace Nexus.LAS.Application.UseCases.PersonUseCases.Queries;
 
@@ -35,7 +36,7 @@ public class GetPersonsQuery: BaseParams , IRequest<PagingResult<GetPersonsDto>>
             _status = value;
             if (!string.IsNullOrEmpty(_status))
             {
-                Statuses = _status.Split(',').Select(x=>Convert.ToInt32(x)).ToList();
+                Statuses = _status.Split(',').Select(x => Enum.Parse<CommonStatus>(x)).ToList();
             }
             else
             {
@@ -46,7 +47,13 @@ public class GetPersonsQuery: BaseParams , IRequest<PagingResult<GetPersonsDto>>
     }
     private string? _status;
 
-    public List<int> Statuses { get; set; } = new();
-    public string? OrderBy { get; set; }
-    public string? OrderDir { get; set; }
+    public List<CommonStatus> Statuses { get; set; } = new();
+    
+    public string? PersonEnglishName { get; set; }
+    public string? PersonArabicName { get; set; }
+    public string? PersonShortName { get; set; }
+
+    public string? OrderBy { get; set; } = "id";
+    public string? OrderDir { get; set; } = "asc";
+
 }

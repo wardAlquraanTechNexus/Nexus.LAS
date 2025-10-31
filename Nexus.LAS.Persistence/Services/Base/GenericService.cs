@@ -92,31 +92,20 @@ namespace Nexus.LAS.Persistence.Services.Base
             var properties = typeof(T).GetProperties();
             return await ExportToExcel(query , properties);   
         }
-        public async Task<byte[]> ExportToExcel(IQueryCollection query , PropertyInfo[] properties)
+        public virtual async Task<byte[]> ExportToExcel(IQueryCollection query , PropertyInfo[] properties)
         {
             var data = await _repo.GetAllAsync(query);
             using (var workbook = new XLWorkbook())
             {
                 var worksheet = workbook.Worksheets.Add(nameof(T));
-                var propertyNames = properties.Where(p=>!p.HasAttribute<IgnoreOnExportAttribute>()).Select(x => x.Name).ToArray();
-                var entityProps = typeof(T).GetProperties().Where(x => propertyNames.Contains(x.Name)).ToArray();
+                properties = properties.Where(p => !p.HasAttribute<IgnoreOnExportAttribute>()).ToArray();
 
-                // Set header cells
-                for (int col = 0; col < entityProps.Length; col++)
-                {
-                    worksheet.Cell(1, col + 1).Value = properties[col].Name;
-                }
-                var headerRange = worksheet.Range(1, 1, 1, entityProps.Length);
-                headerRange.SetAutoFilter();
 
-                // Style header
-                headerRange.Style.Fill.BackgroundColor = XLColor.Teal;
-                headerRange.Style.Font.Bold = true;
-                headerRange.Style.Font.FontColor = XLColor.White;
-                headerRange.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
-                headerRange.Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
+               SetHeader(worksheet, properties);
 
                 // Add autofilter to header row
+                var propertyNames = properties.Select(x => x.Name).ToArray();
+                var entityProps = typeof(T).GetProperties().Where(x=>propertyNames.Select(p=>p.ToLower()).Contains(x.Name.ToLower())).ToArray();
 
                 int row = 2;
                 foreach (var item in data)
@@ -138,5 +127,30 @@ namespace Nexus.LAS.Persistence.Services.Base
                 }
             }
         }
+
+        protected void SetHeader(IXLWorksheet worksheet, PropertyInfo[] properties)
+        {
+            // Set header cells
+            for (int col = 0; col < properties.Length; col++)
+            {
+                string propertyName = properties[col].Name;
+                if (properties[col].HasAttribute<ExcelColumnName>())
+                {
+                    var attr = properties[col].GetCustomAttribute<ExcelColumnName>();
+                    propertyName = attr!.Name;
+                }
+                worksheet.Cell(1, col + 1).Value = propertyName;
+            }
+            var headerRange = worksheet.Range(1, 1, 1, properties.Length);
+            headerRange.SetAutoFilter();
+
+            // Style header
+            headerRange.Style.Fill.BackgroundColor = XLColor.Teal;
+            headerRange.Style.Font.Bold = true;
+            headerRange.Style.Font.FontColor = XLColor.White;
+            headerRange.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+            headerRange.Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
+        }
+
     }
 }

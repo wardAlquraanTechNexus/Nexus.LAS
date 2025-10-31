@@ -14,7 +14,7 @@ namespace Nexus.LAS.Application.UseCases._GenericUseCases.Queries.ExportToExcelB
             _service = service;
         }
 
-        public async Task<ExcelDto> Handle(Query query, CancellationToken cancellationToken)
+        public virtual async Task<ExcelDto> Handle(Query query, CancellationToken cancellationToken)
         {
             var props = typeof(DTO).GetProperties();
             var res = await _service.ExportToExcel(query.Query, props);
