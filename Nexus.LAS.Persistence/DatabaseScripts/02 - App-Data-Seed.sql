@@ -1,4 +1,4 @@
-USE [NEXUS-LAS-RG-DB]
+﻿USE [NEXUS-LAS-RG-DB]
 GO
 
 -- Check if database exists and is accessible
@@ -146,10 +146,10 @@ BEGIN
     
     -- Real Estate Sub-menus (Parent ID: 4)
     (20, 4, N'Add Real Estate', N'Real-Estates/Add-Real-Estate', 1, N'Add new real estate property', NULL, 0, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (21, 4, N'All Properties', N'All-Properties', 2, N'View all real estate properties', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (22, 4, N'Active Properties', N'Active-Properties', 3, N'View active real estate properties', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (23, 4, N'Active Private Properties', N'Active-Private-Properties', 4, N'View active private properties', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
-    (24, 4, N'Active Public Properties', N'Active-Public-Properties', 5, N'View active public properties', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (21, 4, N'All Real Estate', N'All-Real-Estate', 2, N'View all real estate Real-Estate', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (22, 4, N'Active Real Estate', N'Active-Real-Estate', 3, N'View active real estate Real-Estate', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (23, 4, N'Active Private Real Estate', N'Active-Private-Real-Estate', 4, N'View active private Real-Estate', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
+    (24, 4, N'Active Public Real Estate', N'Active-Public-Real-Estate', 5, N'View active public Real-Estate', NULL, 1, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
     
     -- Law Firm Sub-menus (Parent ID: 5)
     (25, 5, N'Add Law Firm', N'Law-Firms/Add-Law-Firm', 1, N'Add new law firm', NULL, 0, @systemUser, @currentDatetime, NULL, NULL, 0, NULL, NULL),
@@ -239,6 +239,7 @@ ALTER TABLE [dbo].[GroupsMenus] CHECK CONSTRAINT ALL
 ALTER TABLE [dbo].[UserGroups] CHECK CONSTRAINT ALL
 
 -- Log successful completion
+PRINT 'Data seeding completed successfully at ' + CONVERT(NVARCHAR(50), @currentDatetime, 121)
 PRINT 'Data seeding completed successfully at ' + CONVERT(NVARCHAR(50), @currentDatetime, 121)
 PRINT 'Seed version: ' + @seedVersion
 
