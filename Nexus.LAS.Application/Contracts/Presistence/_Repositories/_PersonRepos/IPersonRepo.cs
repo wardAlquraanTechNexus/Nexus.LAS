@@ -10,10 +10,10 @@ namespace Nexus.LAS.Application.Contracts.Presistence._Repositories._PersonRepos
 {
     public interface IPersonRepo: IGenericRepo<Person>
     {
-        Task<PagingResult<Person>> GetPersons(GetPersonsQuery personQuery);
+        Task<PagingResult<PersonDto>> GetPersons(GetPersonsQuery personQuery);
         Task<PagingResult<Person>> GetActivePersons(GetAllActivePersonQuery personQuery);
         Task<Person> UpdatePersonAsync(Person entity);
-        Task<List<Person>> GetAllPersons(GetAllPersonsQuery personQuery);
+        Task<List<PersonDto>> GetAllPersons(GetPersonsQuery personQuery);
         Task<List<PersonDto>> GetAllPersonsCompany(GetAllPersonsCompanyQuery query);
     }
 }

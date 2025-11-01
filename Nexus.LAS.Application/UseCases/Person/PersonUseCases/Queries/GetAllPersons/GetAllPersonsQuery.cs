@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Nexus.LAS.Application.UseCases.PersonUseCases.Queries
 {
-    public class GetAllPersonsQuery:IRequest<List<GetPersonsDto>>
+    public class GetAllPersonsQuery:IRequest<List<PersonDto>>
     {
         public int? Id { get; set; }
         public string? SearchBy { get; set; }

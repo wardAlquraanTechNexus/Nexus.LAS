@@ -6,7 +6,7 @@ using Nexus.LAS.Domain.Entities.PersonEntities;
 
 namespace Nexus.LAS.Application.UseCases.PersonUseCases.Commands.UpdatePerson;
 
-public class UpdatePersonHandler: IRequestHandler<UpdatePersonCommand, GetPersonsDto>
+public class UpdatePersonHandler: IRequestHandler<UpdatePersonCommand, PersonDto>
 {
 
     private readonly IPersonService _personService;
@@ -18,13 +18,13 @@ public class UpdatePersonHandler: IRequestHandler<UpdatePersonCommand, GetPerson
         _mapper = mapper;
     }
 
-    public async Task<GetPersonsDto> Handle(UpdatePersonCommand command , CancellationToken cancellationToken)
+    public async Task<PersonDto> Handle(UpdatePersonCommand command , CancellationToken cancellationToken)
     {
 
         Person person = _mapper.Map<Person>(command);
         person = await _personService.UpdatePersonAsync(person);
 
-        return _mapper.Map<GetPersonsDto>(person);
+        return _mapper.Map<PersonDto>(person);
 
     }
 }

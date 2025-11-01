@@ -38,7 +38,7 @@ namespace Nexus.LAS.Domain.Entities.PersonEntities
         public string? Website { get; set; }
 
         [Required, Column("PersonStatus")]
-        public CommonStatus? PersonStatus { get; set; }
+        public CommonStatus PersonStatus { get; set; }
 
         [Required, Column("Private")]
         public bool Private { get; set; }

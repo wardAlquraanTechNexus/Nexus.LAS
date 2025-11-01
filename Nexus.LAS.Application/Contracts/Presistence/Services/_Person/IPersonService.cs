@@ -12,8 +12,8 @@ namespace Nexus.LAS.Application.Contracts.Presistence;
 
 public interface IPersonService: IGenericService<Person>
 {
-    Task<PagingResult<Person>> GetPersons(GetPersonsQuery personQuery);
-    Task<List<Person>> GetAllPersons(GetAllPersonsQuery personQuery);
+    Task<PagingResult<PersonDto>> GetPersons(GetPersonsQuery personQuery);
+    Task<List<PersonDto>> GetAllPersons(GetPersonsQuery personQuery);
     Task<PagingResult<Person>> GetActivePersons(GetAllActivePersonQuery personQuery);
     Task<Person> UpdatePersonAsync(Person entity);
     Task<int> BulkChangeStatus(List<int> personIds, int status);
@@ -25,4 +25,5 @@ public interface IPersonService: IGenericService<Person>
     Task<FileDto> UploadUserImage(UploadPersonImageCommand command);
     Task<PersonDto> GetPersonDto(int id);
     Task<List<PersonDto>> GetAllPersonsCompanyAsync(GetAllPersonsCompanyQuery query);
+    Task<byte[]> ExportToExcel(ExportPersonToExcelQuery query);
 }

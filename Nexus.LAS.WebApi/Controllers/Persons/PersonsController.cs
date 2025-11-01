@@ -97,9 +97,8 @@ namespace Nexus.LAS.WebApi.Controllers
         }
 
         [HttpGet(nameof(ExportToExcel))]
-        public async Task<IActionResult> ExportToExcel()
+        public async Task<IActionResult> ExportToExcel([FromQuery]ExportPersonToExcelQuery query)
         {
-            var query = new ExportPersonToExcelQuery { Query = Request.Query };
             return Ok(await _mediator.Send(query));
         }
         [HttpGet(nameof(ExportToPdf))]

@@ -29,34 +29,38 @@ using Nexus.LAS.Persistence.Services.Base;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using System.Reflection;
+using System.Text;
 
 namespace Nexus.LAS.Persistence.Services
 {
     public class PersonService : GenericService<Person>, IPersonService
     {
         private readonly IMapper _mapper;
-        private readonly IPersonRepo _personRepo;
+        private readonly IPersonRepo _repo;
         private readonly IDynamicListRepo _dynamicListRepo;
         private readonly IOptions<AppSettings> _appSettings;
 
-        public PersonService(NexusLASDbContext context, IPersonRepo personRepo, IUserIdentityService userIdentityService, IMapper mapper, IOptions<AppSettings> appSettings , IDynamicListRepo dynamicListRepo) : base(context, userIdentityService,personRepo)
+        public PersonService(NexusLASDbContext context, IPersonRepo personRepo, IUserIdentityService userIdentityService, IMapper mapper, IOptions<AppSettings> appSettings, IDynamicListRepo dynamicListRepo) : base(context, userIdentityService, personRepo)
         {
             _mapper = mapper;
-            _personRepo = personRepo;
+            _repo = personRepo;
             _appSettings = appSettings;
             this._dynamicListRepo = dynamicListRepo;
         }
 
         public async Task<PersonDto> GetPersonDto(int id)
         {
-            
+
             RegisterFileRepo registerFileRepo = new RegisterFileRepo(_context);
 
-            var person = await _personRepo.GetAsync(id);
+            var persons = await _repo.GetPersons(new GetPersonsQuery()
+            {
+                Id = id
+            });
 
+            var personDto = persons.Collection.FirstOrDefault(x => x.Id == id);
             var fileData = await registerFileRepo.GetLastByIds(EntityIDCs.Person, id);
 
-            var personDto = _mapper.Map<PersonDto>(person);
 
             personDto.PersonImage = fileData?.Data;
             personDto.FileName = fileData?.Name;
@@ -68,26 +72,26 @@ namespace Nexus.LAS.Persistence.Services
         }
 
 
-        public async Task<PagingResult<Person>> GetPersons(GetPersonsQuery personQuery)
+        public async Task<PagingResult<PersonDto>> GetPersons(GetPersonsQuery personQuery)
         {
-            return await _personRepo.GetPersons(personQuery);
+            return await _repo.GetPersons(personQuery);
         }
-        public async Task<List<Person>> GetAllPersons(GetAllPersonsQuery personQuery)
+        public async Task<List<PersonDto>> GetAllPersons(GetPersonsQuery personQuery)
         {
-            return await _personRepo.GetAllPersons(personQuery);
+            return await _repo.GetAllPersons(personQuery);
         }
         public async Task<PagingResult<Person>> GetActivePersons(GetAllActivePersonQuery personQuery)
         {
-            return await _personRepo.GetActivePersons(personQuery);
+            return await _repo.GetActivePersons(personQuery);
         }
 
         public async override Task<int> CreateAsync(Person entity)
         {
-            return await _personRepo.CreateAsync(entity);
+            return await _repo.CreateAsync(entity);
         }
         public async Task<Person> UpdatePersonAsync(Person entity)
         {
-            return await _personRepo.UpdatePersonAsync(entity);
+            return await _repo.UpdatePersonAsync(entity);
         }
 
         public async Task<int> BulkChangeStatus(List<int> personIds, int status)
@@ -182,7 +186,7 @@ namespace Nexus.LAS.Persistence.Services
             PersonPhoneRepo personPhoneRepo = new(_context);
             PersonAddressRepo personAddressRepo = new(_context);
 
-            var person = await _personRepo.GetAsync(id);
+            var person = await _repo.GetAsync(id);
             var personIdDetails = await personIdDetailRepo.GetListByPersonId(id);
             var personsOtherDocuments = await personOtherDocumentRepo.GetListByPersonId(id);
             var personEmails = await personEmailRepo.GetListByPersonId(id);
@@ -237,7 +241,7 @@ namespace Nexus.LAS.Persistence.Services
                     page.Content()
                         .Column(column =>
                         {
-                             column.Item().Padding(4).Text(string.Empty);
+                            column.Item().Padding(4).Text(string.Empty);
 
                             column.Item().Background("#f8fafc").BorderBottom(2).BorderColor("#e2e8f0").Padding(12).AlignCenter().Text("Person Details")
                                             .FontSize(18)
@@ -275,7 +279,7 @@ namespace Nexus.LAS.Persistence.Services
                                     new PdfDisplayColumn("Expiry Date", nameof(PersonsIDDetail.ExpiryDate)),
                                     new PdfDisplayColumn("Primary", nameof(PersonsIDDetail.IsPrimary)),
                                 }, "Document Details");
-                            
+
                             column.Item().Padding(4).Text(string.Empty);
 
                             column.CreateTable(personsOtherDocuments, new List<PdfDisplayColumn>()
@@ -283,7 +287,7 @@ namespace Nexus.LAS.Persistence.Services
                                     new PdfDisplayColumn("Type", nameof(PersonsOtherDocument.DocumentType)),
                                     new PdfDisplayColumn("Document Description", nameof(PersonsOtherDocument.DocumentType)),
                                 }, "Other Document Details");
-                            
+
                             column.Item().Padding(4).Text(string.Empty);
 
                             column.CreateTable(personPhones, new List<PdfDisplayColumn>()
@@ -300,7 +304,7 @@ namespace Nexus.LAS.Persistence.Services
                                     new PdfDisplayColumn("Email Primary", nameof(PersonsEmail.EmailPrimary)),
                                     new PdfDisplayColumn("Email", nameof(PersonsEmail.Email)),
                                 }, "Emails");
-                            
+
                             column.Item().Padding(4).Text(string.Empty);
 
                             column.CreateTable(personAddress, new List<PdfDisplayColumn>()
@@ -348,12 +352,16 @@ namespace Nexus.LAS.Persistence.Services
 
         public async Task<List<PersonDto>> GetAllPersonsCompanyAsync(GetAllPersonsCompanyQuery query)
         {
-            return await _personRepo.GetAllPersonsCompany(query);
+            return await _repo.GetAllPersonsCompany(query);
         }
 
-        public async Task<byte[]> ExportToExcel(IQueryCollection query)
+        public async Task<byte[]> ExportToExcel(ExportPersonToExcelQuery query)
         {
-            var data = await _repo.GetAllAsync(query);
+            var data = await _repo.GetAllPersons(new GetPersonsQuery()
+            {
+                Id = query.Id,
+                SearchBy = query.SearchBy
+            });
 
 
             var nationalities = await _dynamicListRepo.GetDictionaryByParentId(_appSettings.Value.DynamicListRoots.country);
@@ -367,20 +375,27 @@ namespace Nexus.LAS.Persistence.Services
 
                 // Add autofilter to header row
                 var propertyNames = properties.Select(x => x.Name).ToArray();
-                var entityProps = typeof(Person).GetProperties().Where(x => propertyNames.Select(p => p.ToLower()).Contains(x.Name.ToLower())).ToArray();
 
                 int row = 2;
                 foreach (var item in data)
                 {
-                    for (int col = 0; col < entityProps.Length; col++)
+                    for (int col = 0; col < properties.Length; col++)
                     {
-                        object? value = entityProps[col].GetValue(item);
-                        if (entityProps[col].Name == nameof(PersonDto.Nationality) && value is not null)
+                        var prop = properties[col];
+                        object? value = properties[col].GetValue(item);
+                        if (properties[col].Name == nameof(PersonDto.Nationality) && value is not null)
                         {
-                            if (nationalities.ContainsKey(Convert.ToInt32(value)))
+
+                            var valueBuilder = new List<string>();
+                            foreach (var nationality in value.ToString().Split(','))
                             {
-                                value = nationalities[Convert.ToInt32(value)];
+                                var nationalityKey = Convert.ToInt32(nationality);
+                                if (nationalities.ContainsKey(nationalityKey))
+                                {
+                                    valueBuilder.Add(nationalities[nationalityKey]);
+                                }
                             }
+                            value = string.Join( ',', valueBuilder);
                         }
 
                         worksheet.Cell(row, col + 1).Value = value is null ? string.Empty : value.ToString();

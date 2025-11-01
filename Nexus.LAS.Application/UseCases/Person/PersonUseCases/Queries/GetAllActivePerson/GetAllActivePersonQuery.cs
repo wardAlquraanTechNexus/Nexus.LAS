@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Nexus.LAS.Application.UseCases.PersonUseCases.Queries.GetAllActivePerson
 {
-    public class GetAllActivePersonQuery : BaseParams, IRequest<PagingResult<GetPersonsDto>>
+    public class GetAllActivePersonQuery : BaseParams, IRequest<PagingResult<PersonDto>>
     {
         public string? SearchBy { get; set; }
         public string? Nationality { get; set; }

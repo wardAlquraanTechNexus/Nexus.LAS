@@ -6,7 +6,7 @@ using Nexus.LAS.Domain.Entities.PersonEntities;
 
 namespace Nexus.LAS.Application.UseCases.PersonUseCases.Queries
 {
-    internal class GetAllPersonsQueryHandler : IRequestHandler<GetAllPersonsQuery, List<GetPersonsDto>>
+    internal class GetAllPersonsQueryHandler : IRequestHandler<GetAllPersonsQuery, List<PersonDto>>
     {
         private readonly IPersonService _personService;
         private readonly IMapper _mapper;
@@ -15,12 +15,17 @@ namespace Nexus.LAS.Application.UseCases.PersonUseCases.Queries
             _mapper = mapper;
             _personService = personService;
         }
-        public async Task<List<GetPersonsDto>> Handle(GetAllPersonsQuery request, CancellationToken cancellationToken)
+        public async Task<List<PersonDto>> Handle(GetAllPersonsQuery request, CancellationToken cancellationToken)
 
         {
-            List<Person> persons = await _personService.GetAllPersons(request);
-            List<GetPersonsDto> personDtos = _mapper.Map<List<GetPersonsDto>>(persons);
-            return personDtos;
+            var query = new GetPersonsQuery()
+            {
+                Id = request.Id,
+                SearchBy = request.SearchBy
+            };
+
+            return  await _personService.GetAllPersons(query);
+            
         }
     }
 }

@@ -4,7 +4,7 @@ using Nexus.LAS.Domain.Constants.Enums;
 
 namespace Nexus.LAS.Application.UseCases.PersonUseCases.Commands.UpdatePerson;
 
-public class UpdatePersonCommand: IRequest<GetPersonsDto>
+public class UpdatePersonCommand: IRequest<PersonDto>
 {
     public int Id { get; set; }
     public string PersonEnglishName { get; set; }

@@ -28,8 +28,8 @@ public class PersonEntitiesProfile : Profile
 {
     public PersonEntitiesProfile() 
     {
-        CreateMap<Person , GetPersonsDto>();
-        CreateMap<PagingResult<Person>, PagingResult<GetPersonsDto>>();
+        CreateMap<Person , PersonDto>();
+        CreateMap<PagingResult<Person>, PagingResult<PersonDto>>();
 
         CreateMap<CreatePersonCommand, Person>();
         CreateMap<Person, CreatePersonCommand>();
@@ -72,6 +72,5 @@ public class PersonEntitiesProfile : Profile
         CreateMap<PersonsOtherDocument, PersonOtherDocumentDTO>();
         CreateMap<PersonOtherDocumentDTO,PersonsOtherDocument>();
         CreateMap<EditPersonOtherDocumentCommand,PersonsOtherDocument>();
-        CreateMap<Person,PersonDto>();
     }
 }

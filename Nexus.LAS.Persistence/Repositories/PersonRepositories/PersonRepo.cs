@@ -7,6 +7,7 @@ using Nexus.LAS.Application.Models;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Queries;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Queries.GetAllActivePerson;
 using Nexus.LAS.Application.UseCases.PersonUseCases.Queries.GetAllPersonsByCompanyId;
+using Nexus.LAS.Domain.Constants;
 using Nexus.LAS.Domain.Constants.Enums;
 using Nexus.LAS.Domain.Entities.PersonEntities;
 using Nexus.LAS.Domain.ExtensionMethods;
@@ -24,27 +25,52 @@ public class PersonRepo : GenericRepo<Person>, IPersonRepo
     }
 
 
-    public async Task<PagingResult<Person>> GetPersons(GetPersonsQuery personQuery)
+    private IQueryable<PersonDto> GetPersonQuery(GetPersonsQuery personQuery)
     {
+        var personsQueryable =
+                        from p in _dbSet.AsNoTracking()
+                        join f in _context.FPCs
+                        on new { id = p.Id, idc = p.PersonIdc } equals new { id = f.RegisterIdn, idc = f.RegisterIdc } into fpcGroup
+                        from fpc in fpcGroup.DefaultIfEmpty()
+                        select new PersonDto
+                        {
+                            PersonEnglishName = p.PersonEnglishName,
+                            PersonArabicName = p.PersonArabicName,
+                            PersonShortName = p.PersonShortName,
+                            PersonCode = p.PersonCode,
+                            PersonIdc = p.PersonIdc,
+                            PersonStatus = p.PersonStatus,
+                            CreatedAt = p.CreatedAt,
+                            CreatedBy = p.CreatedBy,
+                            DateOfBirth = p.DateOfBirth,
+                            Id = p.Id,
+                            ModifiedAt = p.ModifiedAt,
+                            ModifiedBy = p.ModifiedBy,
+                            Private = p.Private,
+                            Nationality = p.Nationality,
+                            FPCCode = fpc.FpcCode
 
-        var personsQueryable = _dbSet.AsQueryable().AsNoTracking();
+                        };
+
+
+
         if (personQuery.Id.HasValue)
         {
             personsQueryable = personsQueryable.Where(person => personQuery.Id.Value == person.Id);
         }
         if (!string.IsNullOrEmpty(personQuery.SearchBy))
         {
-                       personsQueryable = personsQueryable.Where(
-                person =>
-                (person.PersonIdc.ToLower().Contains(personQuery.SearchBy.ToLower()))
-                || (!string.IsNullOrEmpty(person.PersonEnglishName) && person.PersonEnglishName.ToLower().Contains(personQuery.SearchBy.ToLower()))
-                || (!string.IsNullOrEmpty(person.PersonArabicName) && person.PersonArabicName.ToLower().Contains(personQuery.SearchBy.ToLower()))
-                || (!string.IsNullOrEmpty(person.PersonShortName) && person.PersonShortName.ToLower().Contains(personQuery.SearchBy.ToLower()))
-                || (!string.IsNullOrEmpty(person.PersonCode) && person.PersonCode.ToLower().Contains(personQuery.SearchBy.ToLower()))
-                );
-        }
+            personsQueryable = personsQueryable.Where(
+             person =>
+             (person.PersonIdc.ToLower().Contains(personQuery.SearchBy.ToLower()))
+             || (!string.IsNullOrEmpty(person.PersonEnglishName) && person.PersonEnglishName.ToLower().Contains(personQuery.SearchBy.ToLower()))
+             || (!string.IsNullOrEmpty(person.PersonArabicName) && person.PersonArabicName.ToLower().Contains(personQuery.SearchBy.ToLower()))
+             || (!string.IsNullOrEmpty(person.PersonShortName) && person.PersonShortName.ToLower().Contains(personQuery.SearchBy.ToLower()))
+             || (!string.IsNullOrEmpty(person.PersonCode) && person.PersonCode.ToLower().Contains(personQuery.SearchBy.ToLower()))
+             );
+                }
 
-        if(!string.IsNullOrEmpty(personQuery.PersonEnglishName))
+        if (!string.IsNullOrEmpty(personQuery.PersonEnglishName))
         {
             personsQueryable = personsQueryable.Where(person => person.PersonEnglishName != null && person.PersonEnglishName.ToLower() == personQuery.PersonEnglishName.ToLower());
         }
@@ -65,9 +91,9 @@ public class PersonRepo : GenericRepo<Person>, IPersonRepo
             personsQueryable = personsQueryable.Where(person => personQuery.Privates.Contains(person.Private));
         }
 
-        if(personQuery.Statuses.Any())
+        if (personQuery.Statuses.Any())
         {
-            personsQueryable = personsQueryable.Where(person => personQuery.Statuses.Contains(person.PersonStatus.Value));
+            personsQueryable = personsQueryable.Where(person => personQuery.Statuses.Contains(person.PersonStatus));
         }
 
         if (personQuery.Nationality.HasValue)
@@ -85,12 +111,21 @@ public class PersonRepo : GenericRepo<Person>, IPersonRepo
         }
 
 
-        int totalRecords = await personsQueryable.CountAsync();
-
         if (!string.IsNullOrEmpty(personQuery.OrderBy))
         {
             personsQueryable = personsQueryable.Order(personQuery.OrderBy, personQuery.OrderDir ?? "asc");
         }
+
+        return personsQueryable;
+    }
+
+
+    public async Task<PagingResult<PersonDto>> GetPersons(GetPersonsQuery personQuery)
+    {
+        IQueryable<PersonDto> personsQueryable = GetPersonQuery(personQuery);
+
+        int totalRecords = await personsQueryable.CountAsync();
+
         personsQueryable = personsQueryable.Paginate(personQuery.Page, personQuery.PageSize);
 
 
@@ -98,7 +133,7 @@ public class PersonRepo : GenericRepo<Person>, IPersonRepo
 
         var data = await personsQueryable.ToListAsync();
 
-        return new PagingResult<Person>()
+        return new PagingResult<PersonDto>()
         {
             Collection = data,
             Page = personQuery.Page,
@@ -107,21 +142,11 @@ public class PersonRepo : GenericRepo<Person>, IPersonRepo
             TotalRecords = totalRecords
         };
     }
-    public async Task<List<Person>> GetAllPersons(GetAllPersonsQuery personQuery)
-    {
-        var personsQueryable = _dbSet.Where(
-            person =>
-            (!personQuery.Id.HasValue || personQuery.Id.Value == person.Id)
-            && (
-                    personQuery.SearchBy == null
-                || (person.PersonIdc.ToLower().Contains(personQuery.SearchBy.ToLower()))
-                || (!string.IsNullOrEmpty(person.PersonEnglishName) && person.PersonEnglishName.ToLower().Contains(personQuery.SearchBy.ToLower()))
-                || (!string.IsNullOrEmpty(person.PersonArabicName) && person.PersonArabicName.ToLower().Contains(personQuery.SearchBy.ToLower()))
-                || (!string.IsNullOrEmpty(person.PersonShortName) && person.PersonShortName.ToLower().Contains(personQuery.SearchBy.ToLower()))
-                || (!string.IsNullOrEmpty(person.PersonCode) && person.PersonCode.ToLower().Contains(personQuery.SearchBy.ToLower()))
 
-                )
-            ).AsQueryable();
+
+    public async Task<List<PersonDto>> GetAllPersons(GetPersonsQuery personQuery)
+    {
+        var personsQueryable = GetPersonQuery(personQuery);
 
         return await personsQueryable.ToListAsync();
 

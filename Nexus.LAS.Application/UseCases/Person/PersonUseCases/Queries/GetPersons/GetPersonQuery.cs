@@ -6,7 +6,7 @@ using Nexus.LAS.Domain.Constants.Enums;
 
 namespace Nexus.LAS.Application.UseCases.PersonUseCases.Queries;
 
-public class GetPersonsQuery: BaseParams , IRequest<PagingResult<GetPersonsDto>>
+public class GetPersonsQuery: BaseParams , IRequest<PagingResult<PersonDto>>
 {
     public int? Id { get; set; }
     public string? SearchBy { get; set; }

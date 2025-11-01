@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Nexus.LAS.Application.UseCases.PersonUseCases.Queries
 {
-    public class GetPersonDtoQueryHandler:IRequestHandler<GetPersonDtoQuery,PersonDto>
+    public class GetPersonDtoQueryHandler:IRequestHandler<GetPersonDtoQuery, PersonDto>
     {
         private readonly IPersonService _personService;
 
